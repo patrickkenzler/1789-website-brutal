@@ -207,6 +207,13 @@ body::after {
   text-wrap: balance;
   /* wdth 87.5 narrows the matrix so long German compounds still fit */
   font-variation-settings: "wdth" 87.5;
+  /* German compounds have no spaces to break at: "Organisationsprinzip" is
+     20 characters, wider than a 5-column track at d2, and it pushed the whole
+     document into horizontal scroll. The document is lang="de", so hyphens
+     break it properly; break-word is the backstop for anything hyphenation
+     can't divide (URLs, codes). */
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
 
 .d0 {
@@ -351,11 +358,18 @@ body::after {
 .g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--u3); }
 .g4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--u3); }
 
-/* Column spans */
-.c1{grid-column:span 1}   .c2{grid-column:span 2}   .c3{grid-column:span 3}
-.c4{grid-column:span 4}   .c5{grid-column:span 5}   .c6{grid-column:span 6}
-.c7{grid-column:span 7}   .c8{grid-column:span 8}   .c9{grid-column:span 9}
-.c10{grid-column:span 10} .c11{grid-column:span 11} .c12{grid-column:span 12}
+/* Column spans.
+   These set grid-column-END only. The `grid-column: span N` shorthand writes
+   the START edge (start:span N / end:auto), so pairing it with a .sN start
+   class overwrote the span and collapsed the element to a single track —
+   .c6.s7 rendered ~90px wide. Setting the end edge leaves start free for .sN
+   to define, and auto-placement still spans N when no start is given. */
+.c1{grid-column-end:span 1}   .c2{grid-column-end:span 2}
+.c3{grid-column-end:span 3}   .c4{grid-column-end:span 4}
+.c5{grid-column-end:span 5}   .c6{grid-column-end:span 6}
+.c7{grid-column-end:span 7}   .c8{grid-column-end:span 8}
+.c9{grid-column-end:span 9}   .c10{grid-column-end:span 10}
+.c11{grid-column-end:span 11} .c12{grid-column-end:span 12}
 
 .s2{grid-column-start:2}  .s3{grid-column-start:3}  .s4{grid-column-start:4}
 .s5{grid-column-start:5}  .s7{grid-column-start:7}  .s8{grid-column-start:8}
@@ -890,6 +904,27 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
 .plate-coarse::after  { background-size: 6px 6px; }
 .plate-coarse::before { background-size: 6px 6px; background-position: 2px 3px; }
 
+/* Identity slug filling an imageless plate — initials at plate scale.
+   Needs z-index 2 to clear both halftone screens: .plate::after paints after
+   the element in tree order, so without it the multiply blend simply ate the
+   letters. Set in ink-45 to stay a placeholder and never read as a heading. */
+.plate-slug {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-macro);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: var(--track-macro);
+  font-variation-settings: "wdth" 75;
+  text-transform: uppercase;
+  color: var(--ink-45);
+  user-select: none;
+}
+
 /* Dot-matrix field used as a standalone texture block. */
 .dotfield {
   background-image: radial-gradient(var(--ink-20) 32%, transparent 34%);
@@ -921,8 +956,8 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
   /* Narrow tracks can't hold a readout or a headline, so anything under half
      width goes to half, and anything over half goes full. No exceptions —
      an unhandled span silently overflows the gutter. */
-  .c1, .c2, .c3, .c4, .c5 { grid-column: span 6; }
-  .c7, .c8, .c9, .c10, .c11 { grid-column: span 12; }
+  .c1, .c2, .c3, .c4, .c5 { grid-column-end: span 6; }
+  .c7, .c8, .c9, .c10, .c11 { grid-column-end: span 12; }
   .s2, .s3, .s4, .s5, .s7, .s8, .s9 { grid-column-start: auto; }
   .hairgrid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }

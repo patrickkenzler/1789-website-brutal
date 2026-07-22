@@ -53,7 +53,7 @@ export default function WirPage() {
 
           <div className="g12" style={{ rowGap: 'var(--u6)', alignItems: 'start' }}>
             <div className="c5">
-              <Plate label="FOTO FOLGT" coarse ratio="4 / 3" />
+              <Plate label="Büro" coarse ratio="4 / 3" />
               <div
                 style={{
                   borderTop: 'var(--rule)',
@@ -71,7 +71,8 @@ export default function WirPage() {
 
             <div className="c6 s7">
               <h2 className="d2" style={{ marginBottom: 'var(--u6)' }}>
-                Strategie und Struktur,{' '}
+                Strategie und Struktur,
+                <br />
                 <span className="d-thin d-red">aus einem Stück.</span>
               </h2>
 

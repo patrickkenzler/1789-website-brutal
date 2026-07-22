@@ -86,6 +86,10 @@ export function Plate({
 }) {
   const style: CSSProperties = ratio ? { aspectRatio: ratio } : {}
 
+  /* No source: the plate becomes a typographic slug rather than a blank dot
+     field. A missing portrait was reading as four large empty textures with
+     the initials set at 10px in the corner — the placeholder has to carry the
+     identity at plate scale, or the grid looks broken rather than pending. */
   if (!src) {
     return (
       <div
@@ -93,11 +97,12 @@ export function Plate({
         style={style}
         aria-hidden="true"
       >
+        <span className="plate-slug">{label ?? 'NO SIGNAL'}</span>
         <span
           className="unit"
           style={{ position: 'absolute', left: 12, bottom: 10 }}
         >
-          {label ?? 'NO SIGNAL'}
+          Foto folgt
         </span>
       </div>
     )

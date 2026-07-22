@@ -26,7 +26,10 @@ export default function AnsatzPage() {
             end={<span className="unit">{PHASES.length} Phasen</span>}
           />
 
-          <div className="hairgrid hairgrid-4">
+          {/* Three tracks, not four: five phases plus the trailing cell make
+              six, which fills 3x2 exactly. On four tracks the same six items
+              left two holes in the second row. */}
+          <div className="hairgrid hairgrid-3">
             {PHASES.map((p) => (
               <Link key={p.num} href={`#phase-${p.num}`} className="pad">
                 <span className="eyebrow" style={{ marginBottom: 'var(--u3)' }}>
@@ -40,7 +43,7 @@ export default function AnsatzPage() {
                 </span>
               </Link>
             ))}
-            {/* Trailing cell keeps the 4-track grid closed. */}
+            {/* Trailing cell closes the 3-track grid at six. */}
             <div className="pad dotfield" aria-hidden="true">
               <span className="unit">1789 / Systemshift Cycle</span>
             </div>
