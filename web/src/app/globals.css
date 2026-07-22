@@ -72,7 +72,14 @@
 
   /* ── MACRO SCALE — fluid, aggressive. clamp() only. ──────────────────── */
   --t-d0:  clamp(4rem,    18vw,  20rem);    /* viewport-bleeding numerals */
-  --t-d1:  clamp(1.875rem, 5.2vw, 4.5rem);  /* page H1 */
+  /* H1 is sized so the longest German line in the system — "Dazwischen
+     entscheidet Organisation." at 36 characters — sets on ONE line at full
+     measure. Measured at wght 800 / wdth 87.5 that line is 21.8× the font
+     size, so the ceiling is measure ÷ 21.8 with a little slack. Above this
+     the sentences wrap mid-clause and the three-part parallel structure of
+     the copy is destroyed. Below ~683px the floor takes over and the line
+     wraps regardless — that is the phone, where it always would. */
+  --t-d1:  clamp(1.75rem, 4.1vw, 4.25rem);  /* page H1 */
   --t-d2:  clamp(1.5rem,   3.8vw, 3.25rem); /* section H2 */
   --t-d3:  clamp(1.25rem, 2.6vw, 2.25rem);  /* block H3 */
   --t-d4:  clamp(1rem,    1.5vw, 1.25rem);  /* card H4 */
@@ -309,11 +316,14 @@ body::after {
 
 .body-sm { font-size: var(--t-11); line-height: 1.6; max-width: 72ch; }
 
+/* Emphasis is a ruled underline, not a highlighter block. A tinted band
+   behind the text reads as marker pen and, at four or five emphases per
+   quote, floods the page with a second colour value the palette doesn't
+   have. A hairline keeps the accent structural. */
 .body strong, .body-lg strong {
   font-weight: 700;
   color: var(--ink);
-  /* underline instead of a colour shift — keeps the single-accent rule */
-  box-shadow: inset 0 -0.28em 0 rgba(230, 25, 25, 0.16);
+  box-shadow: inset 0 -1px 0 var(--red);
 }
 
 .body a:not(.link), .body-lg a:not(.link) {
@@ -478,6 +488,74 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 }
 .slab-invert .readout dd { color: var(--paper); border-bottom-color: #33312E; }
 .slab-invert .readout dt { color: var(--ink-45); }
+
+/* ── INSTRUMENT STRIP ─────────────────────────────────────────────────────
+   The same readout data, laid out horizontally as a panel of gauges. Used
+   under a full-measure headline, where a narrow vertical box would strand
+   the remaining columns as dead space. Collapses to a single stack rather
+   than to a part-filled row — five cells never divide into two or three
+   columns without leaving holes.                                          */
+.instrument {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--hair);
+  border: var(--rule);
+}
+.instrument > * { outline: var(--hair) solid var(--ink); padding: var(--u2) var(--u3); }
+.instrument dt {
+  font-family: var(--font-micro);
+  font-size: var(--t-10);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  color: var(--ink-45);
+  margin-bottom: 6px;
+}
+.instrument dd {
+  font-family: var(--font-micro);
+  font-size: var(--t-13);
+  letter-spacing: var(--track-data);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Stacked, each gauge turns on its side: label and value share one line, so
+   five cells cost five rows rather than ten. */
+@media (max-width: 1100px) {
+  .instrument { grid-template-columns: minmax(0, 1fr); }
+  .instrument > * {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--u3);
+    padding-block: 10px;
+  }
+  .instrument dt { margin-bottom: 0; }
+}
+
+/* ── HEADING LINE RESERVE ─────────────────────────────────────────────────
+   Card headings of unequal line count push their bodies off a shared
+   baseline. Reserving the tallest heading's line count keeps every body in
+   a grid row starting on the same line. `lh` resolves against the element's
+   own line-height, so this stays correct at every clamp() step.            */
+.h-2l { min-height: 2lh; }
+
+/* ── TERMINATOR CELL ──────────────────────────────────────────────────────
+   An odd item count in an even grid leaves the last cell empty, which reads
+   as a missing record rather than the end of the list. This fills it with
+   the index's own exit: the hole becomes the next action.                  */
+.endcell {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--u8);
+  background: var(--sunk);
+  transition: background var(--snap), color var(--snap);
+}
+.endcell:hover { background: var(--ink); color: var(--paper); }
+.endcell:hover .d3 { color: var(--paper); }
+.endcell:hover .unit { color: var(--red); }
+
+@media (max-width: 720px) { .endcell { gap: var(--u4); } }
 
 /* ═══ 05 · SYMBOLOGY ═══════════════════════════════════════════════════════ */
 
@@ -827,17 +905,12 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
 }
 
 /* ═══ 08 · MOTION ══════════════════════════════════════════════════════════
-   Scroll reveal is a hard 1-step wipe, not a fade-and-float.               */
-
-.reveal { opacity: 0; transform: translateY(10px); }
-.reveal.on {
-  opacity: 1;
-  transform: none;
-  transition: opacity var(--sweep), transform var(--sweep);
-}
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; }
-}
+   Motion is confined to state changes the user causes: the --snap hover
+   inversions on .btn / .link / .row, and the client marquee. There is no
+   scroll-reveal. Every page is a server component in a static export, so a
+   reveal would mean shipping an observer purely to hide content that is
+   already painted — and content that starts at opacity:0 is content that
+   stays invisible if that script fails.                                    */
 
 /* ═══ 09 · RESPONSIVE COLLAPSE ═════════════════════════════════════════════
    The grid does not reflow gracefully — it collapses to a single stack.

@@ -22,52 +22,56 @@ export default function Home() {
           headline carries the only three hazard-red words on the page.    */}
       <section className="slab" style={{ paddingBlock: 'var(--u12) var(--u8)' }}>
         <div className="shell">
-          <div
-            className="g12"
-            style={{ alignItems: 'start', rowGap: 'var(--u6)' }}
+          <span
+            className="eyebrow eyebrow-br"
+            style={{ marginBottom: 'var(--u6)' }}
           >
-            <div className="c9">
-              <span
-                className="eyebrow eyebrow-br"
-                style={{ marginBottom: 'var(--u6)' }}
-              >
-                Organizational Strategy // Governance Design // Target Operating
-                Model
-              </span>
+            Organizational Strategy // Governance Design // Target Operating
+            Model
+          </span>
 
-              <h1 className="d1">
-                Strategie <span className="d-thin d-red">scheitert an</span>{' '}
-                Struktur.
-                <br />
-                Struktur <span className="d-thin d-red">überholt</span> Strategie.
-                <br />
-                Dazwischen <span className="d-thin d-red">entscheidet</span>{' '}
-                Organisation.
-              </h1>
-            </div>
+          {/* Set at full measure so each sentence holds one line. The copy is
+              three parallel clauses and the red carries the three verbs —
+              scheitert / überholt / entscheidet — so the accent marks what the
+              sentence turns on rather than falling wherever a line breaks. */}
+          <h1 className="d1">
+            Strategie <span className="d-thin d-red">scheitert</span> an
+            Struktur.
+            <br />
+            Struktur <span className="d-thin d-red">überholt</span> Strategie.
+            <br />
+            Dazwischen <span className="d-thin d-red">entscheidet</span>{' '}
+            Organisation.
+          </h1>
 
-            {/* ── Telemetry block ── */}
-            <div className="c3">
-              <div className="box regmark" style={{ padding: 'var(--u3)' }}>
-                <dl className="readout">
-                  <dt>Unit</dt>
-                  <dd>1789 / FFM</dd>
-                  <dt>Domain</dt>
-                  <dd>Organisation</dd>
-                  <dt>Phasen</dt>
-                  <dd>05</dd>
-                  <dt>Cases</dt>
-                  <dd>08</dd>
-                  <dt>Status</dt>
-                  <dd style={{ color: 'var(--red)' }}>Aktiv</dd>
-                </dl>
-              </div>
+          {/* Telemetry as a panel of gauges under the headline — horizontal, so
+              it spans the measure instead of stranding nine columns. */}
+          <dl className="instrument" style={{ marginTop: 'var(--u8)' }}>
+            <div>
+              <dt>Unit</dt>
+              <dd>1789 / FFM</dd>
             </div>
-          </div>
+            <div>
+              <dt>Domain</dt>
+              <dd>Organisation</dd>
+            </div>
+            <div>
+              <dt>Phasen</dt>
+              <dd>05</dd>
+            </div>
+            <div>
+              <dt>Cases</dt>
+              <dd>08</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd style={{ color: 'var(--red)' }}>Aktiv</dd>
+            </div>
+          </dl>
 
           <div
             style={{
-              marginTop: 'var(--u8)',
+              marginTop: 'var(--u6)',
               display: 'flex',
               gap: 'var(--u2)',
               flexWrap: 'wrap',
@@ -136,7 +140,10 @@ export default function Home() {
                   <span className="unit">Säule</span>
                 </div>
 
-                <h3 className="d3" style={{ marginBottom: 'var(--u3)' }}>
+                {/* "AI-Human-Native" runs to two lines where the other two
+                    pillars run to one; reserving both keeps all three bodies
+                    starting on the same line. */}
+                <h3 className="d3 h-2l" style={{ marginBottom: 'var(--u3)' }}>
                   {p.title}
                 </h3>
 
@@ -212,9 +219,14 @@ export default function Home() {
                     </span>
                     <span className="unit">{c.tags[0]}</span>
                   </div>
-                  <h3 className="d4" style={{ marginBottom: 'var(--u3)' }}>
-                    {c.teaser ?? c.title}
+                  {/* title is the short label, teaser the full sentence.
+                      Setting the teaser as the macro heading put a 25-word
+                      sentence in uppercase display type — legible as a shout,
+                      not as prose. Each field now sits in its own register. */}
+                  <h3 className="d4 h-2l" style={{ marginBottom: 'var(--u3)' }}>
+                    {c.title}
                   </h3>
+                  {c.teaser && <p className="body">{c.teaser}</p>}
                 </div>
                 <div className="card-foot" style={{ borderTopColor: '#33312E' }}>
                   <span className="unit">
@@ -281,6 +293,17 @@ export default function Home() {
                 </figcaption>
               </figure>
             ))}
+
+            {/* Five entries in two columns leave the sixth cell empty. Rather
+                than an unexplained gap, the grid ends on its own exit. */}
+            <Link href="/projekte" className="pad endcell">
+              <span className="unit">
+                {TESTIMONIALS.length} / {TESTIMONIALS.length} — Index vollständig
+              </span>
+              <span className="d3">
+                Alle Cases <span aria-hidden="true">→</span>
+              </span>
+            </Link>
           </div>
         </div>
       </section>
@@ -343,8 +366,12 @@ export default function Home() {
         <div className="shell">
           <SectionHead num="05" label="AI und Organisation" />
 
-          <h2 className="d2" style={{ marginBottom: 'var(--u8)', maxWidth: '22ch' }}>
-            Vier Dimensionen, in denen{' '}
+          {/* Break at the accent boundary. Wrapped to a measure instead, the
+              red span opened mid-line and ran over the break, so the colour
+              looked like it had landed where the text happened to fold. */}
+          <h2 className="d2" style={{ marginBottom: 'var(--u8)' }}>
+            Vier Dimensionen, in denen
+            <br />
             <span className="d-thin d-red">KI Organisation neu denkt.</span>
           </h2>
 
@@ -363,7 +390,7 @@ export default function Home() {
                 >
                   {d.num}
                 </span>
-                <h3 className="d4" style={{ marginBottom: 'var(--u2)' }}>
+                <h3 className="d4 h-2l" style={{ marginBottom: 'var(--u2)' }}>
                   {d.title}
                 </h3>
                 <p className="body">{d.body}</p>

@@ -164,24 +164,35 @@ export function ClosingCta({
   href?: string
 }) {
   return (
+    /* Two columns: the statement holds the left, the supporting copy and the
+       action hold the right and sit on the baseline of the headline block.
+       Stacked in one column, the body's 62ch measure left half the red field
+       empty and the button stranded at the bottom-left corner. */
     <section className="slab slab-red" style={{ borderBottom: 0 }}>
       <div className="shell">
-        <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u4)' }}>
-          {eyebrow}
-        </span>
-        <h2 className="d1" style={{ marginBottom: 'var(--u4)' }}>
-          {line1}
-          <br />
-          <span className="d-thin">{line2}</span>
-        </h2>
-        {body && (
-          <p className="body-lg" style={{ marginBottom: 'var(--u6)' }}>
-            {body}
-          </p>
-        )}
-        <Link href={href} className="btn btn-lg">
-          {cta} <span aria-hidden="true">→</span>
-        </Link>
+        <div className="g12" style={{ rowGap: 'var(--u6)', alignItems: 'end' }}>
+          <div className="c7">
+            <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u4)' }}>
+              {eyebrow}
+            </span>
+            <h2 className="d1">
+              {line1}
+              <br />
+              <span className="d-thin">{line2}</span>
+            </h2>
+          </div>
+
+          <div className="c5">
+            {body && (
+              <p className="body-lg" style={{ marginBottom: 'var(--u6)' }}>
+                {body}
+              </p>
+            )}
+            <Link href={href} className="btn btn-lg">
+              {cta} <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   )
