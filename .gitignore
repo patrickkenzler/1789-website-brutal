@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# production
+build/
+dist/
+
+# env
+.env
+.env*.local
+
+# deploy
+.vercel/
+
+# macOS
+.DS_Store
+
+# claude code worktrees
+.claude/worktrees/

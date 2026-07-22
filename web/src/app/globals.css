@@ -1,0 +1,694 @@
+@import "../styles/tokens.css";
+@import "../styles/typography.css";
+
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  ::selection {
+    background-color: var(--color-terra);
+    color: var(--color-white);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img, video {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@layer utilities {
+  /* Grid Container
+   * max-width raised to 1920px so 27"+ screens stop dead-spacing.
+   * Padding scales via --grid-margin (fluid clamp above 1440px). */
+  .container-grid {
+    width: 100%;
+    max-width: 1920px;
+    margin-inline: auto;
+    padding-inline: var(--grid-margin);
+  }
+
+  /* Textbalance */
+  .balance { text-wrap: balance; }
+  .pretty  { text-wrap: pretty; }
+
+  /* Reveal Animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity var(--duration-slow) var(--ease-entry),
+      transform var(--duration-slow) var(--ease-expressive);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Breakpoint visibility helpers ────────────────────────────── */
+
+  /* Hide / show by breakpoint — 768px mobile/tablet boundary */
+  .hide-mobile      { display: none; }
+  .show-mobile      { display: block; }
+  .show-mobile-flex { display: flex; }
+
+  @media (min-width: 768px) {
+    .hide-mobile      { display: revert; }
+    .show-mobile      { display: none; }
+    .show-mobile-flex { display: none; }
+  }
+
+  /* Tablet-only (768px–1023px) */
+  .show-tablet-flex { display: none; }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .show-tablet-flex { display: flex; }
+    /* Hero headline — allow wrapping + scale up on tablet so the claim
+       fills the viewport width instead of shrinking with vw alone */
+    .hero-headline p { white-space: normal !important; }
+    .hero-headline   { font-size: clamp(2.5rem, 7vw, 5rem) !important; }
+  }
+
+  /* Desktop-only (≥ 1024px) */
+  .show-desktop-grid { display: none; }
+  @media (min-width: 1024px) {
+    .show-desktop-grid { display: grid; }
+  }
+
+  /* ─── Responsive grid system ────────────────────────────────────
+   *
+   * All Grids (via .container-grid .grid) collapse to a single
+   * column on mobile by default. Add .keep-cols to opt out.
+   *
+   * .stack-cols is kept for explicit use and remains compatible.
+   * ──────────────────────────────────────────────────────────── */
+
+  .stack-cols     { grid-template-columns: 1fr !important; }
+  .stack-cols > * { grid-column: 1 / -1 !important; }
+
+  @media (max-width: 767px) {
+
+    /* ── Global grid collapse ── */
+    .container-grid .grid:not(.keep-cols) {
+      grid-template-columns: 1fr !important;
+    }
+    .container-grid .grid:not(.keep-cols) > * {
+      grid-column: 1 / -1 !important;
+    }
+
+    /* ── Hero headline — allow wrapping on phones ── */
+    .hero-headline p { white-space: normal !important; }
+    /* Slightly smaller floor so all three lines break cleanly */
+    .hero-headline   { font-size: clamp(1.6rem, 8.5vw, 3rem) !important; }
+
+    /* ── Subpage hero h1 — smaller floor than the clamp desktop min ── */
+    .page-hero-h1 { font-size: clamp(2rem, 9vw, 6.5rem) !important; }
+
+    /* ── Featured cases grid on /projekte ── */
+    .cases-featured-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    /* ── Homepage cases section — release sticky height constraints ── */
+    .scroll-card-content {
+      overflow:   visible !important;
+      max-height: none    !important;
+    }
+
+    /* ── Inner sticky sections — natural height on mobile ── */
+    .sticky-section-inner {
+      min-height: 0      !important;
+      max-height: none   !important;
+      overflow:   visible !important;
+    }
+
+    /* ── Cases card — auto height on mobile so content is never clipped ── */
+    .case-card  { height: auto !important; }
+
+    /* ── Cases image slot — fixed height so it doesn't collapse ── */
+    .case-img-slot { height: 200px !important; }
+
+    /* ── Buttons — stack on mobile when side by side ── */
+    .btn-group {
+      flex-direction: column !important;
+      align-items:    stretch !important;
+    }
+    .btn-group > * { width: 100%; text-align: center; justify-content: center; }
+
+    /* ── Logo in header — always fully visible ── */
+    .header-logo-link {
+      opacity:        1 !important;
+      transform:      scale(1) !important;
+      pointer-events: auto !important;
+    }
+
+    /* ── Hero indent / split helpers ── */
+    .hero-indent { padding-left: 0 !important; }
+    .hero-split  { grid-template-columns: 1fr !important; }
+    .hero-split > *:last-child {
+      border-left: none !important;
+      border-top:  none !important;
+    }
+
+    /* ── Page section paddings ── */
+    .section-pad { padding-block: 4rem !important; }
+
+    /* ── Ansatz / systemshift layouts ── */
+    .systemshift-layout { grid-template-columns: 1fr !important; }
+    .systemshift-panel  { display: none !important; }
+
+    /* ── Labor / Denk-Labor editorial grid ── */
+    /* flex:none stops the grid from growing into a fixed-height flex slot,
+       which compressed all 3 rows to ~232px each and caused overflow overlap */
+    .labor-grid {
+      grid-template-columns: 1fr !important;
+      flex: none !important;
+      height: auto !important;
+    }
+    /* Remove the 920px cap on the Container so all rows (feat + medium + list) show */
+    .labor-container {
+      max-height: none !important;
+      height: auto !important;
+    }
+  }
+
+  /* ── Tablet adjustments (768px–1023px) ─────────────────────────── */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    /* Featured cases: 2-col stays on tablet */
+    .cases-featured-grid { grid-template-columns: 1fr 1fr; }
+
+    /* Subpage grids: narrow cols like span={7} start={4} read fine on tablet */
+    /* but very wide text columns need a bit more breathing room */
+    .container-grid .grid:not(.keep-cols) > * { min-width: 0; }
+
+    /* Labor section: 1-col layout on tablet makes content ~1770px tall which
+       overflows the 944px sticky card. Make it a normal-flow section so all
+       content is visible. position:relative + z-index keep it above sticky
+       predecessors (static would paint below positioned elements). */
+    .scroll-card:has(.labor-container) {
+      position:      relative !important;
+      z-index:       10       !important;
+      height:        auto     !important;
+      overflow:      visible  !important;
+      margin-bottom: 0        !important;
+      animation:     none     !important;
+      transform:     none     !important;
+      will-change:   auto     !important;
+    }
+    .labor-grid {
+      flex:          none !important;
+      align-content: start !important;
+    }
+    .labor-container {
+      max-height: none !important;
+      height:     auto !important;
+    }
+  }
+
+  /* ─── Footer link hover states ───────────────────────────────────────────── */
+  .footer-link {
+    color:      rgba(242,242,242,0.5);
+    transition: color 200ms var(--ease-standard);
+  }
+  .footer-link:hover { color: var(--color-background); }
+
+  .footer-link-email {
+    color:      rgba(242,242,242,0.5);
+    transition: color 200ms var(--ease-standard);
+  }
+  .footer-link-email:hover { color: var(--color-terra); }
+
+  .footer-cta {
+    color:      var(--color-terra);
+    transition: opacity 200ms var(--ease-standard);
+  }
+  .footer-cta:hover { opacity: 0.72; }
+
+  .footer-legal {
+    color:      rgba(242,242,242,0.2);
+    transition: color 200ms var(--ease-standard);
+  }
+  .footer-legal:hover { color: rgba(242,242,242,0.5); }
+
+  /* LinkedIn icon hover */
+  .linkedin-hover:hover {
+    color: var(--color-terra) !important;
+    border-color: var(--color-terra) !important;
+  }
+
+  /* ── Testimonial card hover (entrance animation is on .t-card-wrapper) ─── */
+  .testimonial-card {
+    transition: box-shadow 300ms var(--ease-standard);
+  }
+
+  .testimonial-card:hover {
+    box-shadow: 0 16px 48px rgba(26, 23, 20, 0.15);
+  }
+
+  /* Photo area — full greyscale so the multiply overlay is the sole tint.
+     Hover dissolves greyscale → natural colour shows through the green wash. */
+  .t-card-img {
+    filter:      grayscale(100%);
+    transform:   scale(1.00);
+    will-change: transform, filter;
+    transition:
+      filter    600ms var(--ease-standard),
+      transform 600ms var(--ease-expressive);
+  }
+
+  .testimonial-card:hover .t-card-img {
+    filter:    grayscale(0%);
+    transform: scale(1.04);
+  }
+
+  .case-link:hover { opacity: 1 !important; }
+
+  /* Project card — colour overlay fades on parent hover to reveal more of the photo */
+  .group:hover .case-img-overlay { opacity: 0.08 !important; }
+
+  /* ─── Card system ─────────────────────────────────────────────────────────
+   *
+   * Two base classes + one accent modifier cover every card on the site.
+   *
+   * .card       — light bg contexts (cream, surface)
+   * .card-dark  — dark bg contexts (ink background)
+   * .card-terra — accent top border for featured / live items
+   *
+   * Hover: 2px vertical lift + shadow bloom. No Tailwind hover-translate
+   * classes needed — remove them from JSX.
+   * ──────────────────────────────────────────────────────────────────────── */
+  .card {
+    border-radius:    var(--radius-md);
+    background-color: var(--color-background);
+    box-shadow:       0 0 0 1px rgba(26, 23, 20, 0.08);
+    transition:       box-shadow 280ms var(--ease-standard);
+  }
+
+  .card:hover {
+    box-shadow: 0 6px 24px rgba(26, 23, 20, 0.10), 0 0 0 1px rgba(26, 23, 20, 0.14);
+  }
+
+  .card-dark {
+    border-radius: var(--radius-md);
+    box-shadow:    0 0 0 1px rgba(255, 255, 255, 0.09);
+    transition:    box-shadow 280ms var(--ease-standard);
+  }
+
+  .card-dark:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.18);
+  }
+
+  /* Accent top border — 2px coloured bar at the card top */
+  .card-terra { border-top: 2px solid var(--color-terra); }
+  .card-sage  { border-top: 2px solid var(--color-sage);  }
+  .card-ink   { border-top: 2px solid var(--color-ink);   }
+
+  /* ─── Card content system ─────────────────────────────────────────────────
+   *
+   * Four layers used consistently across every card type on the site.
+   * Applying these classes means font, size, colour and spacing are
+   * defined once — no per-card overrides needed.
+   *
+   *   .c-eyebrow   mono label above the title (category, number, type)
+   *   .c-title     display light heading — the card's primary statement
+   *   .c-body      body supporting text
+   *   .c-meta      small mono footer line (date, duration, location …)
+   * ──────────────────────────────────────────────────────────────────────── */
+  .c-eyebrow {
+    font-family:    var(--font-mono);
+    font-size:      var(--text-xxs);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color:          var(--color-ink-subtle);
+    display:        block;
+  }
+  .c-eyebrow--terra { color: var(--color-terra); }
+
+  .c-title {
+    font-family:    var(--font-display);
+    font-weight:    300;
+    font-size:      var(--text-sm);
+    line-height:    1.1;
+    letter-spacing: -0.02em;
+    color:          var(--color-ink);
+    margin-top:     0.75rem;
+  }
+
+  .c-body {
+    font-family: var(--font-body);
+    font-size:   var(--text-sub);
+    line-height: 1.65;
+    color:       var(--color-ink-muted);
+    margin-top:  0.75rem;
+  }
+
+  .c-meta {
+    font-family:    var(--font-mono);
+    font-size:      var(--text-xxs);
+    letter-spacing: 0.08em;
+    color:          var(--color-ink-subtle);
+    margin-top:     0.75rem;
+    display:        block;
+  }
+
+  /* Hover Underline */
+  .hover-line {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hover-line::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width var(--duration-base) var(--ease-expressive);
+  }
+
+  .hover-line:hover::after {
+    width: 100%;
+  }
+
+  /* ── Featured cases 2-col grid (base = desktop, collapses in media queries above) ── */
+  .cases-featured-grid {
+    display:             grid;
+    grid-template-columns: 1fr 1fr;
+    gap:                 1.5rem;
+  }
+
+  /* ── /labor subpage — bento grid + formats collapse on tablet ─────── */
+  @media (max-width: 1023px) {
+    /* Content bento grid */
+    .container-grid > div[style*="grid-template-columns: repeat(12"] > * {
+      grid-column: span 12 !important;
+    }
+    .labor-formats {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* ── LaborSection — three-tier spread ────────────────────────────────── */
+  @media (max-width: 1279px) {
+    /* tablet: collapse list+newsletter under the mediums */
+    .labor-grid {
+      grid-template-columns: 5fr 4fr !important;
+    }
+    .labor-grid > :nth-child(3) {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (max-width: 1023px) {
+    .labor-grid {
+      grid-template-columns: 1fr !important;
+      grid-auto-rows: auto;
+    }
+    .labor-grid > :nth-child(3) {
+      grid-column: auto;
+    }
+  }
+  .labor-thumb:hover {
+    opacity: 0.78;
+  }
+
+  /* ── /ansatz overview strip — 5 phase chips, collapses to 2-col on tablet ── */
+  @media (max-width: 1023px) {
+    .ansatz-overview { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  }
+  @media (max-width: 559px) {
+    .ansatz-overview { grid-template-columns: 1fr !important; }
+  }
+
+  /* ── AnsatzSection — 5-column phase spread ── */
+  .ansatz-steps {
+    list-style:          none;
+    margin:              0;
+    padding:             0;
+    display:             grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap:                 clamp(1.5rem, 3vw, 3rem);
+  }
+  /* Tablet: 3-column grid fits all 5 phases within the sticky card's
+     viewport height, preserving the card stacking scroll effect. */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .ansatz-container {
+      max-height:   none !important;
+      overflow:     visible !important;
+      padding-block: 1.5rem !important;
+    }
+    .ansatz-container header { margin-bottom: 1rem !important; }
+    .ansatz-container footer { margin-top: 1rem !important; }
+    .ansatz-steps { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  }
+  /* Mobile: single column stack (parent scroll-card is auto-height) */
+  @media (max-width: 767px) {
+    .ansatz-container {
+      max-height: none !important;
+      overflow:   visible !important;
+      height:     auto !important;
+    }
+    .ansatz-steps { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  /* ── AI & Organisation — diamond + 4 dimension labels grid ─────────────── */
+  .ai-grid {
+    display: grid;
+    /* Diamond column scales with viewport height so the whole figure stays
+       inside a single sticky card on shorter viewports (iPads, 13" laptops). */
+    grid-template-columns: 1fr clamp(160px, 28svh, 360px) 1fr;
+    grid-template-rows: auto auto auto;
+    gap: clamp(1rem, 3svh, 3rem) clamp(1.5rem, 4vw, 4rem);
+    align-items: center;
+    justify-items: center;
+    max-width: 1100px;
+    margin-inline: auto;
+  }
+  /* Mobile: collapse to single column, drop the spacer cells, shrink the diamond */
+  @media (max-width: 767px) {
+    .ai-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .ai-grid > .ai-spacer { display: none; }
+    .ai-grid > .ai-diamond {
+      width: 60%;
+      max-width: 240px;
+      margin-inline: auto;
+      order: -1; /* diamond above all labels */
+    }
+  }
+}
+
+/* ─── Scroll-stack cards ──────────────────────────────────────────────────── */
+/*
+ * Each .scroll-card section sticks at the top of the viewport while the next
+ * card slides over it from below — creating an app-switcher / card-deck feel.
+ *
+ * The scale-down animation (progressive enhancement via @supports) shrinks the
+ * card slightly as it exits, giving depth to the stack. Requires Chrome 115+ /
+ * Edge 115+ for the scroll-driven animation; all browsers get sticky stacking.
+ */
+.scroll-card {
+  position: sticky;
+  top: 0;
+  border-radius: 1.5rem 1.5rem 0 0;
+  /* Inset shadow — subtle depth at the top edge of each card.
+   * Stays inside the card bounds, never bleeds over adjacent strips. */
+  box-shadow: inset 0 6px 20px rgba(26, 23, 20, 0.05);
+  /*
+   * A small pause before the next card slides in from below.
+   * Keep this tight — too large a value exposes empty background.
+   */
+  margin-bottom: 6vh;
+  /*
+   * Pre-promote to a GPU compositor layer on page load.
+   * Without this hint the browser waits until the first scroll event to
+   * promote, causing a visible hitch (≈1 frame) before motion starts.
+   * Safe here because scroll-driven animations already need a transform
+   * layer — this just ensures it is allocated eagerly.
+   */
+  will-change: transform;
+}
+
+@keyframes scroll-card-recede {
+  from {
+    transform: scale(1);
+    border-radius: 1.5rem 1.5rem 0 0;
+  }
+  to {
+    transform: scale(0.94) translateY(-0.5rem);
+    border-radius: 1.5rem;
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-card {
+    transform-origin: top center;
+    animation: scroll-card-recede linear both;
+    animation-timeline: view(block);
+    animation-range: exit 0% exit 30%;
+  }
+}
+
+/* ── Testimonials: card entrance + horizontal scroll ───────────────────────── */
+
+/* Mobile: testimonials — one card at a time */
+@media (max-width: 767px) {
+  .testimonials-section {
+    position: static !important;
+    height:   auto   !important;
+    overflow: visible !important;
+    border-radius: 0 !important;
+  }
+  .testimonials-card-track {
+    flex:       none    !important;
+    height:     600px   !important; /* image 1:1 ~343px + text ~200px + padding */
+    min-height: 0       !important;
+    overflow:   hidden  !important; /* keep slider clip — no horizontal scroll */
+  }
+  .testimonial-card {
+    height: 100% !important;
+  }
+}
+
+/* Disable on mobile — too small to be meaningful */
+@media (max-width: 767px) {
+  .scroll-card {
+    position: static;
+    border-radius: 0;
+    box-shadow: none;
+    margin-bottom: 0;
+    /* Reset any inline height / overflow so content flows naturally on mobile */
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+/* ─── Keyframes ───────────────────────────────────────────────────────────── */
+
+/*
+ * Per-character animations for "1789"
+ *
+ * Design intent — constant transformation:
+ *   "1"  The Anchor      — compressed+black ↔ expanded+thin
+ *   "7"  The Opposite    — wide+thin ↔ narrow+heavy  (mirror phase of "1")
+ *   "8"  The Transformer — extreme width swings, symbolises endless cycles
+ *   "9"  The Wanderer    — slow independent arc, its own rhythm
+ *
+ * Durations are deliberately mismatched (9 / 12 / 12 / 16 s) so the
+ * characters never lock into the same phase twice — endless variation.
+ * Negative delays start each character mid-cycle on first paint.
+ */
+
+/* "1" — starts narrow+black, opens to wide+thin */
+@keyframes morph1 {
+  0%, 100% { font-variation-settings: 'wdth' 80,  'wght' 950; }
+  50%       { font-variation-settings: 'wdth' 115, 'wght' 200; }
+}
+
+/* "7" — mirror of "1": starts wide+thin, compresses to narrow+heavy */
+@keyframes morph7 {
+  0%, 100% { font-variation-settings: 'wdth' 120, 'wght' 200; }
+  50%       { font-variation-settings: 'wdth' 80,  'wght' 900; }
+}
+
+/* "8" — the transformer: swings to super-wide, then collapses */
+@keyframes morph8 {
+  0%   { font-variation-settings: 'wdth' 80,  'wght' 600; }
+  30%  { font-variation-settings: 'wdth' 130, 'wght' 900; }
+  65%  { font-variation-settings: 'wdth' 75,  'wght' 200; }
+  100% { font-variation-settings: 'wdth' 80,  'wght' 600; }
+}
+
+/* "9" — the wanderer: slow independent arc */
+@keyframes morph9 {
+  0%, 100% { font-variation-settings: 'wdth' 100, 'wght' 500; }
+  35%       { font-variation-settings: 'wdth' 80,  'wght' 900; }
+  70%       { font-variation-settings: 'wdth' 125, 'wght' 250; }
+}
+
+/*
+ * morphGap — animates the space between the four characters.
+ * Conceptually: the Gap opens wide, then gets bridged (closes).
+ * Applied to the flex h1 so all inter-character gaps move together.
+ */
+@keyframes morphGap {
+  0%, 100% { gap: 0; }
+  45%       { gap: 0.08em; }
+  80%       { gap: 0.01em; }
+}
+
+/*
+ * marqueeSlide — infinite horizontal scroll for the questions ticker.
+ * Duplicate the items in JSX so the loop is seamless.
+ */
+@keyframes marqueeSlide {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInBottom {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/*
+ * lineReveal — editorial per-line wipe-up for the hero H1.
+ * Each line is wrapped in overflow:hidden; the inner span slides up
+ * from below the clip boundary. Inspired by high-end editorial sites.
+ */
+@keyframes lineReveal {
+  from { opacity: 0; transform: translateY(72%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/*
+ * growLine — terra accent line expands from 0 → full width
+ */
+@keyframes growLine {
+  from { width: 0; opacity: 0; }
+  to   { width: 3rem; opacity: 1; }
+}
+
+/*
+ * heroLogoReveal — brand mark lands: scale up + fade in
+ */
+@keyframes heroLogoReveal {
+  from { opacity: 0; transform: scale(0.92) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/*
+ * floatLogo — after landing, the logo breathes with a slow vertical drift.
+ * Paired with heroLogoReveal via animation-delay so it starts only after
+ * the reveal finishes (delay ≈ reveal-duration + reveal-delay).
+ */
+@keyframes floatLogo {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}

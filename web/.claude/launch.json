@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "1789 Dev Server",
+      "runtimeExecutable": "/usr/local/bin/npm",
+      "runtimeArgs": ["run", "dev"],
+      "workingDirectory": "/Users/patrickkenzler/Documents/1_Projekte/1789_Website_Proto/web",
+      "port": 3000
+    }
+  ]
+}
