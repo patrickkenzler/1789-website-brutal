@@ -20,12 +20,21 @@ export function SectionHead({
   label: string
   end?: ReactNode
 }) {
+  /* The annotation exposes the unit's own address in the document — the
+     structure is not hidden behind the surface, it is printed on it. */
+  const slug = label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
   return (
-    <div className="strip">
-      <span className="strip-num">{num}</span>
-      <span className="eyebrow">{label}</span>
-      {end && <span className="strip-end">{end}</span>}
-    </div>
+    <>
+      <span className="annot" aria-hidden="true">
+        unit.{num} · {slug} · grid.12
+      </span>
+      <div className="strip">
+        <span className="strip-num">{num}</span>
+        <span className="eyebrow">{label}</span>
+        {end && <span className="strip-end">{end}</span>}
+      </div>
+    </>
   )
 }
 

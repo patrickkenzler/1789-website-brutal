@@ -413,6 +413,27 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 .pad     { padding: var(--pad-dense); }
 .pad-sm  { padding: var(--u2); }
 
+/* ── EXPOSED STRUCTURE ────────────────────────────────────────────────────
+   The document admits how it is built: source-comment annotations sitting in
+   the margin above each operational unit. Decorative, always aria-hidden,
+   and the first thing to drop at narrow widths.                            */
+.annot {
+  font-family: var(--font-micro);
+  font-size: var(--t-10);
+  letter-spacing: var(--track-data);
+  text-transform: uppercase;
+  color: var(--ink-20);
+  display: block;
+  margin-bottom: 6px;
+  user-select: none;
+}
+.annot::before { content: "<!-- "; }
+.annot::after  { content: " -->"; }
+.slab-invert .annot { color: #33312E; }
+.slab-red .annot { color: rgba(244, 244, 240, 0.35); }
+
+@media (max-width: 720px) { .annot { display: none; } }
+
 /* Section header strip — number, label, rule. The spine of every page. */
 .strip {
   display: flex;
@@ -522,6 +543,23 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
     var(--red) 0 10px,
     transparent 10px 20px
   );
+}
+
+/* ── BLEED ────────────────────────────────────────────────────────────────
+   A letterform run that overruns both viewport edges. It is deliberately cut
+   off: the page refuses to fit its own type, which is the point. Purely
+   structural — never carries meaning, always aria-hidden.                  */
+.bleed {
+  overflow: hidden;
+  line-height: 0;
+  border-block: var(--rule);
+  background: var(--paper);
+}
+.bleed > * {
+  display: block;
+  white-space: nowrap;
+  margin-left: -0.08em;
+  padding-block: 0.06em;
 }
 
 /* Industrial markers — ®, ©, ™ as geometric structure, not legal text. */
@@ -752,8 +790,27 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
   background-position: 0 0;
 }
 
-/* Heavier grade for hero plates. */
-.plate-coarse::after { background-size: 6px 6px; }
+/* ── MISREGISTRATION ──────────────────────────────────────────────────────
+   A second screen in red, offset by a fraction of the dot pitch — the plate
+   didn't line up on press. This is the intentional imperfection the system
+   otherwise engineers out; without it the halftone reads as a CSS filter
+   rather than as something physically printed.                             */
+.plate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+  background-image: radial-gradient(var(--red) 30%, transparent 32%);
+  background-size: 4px 4px;
+  background-position: 1px 2px;
+}
+
+/* Heavier grade for hero plates — coarser screen, wider misregistration. */
+.plate-coarse::after  { background-size: 6px 6px; }
+.plate-coarse::before { background-size: 6px 6px; background-position: 2px 3px; }
 
 /* Dot-matrix field used as a standalone texture block. */
 .dotfield {
@@ -788,9 +845,14 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
 
 @media (max-width: 1024px) {
   .g12 { gap: var(--u2); }
-  .c4, .c5, .c7, .c8 { grid-column: span 6; }
+  /* Narrow tracks can't hold a readout or a headline, so anything under half
+     width goes to half, and anything over half goes full. No exceptions —
+     an unhandled span silently overflows the gutter. */
+  .c1, .c2, .c3, .c4, .c5 { grid-column: span 6; }
+  .c7, .c8, .c9, .c10, .c11 { grid-column: span 12; }
   .s2, .s3, .s4, .s5, .s7, .s8, .s9 { grid-column-start: auto; }
   .hairgrid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 720px) {

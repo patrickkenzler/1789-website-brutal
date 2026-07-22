@@ -83,6 +83,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Letterform run, cut off by both viewport edges. */}
+      <div className="bleed" aria-hidden="true">
+        <span className="d0">1789—1789—1789—1789</span>
+      </div>
+
       <Tape items={CLIENTS} />
 
       {/* ═══ 01 · DER 1789-BLICK ════════════════════════════════════════════ */}
