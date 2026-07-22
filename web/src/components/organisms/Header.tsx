@@ -1,291 +1,151 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
-import { Logo1789 }   from '@/components/atoms/Logo1789'
-import { useScrollProgress } from '@/hooks/useScrollProgress'
+import { usePathname } from 'next/navigation'
+import { useState } from 'react'
+import { Wordmark } from '@/components/Wordmark'
+import { NAV } from '@/data/site'
 
 /**
- * Header — editorial split-nav
+ * HEADER
  *
- * Desktop: [Ansatz · Leistungen · Cases] [1789 logo — centered] [Labor · Wir · Kontakt]
- * Mobile:  [Logo — left] [Hamburger — right]
- *          Hamburger opens a full-screen ink overlay with large nav links.
- *
- * The logo is always visible (no scroll-driven fade — the hero no longer
- * contains a logo, so identity is established through the nav from the start).
- * Nav background + blur fade in on scroll via the `scrolled` flag.
+ * A fixed instrument strip, not a floating navbar. Opaque paper, hard 2px
+ * bottom rule, no blur, no shadow, no transparency. Nav items are indexed
+ * telemetry — the active route is marked with a hazard-red underscore.
  */
-
-const LEFT_ITEMS = [
-  { label: 'Ansatz',     href: '/ansatz' },
-  { label: 'Leistungen', href: '/leistungen' },
-  { label: 'Cases',      href: '/projekte' },
-]
-
-const RIGHT_ITEMS = [
-  { label: 'Labor',      href: '/labor' },
-  { label: 'Wir',        href: '/wir' },
-  { label: 'Kontakt',    href: '/kontakt' },
-]
-
-const ALL_ITEMS = [...LEFT_ITEMS, ...RIGHT_ITEMS]
-
-const NAV_LINK: React.CSSProperties = {
-  fontFamily:     'var(--font-body)',
-  fontSize:       'var(--text-xs)',
-  fontWeight:     500,
-  letterSpacing:  '0.13em',
-  textTransform:  'uppercase',
-  color:          'var(--color-ink-muted)',
-  textDecoration: 'none',
-  transition:     'color 150ms',
-  whiteSpace:     'nowrap',
-}
-
 export function Header() {
-  const { scrolled } = useScrollProgress()
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [open, setOpen] = useState(false)
+  const path = usePathname()
+
+  const isActive = (href: string) =>
+    href === '/' ? path === '/' : path.startsWith(href)
 
   return (
     <>
       <header
         style={{
-          position:        'fixed',
-          top:             0,
-          left:            0,
-          right:           0,
-          zIndex:          50,
-          transition:      'background-color 300ms',
-          backgroundColor: scrolled ? 'rgba(242,242,242,0.92)' : 'transparent',
-          /* Always on — toggling backdrop-filter creates/destroys compositor
-             layers on every scroll event, causing site-wide repaint flicker.
-             blur on a fully-transparent bg is invisible, so there's no visual
-             difference at the top of the page. */
-          backdropFilter:  'blur(12px)',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 100,
+          height: 'var(--nav-h)',
+          background: 'var(--paper)',
+          borderBottom: 'var(--rule-bar)',
         }}
       >
-        {/* ── Desktop layout (≥ 1024px): editorial split-nav with centered logo ── */}
         <div
-          className="show-desktop-grid"
+          className="shell"
           style={{
-            gridTemplateColumns: '1fr auto 1fr',
-            alignItems:          'center',
-            height:              '5rem',
-            paddingInline:       'var(--grid-margin)',
-            gap:                 '2.5rem',
-          }}
-        >
-
-          {/* Left nav */}
-          <nav
-            style={{
-              display:        'flex',
-              alignItems:     'center',
-              justifyContent: 'flex-end',
-              gap:            '2rem',
-            }}
-          >
-            {LEFT_ITEMS.map((item) => (
-              <Link key={item.href} href={item.href} className="hover-line" style={NAV_LINK}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Logo — centered */}
-          <Link
-            href="/"
-            aria-label="1789 Innovation — zur Startseite"
-            style={{
-              textDecoration: 'none',
-              display:        'flex',
-              alignItems:     'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Logo1789 height={38} showSub={false} />
-          </Link>
-
-          {/* Right nav */}
-          <nav
-            style={{
-              display:        'flex',
-              alignItems:     'center',
-              justifyContent: 'flex-start',
-              gap:            '2rem',
-            }}
-          >
-            {RIGHT_ITEMS.map((item) => (
-              <Link key={item.href} href={item.href} className="hover-line" style={NAV_LINK}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-        </div>
-
-        {/* ── Tablet layout (768px–1023px): logo left, all links right ── */}
-        <div
-          className="show-tablet-flex"
-          style={{
-            alignItems:     'center',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
             justifyContent: 'space-between',
-            height:         '5rem',
-            paddingInline:  'var(--grid-margin)',
-            gap:            '2rem',
+            gap: 'var(--u3)',
           }}
         >
-          {/* Logo — left */}
-          <Link
-            href="/"
-            aria-label="1789 Innovation — zur Startseite"
-            style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}
-          >
-            <Logo1789 height={34} showSub={false} />
+          <Link href="/" aria-label="1789 — zur Startseite">
+            <Wordmark size={20} />
           </Link>
 
-          {/* All links — right, compact */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            {ALL_ITEMS.map((item) => (
-              <Link key={item.href} href={item.href} className="hover-line" style={NAV_LINK}>
+          {/* ── Desktop nav ── */}
+          <nav className="nav-desk" aria-label="Hauptnavigation">
+            {NAV.map((item, i) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="nav-link"
+                data-active={isActive(item.href) || undefined}
+              >
+                <span className="unit nav-idx">{String(i + 1).padStart(2, '0')}</span>
                 {item.label}
               </Link>
             ))}
           </nav>
-        </div>
 
-        {/* ── Mobile layout (< 768px): logo left, hamburger right ── */}
-        <div
-          className="show-mobile-flex"
-          style={{
-            alignItems:     'center',
-            justifyContent: 'space-between',
-            height:         '5rem',
-            paddingInline:  'var(--grid-margin)',
-          }}
-        >
-          {/* Logo — left on mobile */}
-          <Link
-            href="/"
-            aria-label="1789 Innovation — zur Startseite"
-            style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}
-          >
-            <Logo1789 height={32} showSub={false} />
-          </Link>
-
-          {/* Hamburger — right */}
+          {/* ── Mobile toggle ── */}
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? 'Menü schließen' : 'Menü öffnen'}
-            aria-expanded={menuOpen}
-            style={{
-              background:     'none',
-              border:         'none',
-              cursor:         'pointer',
-              padding:        '0.5rem',
-              display:        'flex',
-              alignItems:     'center',
-              justifyContent: 'center',
-              flexDirection:  'column',
-              gap:            '5px',
-              width:          '2.5rem',
-              height:         '2.5rem',
-            }}
+            className="nav-toggle"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? 'Menü schließen' : 'Menü öffnen'}
+            aria-expanded={open}
           >
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                style={{
-                  display:         'block',
-                  width:           '20px',
-                  height:          '1.5px',
-                  backgroundColor: 'var(--color-ink)',
-                  borderRadius:    '1px',
-                  transition:      'transform 350ms var(--ease-expressive), opacity 250ms',
-                  transform:
-                    i === 0 && menuOpen ? 'translateY(6.5px) rotate(45deg)'   :
-                    i === 2 && menuOpen ? 'translateY(-6.5px) rotate(-45deg)' :
-                    'none',
-                  opacity: i === 1 && menuOpen ? 0 : 1,
-                }}
-              />
-            ))}
+            {open ? '[ X ]' : '[ ≡ ]'}
           </button>
         </div>
       </header>
 
-      {/* ── Mobile nav overlay ── */}
-      <div
-        aria-hidden={!menuOpen}
-        style={{
-          position:        'fixed',
-          inset:           0,
-          zIndex:          48,
-          backgroundColor: 'var(--color-ink)',
-          display:         'flex',
-          flexDirection:   'column',
-          paddingInline:   'var(--grid-margin)',
-          paddingBlock:    '6rem 3rem',
-          opacity:         menuOpen ? 1 : 0,
-          pointerEvents:   menuOpen ? 'auto' : 'none',
-          transition:      'opacity 350ms var(--ease-standard)',
-          overflowY:       'auto',
-        }}
-      >
-        <nav
-          style={{
-            flex:           '1',
-            display:        'flex',
-            flexDirection:  'column',
-            justifyContent: 'center',
-            gap:            '0.25rem',
-          }}
+      {/* ── Mobile overlay ── */}
+      {open && (
+        <div
+          className="nav-overlay"
+          onClick={() => setOpen(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation"
         >
-          {ALL_ITEMS.map((item, i) => (
+          <nav
+            className="shell"
+            style={{ paddingTop: 'calc(var(--nav-h) + var(--u6))' }}
+          >
+            {NAV.map((item, i) => (
+              <Link key={item.href} href={item.href} className="nav-overlay-link">
+                <span className="strip-num">{String(i + 1).padStart(2, '0')}</span>
+                <span className="d3">{item.label}</span>
+              </Link>
+            ))}
             <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                fontFamily:     'var(--font-display)',
-                fontSize:       'clamp(2.5rem, 10vw, 4rem)',
-                fontWeight:     300,
-                lineHeight:     1.1,
-                letterSpacing:  '-0.02em',
-                color:          'var(--color-background)',
-                textDecoration: 'none',
-                paddingBlock:   '0.5rem',
-                borderBottom:   '1px solid rgba(227,221,213,0.08)',
-                opacity:        menuOpen ? 1 : 0,
-                transform:      menuOpen ? 'translateY(0)' : 'translateY(12px)',
-                transition:     `opacity 400ms var(--ease-entry) ${80 + i * 60}ms, transform 400ms var(--ease-expressive) ${80 + i * 60}ms`,
-              }}
+              href="/kontakt"
+              className="btn btn-red btn-block"
+              style={{ marginTop: 'var(--u6)' }}
             >
-              {item.label}
+              Erstgespräch vereinbaren <span aria-hidden="true">→</span>
             </Link>
-          ))}
-        </nav>
+          </nav>
+        </div>
+      )}
 
-        <Link
-          href="/kontakt"
-          onClick={() => setMenuOpen(false)}
-          style={{
-            marginTop:      '2rem',
-            fontFamily:     'var(--font-body)',
-            fontSize:       'var(--text-xs)',
-            fontWeight:     500,
-            letterSpacing:  '0.15em',
-            textTransform:  'uppercase',
-            color:          'var(--color-terra)',
-            textDecoration: 'none',
-            opacity:        menuOpen ? 1 : 0,
-            transition:     'opacity 400ms var(--ease-entry) 520ms',
-          }}
-        >
-          Erstgespräch vereinbaren →
-        </Link>
-      </div>
+      {/* Spacer so page content clears the fixed strip. */}
+      <div style={{ height: 'var(--nav-h)' }} aria-hidden="true" />
+
+      <style>{`
+        .nav-desk { display: flex; align-items: center; gap: var(--u3); }
+        .nav-link {
+          display: inline-flex; align-items: baseline; gap: 6px;
+          font-family: var(--font-micro); font-size: var(--t-11);
+          font-weight: 500; letter-spacing: var(--track-micro);
+          text-transform: uppercase; color: var(--ink);
+          padding-bottom: 3px; border-bottom: var(--bar) solid transparent;
+          transition: border-color var(--snap), color var(--snap);
+        }
+        .nav-link:hover { border-bottom-color: var(--ink); }
+        .nav-link[data-active] { border-bottom-color: var(--red); }
+        .nav-link[data-active] .nav-idx { color: var(--red); }
+        .nav-idx { font-size: var(--t-10); }
+
+        .nav-toggle {
+          display: none;
+          font-family: var(--font-micro); font-size: var(--t-12);
+          letter-spacing: var(--track-micro); color: var(--ink);
+        }
+
+        .nav-overlay {
+          position: fixed; inset: 0; z-index: 99;
+          background: var(--paper);
+          overflow-y: auto;
+        }
+        .nav-overlay-link {
+          display: flex; align-items: baseline; gap: var(--u2);
+          padding-block: var(--u3);
+          border-bottom: var(--rule);
+        }
+        .nav-overlay-link:hover .d3 { color: var(--red); }
+
+        @media (max-width: 860px) {
+          .nav-desk { display: none; }
+          .nav-toggle { display: block; }
+        }
+      `}</style>
     </>
   )
 }

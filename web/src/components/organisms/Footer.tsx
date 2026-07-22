@@ -1,211 +1,138 @@
 import Link from 'next/link'
-import { Container, Grid, Col } from '@/components/layout/Grid'
+import { Wordmark } from '@/components/Wordmark'
+import { Hazard } from '@/components/ui'
+import { CONTACT, FOOTER_CLAIM, FOOTER_PAGES, LEGAL } from '@/data/site'
 
-const NAV_ITEMS = [
-  { label: 'Ansatz',     href: '/ansatz' },
-  { label: 'Cases',      href: '/projekte' },
-  { label: 'Leistungen', href: '/leistungen' },
-  { label: 'Labor',      href: '/labor' },
-  { label: 'Wir',        href: '/wir' },
-]
-
-const MONO_LABEL: React.CSSProperties = {
-  fontFamily:    'var(--font-mono)',
-  fontSize:      'var(--text-xxs)',
-  letterSpacing: '0.15em',
-  textTransform: 'uppercase',
-  color:         'rgba(242,242,242,0.25)',
-  marginBottom:  '1.5rem',
-}
-
-const LINK_BASE: React.CSSProperties = {
-  fontFamily:     'var(--font-body)',
-  fontSize:       'var(--text-xs)',
-  letterSpacing:  '0.06em',
-  textDecoration: 'none',
-  display:        'block',
-}
-
+/**
+ * FOOTER
+ *
+ * The colophon of the document. Inverted stock, hairline-gridded columns,
+ * a hazard strip at the top edge, and a bottom bar carrying the revision
+ * and build markers.
+ */
 export function Footer() {
+  const year = new Date().getFullYear()
+
   return (
-    <footer style={{ backgroundColor: 'var(--color-ink)' }}>
+    <footer className="slab-invert">
+      <Hazard red />
 
-      {/* ── Wordmark ─────────────────────────────────────────────────────── */}
-      <Container>
-        <div
-          style={{
-            paddingTop:    '5rem',
-            paddingBottom: '3.5rem',
-            borderBottom:  '1px solid rgba(227,221,213,0.08)',
-          }}
-        >
-          <p
-            style={{
-              fontFamily:    'var(--font-display)',
-              fontSize:      'clamp(5rem, 14vw, 11rem)',
-              fontWeight:    300,
-              letterSpacing: '-0.04em',
-              lineHeight:    0.88,
-              color:         'var(--color-background)',
-            }}
-          >
-            1789
-          </p>
-          <p
-            style={{
-              fontFamily:    'var(--font-mono)',
-              fontSize:      'var(--text-xxs)',
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              color:         'var(--color-terra)',
-              marginTop:     '1.25rem',
-            }}
-          >
-            Innovation · Consulting
-          </p>
+      <div className="shell" style={{ paddingBlock: 'var(--u8)' }}>
+        {/* ── Wordmark ── */}
+        <div style={{ marginBottom: 'var(--u8)' }}>
+          <Wordmark size={64} sub />
         </div>
-      </Container>
 
-      {/* ── Main columns ─────────────────────────────────────────────────── */}
-      <Container>
-        <Grid className="stack-cols" style={{ paddingBlock: '4rem' }}>
-
-          {/* About + CTA */}
-          <Col span={5}>
-            <p
-              style={{
-                fontFamily:    'var(--font-display)',
-                fontSize:      'clamp(1.5rem, 3vw, 2.25rem)',
-                fontWeight:    300,
-                fontStyle:     'italic',
-                lineHeight:    1.3,
-                letterSpacing: '-0.02em',
-                color:         'rgba(242,242,242,0.7)',
-                maxWidth:      '28ch',
-              }}
-            >
-              Zwischen Strategie und Wirklichkeit liegt eine Lücke. Wir arbeiten in ihr.
+        <div className="g12" style={{ rowGap: 'var(--u8)' }}>
+          {/* ── Claim + CTA ── */}
+          <div className="c6">
+            <span className="eyebrow" style={{ marginBottom: 'var(--u2)' }}>
+              Claim
+            </span>
+            <p className="d3" style={{ maxWidth: '20ch', marginBottom: 'var(--u4)' }}>
+              {FOOTER_CLAIM}
             </p>
-
-            <Link
-              href="/kontakt"
-              className="footer-cta"
-              style={{
-                ...LINK_BASE,
-                display:       'inline-block',
-                marginTop:     '2.5rem',
-                fontWeight:    500,
-                letterSpacing: '0.13em',
-                textTransform: 'uppercase',
-                fontSize:      'var(--text-xs)',
-              }}
-            >
-              Erstgespräch vereinbaren →
+            <Link href="/kontakt" className="link">
+              Erstgespräch vereinbaren <span aria-hidden="true">→</span>
             </Link>
-          </Col>
+          </div>
 
-          {/* Navigation */}
-          <Col span={3} start={8}>
-            <p style={MONO_LABEL}>Seiten</p>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {NAV_ITEMS.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="footer-link hover-line"
-                    style={LINK_BASE}
-                  >
-                    {item.label}
+          {/* ── Seiten ── */}
+          <nav className="c3" aria-label="Fußzeilen-Navigation">
+            <span className="eyebrow" style={{ marginBottom: 'var(--u3)' }}>
+              Seiten
+            </span>
+            <ul>
+              {FOOTER_PAGES.map((p, i) => (
+                <li key={p.href} style={{ borderTop: '1px solid #33312E' }}>
+                  <Link href={p.href} className="foot-link">
+                    <span className="unit">{String(i + 1).padStart(2, '0')}</span>
+                    {p.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </Col>
+          </nav>
 
-          {/* Contact */}
-          <Col span={3} start={11}>
-            <p style={MONO_LABEL}>Kontakt</p>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <li>
-                <a
-                  href="mailto:hello@1789consulting.de"
-                  className="footer-link-email"
-                  style={LINK_BASE}
-                >
-                  hello@1789consulting.de
+          {/* ── Kontakt ── */}
+          <div className="c3">
+            <span className="eyebrow" style={{ marginBottom: 'var(--u3)' }}>
+              Kontakt
+            </span>
+            <ul>
+              <li style={{ borderTop: '1px solid #33312E' }}>
+                <a href={`mailto:${CONTACT.mailFooter}`} className="foot-link">
+                  <span className="unit">@</span>
+                  {CONTACT.mailFooter}
                 </a>
               </li>
-              <li>
+              <li style={{ borderTop: '1px solid #33312E' }}>
                 <a
-                  href="https://instagram.com"
+                  href={CONTACT.instagram}
                   target="_blank"
                   rel="noreferrer"
-                  className="footer-link hover-line"
-                  style={LINK_BASE}
+                  className="foot-link"
                 >
+                  <span className="unit">↗</span>
                   Instagram
                 </a>
               </li>
-              <li>
+              <li style={{ borderTop: '1px solid #33312E' }}>
                 <a
-                  href="https://de.linkedin.com/company/1789-consulting"
+                  href={CONTACT.linkedin}
                   target="_blank"
                   rel="noreferrer"
-                  className="footer-link hover-line"
-                  style={LINK_BASE}
+                  className="foot-link"
                 >
+                  <span className="unit">↗</span>
                   LinkedIn
                 </a>
               </li>
             </ul>
-          </Col>
-
-        </Grid>
-      </Container>
-
-      {/* ── Bottom bar ───────────────────────────────────────────────────── */}
-      <Container>
-        <div
-          style={{
-            display:        'flex',
-            alignItems:     'center',
-            justifyContent: 'space-between',
-            paddingBlock:   '1.5rem',
-            borderTop:      '1px solid rgba(227,221,213,0.08)',
-            gap:            '1rem',
-            flexWrap:       'wrap',
-          }}
-        >
-          <p
-            style={{
-              fontFamily:    'var(--font-mono)',
-              fontSize:      'var(--text-xxs)',
-              letterSpacing: '0.08em',
-              color:         'rgba(242,242,242,0.2)',
-            }}
-          >
-            © {new Date().getFullYear()} 1789 Consulting GmbH — Alle Rechte vorbehalten.
-          </p>
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
-            {['Impressum', 'Datenschutz'].map((label) => (
-              <Link
-                key={label}
-                href={`/${label.toLowerCase()}`}
-                className="footer-legal"
-                style={{
-                  fontFamily:     'var(--font-mono)',
-                  fontSize:       'var(--text-xxs)',
-                  letterSpacing:  '0.08em',
-                  textDecoration: 'none',
-                }}
-              >
-                {label}
-              </Link>
-            ))}
           </div>
         </div>
-      </Container>
+      </div>
 
+      {/* ── Bottom bar ── */}
+      <div style={{ borderTop: '1px solid #33312E' }}>
+        <div
+          className="shell"
+          style={{
+            paddingBlock: 'var(--u2)',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 'var(--u3)',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <span className="unit">
+            © {year} 1789 Consulting GmbH — Alle Rechte vorbehalten.
+          </span>
+          <span style={{ display: 'flex', gap: 'var(--u3)' }}>
+            {LEGAL.map((l) => (
+              <Link key={l.href} href={l.href} className="unit foot-legal">
+                {l.label}
+              </Link>
+            ))}
+            <span className="unit" style={{ color: 'var(--red)' }}>
+              REV 001 / FFM
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <style>{`
+        .foot-link {
+          display: flex; align-items: baseline; gap: var(--u2);
+          padding-block: 10px;
+          font-family: var(--font-micro); font-size: var(--t-12);
+          letter-spacing: var(--track-data); color: #D8D5CF;
+          transition: color var(--snap), padding-left var(--snap);
+        }
+        .foot-link:hover { color: var(--red); padding-left: 6px; }
+        .foot-legal:hover { color: var(--red); }
+      `}</style>
     </footer>
   )
 }

@@ -1,694 +1,814 @@
-@import "../styles/tokens.css";
-@import "../styles/typography.css";
+/* ═══════════════════════════════════════════════════════════════════════════
+   1789 — BRUTALIST DESIGN SYSTEM
+   REV 001 · SWISS INDUSTRIAL PRINT · MONOSPACE ONLY · NO TAILWIND
+   ───────────────────────────────────────────────────────────────────────────
+   ORDER OF OPERATIONS
+     00  RESET
+     01  SUBSTRATE + GRAIN
+     02  TYPOGRAPHY
+     03  LAYOUT / BLUEPRINT GRID
+     04  RULES + COMPARTMENTS
+     05  SYMBOLOGY (crosshairs, registration marks, barcodes, hazard tape)
+     06  COMPONENTS
+     07  HALFTONE + DITHER
+     08  MOTION
+     09  RESPONSIVE COLLAPSE
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-@import "tailwindcss";
+/* ═══════════════════════════════════════════════════════════════════════════
+   1789 — BRUTALIST DESIGN SYSTEM · TOKENS
+   REV 001 · SUBSTRATE: SWISS INDUSTRIAL PRINT (LIGHT) · TYPE: MONOSPACE ONLY
+   ───────────────────────────────────────────────────────────────────────────
+   Single substrate. Single accent. No gradients, no shadows, no radii, no
+   translucency. Every value below is a hard constant — the grid is the design.
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-@layer base {
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+:root {
+  /* ── SUBSTRATE ─────────────────────────────────────────────────────────
+     Unbleached documentation paper. --paper is the ONLY page background.
+     --sunk is for recessed compartments (inputs, wells). --stock is the
+     inverted block used sparingly for full-bleed alert slabs.             */
+  --paper:   #F4F4F0;
+  --sunk:    #EAE8E3;
+  --stock:   #0A0A0A;
 
-  ::selection {
-    background-color: var(--color-terra);
-    color: var(--color-white);
-  }
+  /* ── CARBON INK ──────────────────────────────────────────────────────── */
+  --ink:     #0A0A0A;
+  --ink-70:  #55534E;   /* secondary body / metadata */
+  --ink-45:  #8C8880;   /* tertiary — unit ids, coordinates, disabled */
+  --ink-20:  #C9C5BD;   /* hairline on hairline, dot matrices */
 
-  html {
-    scroll-behavior: smooth;
-  }
+  /* ── HAZARD RED ───────────────────────────────────────────────────────
+     The ONLY accent in the system. Strike-throughs, structural dividers,
+     vital data. Never decorative, never a second accent.                  */
+  --red:     #E61919;
+  --red-ink: #F4F4F0;   /* foreground when sitting on red */
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+  /* ── RULES ─────────────────────────────────────────────────────────────
+     Compartmentalisation is done with rules, not spacing.                 */
+  --hair:    1px;
+  --bar:     2px;
+  --slab:    4px;
+  --rule:       var(--hair) solid var(--ink);
+  --rule-bar:   var(--bar)  solid var(--ink);
+  --rule-red:   var(--bar)  solid var(--red);
+  --rule-faint: var(--hair) solid var(--ink-20);
 
-  img, video {
-    max-width: 100%;
-    display: block;
-  }
+  /* ── TYPEFACES ─────────────────────────────────────────────────────────
+     Monospace only. Contrast comes from scale, weight and width — never
+     from switching classification.
+       --font-macro : Martian Mono   (variable wght 100–800 + wdth 75–112.5)
+       --font-micro : JetBrains Mono (variable wght 100–800)               */
+  --font-macro: var(--font-martian), ui-monospace, "SFMono-Regular", monospace;
+  --font-micro: var(--font-jet),     ui-monospace, "SFMono-Regular", monospace;
+
+  /* ── MICRO SCALE — fixed, mechanical. Never fluid. ───────────────────── */
+  --t-10:  0.625rem;    /* registration marks, coordinates */
+  --t-11:  0.6875rem;   /* telemetry, table data */
+  --t-12:  0.75rem;     /* eyebrows, nav, labels */
+  --t-13:  0.8125rem;   /* body default */
+  --t-15:  0.9375rem;   /* lead body */
+  --t-18:  1.125rem;    /* standfirst */
+
+  /* ── MACRO SCALE — fluid, aggressive. clamp() only. ──────────────────── */
+  --t-d0:  clamp(4rem,    18vw,  20rem);    /* viewport-bleeding numerals */
+  --t-d1:  clamp(1.875rem, 5.2vw, 4.5rem);  /* page H1 */
+  --t-d2:  clamp(1.5rem,   3.8vw, 3.25rem); /* section H2 */
+  --t-d3:  clamp(1.25rem, 2.6vw, 2.25rem);  /* block H3 */
+  --t-d4:  clamp(1rem,    1.5vw, 1.25rem);  /* card H4 */
+
+  /* ── TRACKING ──────────────────────────────────────────────────────────
+     Macro is negative — glyphs fuse into architectural blocks.
+     Micro is generous — simulates a mechanical typewriter matrix.         */
+  --track-macro:  -0.045em;
+  --track-macro2: -0.03em;
+  --track-micro:   0.14em;
+  --track-data:    0.08em;
+
+  /* ── LEADING ───────────────────────────────────────────────────────────  */
+  --lead-macro: 0.9;
+  --lead-tight: 1.15;
+  --lead-body:  1.62;
+
+  /* ── SPATIAL UNITS ─────────────────────────────────────────────────────
+     8px base module. Layout snaps to it; nothing floats between.          */
+  --u:    8px;
+  --u2:   16px;
+  --u3:   24px;
+  --u4:   32px;
+  --u6:   48px;
+  --u8:   64px;
+  --u12:  96px;
+  --u16: 128px;
+
+  /* Page gutter + max measure */
+  --gutter:  clamp(16px, 4vw, 56px);
+  --measure: 1680px;
+  --nav-h:   56px;
+
+  /* Section block padding — bimodal: dense or vast, nothing in between */
+  --pad-dense: clamp(24px, 4vw, 40px);
+  --pad-vast:  clamp(56px, 10vh, 140px);
+
+  /* ── MOTION ────────────────────────────────────────────────────────────
+     Mechanical, not organic. No easing that suggests softness.            */
+  --snap:  80ms linear;
+  --sweep: 220ms cubic-bezier(0.2, 0, 0, 1);
 }
 
-@layer utilities {
-  /* Grid Container
-   * max-width raised to 1920px so 27"+ screens stop dead-spacing.
-   * Padding scales via --grid-margin (fluid clamp above 1440px). */
-  .container-grid {
-    width: 100%;
-    max-width: 1920px;
-    margin-inline: auto;
-    padding-inline: var(--grid-margin);
-  }
-
-  /* Textbalance */
-  .balance { text-wrap: balance; }
-  .pretty  { text-wrap: pretty; }
-
-  /* Reveal Animation */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition:
-      opacity var(--duration-slow) var(--ease-entry),
-      transform var(--duration-slow) var(--ease-expressive);
-  }
-
-  .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ─── Breakpoint visibility helpers ────────────────────────────── */
-
-  /* Hide / show by breakpoint — 768px mobile/tablet boundary */
-  .hide-mobile      { display: none; }
-  .show-mobile      { display: block; }
-  .show-mobile-flex { display: flex; }
-
-  @media (min-width: 768px) {
-    .hide-mobile      { display: revert; }
-    .show-mobile      { display: none; }
-    .show-mobile-flex { display: none; }
-  }
-
-  /* Tablet-only (768px–1023px) */
-  .show-tablet-flex { display: none; }
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .show-tablet-flex { display: flex; }
-    /* Hero headline — allow wrapping + scale up on tablet so the claim
-       fills the viewport width instead of shrinking with vw alone */
-    .hero-headline p { white-space: normal !important; }
-    .hero-headline   { font-size: clamp(2.5rem, 7vw, 5rem) !important; }
-  }
-
-  /* Desktop-only (≥ 1024px) */
-  .show-desktop-grid { display: none; }
-  @media (min-width: 1024px) {
-    .show-desktop-grid { display: grid; }
-  }
-
-  /* ─── Responsive grid system ────────────────────────────────────
-   *
-   * All Grids (via .container-grid .grid) collapse to a single
-   * column on mobile by default. Add .keep-cols to opt out.
-   *
-   * .stack-cols is kept for explicit use and remains compatible.
-   * ──────────────────────────────────────────────────────────── */
-
-  .stack-cols     { grid-template-columns: 1fr !important; }
-  .stack-cols > * { grid-column: 1 / -1 !important; }
-
-  @media (max-width: 767px) {
-
-    /* ── Global grid collapse ── */
-    .container-grid .grid:not(.keep-cols) {
-      grid-template-columns: 1fr !important;
-    }
-    .container-grid .grid:not(.keep-cols) > * {
-      grid-column: 1 / -1 !important;
-    }
-
-    /* ── Hero headline — allow wrapping on phones ── */
-    .hero-headline p { white-space: normal !important; }
-    /* Slightly smaller floor so all three lines break cleanly */
-    .hero-headline   { font-size: clamp(1.6rem, 8.5vw, 3rem) !important; }
-
-    /* ── Subpage hero h1 — smaller floor than the clamp desktop min ── */
-    .page-hero-h1 { font-size: clamp(2rem, 9vw, 6.5rem) !important; }
-
-    /* ── Featured cases grid on /projekte ── */
-    .cases-featured-grid {
-      grid-template-columns: 1fr !important;
-    }
-
-    /* ── Homepage cases section — release sticky height constraints ── */
-    .scroll-card-content {
-      overflow:   visible !important;
-      max-height: none    !important;
-    }
-
-    /* ── Inner sticky sections — natural height on mobile ── */
-    .sticky-section-inner {
-      min-height: 0      !important;
-      max-height: none   !important;
-      overflow:   visible !important;
-    }
-
-    /* ── Cases card — auto height on mobile so content is never clipped ── */
-    .case-card  { height: auto !important; }
-
-    /* ── Cases image slot — fixed height so it doesn't collapse ── */
-    .case-img-slot { height: 200px !important; }
-
-    /* ── Buttons — stack on mobile when side by side ── */
-    .btn-group {
-      flex-direction: column !important;
-      align-items:    stretch !important;
-    }
-    .btn-group > * { width: 100%; text-align: center; justify-content: center; }
-
-    /* ── Logo in header — always fully visible ── */
-    .header-logo-link {
-      opacity:        1 !important;
-      transform:      scale(1) !important;
-      pointer-events: auto !important;
-    }
-
-    /* ── Hero indent / split helpers ── */
-    .hero-indent { padding-left: 0 !important; }
-    .hero-split  { grid-template-columns: 1fr !important; }
-    .hero-split > *:last-child {
-      border-left: none !important;
-      border-top:  none !important;
-    }
-
-    /* ── Page section paddings ── */
-    .section-pad { padding-block: 4rem !important; }
-
-    /* ── Ansatz / systemshift layouts ── */
-    .systemshift-layout { grid-template-columns: 1fr !important; }
-    .systemshift-panel  { display: none !important; }
-
-    /* ── Labor / Denk-Labor editorial grid ── */
-    /* flex:none stops the grid from growing into a fixed-height flex slot,
-       which compressed all 3 rows to ~232px each and caused overflow overlap */
-    .labor-grid {
-      grid-template-columns: 1fr !important;
-      flex: none !important;
-      height: auto !important;
-    }
-    /* Remove the 920px cap on the Container so all rows (feat + medium + list) show */
-    .labor-container {
-      max-height: none !important;
-      height: auto !important;
-    }
-  }
-
-  /* ── Tablet adjustments (768px–1023px) ─────────────────────────── */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    /* Featured cases: 2-col stays on tablet */
-    .cases-featured-grid { grid-template-columns: 1fr 1fr; }
-
-    /* Subpage grids: narrow cols like span={7} start={4} read fine on tablet */
-    /* but very wide text columns need a bit more breathing room */
-    .container-grid .grid:not(.keep-cols) > * { min-width: 0; }
-
-    /* Labor section: 1-col layout on tablet makes content ~1770px tall which
-       overflows the 944px sticky card. Make it a normal-flow section so all
-       content is visible. position:relative + z-index keep it above sticky
-       predecessors (static would paint below positioned elements). */
-    .scroll-card:has(.labor-container) {
-      position:      relative !important;
-      z-index:       10       !important;
-      height:        auto     !important;
-      overflow:      visible  !important;
-      margin-bottom: 0        !important;
-      animation:     none     !important;
-      transform:     none     !important;
-      will-change:   auto     !important;
-    }
-    .labor-grid {
-      flex:          none !important;
-      align-content: start !important;
-    }
-    .labor-container {
-      max-height: none !important;
-      height:     auto !important;
-    }
-  }
-
-  /* ─── Footer link hover states ───────────────────────────────────────────── */
-  .footer-link {
-    color:      rgba(242,242,242,0.5);
-    transition: color 200ms var(--ease-standard);
-  }
-  .footer-link:hover { color: var(--color-background); }
-
-  .footer-link-email {
-    color:      rgba(242,242,242,0.5);
-    transition: color 200ms var(--ease-standard);
-  }
-  .footer-link-email:hover { color: var(--color-terra); }
-
-  .footer-cta {
-    color:      var(--color-terra);
-    transition: opacity 200ms var(--ease-standard);
-  }
-  .footer-cta:hover { opacity: 0.72; }
-
-  .footer-legal {
-    color:      rgba(242,242,242,0.2);
-    transition: color 200ms var(--ease-standard);
-  }
-  .footer-legal:hover { color: rgba(242,242,242,0.5); }
-
-  /* LinkedIn icon hover */
-  .linkedin-hover:hover {
-    color: var(--color-terra) !important;
-    border-color: var(--color-terra) !important;
-  }
-
-  /* ── Testimonial card hover (entrance animation is on .t-card-wrapper) ─── */
-  .testimonial-card {
-    transition: box-shadow 300ms var(--ease-standard);
-  }
-
-  .testimonial-card:hover {
-    box-shadow: 0 16px 48px rgba(26, 23, 20, 0.15);
-  }
-
-  /* Photo area — full greyscale so the multiply overlay is the sole tint.
-     Hover dissolves greyscale → natural colour shows through the green wash. */
-  .t-card-img {
-    filter:      grayscale(100%);
-    transform:   scale(1.00);
-    will-change: transform, filter;
-    transition:
-      filter    600ms var(--ease-standard),
-      transform 600ms var(--ease-expressive);
-  }
-
-  .testimonial-card:hover .t-card-img {
-    filter:    grayscale(0%);
-    transform: scale(1.04);
-  }
-
-  .case-link:hover { opacity: 1 !important; }
-
-  /* Project card — colour overlay fades on parent hover to reveal more of the photo */
-  .group:hover .case-img-overlay { opacity: 0.08 !important; }
-
-  /* ─── Card system ─────────────────────────────────────────────────────────
-   *
-   * Two base classes + one accent modifier cover every card on the site.
-   *
-   * .card       — light bg contexts (cream, surface)
-   * .card-dark  — dark bg contexts (ink background)
-   * .card-terra — accent top border for featured / live items
-   *
-   * Hover: 2px vertical lift + shadow bloom. No Tailwind hover-translate
-   * classes needed — remove them from JSX.
-   * ──────────────────────────────────────────────────────────────────────── */
-  .card {
-    border-radius:    var(--radius-md);
-    background-color: var(--color-background);
-    box-shadow:       0 0 0 1px rgba(26, 23, 20, 0.08);
-    transition:       box-shadow 280ms var(--ease-standard);
-  }
-
-  .card:hover {
-    box-shadow: 0 6px 24px rgba(26, 23, 20, 0.10), 0 0 0 1px rgba(26, 23, 20, 0.14);
-  }
-
-  .card-dark {
-    border-radius: var(--radius-md);
-    box-shadow:    0 0 0 1px rgba(255, 255, 255, 0.09);
-    transition:    box-shadow 280ms var(--ease-standard);
-  }
-
-  .card-dark:hover {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.18);
-  }
-
-  /* Accent top border — 2px coloured bar at the card top */
-  .card-terra { border-top: 2px solid var(--color-terra); }
-  .card-sage  { border-top: 2px solid var(--color-sage);  }
-  .card-ink   { border-top: 2px solid var(--color-ink);   }
-
-  /* ─── Card content system ─────────────────────────────────────────────────
-   *
-   * Four layers used consistently across every card type on the site.
-   * Applying these classes means font, size, colour and spacing are
-   * defined once — no per-card overrides needed.
-   *
-   *   .c-eyebrow   mono label above the title (category, number, type)
-   *   .c-title     display light heading — the card's primary statement
-   *   .c-body      body supporting text
-   *   .c-meta      small mono footer line (date, duration, location …)
-   * ──────────────────────────────────────────────────────────────────────── */
-  .c-eyebrow {
-    font-family:    var(--font-mono);
-    font-size:      var(--text-xxs);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color:          var(--color-ink-subtle);
-    display:        block;
-  }
-  .c-eyebrow--terra { color: var(--color-terra); }
-
-  .c-title {
-    font-family:    var(--font-display);
-    font-weight:    300;
-    font-size:      var(--text-sm);
-    line-height:    1.1;
-    letter-spacing: -0.02em;
-    color:          var(--color-ink);
-    margin-top:     0.75rem;
-  }
-
-  .c-body {
-    font-family: var(--font-body);
-    font-size:   var(--text-sub);
-    line-height: 1.65;
-    color:       var(--color-ink-muted);
-    margin-top:  0.75rem;
-  }
-
-  .c-meta {
-    font-family:    var(--font-mono);
-    font-size:      var(--text-xxs);
-    letter-spacing: 0.08em;
-    color:          var(--color-ink-subtle);
-    margin-top:     0.75rem;
-    display:        block;
-  }
-
-  /* Hover Underline */
-  .hover-line {
-    position: relative;
-    display: inline-block;
-  }
-
-  .hover-line::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background-color: currentColor;
-    transition: width var(--duration-base) var(--ease-expressive);
-  }
-
-  .hover-line:hover::after {
-    width: 100%;
-  }
-
-  /* ── Featured cases 2-col grid (base = desktop, collapses in media queries above) ── */
-  .cases-featured-grid {
-    display:             grid;
-    grid-template-columns: 1fr 1fr;
-    gap:                 1.5rem;
-  }
-
-  /* ── /labor subpage — bento grid + formats collapse on tablet ─────── */
-  @media (max-width: 1023px) {
-    /* Content bento grid */
-    .container-grid > div[style*="grid-template-columns: repeat(12"] > * {
-      grid-column: span 12 !important;
-    }
-    .labor-formats {
-      grid-template-columns: 1fr !important;
-    }
-  }
-
-  /* ── LaborSection — three-tier spread ────────────────────────────────── */
-  @media (max-width: 1279px) {
-    /* tablet: collapse list+newsletter under the mediums */
-    .labor-grid {
-      grid-template-columns: 5fr 4fr !important;
-    }
-    .labor-grid > :nth-child(3) {
-      grid-column: 1 / -1;
-    }
-  }
-  @media (max-width: 1023px) {
-    .labor-grid {
-      grid-template-columns: 1fr !important;
-      grid-auto-rows: auto;
-    }
-    .labor-grid > :nth-child(3) {
-      grid-column: auto;
-    }
-  }
-  .labor-thumb:hover {
-    opacity: 0.78;
-  }
-
-  /* ── /ansatz overview strip — 5 phase chips, collapses to 2-col on tablet ── */
-  @media (max-width: 1023px) {
-    .ansatz-overview { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  }
-  @media (max-width: 559px) {
-    .ansatz-overview { grid-template-columns: 1fr !important; }
-  }
-
-  /* ── AnsatzSection — 5-column phase spread ── */
-  .ansatz-steps {
-    list-style:          none;
-    margin:              0;
-    padding:             0;
-    display:             grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap:                 clamp(1.5rem, 3vw, 3rem);
-  }
-  /* Tablet: 3-column grid fits all 5 phases within the sticky card's
-     viewport height, preserving the card stacking scroll effect. */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .ansatz-container {
-      max-height:   none !important;
-      overflow:     visible !important;
-      padding-block: 1.5rem !important;
-    }
-    .ansatz-container header { margin-bottom: 1rem !important; }
-    .ansatz-container footer { margin-top: 1rem !important; }
-    .ansatz-steps { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  }
-  /* Mobile: single column stack (parent scroll-card is auto-height) */
-  @media (max-width: 767px) {
-    .ansatz-container {
-      max-height: none !important;
-      overflow:   visible !important;
-      height:     auto !important;
-    }
-    .ansatz-steps { grid-template-columns: 1fr; gap: 2rem; }
-  }
-
-  /* ── AI & Organisation — diamond + 4 dimension labels grid ─────────────── */
-  .ai-grid {
-    display: grid;
-    /* Diamond column scales with viewport height so the whole figure stays
-       inside a single sticky card on shorter viewports (iPads, 13" laptops). */
-    grid-template-columns: 1fr clamp(160px, 28svh, 360px) 1fr;
-    grid-template-rows: auto auto auto;
-    gap: clamp(1rem, 3svh, 3rem) clamp(1.5rem, 4vw, 4rem);
-    align-items: center;
-    justify-items: center;
-    max-width: 1100px;
-    margin-inline: auto;
-  }
-  /* Mobile: collapse to single column, drop the spacer cells, shrink the diamond */
-  @media (max-width: 767px) {
-    .ai-grid {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-    .ai-grid > .ai-spacer { display: none; }
-    .ai-grid > .ai-diamond {
-      width: 60%;
-      max-width: 240px;
-      margin-inline: auto;
-      order: -1; /* diamond above all labels */
-    }
-  }
+@media (prefers-reduced-motion: reduce) {
+  :root { --snap: 0ms; --sweep: 0ms; }
 }
 
-/* ─── Scroll-stack cards ──────────────────────────────────────────────────── */
-/*
- * Each .scroll-card section sticks at the top of the viewport while the next
- * card slides over it from below — creating an app-switcher / card-deck feel.
- *
- * The scale-down animation (progressive enhancement via @supports) shrinks the
- * card slightly as it exits, giving depth to the stack. Requires Chrome 115+ /
- * Edge 115+ for the scroll-driven animation; all browsers get sticky stacking.
- */
-.scroll-card {
-  position: sticky;
-  top: 0;
-  border-radius: 1.5rem 1.5rem 0 0;
-  /* Inset shadow — subtle depth at the top edge of each card.
-   * Stays inside the card bounds, never bleeds over adjacent strips. */
-  box-shadow: inset 0 6px 20px rgba(26, 23, 20, 0.05);
-  /*
-   * A small pause before the next card slides in from below.
-   * Keep this tight — too large a value exposes empty background.
-   */
-  margin-bottom: 6vh;
-  /*
-   * Pre-promote to a GPU compositor layer on page load.
-   * Without this hint the browser waits until the first scroll event to
-   * promote, causing a visible hitch (≈1 frame) before motion starts.
-   * Safe here because scroll-driven animations already need a transform
-   * layer — this just ensures it is allocated eagerly.
-   */
-  will-change: transform;
+/* ═══ 00 · RESET ═══════════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* Geometry is absolute. 90 degrees, everywhere, no exceptions. */
+  border-radius: 0 !important;
 }
 
-@keyframes scroll-card-recede {
-  from {
-    transform: scale(1);
-    border-radius: 1.5rem 1.5rem 0 0;
-  }
-  to {
-    transform: scale(0.94) translateY(-0.5rem);
-    border-radius: 1.5rem;
-  }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + var(--u4));
 }
 
-@supports (animation-timeline: scroll()) {
-  .scroll-card {
-    transform-origin: top center;
-    animation: scroll-card-recede linear both;
-    animation-timeline: view(block);
-    animation-range: exit 0% exit 30%;
-  }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-micro);
+  font-size: var(--t-13);
+  line-height: var(--lead-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-ligatures: none;
+  overflow-x: hidden;
 }
 
-/* ── Testimonials: card entrance + horizontal scroll ───────────────────────── */
+a { color: inherit; text-decoration: none; }
+img, svg, video { display: block; max-width: 100%; }
+button, input, textarea, select { font: inherit; color: inherit; background: none; }
+button { cursor: pointer; }
+ul, ol { list-style: none; }
+table { border-collapse: collapse; width: 100%; }
 
-/* Mobile: testimonials — one card at a time */
-@media (max-width: 767px) {
-  .testimonials-section {
-    position: static !important;
-    height:   auto   !important;
-    overflow: visible !important;
-    border-radius: 0 !important;
-  }
-  .testimonials-card-track {
-    flex:       none    !important;
-    height:     600px   !important; /* image 1:1 ~343px + text ~200px + padding */
-    min-height: 0       !important;
-    overflow:   hidden  !important; /* keep slider clip — no horizontal scroll */
-  }
-  .testimonial-card {
-    height: 100% !important;
-  }
+::selection { background: var(--red); color: var(--red-ink); }
+
+:focus-visible {
+  outline: var(--bar) solid var(--red);
+  outline-offset: 2px;
 }
 
-/* Disable on mobile — too small to be meaningful */
-@media (max-width: 767px) {
-  .scroll-card {
-    position: static;
-    border-radius: 0;
-    box-shadow: none;
-    margin-bottom: 0;
-    /* Reset any inline height / overflow so content flows naturally on mobile */
-    height: auto !important;
-    overflow: visible !important;
-  }
+/* ═══ 01 · SUBSTRATE + GRAIN ═══════════════════════════════════════════════
+   A single low-opacity static field over the whole document introduces a
+   unified physical grain, so nothing reads as pure vector.                  */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.42;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
 
-/* ─── Keyframes ───────────────────────────────────────────────────────────── */
-
-/*
- * Per-character animations for "1789"
- *
- * Design intent — constant transformation:
- *   "1"  The Anchor      — compressed+black ↔ expanded+thin
- *   "7"  The Opposite    — wide+thin ↔ narrow+heavy  (mirror phase of "1")
- *   "8"  The Transformer — extreme width swings, symbolises endless cycles
- *   "9"  The Wanderer    — slow independent arc, its own rhythm
- *
- * Durations are deliberately mismatched (9 / 12 / 12 / 16 s) so the
- * characters never lock into the same phase twice — endless variation.
- * Negative delays start each character mid-cycle on first paint.
- */
-
-/* "1" — starts narrow+black, opens to wide+thin */
-@keyframes morph1 {
-  0%, 100% { font-variation-settings: 'wdth' 80,  'wght' 950; }
-  50%       { font-variation-settings: 'wdth' 115, 'wght' 200; }
+@media (prefers-reduced-motion: reduce) {
+  body::after { opacity: 0.28; }
 }
 
-/* "7" — mirror of "1": starts wide+thin, compresses to narrow+heavy */
-@keyframes morph7 {
-  0%, 100% { font-variation-settings: 'wdth' 120, 'wght' 200; }
-  50%       { font-variation-settings: 'wdth' 80,  'wght' 900; }
+/* ═══ 02 · TYPOGRAPHY ══════════════════════════════════════════════════════
+   Two monospace fonts. Contrast is manufactured through scale, weight,
+   width axis and tracking — never through classification.                   */
+
+/* ── MACRO · structural headers ───────────────────────────────────────────
+   Martian Mono, heavy, narrow width axis, negative tracking, compressed
+   leading. Glyphs are forced to fuse into solid architectural blocks.       */
+
+.d0, .d1, .d2, .d3, .d4 {
+  font-family: var(--font-macro);
+  text-transform: uppercase;
+  line-height: var(--lead-macro);
+  letter-spacing: var(--track-macro);
+  color: var(--ink);
+  text-wrap: balance;
+  /* wdth 87.5 narrows the matrix so long German compounds still fit */
+  font-variation-settings: "wdth" 87.5;
 }
 
-/* "8" — the transformer: swings to super-wide, then collapses */
-@keyframes morph8 {
-  0%   { font-variation-settings: 'wdth' 80,  'wght' 600; }
-  30%  { font-variation-settings: 'wdth' 130, 'wght' 900; }
-  65%  { font-variation-settings: 'wdth' 75,  'wght' 200; }
-  100% { font-variation-settings: 'wdth' 80,  'wght' 600; }
+.d0 {
+  font-size: var(--t-d0);
+  font-weight: 800;
+  line-height: 0.78;
+  letter-spacing: -0.06em;
+  font-variation-settings: "wdth" 75;
 }
 
-/* "9" — the wanderer: slow independent arc */
-@keyframes morph9 {
-  0%, 100% { font-variation-settings: 'wdth' 100, 'wght' 500; }
-  35%       { font-variation-settings: 'wdth' 80,  'wght' 900; }
-  70%       { font-variation-settings: 'wdth' 125, 'wght' 250; }
+/* German sets Ü/Ä/Ö at full cap height plus diaeresis, so multi-line macro
+   headings need more leading than a Latin-only setting would. 0.9 collides. */
+.d1 { font-size: var(--t-d1); font-weight: 800; line-height: 1.12; }
+.d2 { font-size: var(--t-d2); font-weight: 700; line-height: 1.1; }
+.d3 {
+  font-size: var(--t-d3);
+  font-weight: 700;
+  letter-spacing: var(--track-macro2);
+  line-height: 1.0;
+  font-variation-settings: "wdth" 100;
+}
+.d4 {
+  font-size: var(--t-d4);
+  font-weight: 600;
+  letter-spacing: var(--track-macro2);
+  line-height: 1.15;
+  font-variation-settings: "wdth" 100;
+  text-wrap: pretty;
 }
 
-/*
- * morphGap — animates the space between the four characters.
- * Conceptually: the Gap opens wide, then gets bridged (closes).
- * Applied to the flex h1 so all inter-character gaps move together.
- */
-@keyframes morphGap {
-  0%, 100% { gap: 0; }
-  45%       { gap: 0.08em; }
-  80%       { gap: 0.01em; }
+/* Light-weight counterpoint inside a macro line — the only "voice" change
+   available in a mono-only system. Used where the old design used italics. */
+.d-thin { font-weight: 200; }
+.d-red  { color: var(--red); }
+
+/* Struck-through emphasis — a hazard-red strike, not an italic. */
+.d-strike {
+  position: relative;
+  display: inline-block;
+}
+.d-strike::after {
+  content: "";
+  position: absolute;
+  left: -0.06em;
+  right: -0.06em;
+  top: 52%;
+  height: 0.085em;
+  background: var(--red);
 }
 
-/*
- * marqueeSlide — infinite horizontal scroll for the questions ticker.
- * Duplicate the items in JSX so the loop is seamless.
- */
-@keyframes marqueeSlide {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* ── MICRO · telemetry, metadata, labels ─────────────────────────────────── */
+
+.eyebrow {
+  font-family: var(--font-micro);
+  font-size: var(--t-11);
+  font-weight: 500;
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  color: var(--ink-70);
+  display: block;
 }
 
-@keyframes heroFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+.eyebrow-red { color: var(--red); }
+
+/* [ BRACKETED ] — ASCII framing as a structural device */
+.eyebrow-br::before { content: "[ "; color: var(--red); }
+.eyebrow-br::after  { content: " ]"; color: var(--red); }
+
+.data {
+  font-family: var(--font-micro);
+  font-size: var(--t-11);
+  letter-spacing: var(--track-data);
+  text-transform: uppercase;
+  color: var(--ink-45);
+  font-variant-numeric: tabular-nums;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+.unit {
+  font-family: var(--font-micro);
+  font-size: var(--t-10);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  color: var(--ink-45);
+  font-variant-numeric: tabular-nums;
 }
 
-@keyframes slideInBottom {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* ── BODY ─────────────────────────────────────────────────────────────────
+   German long-form copy. Monospace at 13px with open leading and a hard
+   measure cap stays readable; anything wider does not.                     */
+
+.body {
+  font-family: var(--font-micro);
+  font-size: var(--t-13);
+  line-height: var(--lead-body);
+  color: var(--ink-70);
+  max-width: 68ch;
+  text-wrap: pretty;
+  hyphens: auto;
 }
 
-/*
- * lineReveal — editorial per-line wipe-up for the hero H1.
- * Each line is wrapped in overflow:hidden; the inner span slides up
- * from below the clip boundary. Inspired by high-end editorial sites.
- */
-@keyframes lineReveal {
-  from { opacity: 0; transform: translateY(72%); }
-  to   { opacity: 1; transform: translateY(0); }
+.body-lg {
+  font-size: var(--t-15);
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 62ch;
 }
 
-/*
- * growLine — terra accent line expands from 0 → full width
- */
-@keyframes growLine {
-  from { width: 0; opacity: 0; }
-  to   { width: 3rem; opacity: 1; }
+.body-sm { font-size: var(--t-11); line-height: 1.6; max-width: 72ch; }
+
+.body strong, .body-lg strong {
+  font-weight: 700;
+  color: var(--ink);
+  /* underline instead of a colour shift — keeps the single-accent rule */
+  box-shadow: inset 0 -0.28em 0 rgba(230, 25, 25, 0.16);
 }
 
-/*
- * heroLogoReveal — brand mark lands: scale up + fade in
- */
-@keyframes heroLogoReveal {
-  from { opacity: 0; transform: scale(0.92) translateY(20px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
+.body a:not(.link), .body-lg a:not(.link) {
+  border-bottom: var(--hair) solid var(--red);
+  color: var(--ink);
 }
 
-/*
- * floatLogo — after landing, the logo breathes with a slow vertical drift.
- * Paired with heroLogoReveal via animation-delay so it starts only after
- * the reveal finishes (delay ≈ reveal-duration + reveal-delay).
- */
-@keyframes floatLogo {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-10px); }
+/* ═══ 03 · LAYOUT / BLUEPRINT GRID ═════════════════════════════════════════ */
+
+.shell {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* 12-column determinist grid. Elements anchor to tracks — never float. */
+.g12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--u3);
+}
+
+.g2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--u3); }
+.g3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--u3); }
+.g4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--u3); }
+
+/* Column spans */
+.c1{grid-column:span 1}   .c2{grid-column:span 2}   .c3{grid-column:span 3}
+.c4{grid-column:span 4}   .c5{grid-column:span 5}   .c6{grid-column:span 6}
+.c7{grid-column:span 7}   .c8{grid-column:span 8}   .c9{grid-column:span 9}
+.c10{grid-column:span 10} .c11{grid-column:span 11} .c12{grid-column:span 12}
+
+.s2{grid-column-start:2}  .s3{grid-column-start:3}  .s4{grid-column-start:4}
+.s5{grid-column-start:5}  .s7{grid-column-start:7}  .s8{grid-column-start:8}
+.s9{grid-column-start:9}
+
+/* ── HAIRLINE GRID ────────────────────────────────────────────────────────
+   gap:1px over an ink parent generates mathematically perfect razor-thin
+   dividers with no per-child border declarations. The core structural trick. */
+
+/* Children carry a 1px outline rather than the parent showing through the
+   gap. Outlines are outside the box model, so adjacent ones land in the same
+   1px channel and never double — and a short final row leaves paper, not a
+   black slug, when the item count doesn't fill the tracks. */
+.hairgrid {
+  display: grid;
+  gap: var(--hair);
+  border: var(--rule);
+}
+.hairgrid > * { outline: var(--hair) solid var(--ink); }
+
+.hairgrid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hairgrid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.hairgrid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* ── SECTION SLABS ────────────────────────────────────────────────────────
+   Every operational unit is segregated by a full-width rule.               */
+
+.slab {
+  border-bottom: var(--rule);
+  padding-block: var(--pad-vast);
+}
+.slab-dense { padding-block: var(--pad-dense); }
+.slab-flush { padding-block: 0; }
+
+/* Inverted slab — used sparingly, for alert/emphasis units only. */
+.slab-invert {
+  background: var(--stock);
+  color: var(--paper);
+}
+.slab-invert .d0, .slab-invert .d1, .slab-invert .d2,
+.slab-invert .d3, .slab-invert .d4 { color: var(--paper); }
+.slab-invert .body, .slab-invert .body-lg { color: #B5B2AC; }
+.slab-invert .body-lg { color: #D8D5CF; }
+.slab-invert .eyebrow { color: #8C8880; }
+.slab-invert .hairgrid { border-color: #33312E; }
+.slab-invert .hairgrid > * { outline-color: #33312E; }
+.slab-invert .body strong, .slab-invert .body-lg strong { color: var(--paper); }
+
+/* Hazard slab — full red. The loudest unit in the system; use once a page. */
+.slab-red { background: var(--red); color: var(--red-ink); }
+.slab-red .d0, .slab-red .d1, .slab-red .d2,
+.slab-red .d3, .slab-red .d4 { color: var(--red-ink); }
+.slab-red .body, .slab-red .body-lg { color: rgba(244, 244, 240, 0.82); }
+.slab-red .eyebrow { color: rgba(244, 244, 240, 0.7); }
+
+/* ═══ 04 · RULES + COMPARTMENTS ════════════════════════════════════════════ */
+
+hr, .rule    { border-top: var(--rule);     width: 100%; }
+.rule-bar    { border-top: var(--rule-bar); width: 100%; }
+.rule-red    { border-top: var(--rule-red); width: 100%; }
+.rule-faint  { border-top: var(--rule-faint); width: 100%; }
+
+.box     { border: var(--rule); }
+.box-bar { border: var(--rule-bar); }
+.pad     { padding: var(--pad-dense); }
+.pad-sm  { padding: var(--u2); }
+
+/* Section header strip — number, label, rule. The spine of every page. */
+.strip {
+  display: flex;
+  align-items: baseline;
+  gap: var(--u2);
+  padding-bottom: var(--u2);
+  border-bottom: var(--rule-bar);
+  margin-bottom: var(--u6);
+}
+.strip-num {
+  font-family: var(--font-macro);
+  font-size: var(--t-12);
+  font-weight: 800;
+  letter-spacing: 0;
+  color: var(--red);
+  font-variant-numeric: tabular-nums;
+}
+.strip-fill { flex: 1; }
+.strip-end { margin-left: auto; }
+
+/* Definition list rendered as a technical readout. */
+.readout {
+  display: grid;
+  grid-template-columns: minmax(88px, auto) 1fr;
+  gap: var(--u) var(--u3);
+  align-items: baseline;
+}
+.readout dt {
+  font-family: var(--font-micro);
+  font-size: var(--t-10);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  color: var(--ink-45);
+}
+.readout dd {
+  font-family: var(--font-micro);
+  font-size: var(--t-12);
+  letter-spacing: var(--track-data);
+  color: var(--ink);
+  border-bottom: var(--rule-faint);
+  padding-bottom: var(--u);
+}
+.slab-invert .readout dd { color: var(--paper); border-bottom-color: #33312E; }
+.slab-invert .readout dt { color: var(--ink-45); }
+
+/* ═══ 05 · SYMBOLOGY ═══════════════════════════════════════════════════════ */
+
+/* Crosshair at a grid intersection. */
+.crosshair {
+  position: relative;
+}
+.crosshair::before,
+.crosshair::after {
+  content: "";
+  position: absolute;
+  background: var(--red);
+  pointer-events: none;
+}
+.crosshair::before { top: -6px; left: -1px; width: var(--hair); height: 13px; }
+.crosshair::after  { top: -1px; left: -6px; width: 13px; height: var(--hair); }
+
+/* Corner registration marks on a compartment. */
+.regmark { position: relative; }
+.regmark::before,
+.regmark::after {
+  content: "+";
+  position: absolute;
+  font-family: var(--font-micro);
+  font-size: var(--t-11);
+  line-height: 1;
+  color: var(--red);
+  pointer-events: none;
+}
+.regmark::before { top: 6px;    left: 6px; }
+.regmark::after  { bottom: 6px; right: 6px; }
+
+/* Directional / repeating ASCII runs. */
+.chev::after { content: " >>>"; color: var(--red); }
+.slashes { color: var(--red); letter-spacing: 0.1em; }
+
+/* Barcode — repeating vertical rules, a pure texture device. */
+.barcode {
+  height: 26px;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--ink) 0 1px, transparent 1px 3px,
+    var(--ink) 3px 5px, transparent 5px 6px,
+    var(--ink) 6px 7px, transparent 7px 11px,
+    var(--ink) 11px 14px, transparent 14px 15px
+  );
+}
+
+/* Hazard tape — thick diagonal warning stripes. */
+.hazard {
+  height: 14px;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--ink) 0 10px,
+    transparent 10px 20px
+  );
+}
+.hazard-red {
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--red) 0 10px,
+    transparent 10px 20px
+  );
+}
+
+/* Industrial markers — ®, ©, ™ as geometric structure, not legal text. */
+.marker {
+  font-family: var(--font-micro);
+  font-size: var(--t-10);
+  color: var(--red);
+  vertical-align: super;
+}
+
+/* ═══ 06 · COMPONENTS ══════════════════════════════════════════════════════ */
+
+/* ── BUTTON ───────────────────────────────────────────────────────────────
+   A hard rectangle. Hover inverts — no transitions on colour softness,
+   just a snap.                                                             */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--u2);
+  padding: 14px var(--u3);
+  border: var(--rule-bar);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-micro);
+  font-size: var(--t-11);
+  font-weight: 600;
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  transition: background var(--snap), color var(--snap), border-color var(--snap);
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+
+.btn-red { background: var(--red); border-color: var(--red); color: var(--red-ink); }
+.btn-red:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+.btn-lg { padding: 18px var(--u4); font-size: var(--t-12); }
+.btn-block { display: flex; width: 100%; justify-content: center; }
+
+.slab-invert .btn { background: transparent; border-color: var(--paper); color: var(--paper); }
+.slab-invert .btn:hover { background: var(--paper); color: var(--ink); }
+.slab-invert .btn-red { background: var(--red); border-color: var(--red); color: var(--red-ink); }
+.slab-invert .btn-red:hover { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+
+.slab-red .btn { background: transparent; border-color: var(--red-ink); color: var(--red-ink); }
+.slab-red .btn:hover { background: var(--red-ink); color: var(--red); }
+
+/* ── LINK ─────────────────────────────────────────────────────────────────
+   Underline is a structural rule that thickens on hover. No fades.        */
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--u);
+  font-family: var(--font-micro);
+  font-size: var(--t-11);
+  font-weight: 600;
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: var(--bar) solid var(--ink);
+  padding-bottom: 3px;
+  transition: border-color var(--snap), color var(--snap);
+}
+.link:hover { color: var(--red); border-bottom-color: var(--red); }
+.slab-invert .link { color: var(--paper); border-bottom-color: var(--paper); }
+.slab-invert .link:hover { color: var(--red); border-bottom-color: var(--red); }
+.slab-red .link { color: var(--red-ink); border-bottom-color: var(--red-ink); }
+.slab-red .link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+/* ── CHIP / TAG ───────────────────────────────────────────────────────────  */
+
+.chip {
+  display: inline-block;
+  padding: 5px 10px;
+  border: var(--rule);
+  font-family: var(--font-micro);
+  font-size: var(--t-10);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  color: var(--ink-70);
+  white-space: nowrap;
+}
+.chip-red { border-color: var(--red); color: var(--red); }
+.chip-fill { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.slab-invert .chip { border-color: #4A4844; color: #B5B2AC; }
+.slab-red .chip { border-color: rgba(244,244,240,0.45); color: var(--red-ink); }
+
+.chips { display: flex; flex-wrap: wrap; gap: var(--u); }
+
+/* ── FORM CONTROLS ────────────────────────────────────────────────────────  */
+
+.field { display: block; margin-bottom: var(--u3); }
+.field-label {
+  display: block;
+  font-family: var(--font-micro);
+  font-size: var(--t-10);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  color: var(--ink-45);
+  margin-bottom: 6px;
+}
+.input {
+  width: 100%;
+  padding: 12px var(--u2);
+  background: var(--sunk);
+  border: var(--rule);
+  font-family: var(--font-micro);
+  font-size: var(--t-13);
+  color: var(--ink);
+}
+.input::placeholder { color: var(--ink-45); }
+.input:focus { outline: none; border-color: var(--red); background: var(--paper); }
+textarea.input { resize: vertical; min-height: 120px; }
+
+/* ── MARQUEE / TICKER TAPE ────────────────────────────────────────────────  */
+
+.tape {
+  border-block: var(--rule);
+  overflow: hidden;
+  padding-block: 10px;
+  background: var(--paper);
+}
+.tape-track {
+  display: flex;
+  width: max-content;
+  gap: var(--u6);
+  animation: tape 48s linear infinite;
+}
+.tape-item {
+  font-family: var(--font-micro);
+  font-size: var(--t-11);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  color: var(--ink-70);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: var(--u6);
+}
+.tape-item::after { content: "◆"; color: var(--red); font-size: var(--t-10); }
+
+@keyframes tape { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .tape-track { animation: none; }
+}
+
+/* ── INDEX ROW ────────────────────────────────────────────────────────────
+   Editorial list line. The whole row is the hit target; hover floods it.   */
+
+.row {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: var(--u3);
+  align-items: start;
+  padding-block: var(--u3);
+  border-bottom: var(--rule);
+  transition: background var(--snap), color var(--snap), padding-left var(--snap);
+}
+.row:hover { background: var(--ink); color: var(--paper); padding-left: var(--u2); }
+.row:hover .d3, .row:hover .d4 { color: var(--paper); }
+.row:hover .body, .row:hover .data, .row:hover .eyebrow { color: #B5B2AC; }
+.row:hover .row-arrow { color: var(--red); }
+.row-num {
+  font-family: var(--font-macro);
+  font-size: var(--t-12);
+  font-weight: 800;
+  color: var(--red);
+  font-variant-numeric: tabular-nums;
+  padding-top: 4px;
+}
+.row-arrow { font-size: var(--t-15); color: var(--ink-45); align-self: center; }
+
+/* ── CARD ─────────────────────────────────────────────────────────────────  */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: var(--rule);
+  background: var(--paper);
+  transition: background var(--snap), color var(--snap);
+}
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--u2);
+  padding: 10px var(--u2);
+  border-bottom: var(--rule);
+  background: var(--sunk);
+}
+.card-body { padding: var(--u3) var(--u2); flex: 1; }
+.card-foot { padding: 10px var(--u2); border-top: var(--rule); margin-top: auto; }
+
+a.card:hover { background: var(--sunk); }
+a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
+
+/* Image compartment inside a card — always 1-bit dithered, never photographic. */
+.plate {
+  position: relative;
+  overflow: hidden;
+  background: var(--sunk);
+  border-bottom: var(--rule);
+  aspect-ratio: 4 / 3;
+}
+.plate img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.55) brightness(1.06);
+  mix-blend-mode: multiply;
+}
+
+/* ═══ 07 · HALFTONE + DITHER ═══════════════════════════════════════════════
+   Continuous-tone imagery is degraded to a dot matrix so nothing on the page
+   reads as a photograph. Multiply-blended SVG dot field over a grayscale,
+   high-contrast plate.                                                      */
+
+.plate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  background-image: radial-gradient(var(--ink) 34%, transparent 36%);
+  background-size: 4px 4px;
+  background-position: 0 0;
+}
+
+/* Heavier grade for hero plates. */
+.plate-coarse::after { background-size: 6px 6px; }
+
+/* Dot-matrix field used as a standalone texture block. */
+.dotfield {
+  background-image: radial-gradient(var(--ink-20) 32%, transparent 34%);
+  background-size: 6px 6px;
+}
+
+/* Blueprint graticule — the underlying grid, made visible. */
+.graticule {
+  background-image:
+    linear-gradient(var(--ink-20) var(--hair), transparent var(--hair)),
+    linear-gradient(90deg, var(--ink-20) var(--hair), transparent var(--hair));
+  background-size: 32px 32px;
+}
+
+/* ═══ 08 · MOTION ══════════════════════════════════════════════════════════
+   Scroll reveal is a hard 1-step wipe, not a fade-and-float.               */
+
+.reveal { opacity: 0; transform: translateY(10px); }
+.reveal.on {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--sweep), transform var(--sweep);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ═══ 09 · RESPONSIVE COLLAPSE ═════════════════════════════════════════════
+   The grid does not reflow gracefully — it collapses to a single stack.
+   That is the intent: one column, all rules retained.                       */
+
+@media (max-width: 1024px) {
+  .g12 { gap: var(--u2); }
+  .c4, .c5, .c7, .c8 { grid-column: span 6; }
+  .s2, .s3, .s4, .s5, .s7, .s8, .s9 { grid-column-start: auto; }
+  .hairgrid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .g12 > * { grid-column: 1 / -1 !important; }
+  .g2, .g3, .g4 { grid-template-columns: minmax(0, 1fr); }
+  .hairgrid-2, .hairgrid-3, .hairgrid-4 { grid-template-columns: minmax(0, 1fr); }
+  .row { grid-template-columns: 40px 1fr; }
+  .row-arrow { display: none; }
+  .readout { grid-template-columns: minmax(0, 1fr); gap: 2px var(--u2); }
+  .readout dt { margin-top: var(--u); }
+  .strip { flex-wrap: wrap; }
+}
+
+/* ═══ PRINT ════════════════════════════════════════════════════════════════
+   The design is already a document. Printing should be near-lossless.       */
+
+@media print {
+  body::after { display: none; }
+  .tape, .btn { display: none; }
+  .slab-invert, .slab-red { background: var(--paper) !important; color: var(--ink) !important; }
 }

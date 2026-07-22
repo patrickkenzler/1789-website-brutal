@@ -1,35 +1,41 @@
-import { Container, Grid, Col } from '@/components/layout/Grid'
-import { Button } from '@/components/atoms/Button'
+import Link from 'next/link'
+import { Hazard } from '@/components/ui'
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen flex items-center">
-      <Container>
-        <Grid>
-          <Col span={6} start={4} className="text-center">
-            <p
-              className="font-display font-light"
-              style={{ fontSize: 'clamp(6rem, 20vw, 16rem)', lineHeight: 1, color: 'var(--color-border)', letterSpacing: '-0.05em' }}
-            >
-              404
-            </p>
-            <h1
-              className="mt-4 font-heading font-normal text-ink"
-              style={{ fontSize: 'var(--text-md)', lineHeight: '1.1' }}
-            >
-              Diese Seite hat den Shift noch nicht gemacht.
-            </h1>
-            <p className="mt-4 font-body text-ink-muted" style={{ fontSize: 'var(--text-base)' }}>
-              Der Gap zwischen Absicht und Realität ist manchmal größer als gedacht.
-            </p>
-            <div className="mt-10">
-              <a href="/" style={{ display: 'inline-block' }}>
-                <Button variant="primary">← Zur Startseite</Button>
-              </a>
-            </div>
-          </Col>
-        </Grid>
-      </Container>
+    <main>
+      <Hazard red />
+      <section className="slab" style={{ paddingBlock: 'var(--u12)' }}>
+        <div className="shell">
+          <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u4)' }}>
+            Error / Signal verloren
+          </span>
+
+          <span
+            className="d0"
+            aria-hidden="true"
+            style={{ display: 'block', color: 'var(--red)' }}
+          >
+            404
+          </span>
+
+          <h1
+            className="d2"
+            style={{ marginBlock: 'var(--u6) var(--u4)', maxWidth: '20ch' }}
+          >
+            Diese Seite hat den <span className="d-thin">Shift</span> noch nicht
+            gemacht.
+          </h1>
+
+          <p className="body-lg" style={{ marginBottom: 'var(--u6)' }}>
+            Der Gap zwischen Absicht und Realität ist manchmal größer als gedacht.
+          </p>
+
+          <Link href="/" className="btn btn-lg">
+            <span aria-hidden="true">←</span> Zur Startseite
+          </Link>
+        </div>
+      </section>
     </main>
   )
 }

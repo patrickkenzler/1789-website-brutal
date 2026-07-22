@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "1789 Dev Server",
+      "name": "1789 Brutal Dev",
       "runtimeExecutable": "/usr/local/bin/npm",
       "runtimeArgs": ["run", "dev"],
-      "workingDirectory": "/Users/patrickkenzler/Documents/1_Projekte/1789_Website_Proto/web",
+      "workingDirectory": "/Users/patrickkenzler/Documents/2_Areas/04_Ai_Workspace/1789_Website_Brutal/web",
       "port": 3000
     }
   ]
