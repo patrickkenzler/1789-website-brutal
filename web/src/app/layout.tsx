@@ -30,6 +30,25 @@ export const metadata: Metadata = {
   title: '1789 — STRUCTURE / STRATEGY / GAP',
   description:
     'Structure · Strategy · Gap Consulting. Wir begleiten Organisationen durch Wandel — strukturell, strategisch, wirksam.',
+
+  /**
+   * Site-wide noindex.
+   *
+   * This is an internal dark-horse concept published to a public GitHub Pages
+   * URL. It carries named client cases, attributed testimonials and Impressum
+   * data that have not been signed off for publication, so it must stay out of
+   * search results.
+   *
+   * NOTE: this reduces discoverability, it is NOT access control — anyone with
+   * the URL can still read the site. Remove only when the client has approved
+   * the redesign for public release.
+   */
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: { index: false, follow: false },
+  },
 }
 
 export default function RootLayout({

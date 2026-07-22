@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+# The Next.js app lives in web/, so every step runs from there. Workflows are
+# only read from the repository root — this file must stay at
+# .github/workflows/, not web/.github/workflows/.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # allow manual re-run from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        # Must match the repository name, or every asset resolves to the wrong
+        # path and the deployed site loads unstyled.
+        env:
+          NEXT_PUBLIC_BASE_PATH: /1789-website-brutal
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

@@ -1,21 +1,26 @@
 import type { NextConfig } from "next";
 
+// Single source of truth for the deployment sub-path. Previously basePath was
+// hardcoded here while components read NEXT_PUBLIC_BASE_PATH, so the two could
+// drift and silently 404 every asset. Now both derive from one env var.
+//   - GitHub Pages project site → '/1789-website-brutal' (set in CI)
+//   - local dev / root domain   → '' (unset)
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+
 const nextConfig: NextConfig = {
   // Static HTML export — required for GitHub Pages
   output: 'export',
 
-  // GitHub Pages serves the site at /1789-website/ — basePath prefixes all
-  // _next/ asset URLs (CSS, JS, fonts) so they load from the correct path.
-  basePath: '/1789-website',
+  // Prefixes all _next/ asset URLs (CSS, JS, fonts) so they resolve under the
+  // repository sub-path.
+  basePath,
 
-  // trailingSlash: true makes Next.js export pages as directory index files
-  // (e.g. out/ansatz/index.html instead of out/ansatz.html).
-  // GitHub Pages resolves /1789-website/ → index.html correctly with this set.
+  // Export pages as directory index files (out/ansatz/index.html rather than
+  // out/ansatz.html) so GitHub Pages resolves clean URLs.
   trailingSlash: true,
 
   // Next.js image optimisation runs server-side and is incompatible with
-  // static export. All images in this project use CSS background-image,
-  // so this flag has no visual effect.
+  // static export.
   images: { unoptimized: true },
 };
 
