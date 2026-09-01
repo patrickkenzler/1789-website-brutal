@@ -13,57 +13,66 @@ import {
   Emphasis,
   ClosingCta,
 } from '@/components/ui'
+import { AsciiWaves } from '@/components/AsciiWaves'
 
 export default function Home() {
   return (
     <main>
       {/* ═══ HERO ═══════════════════════════════════════════════════════════
-          One headline against vast negative space. No index numeral, no
-          telemetry panel — the sentence carries the whole screen, and the
-          1789 run beneath it is the ground line.                           */}
-      <section className="slab" style={{ paddingBlock: 'var(--u12) var(--u8)' }}>
-        <div className="shell">
-          <span
-            className="eyebrow eyebrow-br"
-            style={{ marginBottom: 'var(--u6)' }}
-          >
-            Organizational Strategy // Governance Design // Target Operating
-            Model
-          </span>
+          Two columns, viewport-tall. Left: the statement. Right: a black
+          panel of monospace ASCII — a flow field standing in for an image.
+          The hero fills the screen so the 1789 ground line below it stays off
+          the first view and reads as a divider only once you scroll.       */}
+      <section className="hero-sec">
+        <div className="shell hero-2col">
+          <div className="hero-copy">
+            <span
+              className="eyebrow eyebrow-br"
+              style={{ marginBottom: 'var(--u6)' }}
+            >
+              Organizational Strategy // Governance Design // Target Operating
+              Model
+            </span>
 
-          {/* Set at full measure so each sentence holds one line. The copy is
-              three parallel clauses and the red carries the three verbs —
-              scheitert / überholt / entscheidet — so the accent marks what the
-              sentence turns on rather than falling wherever a line breaks. */}
-          <h1 className="d1">
-            Strategie <span className="d-thin d-red">scheitert</span> an
-            Struktur.
-            <br />
-            Struktur <span className="d-thin d-red">überholt</span> Strategie.
-            <br />
-            Dazwischen <span className="d-thin d-red">entscheidet</span>{' '}
-            Organisation.
-          </h1>
+            {/* Each sentence holds one line at this measure. The copy is three
+                parallel clauses and the red carries the three verbs —
+                scheitert / überholt / entscheidet — so the accent marks what
+                the sentence turns on rather than falling wherever it breaks. */}
+            <h1 className="d1">
+              Strategie <span className="d-thin d-red">scheitert</span> an
+              Struktur.
+              <br />
+              Struktur <span className="d-thin d-red">überholt</span> Strategie.
+              <br />
+              Dazwischen <span className="d-thin d-red">entscheidet</span>{' '}
+              Organisation.
+            </h1>
 
-          <div
-            style={{
-              marginTop: 'var(--u8)',
-              display: 'flex',
-              gap: 'var(--u2)',
-              flexWrap: 'wrap',
-            }}
-          >
-            <Link href="/kontakt" className="btn btn-red btn-lg">
-              Erstgespräch vereinbaren <span aria-hidden="true">→</span>
-            </Link>
-            <Link href="/ansatz" className="btn btn-lg">
-              Unser Ansatz <span aria-hidden="true">→</span>
-            </Link>
+            <div
+              style={{
+                marginTop: 'var(--u8)',
+                display: 'flex',
+                gap: 'var(--u2)',
+                flexWrap: 'wrap',
+              }}
+            >
+              <Link href="/kontakt" className="btn btn-red btn-lg">
+                Erstgespräch vereinbaren <span aria-hidden="true">→</span>
+              </Link>
+              <Link href="/ansatz" className="btn btn-lg">
+                Unser Ansatz <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="hero-ascii">
+            <AsciiWaves />
           </div>
         </div>
       </section>
 
-      {/* Letterform run, cut off by both viewport edges — the ground line. */}
+      {/* Letterform run, cut off by both viewport edges — the divider between
+          the hero and the first section. Below the fold on load. */}
       <div className="bleed" aria-hidden="true">
         <span className="d0">1789—1789—1789—1789</span>
       </div>

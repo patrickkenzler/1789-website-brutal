@@ -500,6 +500,65 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 
 @media (max-width: 720px) { .endcell { gap: var(--u4); } }
 
+/* ── HERO — two columns: statement + ASCII field ───────────────────────────
+   Viewport-tall so the 1789 ground line that follows stays off the first
+   screen and only appears as a divider on scroll. Left column: the statement,
+   vertically centred. Right column: a black ASCII panel that stretches the
+   full height — the one place the substrate inverts above the fold. */
+.hero-sec {
+  min-height: calc(100svh - var(--nav-h));
+  display: flex;
+  padding-block: var(--u6);
+  border-bottom: var(--rule);
+}
+.hero-2col {
+  display: grid;
+  grid-template-columns: 1.5fr 0.72fr;
+  gap: var(--u6);
+  align-items: stretch;
+  width: 100%;
+}
+.hero-copy { align-self: center; }
+/* The statement is the hierarchy: heavy, condensed (wdth 75 — the narrowest
+   cut, same as the 1789 run), sized as large as the column allows while each
+   of the three sentences still holds a single line. The narrow axis is what
+   buys the size back in a two-column layout. Verified against the 36-char
+   longest line. */
+.hero-copy .d1 {
+  font-size: clamp(1.9rem, 2.9vw, 3.4rem);
+  font-variation-settings: "wdth" 75;
+  letter-spacing: -0.05em;
+  line-height: 1.04;
+}
+
+.hero-ascii {
+  position: relative;
+  overflow: hidden;
+  background: var(--stock);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* The field is generated larger than the panel; overflow crops it to a
+   covered image rather than leaving letterboxing. */
+.ascii-waves {
+  margin: 0;
+  font-family: var(--font-micro);
+  font-size: clamp(8px, 0.95vw, 13px);
+  line-height: 1.02;
+  letter-spacing: 0;
+  white-space: pre;
+  color: var(--paper);
+  user-select: none;
+}
+
+@media (max-width: 1100px) {
+  .hero-sec { min-height: 0; }
+  .hero-2col { grid-template-columns: minmax(0, 1fr); gap: var(--u6); }
+  .hero-copy .d1 { font-size: clamp(2.1rem, 7.4vw, 4rem); }
+  .hero-ascii { height: 42svh; }
+}
+
 /* ═══ 05 · SYMBOLOGY ═══════════════════════════════════════════════════════ */
 
 /* Crosshair at a grid intersection. */
