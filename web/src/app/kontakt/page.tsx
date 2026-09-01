@@ -8,7 +8,6 @@ export default function KontaktPage() {
         eyebrow="Kontakt"
         line1="Erstgespräch"
         line2="vereinbaren."
-        index="06"
       />
 
       {/* ═══ 01 · KONTAKT-SPLIT ═════════════════════════════════════════════
@@ -17,7 +16,6 @@ export default function KontaktPage() {
       <section className="slab" style={{ borderBottom: 0 }}>
         <div className="shell">
           <SectionHead
-            num="01"
             label="Erstgespräch"
             end={<span className="unit">{CONTACT.city}</span>}
           />

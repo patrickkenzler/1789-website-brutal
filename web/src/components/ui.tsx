@@ -12,29 +12,21 @@ import { asset } from '@/data/site'
    The spine of every page: index number, label, rule, optional end slot.  */
 
 export function SectionHead({
-  num,
   label,
   end,
 }: {
-  num: string
   label: string
   end?: ReactNode
 }) {
-  /* The annotation exposes the unit's own address in the document — the
-     structure is not hidden behind the surface, it is printed on it. */
-  const slug = label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-
+  /* A labelled section marker over a heavy rule. Order between sections is
+     carried by their sequence on the page and by the headline that follows —
+     not by an index number. The `end` slot is for a real action (a link),
+     never a count. */
   return (
-    <>
-      <span className="annot" aria-hidden="true">
-        unit.{num} · {slug} · grid.12
-      </span>
-      <div className="strip">
-        <span className="strip-num">{num}</span>
-        <span className="eyebrow">{label}</span>
-        {end && <span className="strip-end">{end}</span>}
-      </div>
-    </>
+    <div className="strip">
+      <span className="eyebrow">{label}</span>
+      {end && <span className="strip-end">{end}</span>}
+    </div>
   )
 }
 
@@ -211,45 +203,27 @@ export function PageHero({
   line1,
   line2,
   body,
-  index,
 }: {
   eyebrow: string
   line1: string
   line2?: string
   body?: string
-  /** Viewport-bleeding index numeral, e.g. "03" */
-  index?: string
 }) {
   return (
     <header className="slab" style={{ paddingTop: 'calc(var(--nav-h) + var(--u8))' }}>
       <div className="shell">
-        <div className="g12" style={{ alignItems: 'end' }}>
-          <div className="c8">
-            <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u4)' }}>
-              {eyebrow}
-            </span>
-            <h1 className="d1">
-              {line1}
-              {line2 && (
-                <>
-                  <br />
-                  <span className="d-thin d-red">{line2}</span>
-                </>
-              )}
-            </h1>
-          </div>
-          {index && (
-            <div className="c4" style={{ textAlign: 'right' }}>
-              <span
-                className="d0"
-                aria-hidden="true"
-                style={{ color: 'var(--ink-20)', fontSize: 'clamp(4rem, 10vw, 9rem)' }}
-              >
-                {index}
-              </span>
-            </div>
+        <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u4)' }}>
+          {eyebrow}
+        </span>
+        <h1 className="d1" style={{ maxWidth: '20ch' }}>
+          {line1}
+          {line2 && (
+            <>
+              <br />
+              <span className="d-thin d-red">{line2}</span>
+            </>
           )}
-        </div>
+        </h1>
         {body && (
           <p className="body-lg" style={{ marginTop: 'var(--u6)' }}>
             {body}

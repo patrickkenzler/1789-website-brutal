@@ -437,28 +437,9 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 .pad     { padding: var(--pad-dense); }
 .pad-sm  { padding: var(--u2); }
 
-/* ── EXPOSED STRUCTURE ────────────────────────────────────────────────────
-   The document admits how it is built: source-comment annotations sitting in
-   the margin above each operational unit. Decorative, always aria-hidden,
-   and the first thing to drop at narrow widths.                            */
-.annot {
-  font-family: var(--font-micro);
-  font-size: var(--t-10);
-  letter-spacing: var(--track-data);
-  text-transform: uppercase;
-  color: var(--ink-20);
-  display: block;
-  margin-bottom: 6px;
-  user-select: none;
-}
-.annot::before { content: "<!-- "; }
-.annot::after  { content: " -->"; }
-.slab-invert .annot { color: #33312E; }
-.slab-red .annot { color: rgba(244, 244, 240, 0.35); }
-
-@media (max-width: 720px) { .annot { display: none; } }
-
-/* Section header strip — number, label, rule. The spine of every page. */
+/* Section header: a labelled marker over a heavy rule. No index number —
+   order between sections is carried by their sequence and by the headline
+   that follows.                                                            */
 .strip {
   display: flex;
   align-items: baseline;
@@ -467,15 +448,6 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   border-bottom: var(--rule-bar);
   margin-bottom: var(--u6);
 }
-.strip-num {
-  font-family: var(--font-macro);
-  font-size: var(--t-12);
-  font-weight: 800;
-  letter-spacing: 0;
-  color: var(--red);
-  font-variant-numeric: tabular-nums;
-}
-.strip-fill { flex: 1; }
 .strip-end { margin-left: auto; }
 
 /* Definition list rendered as a technical readout. */
@@ -503,49 +475,6 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 .slab-invert .readout dd { color: var(--paper); border-bottom-color: #33312E; }
 .slab-invert .readout dt { color: var(--ink-45); }
 
-/* ── INSTRUMENT STRIP ─────────────────────────────────────────────────────
-   The same readout data, laid out horizontally as a panel of gauges. Used
-   under a full-measure headline, where a narrow vertical box would strand
-   the remaining columns as dead space. Collapses to a single stack rather
-   than to a part-filled row — five cells never divide into two or three
-   columns without leaving holes.                                          */
-.instrument {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: var(--hair);
-  border: var(--rule);
-}
-.instrument > * { outline: var(--hair) solid var(--ink); padding: var(--u2) var(--u3); }
-.instrument dt {
-  font-family: var(--font-micro);
-  font-size: var(--t-10);
-  letter-spacing: var(--track-micro);
-  text-transform: uppercase;
-  color: var(--ink-45);
-  margin-bottom: 6px;
-}
-.instrument dd {
-  font-family: var(--font-micro);
-  font-size: var(--t-13);
-  letter-spacing: var(--track-data);
-  color: var(--ink);
-  font-variant-numeric: tabular-nums;
-}
-
-/* Stacked, each gauge turns on its side: label and value share one line, so
-   five cells cost five rows rather than ten. */
-@media (max-width: 1100px) {
-  .instrument { grid-template-columns: minmax(0, 1fr); }
-  .instrument > * {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: var(--u3);
-    padding-block: 10px;
-  }
-  .instrument dt { margin-bottom: 0; }
-}
-
 /* ── HEADING LINE RESERVE ─────────────────────────────────────────────────
    Card headings of unequal line count push their bodies off a shared
    baseline. Reserving the tallest heading's line count keeps every body in
@@ -570,57 +499,6 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 .endcell:hover .unit { color: var(--red); }
 
 @media (max-width: 720px) { .endcell { gap: var(--u4); } }
-
-/* ── HERO — full-height command panel ──────────────────────────────────────
-   The opening screen is a viewport-tall instrument panel: the headline is
-   anchored at the top, the telemetry is pinned to the foot, and the calculated
-   negative space between them is the point. The 1789 run that follows reads as
-   the ground line, just beyond the fold, instead of colliding with the
-   headline at the crease. min-height (never max) means short viewports simply
-   grow rather than clip. */
-.hero {
-  min-height: calc(100svh - var(--nav-h));
-  display: flex;
-  flex-direction: column;
-}
-.hero-foot {
-  margin-top: auto;      /* push the instrument block to the viewport foot */
-  padding-top: var(--u8);
-}
-
-/* ── SYSTEM LINE — the one mechanical detail ───────────────────────────────
-   A terminal status strip above the gauges: a fixed rev/coordinate string on
-   the left, a live UTC readout on the right behind a pulsing indicator. This
-   is the ONLY moving element on the page. It degrades to a steady dot and a
-   dashed readout under reduced motion and before hydration, so nothing depends
-   on the script running. */
-.sysline {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--u2) var(--u4);
-  flex-wrap: wrap;
-  padding-bottom: var(--u2);
-  border-bottom: var(--rule);
-  font-family: var(--font-micro);
-  font-size: var(--t-10);
-  letter-spacing: var(--track-micro);
-  text-transform: uppercase;
-  color: var(--ink-45);
-  font-variant-numeric: tabular-nums;
-}
-.sysline b { color: var(--ink); font-weight: 500; }
-.sysdot {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  background: var(--red);
-  margin-right: var(--u);
-  transform: translateY(0.5px);
-  animation: syspulse 1.6s steps(1, end) infinite;
-}
-@keyframes syspulse { 0% { opacity: 1; } 50% { opacity: 0.2; } }
-@media (prefers-reduced-motion: reduce) { .sysdot { animation: none; } }
 
 /* ═══ 05 · SYMBOLOGY ═══════════════════════════════════════════════════════ */
 
@@ -856,7 +734,7 @@ textarea.input { resize: vertical; min-height: 120px; }
 
 .row {
   display: grid;
-  grid-template-columns: 64px 1fr auto;
+  grid-template-columns: 1fr auto;
   gap: var(--u3);
   align-items: start;
   padding-block: var(--u3);
@@ -867,14 +745,6 @@ textarea.input { resize: vertical; min-height: 120px; }
 .row:hover .d3, .row:hover .d4 { color: var(--paper); }
 .row:hover .body, .row:hover .data, .row:hover .eyebrow { color: #B5B2AC; }
 .row:hover .row-arrow { color: var(--red); }
-.row-num {
-  font-family: var(--font-macro);
-  font-size: var(--t-12);
-  font-weight: 800;
-  color: var(--red);
-  font-variant-numeric: tabular-nums;
-  padding-top: 4px;
-}
 .row-arrow { font-size: var(--t-15); color: var(--ink-45); align-self: center; }
 
 /* ── CARD ─────────────────────────────────────────────────────────────────  */
@@ -1018,7 +888,7 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
   .g12 > * { grid-column: 1 / -1 !important; }
   .g2, .g3, .g4 { grid-template-columns: minmax(0, 1fr); }
   .hairgrid-2, .hairgrid-3, .hairgrid-4 { grid-template-columns: minmax(0, 1fr); }
-  .row { grid-template-columns: 40px 1fr; }
+  .row { grid-template-columns: minmax(0, 1fr); }
   .row-arrow { display: none; }
   .readout { grid-template-columns: minmax(0, 1fr); gap: 2px var(--u2); }
   .readout dt { margin-top: var(--u); }

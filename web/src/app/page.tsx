@@ -13,92 +13,52 @@ import {
   Emphasis,
   ClosingCta,
 } from '@/components/ui'
-import { SystemClock } from '@/components/SystemClock'
 
 export default function Home() {
   return (
     <main>
-      {/* ═══ 00 · HERO ══════════════════════════════════════════════════════
-          A viewport-tall command panel. The headline and its actions anchor
-          the top; the telemetry is pinned to the foot behind a live system
-          line; the calculated void between them carries the weight. The 1789
-          run below is the ground line.                                      */}
-      <section className="slab hero" style={{ paddingBlock: 'var(--u12) var(--u6)' }}>
-        <div className="shell" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-          <div>
-            <span
-              className="eyebrow eyebrow-br"
-              style={{ marginBottom: 'var(--u6)' }}
-            >
-              Organizational Strategy // Governance Design // Target Operating
-              Model
-            </span>
+      {/* ═══ HERO ═══════════════════════════════════════════════════════════
+          One headline against vast negative space. No index numeral, no
+          telemetry panel — the sentence carries the whole screen, and the
+          1789 run beneath it is the ground line.                           */}
+      <section className="slab" style={{ paddingBlock: 'var(--u12) var(--u8)' }}>
+        <div className="shell">
+          <span
+            className="eyebrow eyebrow-br"
+            style={{ marginBottom: 'var(--u6)' }}
+          >
+            Organizational Strategy // Governance Design // Target Operating
+            Model
+          </span>
 
-            {/* Set at full measure so each sentence holds one line. The copy is
-                three parallel clauses and the red carries the three verbs —
-                scheitert / überholt / entscheidet — so the accent marks what
-                the sentence turns on rather than falling wherever a line
-                breaks. */}
-            <h1 className="d1">
-              Strategie <span className="d-thin d-red">scheitert</span> an
-              Struktur.
-              <br />
-              Struktur <span className="d-thin d-red">überholt</span> Strategie.
-              <br />
-              Dazwischen <span className="d-thin d-red">entscheidet</span>{' '}
-              Organisation.
-            </h1>
+          {/* Set at full measure so each sentence holds one line. The copy is
+              three parallel clauses and the red carries the three verbs —
+              scheitert / überholt / entscheidet — so the accent marks what the
+              sentence turns on rather than falling wherever a line breaks. */}
+          <h1 className="d1">
+            Strategie <span className="d-thin d-red">scheitert</span> an
+            Struktur.
+            <br />
+            Struktur <span className="d-thin d-red">überholt</span> Strategie.
+            <br />
+            Dazwischen <span className="d-thin d-red">entscheidet</span>{' '}
+            Organisation.
+          </h1>
 
-            <div
-              style={{
-                marginTop: 'var(--u8)',
-                display: 'flex',
-                gap: 'var(--u2)',
-                flexWrap: 'wrap',
-              }}
-            >
-              <Link href="/kontakt" className="btn btn-red btn-lg">
-                Erstgespräch vereinbaren <span aria-hidden="true">→</span>
-              </Link>
-              <Link href="/ansatz" className="btn btn-lg">
-                Unser Ansatz <span aria-hidden="true">→</span>
-              </Link>
-            </div>
-          </div>
-
-          {/* ── Foot: system line + instrument panel, pinned to the fold ── */}
-          <div className="hero-foot">
-            <div className="sysline">
-              <span>
-                Rev 001 · 50.11°N / 8.68°E · <b>Frankfurt am Main</b>
-              </span>
-              <SystemClock />
-            </div>
-
-            {/* Telemetry as a panel of gauges — horizontal, spanning the
-                measure instead of stranding a narrow box. */}
-            <dl className="instrument">
-              <div>
-                <dt>Unit</dt>
-                <dd>1789 / FFM</dd>
-              </div>
-              <div>
-                <dt>Domain</dt>
-                <dd>Organisation</dd>
-              </div>
-              <div>
-                <dt>Phasen</dt>
-                <dd>05</dd>
-              </div>
-              <div>
-                <dt>Cases</dt>
-                <dd>08</dd>
-              </div>
-              <div>
-                <dt>Status</dt>
-                <dd style={{ color: 'var(--red)' }}>Aktiv</dd>
-              </div>
-            </dl>
+          <div
+            style={{
+              marginTop: 'var(--u8)',
+              display: 'flex',
+              gap: 'var(--u2)',
+              flexWrap: 'wrap',
+            }}
+          >
+            <Link href="/kontakt" className="btn btn-red btn-lg">
+              Erstgespräch vereinbaren <span aria-hidden="true">→</span>
+            </Link>
+            <Link href="/ansatz" className="btn btn-lg">
+              Unser Ansatz <span aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -113,11 +73,7 @@ export default function Home() {
       {/* ═══ 01 · DER 1789-BLICK ════════════════════════════════════════════ */}
       <section className="slab">
         <div className="shell">
-          <SectionHead
-            num="01"
-            label="Der 1789-Blick"
-            end={<span className="unit">03 Säulen</span>}
-          />
+          <SectionHead label="Der 1789-Blick" />
 
           <div className="g12" style={{ rowGap: 'var(--u6)' }}>
             <div className="c7">
@@ -144,21 +100,10 @@ export default function Home() {
           <div className="hairgrid hairgrid-3" style={{ marginTop: 'var(--u8)' }}>
             {PILLARS.map((p) => (
               <article key={p.title} className="pad" style={{ display: 'flex', flexDirection: 'column' }}>
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'baseline',
-                    marginBottom: 'var(--u4)',
-                  }}
-                >
-                  <span className="strip-num">{p.num}</span>
-                  <span className="unit">Säule</span>
-                </div>
-
                 {/* "AI-Human-Native" runs to two lines where the other two
                     pillars run to one; reserving both keeps all three bodies
-                    starting on the same line. */}
+                    starting on the same line. The title itself is the marker —
+                    left-to-right order carries the sequence. */}
                 <h3 className="d3 h-2l" style={{ marginBottom: 'var(--u3)' }}>
                   {p.title}
                 </h3>
@@ -194,7 +139,6 @@ export default function Home() {
       <section className="slab slab-invert">
         <div className="shell">
           <SectionHead
-            num="02"
             label="Shift Cases"
             end={
               <Link href="/projekte" className="link">
@@ -209,7 +153,7 @@ export default function Home() {
           </h2>
 
           <div className="g3">
-            {featuredCases.map((c, i) => (
+            {featuredCases.map((c) => (
               <Link
                 key={c.slug}
                 href={`/projekte/${c.slug}`}
@@ -223,18 +167,12 @@ export default function Home() {
                   ratio="16 / 10"
                 />
                 <div className="card-body">
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      marginBottom: 'var(--u3)',
-                    }}
+                  <span
+                    className="unit"
+                    style={{ display: 'block', marginBottom: 'var(--u3)' }}
                   >
-                    <span className="strip-num">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className="unit">{c.tags[0]}</span>
-                  </div>
+                    {c.tags[0]}
+                  </span>
                   {/* title is the short label, teaser the full sentence.
                       Setting the teaser as the macro heading put a 25-word
                       sentence in uppercase display type — legible as a shout,
@@ -261,28 +199,17 @@ export default function Home() {
       {/* ═══ 03 · STIMMEN ═══════════════════════════════════════════════════ */}
       <section className="slab">
         <div className="shell">
-          <SectionHead
-            num="03"
-            label="Stimmen"
-            end={<span className="unit">{TESTIMONIALS.length} Einträge</span>}
-          />
+          <SectionHead label="Stimmen" />
 
           <div className="hairgrid hairgrid-2">
-            {TESTIMONIALS.map((t, i) => (
+            {TESTIMONIALS.map((t) => (
               <figure key={t.name} className="pad">
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'baseline',
-                    marginBottom: 'var(--u3)',
-                  }}
+                <span
+                  className="unit"
+                  style={{ display: 'block', marginBottom: 'var(--u3)' }}
                 >
-                  <span className="strip-num">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <span className="unit">{t.company}</span>
-                </div>
+                  {t.company}
+                </span>
 
                 <blockquote className="body" style={{ marginBottom: 'var(--u4)' }}>
                   <Emphasis text={t.quote} />
@@ -313,9 +240,7 @@ export default function Home() {
             {/* Five entries in two columns leave the sixth cell empty. Rather
                 than an unexplained gap, the grid ends on its own exit. */}
             <Link href="/projekte" className="pad endcell">
-              <span className="unit">
-                {TESTIMONIALS.length} / {TESTIMONIALS.length} — Index vollständig
-              </span>
+              <span className="unit">Weiterlesen</span>
               <span className="d3">
                 Alle Cases <span aria-hidden="true">→</span>
               </span>
@@ -324,13 +249,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ 04 · UNSER ANSATZ ══════════════════════════════════════════════
-          Five phases as a numbered index — the process is a table, not a
-          carousel.                                                        */}
+      {/* ═══ UNSER ANSATZ ═══════════════════════════════════════════════════
+          Five phases as an index. The sequence reads top to bottom; the phase
+          titles carry it, no leading number.                               */}
       <section className="slab">
         <div className="shell">
           <SectionHead
-            num="04"
             label="Unser Ansatz"
             end={
               <Link href="/ansatz" className="link">
@@ -358,7 +282,6 @@ export default function Home() {
           <div style={{ borderTop: 'var(--rule-bar)' }}>
             {PHASES.map((p) => (
               <Link key={p.num} href={`/ansatz#phase-${p.num}`} className="row">
-                <span className="row-num">{p.num}</span>
                 <div>
                   <h3 className="d3" style={{ marginBottom: 6 }}>
                     {p.title}
@@ -380,7 +303,7 @@ export default function Home() {
       {/* ═══ 05 · AI UND ORGANISATION ═══════════════════════════════════════ */}
       <section className="slab slab-invert">
         <div className="shell">
-          <SectionHead num="05" label="AI und Organisation" />
+          <SectionHead label="AI und Organisation" />
 
           {/* Break at the accent boundary. Wrapped to a measure instead, the
               red span opened mid-line and ran over the break, so the colour
@@ -394,19 +317,7 @@ export default function Home() {
           <div className="hairgrid hairgrid-4">
             {AI_DIMENSIONS.map((d) => (
               <article key={d.num} className="pad">
-                <span
-                  className="d0"
-                  aria-hidden="true"
-                  style={{
-                    fontSize: 'clamp(3rem, 7vw, 5.5rem)',
-                    color: '#2A2825',
-                    display: 'block',
-                    marginBottom: 'var(--u3)',
-                  }}
-                >
-                  {d.num}
-                </span>
-                <h3 className="d4 h-2l" style={{ marginBottom: 'var(--u2)' }}>
+                <h3 className="d4 h-2l" style={{ marginBottom: 'var(--u3)' }}>
                   {d.title}
                 </h3>
                 <p className="body">{d.body}</p>
@@ -420,7 +331,6 @@ export default function Home() {
       <section className="slab">
         <div className="shell">
           <SectionHead
-            num="06"
             label="Denk Labor"
             end={
               <Link href="/labor" className="link">
@@ -458,11 +368,8 @@ export default function Home() {
             {/* ── Index of the rest ── */}
             <div className="c5">
               <div style={{ borderTop: 'var(--rule-bar)' }}>
-                {ITEMS.slice(0, 5).map((it, i) => (
+                {ITEMS.slice(0, 5).map((it) => (
                   <Link key={it.title} href="/labor" className="row">
-                    <span className="row-num">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
                     <div>
                       <span className="data" style={{ display: 'block', marginBottom: 4 }}>
                         {it.type} · {itemMeta(it)}

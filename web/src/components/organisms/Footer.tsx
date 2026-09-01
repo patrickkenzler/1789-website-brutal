@@ -43,10 +43,9 @@ export function Footer() {
               Seiten
             </span>
             <ul>
-              {FOOTER_PAGES.map((p, i) => (
+              {FOOTER_PAGES.map((p) => (
                 <li key={p.href} style={{ borderTop: '1px solid #33312E' }}>
                   <Link href={p.href} className="foot-link">
-                    <span className="unit">{String(i + 1).padStart(2, '0')}</span>
                     {p.label}
                   </Link>
                 </li>
@@ -115,9 +114,6 @@ export function Footer() {
                 {l.label}
               </Link>
             ))}
-            <span className="unit" style={{ color: 'var(--red)' }}>
-              REV 001 / FFM
-            </span>
           </span>
         </div>
       </div>

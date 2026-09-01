@@ -10,28 +10,20 @@ export default function WirPage() {
         line1="Vier Köpfe,"
         line2="eine Haltung."
         body="1789 ist klein und bewusst klein gehalten. Wir arbeiten als Partner, nicht als Lieferant — und stehen jedem Mandat persönlich gegenüber. Hier sind die vier Ansprechpartner, mit denen Sie es zu tun haben."
-        index="05"
       />
 
-      {/* ═══ 01 · TEAM ══════════════════════════════════════════════════════
+      {/* ═══ TEAM ═════════════════════════════════════════════════════════════
           No portraits exist yet — every plate is a dot field carrying the
-          person's initials as its unit id.                                */}
+          person's initials.                                                */}
       <section className="slab">
         <div className="shell">
-          <SectionHead
-            num="01"
-            label="Partner & Ansprechpartner — 04"
-            end={<span className="unit">{TEAM.length} Personen</span>}
-          />
+          <SectionHead label="Partner & Ansprechpartner" />
 
           <div className="g4">
-            {TEAM.map((p, i) => (
+            {TEAM.map((p) => (
               <article key={p.name} className="card">
                 <Plate label={p.initials} coarse ratio="4 / 5" />
                 <div className="card-head">
-                  <span className="strip-num">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
                   <span className="unit">{p.role}</span>
                 </div>
                 <div className="card-body">
@@ -46,10 +38,10 @@ export default function WirPage() {
         </div>
       </section>
 
-      {/* ═══ 02 · OFFICE + ÜBER 1789 ════════════════════════════════════════ */}
+      {/* ═══ OFFICE + ÜBER 1789 ═════════════════════════════════════════════ */}
       <section className="slab">
         <div className="shell">
-          <SectionHead num="02" label="Über 1789" />
+          <SectionHead label="Über 1789" />
 
           <div className="g12" style={{ rowGap: 'var(--u6)', alignItems: 'start' }}>
             <div className="c5">

@@ -31,7 +31,7 @@ export function LegalPage({
 
       <section className="slab">
         <div className="shell">
-          {sections.map((s, i) => (
+          {sections.map((s) => (
             <article
               key={s.heading}
               className="g12"
@@ -42,10 +42,9 @@ export function LegalPage({
               }}
             >
               <div className="c3">
-                <span className="strip-num">{String(i + 1).padStart(2, '0')}</span>
                 <h2
                   className="eyebrow"
-                  style={{ marginTop: 'var(--u2)', color: 'var(--ink)' }}
+                  style={{ color: 'var(--ink)' }}
                 >
                   {s.heading}
                 </h2>

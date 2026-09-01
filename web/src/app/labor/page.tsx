@@ -26,19 +26,14 @@ export default function LaborPage() {
         body={
           'Im Denk Labor veröffentlichen wir, woran wir denken: Whitepaper aus unserer Forschung, Prototypen aus laufenden Mandaten, Debatten­beiträge zu strukturellen Fragen und Podcast-Folgen mit Menschen, die uns herausfordern. Ein offenes Archiv unserer Auseinandersetzung mit Organisation.'
         }
-        index="04"
       />
 
-      {/* ═══ 01 · FEATURED ══════════════════════════════════════════════════
+      {/* ═══ FEATURED ═════════════════════════════════════════════════════════
           One oversized plate against a dossier column. The only item on the
           page that is allowed to breathe.                                  */}
       <section className="slab">
         <div className="shell">
-          <SectionHead
-            num="01"
-            label="★ Featured · diese Woche"
-            end={<span className="unit">{FEATURED.type}</span>}
-          />
+          <SectionHead label="★ Featured · diese Woche" />
 
           <div className="g12" style={{ rowGap: 'var(--u6)', alignItems: 'start' }}>
             <div className="c7">
@@ -99,10 +94,10 @@ export default function LaborPage() {
               Filter:
             </span>
             <div className="chips" style={{ flex: 1 }}>
-              <span className="chip chip-fill">Alle · {ITEMS.length + 1}</span>
+              <span className="chip chip-fill">Alle</span>
               {TYPES.map((t) => (
                 <span key={t} className="chip">
-                  {t} · {ITEMS.filter((i) => i.type === t).length}
+                  {t}
                 </span>
               ))}
             </div>
@@ -110,19 +105,15 @@ export default function LaborPage() {
         </div>
       </section>
 
-      {/* ═══ 03 · ARCHIV ════════════════════════════════════════════════════
+      {/* ═══ ARCHIV ═══════════════════════════════════════════════════════════
           Two plated units, then the index. The rhythm is deliberate: the
           archive thins out as it goes back in time.                        */}
       <section className="slab">
         <div className="shell">
-          <SectionHead
-            num="02"
-            label="Archiv"
-            end={<span className="unit">{ITEMS.length} Einträge</span>}
-          />
+          <SectionHead label="Archiv" />
 
           <div className="hairgrid hairgrid-2" style={{ marginBottom: 'var(--u8)' }}>
-            {PLATED.map((it, i) => (
+            {PLATED.map((it) => (
               <article key={it.title}>
                 <Plate
                   src={it.image}
@@ -131,22 +122,12 @@ export default function LaborPage() {
                   ratio="16 / 9"
                 />
                 <div className="pad">
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'baseline',
-                      gap: 'var(--u2)',
-                      marginBottom: 'var(--u3)',
-                    }}
+                  <span
+                    className="data"
+                    style={{ display: 'block', marginBottom: 'var(--u3)' }}
                   >
-                    <span className="strip-num">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className="data">
-                      {it.type} · {itemMeta(it)}
-                    </span>
-                  </div>
+                    {it.type} · {itemMeta(it)}
+                  </span>
 
                   <h3 className="d3" style={{ marginBottom: 'var(--u2)' }}>
                     {it.title}
@@ -166,11 +147,8 @@ export default function LaborPage() {
           </div>
 
           <div style={{ borderTop: 'var(--rule-bar)' }}>
-            {DENSE.map((it, i) => (
+            {DENSE.map((it) => (
               <Link key={it.title} href={it.href} className="row">
-                <span className="row-num">
-                  {String(i + PLATED.length + 1).padStart(2, '0')}
-                </span>
                 <div>
                   <span className="data" style={{ display: 'block', marginBottom: 6 }}>
                     {it.type} · {itemMeta(it)}
@@ -192,14 +170,10 @@ export default function LaborPage() {
         </div>
       </section>
 
-      {/* ═══ 04 · FORMATE ═══════════════════════════════════════════════════ */}
+      {/* ═══ FORMATE ══════════════════════════════════════════════════════════ */}
       <section className="slab slab-invert">
         <div className="shell">
-          <SectionHead
-            num="03"
-            label="Formate"
-            end={<span className="unit">{FORMATS.length} Reihen</span>}
-          />
+          <SectionHead label="Formate" />
 
           <h2 className="d2" style={{ marginBottom: 'var(--u8)', maxWidth: '20ch' }}>
             Wiederkehrende{' '}

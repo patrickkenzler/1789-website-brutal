@@ -46,7 +46,7 @@ export default function Styleguide() {
       {/* ── Farbe ── */}
       <section className="slab">
         <div className="shell">
-          <SectionHead num="01" label="Substrat & Akzent" />
+          <SectionHead label="Substrat & Akzent" />
           <div className="hairgrid hairgrid-4">
             {SWATCHES.map((s) => (
               <div key={s.name} className="pad-sm">
@@ -74,7 +74,6 @@ export default function Styleguide() {
       <section className="slab">
         <div className="shell">
           <SectionHead
-            num="02"
             label="Typografie"
             end={<span className="unit">Martian Mono / JetBrains Mono</span>}
           />
@@ -124,7 +123,7 @@ export default function Styleguide() {
       {/* ── Struktur ── */}
       <section className="slab">
         <div className="shell">
-          <SectionHead num="03" label="Struktur & Symbolik" />
+          <SectionHead label="Struktur & Symbolik" />
 
           <div className="g2" style={{ rowGap: 'var(--u6)' }}>
             <div>
@@ -175,7 +174,7 @@ export default function Styleguide() {
       {/* ── Bedienelemente ── */}
       <section className="slab">
         <div className="shell">
-          <SectionHead num="04" label="Bedienelemente" />
+          <SectionHead label="Bedienelemente" />
           <div style={{ display: 'flex', gap: 'var(--u2)', flexWrap: 'wrap', marginBottom: 'var(--u6)' }}>
             <span className="btn">.btn</span>
             <span className="btn btn-red">.btn-red</span>
@@ -194,7 +193,7 @@ export default function Styleguide() {
 
       <section className="slab slab-invert" style={{ borderBottom: 0 }}>
         <div className="shell">
-          <SectionHead num="05" label="Invertierte Einheit" />
+          <SectionHead label="Invertierte Einheit" />
           <h2 className="d2" style={{ maxWidth: '20ch' }}>
             Dieselben Regeln, <span className="d-thin d-red">umgekehrtes Substrat.</span>
           </h2>

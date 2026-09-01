@@ -13,18 +13,14 @@ export default function AnsatzPage() {
         line1="Von Diagnose"
         line2="zur Eigenständigkeit."
         body="Fünf Phasen, fünf Leitfragen. Jeder Schritt baut auf der Erkenntnis des vorigen auf — von der Diagnose bestehender Strukturen über das gestaltbare Zielmodell bis zur Übergabe einer Organisation, die sich selbst weiterentwickeln kann."
-        index="01"
       />
 
-      {/* ═══ 00 · INDEX ═══════════════════════════════════════════════════════
-          The five phases as a technical table of contents.                  */}
+      {/* ═══ INDEX ════════════════════════════════════════════════════════════
+          The five phases as a table of contents. Order is the reading order —
+          the phase titles carry it.                                         */}
       <section className="slab slab-dense">
         <div className="shell">
-          <SectionHead
-            num="00"
-            label="Index"
-            end={<span className="unit">{PHASES.length} Phasen</span>}
-          />
+          <SectionHead label="Index" />
 
           {/* Three tracks, not four: five phases plus the trailing cell make
               six, which fills 3x2 exactly. On four tracks the same six items
@@ -33,25 +29,25 @@ export default function AnsatzPage() {
             {PHASES.map((p) => (
               <Link key={p.num} href={`#phase-${p.num}`} className="pad">
                 <span className="eyebrow" style={{ marginBottom: 'var(--u3)' }}>
-                  {p.num} — {p.meta}
+                  {p.meta}
                 </span>
                 <h2 className="d4" style={{ marginBottom: 'var(--u2)' }}>
                   {p.title}
                 </h2>
                 <span className="unit" style={{ color: 'var(--red)' }}>
-                  ↓ Phase {p.num}
+                  ↓ Zur Phase
                 </span>
               </Link>
             ))}
             {/* Trailing cell closes the 3-track grid at six. */}
             <div className="pad dotfield" aria-hidden="true">
-              <span className="unit">1789 / Systemshift Cycle</span>
+              <span className="unit">Systemshift Cycle</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ 01–05 · PHASEN ═══════════════════════════════════════════════════ */}
+      {/* ═══ PHASEN ═══════════════════════════════════════════════════════════ */}
       {PHASES.map((p) => {
         const invert = INVERTED.includes(p.num)
         return (
@@ -62,27 +58,13 @@ export default function AnsatzPage() {
           >
             <div className="shell">
               <SectionHead
-                num={p.num}
-                label={`Phase ${p.num} — ${p.meta}`}
+                label={p.meta}
                 end={<span className="unit">{p.title}</span>}
               />
 
               <div className="g12" style={{ rowGap: 'var(--u6)' }}>
-                {/* ── Numeral + title + Leitfrage ── */}
+                {/* ── Title + Leitfrage ── */}
                 <div className="c7">
-                  <span
-                    className="d0"
-                    aria-hidden="true"
-                    style={{
-                      display: 'block',
-                      color: invert ? '#2A2825' : 'var(--ink-20)',
-                      fontSize: 'clamp(4rem, 12vw, 11rem)',
-                      marginBottom: 'var(--u4)',
-                    }}
-                  >
-                    {p.num}
-                  </span>
-
                   <h2 className="d2" style={{ marginBottom: 'var(--u4)' }}>
                     {p.title}
                   </h2>
@@ -136,46 +118,36 @@ export default function AnsatzPage() {
                   <span className="eyebrow" style={{ marginBottom: 'var(--u4)' }}>
                     Was wir tun
                   </span>
-                  <ol style={{ borderTop: 'var(--rule-faint)' }}>
-                    {p.doing.map((d, i) => (
+                  <ul style={{ borderTop: 'var(--rule-faint)' }}>
+                    {p.doing.map((d) => (
                       <li
                         key={d}
                         style={{
                           display: 'grid',
-                          gridTemplateColumns: '40px 1fr',
+                          gridTemplateColumns: '20px 1fr',
                           gap: 'var(--u2)',
                           paddingBlock: 'var(--u2)',
                           borderBottom: 'var(--rule-faint)',
                         }}
                       >
-                        <span className="unit" style={{ color: 'var(--red)' }}>
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
+                        <span style={{ color: 'var(--red)' }}>›</span>
                         <span className="body">{d}</span>
                       </li>
                     ))}
-                  </ol>
+                  </ul>
                 </div>
 
                 <div className="pad">
                   <span className="eyebrow" style={{ marginBottom: 'var(--u4)' }}>
                     Typische Outputs
                   </span>
-                  <div className="chips" style={{ marginBottom: 'var(--u4)' }}>
+                  <div className="chips">
                     {p.outputs.map((o) => (
                       <span key={o} className="chip">
                         {o}
                       </span>
                     ))}
                   </div>
-                  <dl className="readout">
-                    <dt>Phase</dt>
-                    <dd>{p.num} / 05</dd>
-                    <dt>Modus</dt>
-                    <dd>{p.meta}</dd>
-                    <dt>Outputs</dt>
-                    <dd>{String(p.outputs.length).padStart(2, '0')}</dd>
-                  </dl>
                 </div>
               </div>
             </div>

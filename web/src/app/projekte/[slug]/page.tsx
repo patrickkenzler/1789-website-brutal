@@ -88,15 +88,12 @@ export default async function CasePage({
         </div>
       </section>
 
-      {/* ═══ 02 · NARRATIVE ═════════════════════════════════════════════════
-          A technical report: numbered, ruled, label left, body right.      */}
+      {/* ═══ NARRATIVE ════════════════════════════════════════════════════════
+          A report: ruled blocks, label left, body right. The block label
+          (Der Gap / Der Shift / Das Ergebnis) leads each one.               */}
       <section className="slab">
         <div className="shell">
-          <SectionHead
-            num="01"
-            label="Befund"
-            end={<span className="unit">03 Blöcke</span>}
-          />
+          <SectionHead label="Befund" />
 
           <div style={{ borderTop: 'var(--rule-bar)' }}>
             {NARRATIVE.map((n) => (
@@ -110,17 +107,6 @@ export default async function CasePage({
                 }}
               >
                 <div className="c4">
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'baseline',
-                      gap: 'var(--u2)',
-                      marginBottom: 'var(--u2)',
-                    }}
-                  >
-                    <span className="strip-num">{n.num}</span>
-                    <span className="unit">Abschnitt</span>
-                  </div>
                   <h2 className="d3">{n.label}</h2>
                 </div>
                 <div className="c7 s5">
@@ -153,11 +139,10 @@ export default async function CasePage({
         </div>
       </section>
 
-      {/* ═══ 03 · WEITERE SHIFTS ════════════════════════════════════════════ */}
+      {/* ═══ WEITERE SHIFTS ═══════════════════════════════════════════════════ */}
       <section className="slab">
         <div className="shell">
           <SectionHead
-            num="02"
             label="Weitere Shifts"
             end={
               <Link href="/projekte" className="link">

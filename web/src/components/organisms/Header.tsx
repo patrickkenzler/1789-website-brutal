@@ -50,14 +50,13 @@ export function Header() {
 
           {/* ── Desktop nav ── */}
           <nav className="nav-desk" aria-label="Hauptnavigation">
-            {NAV.map((item, i) => (
+            {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 className="nav-link"
                 data-active={isActive(item.href) || undefined}
               >
-                <span className="unit nav-idx">{String(i + 1).padStart(2, '0')}</span>
                 {item.label}
               </Link>
             ))}
@@ -88,9 +87,8 @@ export function Header() {
             className="shell"
             style={{ paddingTop: 'calc(var(--nav-h) + var(--u6))' }}
           >
-            {NAV.map((item, i) => (
+            {NAV.map((item) => (
               <Link key={item.href} href={item.href} className="nav-overlay-link">
-                <span className="strip-num">{String(i + 1).padStart(2, '0')}</span>
                 <span className="d3">{item.label}</span>
               </Link>
             ))}
@@ -120,8 +118,6 @@ export function Header() {
         }
         .nav-link:hover { border-bottom-color: var(--ink); }
         .nav-link[data-active] { border-bottom-color: var(--red); }
-        .nav-link[data-active] .nav-idx { color: var(--red); }
-        .nav-idx { font-size: var(--t-10); }
 
         .nav-toggle {
           display: none;

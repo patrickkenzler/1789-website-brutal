@@ -16,19 +16,14 @@ export default function ProjektePage() {
         line1="Organisationen,"
         line2="die den Shift gewagt haben."
         body="Jedes Engagement beginnt mit einer ehrlichen Diagnose des Gaps. Was hier folgt, sind keine Erfolgsgeschichten — sondern Erkenntnisse aus echter Transformation."
-        index="03"
       />
 
-      {/* ═══ 01 · HIGHLIGHT CASES ═══════════════════════════════════════════
+      {/* ═══ HIGHLIGHT CASES ══════════════════════════════════════════════════
           Two full-width units. Plate on one side, dossier on the other —
           the alternation is done by the grid start column, not by margins. */}
       <section className="slab slab-invert">
         <div className="shell">
-          <SectionHead
-            num="01"
-            label="★ Highlight Cases"
-            end={<span className="unit">02 / {cases.length}</span>}
-          />
+          <SectionHead label="★ Highlight Cases" />
 
           {featured.map((c, i) => (
             <article
@@ -125,21 +120,14 @@ export default function ProjektePage() {
         </div>
       </section>
 
-      {/* ═══ 03 · ALLE CASES ════════════════════════════════════════════════ */}
+      {/* ═══ ALLE CASES ═══════════════════════════════════════════════════════ */}
       <section className="slab">
         <div className="shell">
-          <SectionHead
-            num="02"
-            label="Alle Cases"
-            end={<span className="unit">{cases.length} Engagements</span>}
-          />
+          <SectionHead label="Alle Cases" />
 
           <div style={{ borderTop: 'var(--rule-bar)' }}>
-            {list.map((c, i) => (
+            {list.map((c) => (
               <Link key={c.slug} href={`/projekte/${c.slug}`} className="row">
-                <span className="row-num">
-                  {String(i + 3).padStart(2, '0')}
-                </span>
                 <div>
                   <div className="chips" style={{ marginBottom: 'var(--u2)' }}>
                     {c.tags.slice(0, 2).map((t) => (
