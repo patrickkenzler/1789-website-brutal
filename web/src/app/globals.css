@@ -530,9 +530,9 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 .ascii-waves {
   margin: 0;
   font-family: var(--font-micro);
-  /* vw-driven so the 200×120 field always overflows the section and crops to
-     a full cover — no letterboxing on wide or tall screens. */
-  font-size: clamp(8px, 1.15vw, 20px);
+  /* vw-driven so the 160×96 field always overflows the section and crops to a
+     full cover — no letterboxing on wide or tall screens. */
+  font-size: clamp(9px, 1.3vw, 24px);
   line-height: 1.02;
   letter-spacing: 0;
   white-space: pre;
@@ -542,6 +542,9 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 }
 
 .hero-fg { position: relative; z-index: 1; }
+/* Eyebrow reads white and a step larger over the field (slab-invert otherwise
+   dims it to grey). Brackets keep the red accent. */
+.hero-fg .eyebrow { color: var(--paper); font-size: 0.825rem; }
 /* The statement is the hierarchy: heavy, condensed (wdth 75 — the narrowest
    cut, same as the 1789 run), full measure. One vw-driven size holds each of
    the three parallel sentences on a single line across the whole range — the

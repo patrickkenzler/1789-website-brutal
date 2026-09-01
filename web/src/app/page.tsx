@@ -41,14 +41,14 @@ export default function Home() {
               parallel clauses and the red carries the three verbs —
               scheitert / überholt / entscheidet — so the accent marks what the
               sentence turns on rather than falling wherever it breaks. */}
+          {/* The verbs stay at the headline's own bold weight (not the thin
+              cut used elsewhere) so the red reads over the ASCII texture. */}
           <h1 className="d1">
-            Strategie <span className="d-thin d-red">scheitert</span> an
-            Struktur.
+            Strategie <span className="d-red">scheitert</span> an Struktur.
             <br />
-            Struktur <span className="d-thin d-red">überholt</span> Strategie.
+            Struktur <span className="d-red">überholt</span> Strategie.
             <br />
-            Dazwischen <span className="d-thin d-red">entscheidet</span>{' '}
-            Organisation.
+            Dazwischen <span className="d-red">entscheidet</span> Organisation.
           </h1>
 
           <div
