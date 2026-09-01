@@ -208,39 +208,46 @@ export default function Home() {
         <div className="shell">
           <SectionHead label="Stimmen" />
 
-          <div className="hairgrid hairgrid-2">
+          <div className="hairgrid hairgrid-2 stimmen-grid">
             {TESTIMONIALS.map((t) => (
-              <figure key={t.name} className="pad">
-                <span
-                  className="unit"
-                  style={{ display: 'block', marginBottom: 'var(--u3)' }}
-                >
-                  {t.company}
-                </span>
-
-                <blockquote className="body" style={{ marginBottom: 'var(--u4)' }}>
-                  <Emphasis text={t.quote} />
-                </blockquote>
-
-                <figcaption
-                  style={{
-                    borderTop: 'var(--rule)',
-                    paddingTop: 'var(--u2)',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    gap: 'var(--u2)',
-                    flexWrap: 'wrap',
-                  }}
-                >
-                  <span className="data" style={{ color: 'var(--ink)' }}>
-                    {t.name} — {t.title}
+              <figure key={t.name} className="pad stimme">
+                <div className="stimme-text">
+                  <span
+                    className="unit"
+                    style={{ display: 'block', marginBottom: 'var(--u3)' }}
+                  >
+                    {t.company}
                   </span>
-                  {t.caseHref && (
-                    <Link href={t.caseHref} className="unit" title={t.caseLabel ?? ''}>
-                      <span style={{ color: 'var(--red)' }}>Case ↗</span>
-                    </Link>
-                  )}
-                </figcaption>
+
+                  <blockquote className="stimme-quote">
+                    <Emphasis text={t.quote} />
+                  </blockquote>
+
+                  <figcaption
+                    className="stimme-cap"
+                    style={{
+                      borderTop: 'var(--rule)',
+                      paddingTop: 'var(--u2)',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      gap: 'var(--u2)',
+                      flexWrap: 'wrap',
+                    }}
+                  >
+                    <span className="data" style={{ color: 'var(--ink)' }}>
+                      {t.name} — {t.title}
+                    </span>
+                    {t.caseHref && (
+                      <Link href={t.caseHref} className="unit" title={t.caseLabel ?? ''}>
+                        <span style={{ color: 'var(--red)' }}>Case ↗</span>
+                      </Link>
+                    )}
+                  </figcaption>
+                </div>
+
+                <div className="stimme-photo">
+                  <Plate src={t.photo} alt={t.name} />
+                </div>
               </figure>
             ))}
 

@@ -500,6 +500,57 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 
 @media (max-width: 720px) { .endcell { gap: var(--u4); } }
 
+/* ── STIMMEN — testimonial: quote + halftone portrait, uniform card height ──
+   A fixed row height makes every card equal; the quote is set a step smaller
+   and tighter so the longest one still fits, and the caption is pinned to the
+   card foot so all names align. The portrait fills the card height on the
+   right as a black-and-white halftone (the red screen is dropped here). */
+.stimmen-grid { grid-auto-rows: 24rem; }
+.stimme {
+  display: grid;
+  grid-template-columns: 1fr clamp(140px, 30%, 210px);
+  gap: var(--u4);
+  align-items: stretch;
+}
+.stimme-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.stimme-quote {
+  font-family: var(--font-micro);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--ink-70);
+  hyphens: auto;
+  text-wrap: pretty;
+  margin-bottom: var(--u3);
+}
+.stimme-quote strong {
+  font-weight: 700;
+  color: var(--ink);
+  box-shadow: inset 0 -1px 0 var(--red);
+}
+.stimme-cap { margin-top: auto; }
+.stimme-photo { position: relative; min-width: 0; }
+.stimme-photo .plate {
+  aspect-ratio: auto;
+  height: 100%;
+  border-bottom: 0;
+}
+/* Pure black-and-white — drop the red misregistration screen. */
+.stimme-photo .plate::before { display: none; }
+
+/* Below this the text column would be too narrow to hold the longest quote in
+   a fixed height, so the card stacks: portrait on top, text below, height
+   free. */
+@media (max-width: 1100px) {
+  .stimmen-grid { grid-auto-rows: auto; }
+  .stimme { grid-template-columns: 1fr; }
+  .stimme-photo { order: -1; height: 14rem; }
+  .stimme-cap { margin-top: var(--u4); }
+}
+
 /* ── HERO — statement over a full-bleed ASCII field ────────────────────────
    Viewport-tall, so the 1789 run that follows stays off the first screen and
    reads as a divider only on scroll. The ASCII field is the full background,
