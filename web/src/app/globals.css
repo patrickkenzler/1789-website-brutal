@@ -500,63 +500,59 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 
 @media (max-width: 720px) { .endcell { gap: var(--u4); } }
 
-/* ── HERO — two columns: statement + ASCII field ───────────────────────────
-   Viewport-tall so the 1789 ground line that follows stays off the first
-   screen and only appears as a divider on scroll. Left column: the statement,
-   vertically centred. Right column: a black ASCII panel that stretches the
-   full height — the one place the substrate inverts above the fold. */
+/* ── HERO — statement over a full-bleed ASCII field ────────────────────────
+   Viewport-tall, so the 1789 run that follows stays off the first screen and
+   reads as a divider only on scroll. The ASCII field is the full background,
+   dimmed to a texture; the statement and actions sit in front. The whole hero
+   is the one inverted surface above the fold — .slab-invert on the section
+   flips the type, buttons and eyebrow to their dark-ground variants. */
 .hero-sec {
-  min-height: calc(100svh - var(--nav-h));
-  display: flex;
-  padding-block: var(--u6);
-  border-bottom: var(--rule);
-}
-.hero-2col {
-  display: grid;
-  grid-template-columns: 1.5fr 0.72fr;
-  gap: var(--u6);
-  align-items: stretch;
-  width: 100%;
-}
-.hero-copy { align-self: center; }
-/* The statement is the hierarchy: heavy, condensed (wdth 75 — the narrowest
-   cut, same as the 1789 run), sized as large as the column allows while each
-   of the three sentences still holds a single line. The narrow axis is what
-   buys the size back in a two-column layout. Verified against the 36-char
-   longest line. */
-.hero-copy .d1 {
-  font-size: clamp(1.9rem, 2.9vw, 3.4rem);
-  font-variation-settings: "wdth" 75;
-  letter-spacing: -0.05em;
-  line-height: 1.04;
-}
-
-.hero-ascii {
   position: relative;
   overflow: hidden;
+  min-height: calc(100svh - var(--nav-h));
+  display: flex;
+  align-items: center;
+  padding-block: var(--u8);
+  border-bottom: var(--rule);
   background: var(--stock);
+}
+/* Full-bleed field behind the copy. Generated larger than the section so
+   overflow crops it to a cover rather than letterboxing. */
+.hero-bg {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
 }
-/* The field is generated larger than the panel; overflow crops it to a
-   covered image rather than leaving letterboxing. */
 .ascii-waves {
   margin: 0;
   font-family: var(--font-micro);
-  font-size: clamp(8px, 0.95vw, 13px);
+  /* vw-driven so the 200×120 field always overflows the section and crops to
+     a full cover — no letterboxing on wide or tall screens. */
+  font-size: clamp(8px, 1.15vw, 20px);
   line-height: 1.02;
   letter-spacing: 0;
   white-space: pre;
-  color: var(--paper);
+  /* Dimmed so the field reads as texture and the statement stays legible. */
+  color: rgba(244, 244, 240, 0.3);
   user-select: none;
 }
 
-@media (max-width: 1100px) {
-  .hero-sec { min-height: 0; }
-  .hero-2col { grid-template-columns: minmax(0, 1fr); gap: var(--u6); }
-  .hero-copy .d1 { font-size: clamp(2.1rem, 7.4vw, 4rem); }
-  .hero-ascii { height: 42svh; }
+.hero-fg { position: relative; z-index: 1; }
+/* The statement is the hierarchy: heavy, condensed (wdth 75 — the narrowest
+   cut, same as the 1789 run), full measure. One vw-driven size holds each of
+   the three parallel sentences on a single line across the whole range — the
+   0.045·vw slope keeps the 36-char line (~0.55em/char) inside the gutter from
+   the phone up, reaching ~65px on a wide desktop. The three-line unit is the
+   point, so it never wraps; on a small phone that means a modest size. */
+.hero-fg .d1 {
+  font-size: clamp(1.1rem, 4.5vw, 4.1rem);
+  font-variation-settings: "wdth" 75;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
 }
 
 /* ═══ 05 · SYMBOLOGY ═══════════════════════════════════════════════════════ */

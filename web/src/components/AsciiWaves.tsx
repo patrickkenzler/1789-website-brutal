@@ -11,8 +11,8 @@
  * and client, so it ships as static text with no hydration cost.
  */
 
-const COLS = 104
-const ROWS = 62
+const COLS = 200
+const ROWS = 120
 
 /** Signed flow field, roughly -1..1. Low frequencies + strong domain warp
  *  give a few broad diagonal folds rather than many tight ripples. */
