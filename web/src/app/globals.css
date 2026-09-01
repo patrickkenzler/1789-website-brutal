@@ -571,6 +571,57 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 
 @media (max-width: 720px) { .endcell { gap: var(--u4); } }
 
+/* ── HERO — full-height command panel ──────────────────────────────────────
+   The opening screen is a viewport-tall instrument panel: the headline is
+   anchored at the top, the telemetry is pinned to the foot, and the calculated
+   negative space between them is the point. The 1789 run that follows reads as
+   the ground line, just beyond the fold, instead of colliding with the
+   headline at the crease. min-height (never max) means short viewports simply
+   grow rather than clip. */
+.hero {
+  min-height: calc(100svh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+}
+.hero-foot {
+  margin-top: auto;      /* push the instrument block to the viewport foot */
+  padding-top: var(--u8);
+}
+
+/* ── SYSTEM LINE — the one mechanical detail ───────────────────────────────
+   A terminal status strip above the gauges: a fixed rev/coordinate string on
+   the left, a live UTC readout on the right behind a pulsing indicator. This
+   is the ONLY moving element on the page. It degrades to a steady dot and a
+   dashed readout under reduced motion and before hydration, so nothing depends
+   on the script running. */
+.sysline {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--u2) var(--u4);
+  flex-wrap: wrap;
+  padding-bottom: var(--u2);
+  border-bottom: var(--rule);
+  font-family: var(--font-micro);
+  font-size: var(--t-10);
+  letter-spacing: var(--track-micro);
+  text-transform: uppercase;
+  color: var(--ink-45);
+  font-variant-numeric: tabular-nums;
+}
+.sysline b { color: var(--ink); font-weight: 500; }
+.sysdot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: var(--red);
+  margin-right: var(--u);
+  transform: translateY(0.5px);
+  animation: syspulse 1.6s steps(1, end) infinite;
+}
+@keyframes syspulse { 0% { opacity: 1; } 50% { opacity: 0.2; } }
+@media (prefers-reduced-motion: reduce) { .sysdot { animation: none; } }
+
 /* ═══ 05 · SYMBOLOGY ═══════════════════════════════════════════════════════ */
 
 /* Crosshair at a grid intersection. */

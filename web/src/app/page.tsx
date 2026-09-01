@@ -13,81 +13,97 @@ import {
   Emphasis,
   ClosingCta,
 } from '@/components/ui'
+import { SystemClock } from '@/components/SystemClock'
 
 export default function Home() {
   return (
     <main>
       {/* ═══ 00 · HERO ══════════════════════════════════════════════════════
-          Vast negative space against one viewport-bleeding numeral. The
-          headline carries the only three hazard-red words on the page.    */}
-      <section className="slab" style={{ paddingBlock: 'var(--u12) var(--u8)' }}>
-        <div className="shell">
-          <span
-            className="eyebrow eyebrow-br"
-            style={{ marginBottom: 'var(--u6)' }}
-          >
-            Organizational Strategy // Governance Design // Target Operating
-            Model
-          </span>
+          A viewport-tall command panel. The headline and its actions anchor
+          the top; the telemetry is pinned to the foot behind a live system
+          line; the calculated void between them carries the weight. The 1789
+          run below is the ground line.                                      */}
+      <section className="slab hero" style={{ paddingBlock: 'var(--u12) var(--u6)' }}>
+        <div className="shell" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+          <div>
+            <span
+              className="eyebrow eyebrow-br"
+              style={{ marginBottom: 'var(--u6)' }}
+            >
+              Organizational Strategy // Governance Design // Target Operating
+              Model
+            </span>
 
-          {/* Set at full measure so each sentence holds one line. The copy is
-              three parallel clauses and the red carries the three verbs —
-              scheitert / überholt / entscheidet — so the accent marks what the
-              sentence turns on rather than falling wherever a line breaks. */}
-          <h1 className="d1">
-            Strategie <span className="d-thin d-red">scheitert</span> an
-            Struktur.
-            <br />
-            Struktur <span className="d-thin d-red">überholt</span> Strategie.
-            <br />
-            Dazwischen <span className="d-thin d-red">entscheidet</span>{' '}
-            Organisation.
-          </h1>
+            {/* Set at full measure so each sentence holds one line. The copy is
+                three parallel clauses and the red carries the three verbs —
+                scheitert / überholt / entscheidet — so the accent marks what
+                the sentence turns on rather than falling wherever a line
+                breaks. */}
+            <h1 className="d1">
+              Strategie <span className="d-thin d-red">scheitert</span> an
+              Struktur.
+              <br />
+              Struktur <span className="d-thin d-red">überholt</span> Strategie.
+              <br />
+              Dazwischen <span className="d-thin d-red">entscheidet</span>{' '}
+              Organisation.
+            </h1>
 
-          {/* Telemetry as a panel of gauges under the headline — horizontal, so
-              it spans the measure instead of stranding nine columns. */}
-          <dl className="instrument" style={{ marginTop: 'var(--u8)' }}>
-            <div>
-              <dt>Unit</dt>
-              <dd>1789 / FFM</dd>
+            <div
+              style={{
+                marginTop: 'var(--u8)',
+                display: 'flex',
+                gap: 'var(--u2)',
+                flexWrap: 'wrap',
+              }}
+            >
+              <Link href="/kontakt" className="btn btn-red btn-lg">
+                Erstgespräch vereinbaren <span aria-hidden="true">→</span>
+              </Link>
+              <Link href="/ansatz" className="btn btn-lg">
+                Unser Ansatz <span aria-hidden="true">→</span>
+              </Link>
             </div>
-            <div>
-              <dt>Domain</dt>
-              <dd>Organisation</dd>
-            </div>
-            <div>
-              <dt>Phasen</dt>
-              <dd>05</dd>
-            </div>
-            <div>
-              <dt>Cases</dt>
-              <dd>08</dd>
-            </div>
-            <div>
-              <dt>Status</dt>
-              <dd style={{ color: 'var(--red)' }}>Aktiv</dd>
-            </div>
-          </dl>
+          </div>
 
-          <div
-            style={{
-              marginTop: 'var(--u6)',
-              display: 'flex',
-              gap: 'var(--u2)',
-              flexWrap: 'wrap',
-            }}
-          >
-            <Link href="/kontakt" className="btn btn-red btn-lg">
-              Erstgespräch vereinbaren <span aria-hidden="true">→</span>
-            </Link>
-            <Link href="/ansatz" className="btn btn-lg">
-              Unser Ansatz <span aria-hidden="true">→</span>
-            </Link>
+          {/* ── Foot: system line + instrument panel, pinned to the fold ── */}
+          <div className="hero-foot">
+            <div className="sysline">
+              <span>
+                Rev 001 · 50.11°N / 8.68°E · <b>Frankfurt am Main</b>
+              </span>
+              <SystemClock />
+            </div>
+
+            {/* Telemetry as a panel of gauges — horizontal, spanning the
+                measure instead of stranding a narrow box. */}
+            <dl className="instrument">
+              <div>
+                <dt>Unit</dt>
+                <dd>1789 / FFM</dd>
+              </div>
+              <div>
+                <dt>Domain</dt>
+                <dd>Organisation</dd>
+              </div>
+              <div>
+                <dt>Phasen</dt>
+                <dd>05</dd>
+              </div>
+              <div>
+                <dt>Cases</dt>
+                <dd>08</dd>
+              </div>
+              <div>
+                <dt>Status</dt>
+                <dd style={{ color: 'var(--red)' }}>Aktiv</dd>
+              </div>
+            </dl>
           </div>
         </div>
       </section>
 
-      {/* Letterform run, cut off by both viewport edges. */}
+      {/* Letterform run, cut off by both viewport edges — the ground line. */}
       <div className="bleed" aria-hidden="true">
         <span className="d0">1789—1789—1789—1789</span>
       </div>
