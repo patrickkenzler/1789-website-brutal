@@ -25,3 +25,4 @@ dist/
 
 # claude code worktrees
 .claude/worktrees/
+art-src/

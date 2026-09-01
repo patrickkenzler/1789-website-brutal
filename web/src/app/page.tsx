@@ -14,6 +14,7 @@ import {
   ClosingCta,
 } from '@/components/ui'
 import { AsciiWaves } from '@/components/AsciiWaves'
+import { AiGlyph } from '@/components/AiGlyph'
 
 export default function Home() {
   return (
@@ -329,12 +330,13 @@ export default function Home() {
           </h2>
 
           <div className="hairgrid hairgrid-4">
-            {AI_DIMENSIONS.map((d) => (
-              <article key={d.num} className="pad">
+            {AI_DIMENSIONS.map((d, i) => (
+              <article key={d.num} className="pad ai-card">
                 <h3 className="d4 h-2l" style={{ marginBottom: 'var(--u3)' }}>
                   {d.title}
                 </h3>
                 <p className="body">{d.body}</p>
+                <AiGlyph index={i} />
               </article>
             ))}
           </div>

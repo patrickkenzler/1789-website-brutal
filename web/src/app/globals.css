@@ -482,6 +482,28 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
    own line-height, so this stays correct at every clamp() step.            */
 .h-2l { min-height: 2lh; }
 
+/* ── AI DIMENSION CARD — text over a schematic ASCII motif ──────────────────
+   The card is a column; the glyph takes the space below the copy and centres
+   in it, so the four motifs sit on a shared band across equal-height cards. */
+.ai-card { display: flex; flex-direction: column; container-type: inline-size; }
+.ai-ascii {
+  flex: 1;
+  display: grid;
+  place-content: center;
+  margin: var(--u4) 0 0;
+  font-family: var(--font-micro);
+  /* Sized so the 92-column image fills the card width at any column count. */
+  font-size: clamp(3.5px, 1.72cqw, 9px);
+  /* 1.2 matches the 0.5 glyph aspect the converter squashed to, so the image
+     is not stretched vertically. */
+  line-height: 1.2;
+  letter-spacing: 0;
+  white-space: pre;
+  color: rgba(244, 244, 240, 0.82);
+  overflow: hidden;
+  user-select: none;
+}
+
 /* ── TERMINATOR CELL ──────────────────────────────────────────────────────
    An odd item count in an even grid leaves the last cell empty, which reads
    as a missing record rather than the end of the list. This fills it with
