@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { cases, getCaseBySlug } from '@/data/cases'
-import { SectionHead, Plate, Hazard, ClosingCta } from '@/components/ui'
+import { SectionHead, Plate, ClosingCta } from '@/components/ui'
 
 export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.slug }))
@@ -177,7 +177,6 @@ export default async function CasePage({
         </div>
       </section>
 
-      <Hazard />
 
       <ClosingCta
         eyebrow="Bereit zur Diagnose?"

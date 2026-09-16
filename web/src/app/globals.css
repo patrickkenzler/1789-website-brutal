@@ -25,24 +25,28 @@
 
 :root {
   /* ── SUBSTRATE ─────────────────────────────────────────────────────────
-     Unbleached documentation paper. --paper is the ONLY page background.
-     --sunk is for recessed compartments (inputs, wells). --stock is the
-     inverted block used sparingly for full-bleed alert slabs.             */
-  --paper:   #F4F4F0;
-  --sunk:    #EAE8E3;
-  --stock:   #0A0A0A;
+     Alabaster grey — the ONLY page background. --sunk is for recessed
+     compartments (inputs, wells). --stock is the blackberry ground of the
+     inverted / full-bleed slabs.                                          */
+  --paper:   #DDE5E3;   /* Alabaster Grey */
+  --sunk:    #CFD9D6;
+  --stock:   #11151C;   /* Ink Black — dark ground (Blackberry clashed with orange) */
+  --berry:   #5D2A42;   /* Blackberry — reserved, used sparingly if at all */
 
-  /* ── CARBON INK ──────────────────────────────────────────────────────── */
-  --ink:     #0A0A0A;
-  --ink-70:  #55534E;   /* secondary body / metadata */
-  --ink-45:  #8C8880;   /* tertiary — unit ids, coordinates, disabled */
-  --ink-20:  #C9C5BD;   /* hairline on hairline, dot matrices */
+  /* ── INK ─────────────────────────────────────────────────────────────── */
+  --ink:     #11151C;   /* Ink Black */
+  --ink-70:  #465059;   /* secondary body / metadata (cool) */
+  --ink-45:  #7E878E;   /* tertiary — unit ids, coordinates, disabled */
+  --ink-20:  #B7C1BE;   /* hairline on hairline, dot matrices */
 
-  /* ── HAZARD RED ───────────────────────────────────────────────────────
-     The ONLY accent in the system. Strike-throughs, structural dividers,
-     vital data. Never decorative, never a second accent.                  */
-  --red:     #E61919;
-  --red-ink: #F4F4F0;   /* foreground when sitting on red */
+  /* ── ACCENT ────────────────────────────────────────────────────────────
+     Register-dependent accent: Aubergine on the light ground here, Molten
+     Orange on the dark ground (redefined under .slab-invert). Electric Aqua
+     is the sparing third — a special highlight (the AI graphics). The token
+     name stays --red so every reference switches at once.                   */
+  --red:     #5D2A42;   /* Aubergine — accent on the light ground */
+  --red-ink: #DDE5E3;   /* foreground when sitting on the accent fill */
+  --accent-blue: #00E5FF; /* Electric Aqua — special third accent */
 
   /* ── RULES ─────────────────────────────────────────────────────────────
      Compartmentalisation is done with rules, not spacing.                 */
@@ -404,26 +408,29 @@ body::after {
 .slab-dense { padding-block: var(--pad-dense); }
 .slab-flush { padding-block: 0; }
 
-/* Inverted slab — used sparingly, for alert/emphasis units only. */
+/* Inverted slab — the dark (Ink Black) register. The accent flips to Electric
+   Aqua here (redefining --red in scope), with ink text on any aqua fill. */
 .slab-invert {
   background: var(--stock);
   color: var(--paper);
+  --red: #F14800;       /* Molten Orange — accent on the dark ground */
+  --red-ink: #11151C;   /* ink text on an orange fill */
 }
 .slab-invert .d0, .slab-invert .d1, .slab-invert .d2,
 .slab-invert .d3, .slab-invert .d4 { color: var(--paper); }
-.slab-invert .body, .slab-invert .body-lg { color: #B5B2AC; }
-.slab-invert .body-lg { color: #D8D5CF; }
-.slab-invert .eyebrow { color: #8C8880; }
-.slab-invert .hairgrid { border-color: #33312E; }
-.slab-invert .hairgrid > * { outline-color: #33312E; }
+.slab-invert .body, .slab-invert .body-lg { color: #AEB8B5; }
+.slab-invert .body-lg { color: #CDD6D3; }
+.slab-invert .eyebrow { color: #8A939A; }
+.slab-invert .hairgrid { border-color: #2C333B; }
+.slab-invert .hairgrid > * { outline-color: #2C333B; }
 .slab-invert .body strong, .slab-invert .body-lg strong { color: var(--paper); }
 
-/* Hazard slab — full red. The loudest unit in the system; use once a page. */
+/* Accent slab — full Molten Orange. The loudest unit; use once a page. */
 .slab-red { background: var(--red); color: var(--red-ink); }
 .slab-red .d0, .slab-red .d1, .slab-red .d2,
 .slab-red .d3, .slab-red .d4 { color: var(--red-ink); }
-.slab-red .body, .slab-red .body-lg { color: rgba(244, 244, 240, 0.82); }
-.slab-red .eyebrow { color: rgba(244, 244, 240, 0.7); }
+.slab-red .body, .slab-red .body-lg { color: rgba(221, 229, 227, 0.85); }
+.slab-red .eyebrow { color: rgba(221, 229, 227, 0.72); }
 
 /* ═══ 04 · RULES + COMPARTMENTS ════════════════════════════════════════════ */
 
@@ -472,7 +479,7 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   border-bottom: var(--rule-faint);
   padding-bottom: var(--u);
 }
-.slab-invert .readout dd { color: var(--paper); border-bottom-color: #33312E; }
+.slab-invert .readout dd { color: var(--paper); border-bottom-color: #2C333B; }
 .slab-invert .readout dt { color: var(--ink-45); }
 
 /* ── HEADING LINE RESERVE ─────────────────────────────────────────────────
@@ -499,7 +506,9 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   line-height: 1.2;
   letter-spacing: 0;
   white-space: pre;
-  color: rgba(244, 244, 240, 0.82);
+  /* Electric Aqua — the special third accent, held explicitly so the graphics
+     stay blue even though the dark section's accent is orange. */
+  color: var(--accent-blue);
   overflow: hidden;
   user-select: none;
 }
@@ -603,14 +612,15 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 .ascii-waves {
   margin: 0;
   font-family: var(--font-micro);
-  /* vw-driven so the 160×96 field always overflows the section and crops to a
-     full cover — no letterboxing on wide or tall screens. */
-  font-size: clamp(9px, 1.3vw, 24px);
+  /* vw-driven with NO upper cap so the 160-column field always overflows the
+     section width (160 × 0.6em × 1.12vw ≈ 108% of the viewport) and crops to a
+     full cover at any window size. */
+  font-size: max(9px, 1.12vw);
   line-height: 1.02;
   letter-spacing: 0;
   white-space: pre;
   /* Dimmed so the field reads as texture and the statement stays legible. */
-  color: rgba(244, 244, 240, 0.3);
+  color: rgba(221, 229, 227, 0.3);
   user-select: none;
 }
 
@@ -797,8 +807,8 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 }
 .chip-red { border-color: var(--red); color: var(--red); }
 .chip-fill { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.slab-invert .chip { border-color: #4A4844; color: #B5B2AC; }
-.slab-red .chip { border-color: rgba(244,244,240,0.45); color: var(--red-ink); }
+.slab-invert .chip { border-color: #3A424B; color: #AEB8B5; }
+.slab-red .chip { border-color: rgba(221, 229, 227,0.45); color: var(--red-ink); }
 
 .chips { display: flex; flex-wrap: wrap; gap: var(--u); }
 
@@ -874,7 +884,7 @@ textarea.input { resize: vertical; min-height: 120px; }
 }
 .row:hover { background: var(--ink); color: var(--paper); padding-left: var(--u2); }
 .row:hover .d3, .row:hover .d4 { color: var(--paper); }
-.row:hover .body, .row:hover .data, .row:hover .eyebrow { color: #B5B2AC; }
+.row:hover .body, .row:hover .data, .row:hover .eyebrow { color: #AEB8B5; }
 .row:hover .row-arrow { color: var(--red); }
 .row-arrow { font-size: var(--t-15); color: var(--ink-45); align-self: center; }
 
@@ -902,18 +912,21 @@ textarea.input { resize: vertical; min-height: 120px; }
 a.card:hover { background: var(--sunk); }
 a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
 
-/* Image compartment inside a card — always 1-bit dithered, never photographic. */
+/* Image compartment inside a card — a duotone halftone. The grayscale image
+   multiplies over Electric Aqua (the imagery colour, matching the AI
+   graphics), so shadows fall to black and highlights take the blue. The dot
+   screens below keep the 1-bit rasterised print texture. */
 .plate {
   position: relative;
   overflow: hidden;
-  background: var(--sunk);
+  background: var(--accent-blue);
   border-bottom: var(--rule);
   aspect-ratio: 4 / 3;
 }
 .plate img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.55) brightness(1.06);
+  filter: grayscale(1) contrast(1.45) brightness(1.12);
   mix-blend-mode: multiply;
 }
 

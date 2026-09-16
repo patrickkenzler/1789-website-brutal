@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { cases } from '@/data/cases'
-import { PageHero, SectionHead, Plate, ClosingCta, Hazard } from '@/components/ui'
+import { PageHero, SectionHead, Plate, ClosingCta } from '@/components/ui'
 
 /* Distinct tags across all cases, in order of first occurrence. */
 const allTags = Array.from(new Set(cases.flatMap((c) => c.tags)))
@@ -34,7 +34,7 @@ export default function ProjektePage() {
                 alignItems: 'start',
                 paddingTop: i === 0 ? 0 : 'var(--u8)',
                 marginTop: i === 0 ? 0 : 'var(--u8)',
-                borderTop: i === 0 ? undefined : '1px solid #33312E',
+                borderTop: i === 0 ? undefined : '1px solid #2C333B',
               }}
             >
               <div className="c5">
@@ -155,7 +155,6 @@ export default function ProjektePage() {
         </div>
       </section>
 
-      <Hazard />
 
       <ClosingCta
         eyebrow="Bereit zur Diagnose?"

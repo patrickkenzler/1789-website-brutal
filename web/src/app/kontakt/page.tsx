@@ -1,5 +1,5 @@
 import { CONTACT } from '@/data/site'
-import { PageHero, SectionHead, Hazard } from '@/components/ui'
+import { PageHero, SectionHead } from '@/components/ui'
 
 export default function KontaktPage() {
   return (
@@ -43,7 +43,6 @@ export default function KontaktPage() {
               </dl>
 
               <div style={{ marginTop: 'var(--u8)' }}>
-                <Hazard red />
               </div>
             </div>
 

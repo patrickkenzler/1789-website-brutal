@@ -1,4 +1,4 @@
-import { SectionHead, Hazard, Barcode, Plate, Tape } from '@/components/ui'
+import { SectionHead, Barcode, Plate, Tape } from '@/components/ui'
 import { CLIENTS } from '@/data/site'
 
 /**
@@ -7,13 +7,14 @@ import { CLIENTS } from '@/data/site'
  */
 
 const SWATCHES = [
-  { name: 'paper',  hex: '#F4F4F0', note: 'Substrat — einzige Seitenfarbe' },
-  { name: 'sunk',   hex: '#EAE8E3', note: 'Vertiefte Felder, Inputs' },
-  { name: 'stock',  hex: '#0A0A0A', note: 'Invertierte Einheit' },
-  { name: 'ink-70', hex: '#55534E', note: 'Fließtext' },
-  { name: 'ink-45', hex: '#8C8880', note: 'Marker, Koordinaten' },
-  { name: 'ink-20', hex: '#C9C5BD', note: 'Rasterlinien, Punktfelder' },
-  { name: 'red',    hex: '#E61919', note: 'Einziger Akzent' },
+  { name: 'paper',  hex: '#DDE5E3', note: 'Substrat — Alabaster Grey' },
+  { name: 'sunk',   hex: '#CFD9D6', note: 'Vertiefte Felder, Inputs' },
+  { name: 'stock',  hex: '#11151C', note: 'Dunkler Grund — Ink Black' },
+  { name: 'ink-70', hex: '#465059', note: 'Fließtext' },
+  { name: 'ink-45', hex: '#7E878E', note: 'Marker, Koordinaten' },
+  { name: 'ink-20', hex: '#B7C1BE', note: 'Rasterlinien, Punktfelder' },
+  { name: 'orange', hex: '#F14800', note: 'Akzent hell — Molten Orange' },
+  { name: 'aqua',   hex: '#00E5FF', note: 'Akzent dunkel — Electric Aqua' },
 ]
 
 const TYPE = [
@@ -26,7 +27,6 @@ const TYPE = [
 export default function Styleguide() {
   return (
     <main>
-      <Hazard red />
 
       <header className="slab slab-dense" style={{ paddingTop: 'var(--u8)' }}>
         <div className="shell">
@@ -163,7 +163,6 @@ export default function Styleguide() {
               </span>
               <Barcode />
               <div style={{ height: 'var(--u2)' }} />
-              <Hazard />
               <div style={{ height: 'var(--u2)' }} />
               <div className="graticule" style={{ height: 64, border: 'var(--rule)' }} />
             </div>

@@ -1,5 +1,5 @@
 import { SERVICES } from '@/data/services'
-import { SectionHead, PageHero, ClosingCta, Barcode, Hazard } from '@/components/ui'
+import { SectionHead, PageHero, ClosingCta, Barcode } from '@/components/ui'
 
 export default function LeistungenPage() {
   return (
@@ -87,7 +87,6 @@ export default function LeistungenPage() {
         </div>
       </section>
 
-      <Hazard />
 
       <ClosingCta
         eyebrow="Nicht sicher, wo der Gap liegt?"

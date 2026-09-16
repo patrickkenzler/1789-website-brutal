@@ -44,8 +44,8 @@ export function Header() {
             gap: 'var(--u3)',
           }}
         >
-          <Link href="/" aria-label="1789 — zur Startseite">
-            <Wordmark size={20} />
+          <Link href="/" aria-label="1789 Consulting — zur Startseite">
+            <Wordmark size={20} consulting />
           </Link>
 
           {/* ── Desktop nav ── */}

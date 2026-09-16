@@ -9,10 +9,13 @@
 export function Wordmark({
   size = 22,
   sub = false,
+  consulting = false,
 }: {
   size?: number
   /** Render the "Innovation · Consulting" sub-line beneath the numerals. */
   sub?: boolean
+  /** Set the numerals in a lockup with "CONSULTING" — the full name. */
+  consulting?: boolean
 }) {
   return (
     <span style={{ display: 'inline-block', lineHeight: 1 }}>
@@ -27,10 +30,29 @@ export function Wordmark({
         }}
       >
         1789
-        <span className="marker" style={{ fontSize: size * 0.36 }}>
-          ®
-        </span>
+        {!consulting && (
+          <span className="marker" style={{ fontSize: size * 0.36 }}>
+            ®
+          </span>
+        )}
       </span>
+      {consulting && (
+        <>
+          <span
+            className="unit"
+            style={{
+              fontSize: size * 0.46,
+              letterSpacing: '0.16em',
+              marginLeft: size * 0.36,
+            }}
+          >
+            Consulting
+          </span>
+          <span className="marker" style={{ fontSize: size * 0.36 }}>
+            ®
+          </span>
+        </>
+      )}
       {sub && (
         <span
           className="unit"

@@ -9,7 +9,7 @@ import {
   byline,
 } from '@/data/labor'
 import { NEWSLETTER_ACTION } from '@/data/site'
-import { PageHero, SectionHead, Plate, Hazard, Barcode } from '@/components/ui'
+import { PageHero, SectionHead, Plate, Barcode } from '@/components/ui'
 
 /* The two items carrying a plate open the archive as full units; the
    remaining nine are dense index lines. */
@@ -217,7 +217,6 @@ export default function LaborPage() {
         </div>
       </section>
 
-      <Hazard />
 
       {/* ═══ 05 · NEWSLETTER ════════════════════════════════════════════════ */}
       <section className="slab">

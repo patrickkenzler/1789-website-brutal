@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { PHASES } from '@/data/approach'
-import { SectionHead, PageHero, ClosingCta, Hazard } from '@/components/ui'
+import { SectionHead, PageHero, ClosingCta } from '@/components/ui'
 
 /* Substrate rhythm: phases 02 and 04 are inverted units inside the document. */
 const INVERTED = ['02', '04']
@@ -95,7 +95,7 @@ export default function AnsatzPage() {
                     className="box"
                     style={{
                       padding: 'var(--u3)',
-                      borderColor: invert ? '#33312E' : 'var(--ink)',
+                      borderColor: invert ? '#2C333B' : 'var(--ink)',
                     }}
                   >
                     <span
@@ -155,7 +155,6 @@ export default function AnsatzPage() {
         )
       })}
 
-      <Hazard />
 
       <ClosingCta
         eyebrow="Bereit zur Diagnose?"

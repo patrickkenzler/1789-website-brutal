@@ -8,7 +8,6 @@ import {
   SectionHead,
   Tape,
   Plate,
-  Hazard,
   Barcode,
   Emphasis,
   ClosingCta,
@@ -166,7 +165,7 @@ export default function Home() {
                 key={c.slug}
                 href={`/projekte/${c.slug}`}
                 className="card"
-                style={{ borderColor: '#33312E', background: 'var(--stock)' }}
+                style={{ borderColor: '#2C333B', background: 'var(--stock)' }}
               >
                 <Plate
                   src={c.image}
@@ -190,7 +189,7 @@ export default function Home() {
                   </h3>
                   {c.teaser && <p className="body">{c.teaser}</p>}
                 </div>
-                <div className="card-foot" style={{ borderTopColor: '#33312E' }}>
+                <div className="card-foot" style={{ borderTopColor: '#2C333B' }}>
                   <span className="unit">
                     {c.duration} · {c.scale}
                   </span>
@@ -414,7 +413,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Hazard />
 
       {/* ═══ 07 · CTA ═══════════════════════════════════════════════════════ */}
       <ClosingCta

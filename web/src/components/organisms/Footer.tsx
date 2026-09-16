@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { Wordmark } from '@/components/Wordmark'
-import { Hazard } from '@/components/ui'
 import { CONTACT, FOOTER_CLAIM, FOOTER_PAGES, LEGAL } from '@/data/site'
 
 /**
@@ -15,7 +14,6 @@ export function Footer() {
 
   return (
     <footer className="slab-invert">
-      <Hazard red />
 
       <div className="shell" style={{ paddingBlock: 'var(--u8)' }}>
         {/* ── Wordmark ── */}
@@ -44,7 +42,7 @@ export function Footer() {
             </span>
             <ul>
               {FOOTER_PAGES.map((p) => (
-                <li key={p.href} style={{ borderTop: '1px solid #33312E' }}>
+                <li key={p.href} style={{ borderTop: '1px solid #2C333B' }}>
                   <Link href={p.href} className="foot-link">
                     {p.label}
                   </Link>
@@ -59,13 +57,13 @@ export function Footer() {
               Kontakt
             </span>
             <ul>
-              <li style={{ borderTop: '1px solid #33312E' }}>
+              <li style={{ borderTop: '1px solid #2C333B' }}>
                 <a href={`mailto:${CONTACT.mailFooter}`} className="foot-link">
                   <span className="unit">@</span>
                   {CONTACT.mailFooter}
                 </a>
               </li>
-              <li style={{ borderTop: '1px solid #33312E' }}>
+              <li style={{ borderTop: '1px solid #2C333B' }}>
                 <a
                   href={CONTACT.instagram}
                   target="_blank"
@@ -76,7 +74,7 @@ export function Footer() {
                   Instagram
                 </a>
               </li>
-              <li style={{ borderTop: '1px solid #33312E' }}>
+              <li style={{ borderTop: '1px solid #2C333B' }}>
                 <a
                   href={CONTACT.linkedin}
                   target="_blank"
@@ -93,7 +91,7 @@ export function Footer() {
       </div>
 
       {/* ── Bottom bar ── */}
-      <div style={{ borderTop: '1px solid #33312E' }}>
+      <div style={{ borderTop: '1px solid #2C333B' }}>
         <div
           className="shell"
           style={{
@@ -123,7 +121,7 @@ export function Footer() {
           display: flex; align-items: baseline; gap: var(--u2);
           padding-block: 10px;
           font-family: var(--font-micro); font-size: var(--t-12);
-          letter-spacing: var(--track-data); color: #D8D5CF;
+          letter-spacing: var(--track-data); color: #CDD6D3;
           transition: color var(--snap), padding-left var(--snap);
         }
         .foot-link:hover { color: var(--red); padding-left: 6px; }

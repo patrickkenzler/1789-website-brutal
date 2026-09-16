@@ -1,10 +1,8 @@
 import Link from 'next/link'
-import { Hazard } from '@/components/ui'
 
 export default function NotFound() {
   return (
     <main>
-      <Hazard red />
       <section className="slab" style={{ paddingBlock: 'var(--u12)' }}>
         <div className="shell">
           <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u4)' }}>
