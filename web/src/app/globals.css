@@ -253,6 +253,45 @@ body::after {
 .d-thin { font-weight: 200; }
 .d-red  { color: var(--red); }
 
+/* Width-axis contrast — the other voice a variable mono can speak. An accent
+   phrase set wide against the condensed base line reads as a change of
+   register, not just of colour. Paired with .d-thin on section headings. */
+.d-wide { font-variation-settings: "wdth" 112; letter-spacing: -0.01em; }
+
+/* ── MECHANICAL MOTION ────────────────────────────────────────────────────
+   Every reveal is a hard clip wipe in steps — a shutter, not a fade. Nothing
+   here can hide content: the hero lines animate from a CSS keyframe with no
+   script dependency, and scroll reveals are only armed by JS after mount,
+   for headings still below the fold.                                       */
+
+/* Hero statement: three lines shutter in, one after another. */
+.hero-line { display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-line { animation: hero-wipe 520ms steps(6, end) both; }
+  .hero-line:nth-child(2) { animation-delay: 150ms; }
+  .hero-line:nth-child(3) { animation-delay: 300ms; }
+}
+@keyframes hero-wipe {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* Scroll reveal: visible by default; .reveal-armed clips, .reveal-on wipes.
+   The clip sits on an inner wrapper rather than on the observed heading, so
+   what the observer measures is the heading's untouched box, independent of
+   how the wipe hides its content. */
+.reveal-wipe { display: block; }
+[data-reveal].reveal-armed > .reveal-wipe { clip-path: inset(0 100% 0 0); }
+[data-reveal].reveal-on > .reveal-wipe {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 480ms steps(6, end);
+}
+
+/* The print slips: on hover the misregistration screen of a case plate shifts
+   a couple of dots, in two hard steps. */
+.plate::before { transition: background-position 160ms steps(2, end); }
+a.card:hover .plate::before { background-position: 3px 4px; }
+
 /* Struck-through emphasis — a hazard-red strike, not an italic. */
 .d-strike {
   position: relative;

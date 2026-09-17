@@ -14,6 +14,7 @@ import {
 } from '@/components/ui'
 import { AsciiWaves } from '@/components/AsciiWaves'
 import { AiGlyph } from '@/components/AiGlyph'
+import { ScrollReveal } from '@/components/ScrollReveal'
 
 export default function Home() {
   return (
@@ -23,6 +24,8 @@ export default function Home() {
           background, dimmed to a texture; the statement and actions sit in
           front. The hero fills the screen so the 1789 run below it stays off
           the first view and reads as a divider only once you scroll.       */}
+      <ScrollReveal />
+
       <section className="slab-invert hero-sec">
         <div className="hero-bg" aria-hidden="true">
           <AsciiWaves />
@@ -43,12 +46,18 @@ export default function Home() {
               sentence turns on rather than falling wherever it breaks. */}
           {/* The verbs stay at the headline's own bold weight (not the thin
               cut used elsewhere) so the red reads over the ASCII texture. */}
+          {/* Each sentence is its own block so it can shutter in on its own
+              beat (see .hero-line). */}
           <h1 className="d1">
-            Strategie <span className="d-red">scheitert</span> an Struktur.
-            <br />
-            Struktur <span className="d-red">überholt</span> Strategie.
-            <br />
-            Dazwischen <span className="d-red">entscheidet</span> Organisation.
+            <span className="hero-line">
+              Strategie <span className="d-red">scheitert</span> an Struktur.
+            </span>
+            <span className="hero-line">
+              Struktur <span className="d-red">überholt</span> Strategie.
+            </span>
+            <span className="hero-line">
+              Dazwischen <span className="d-red">entscheidet</span> Organisation.
+            </span>
           </h1>
 
           <div
@@ -84,11 +93,13 @@ export default function Home() {
 
           <div className="g12" style={{ rowGap: 'var(--u6)' }}>
             <div className="c7">
-              <h2 className="d2">
-                Was heute blockiert,
-                <br />
-                <span className="d-thin">
-                  hat gestern <span className="d-strike">getragen</span>.
+              <h2 className="d2" data-reveal>
+                <span className="reveal-wipe">
+                  Was heute blockiert,
+                  <br />
+                  <span className="d-thin d-wide">
+                    hat gestern <span className="d-strike">getragen</span>.
+                  </span>
                 </span>
               </h2>
             </div>
@@ -154,9 +165,11 @@ export default function Home() {
             }
           />
 
-          <h2 className="d2" style={{ marginBottom: 'var(--u8)', maxWidth: '18ch' }}>
-            Organisationen, die den{' '}
-            <span className="d-thin d-red">Shift</span> gewagt haben.
+          <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)', maxWidth: '18ch' }}>
+            <span className="reveal-wipe">
+              Organisationen, die den{' '}
+              <span className="d-thin d-wide d-red">Shift</span> gewagt haben.
+            </span>
           </h2>
 
           <div className="g3">
@@ -279,10 +292,12 @@ export default function Home() {
 
           <div className="g12" style={{ rowGap: 'var(--u6)', marginBottom: 'var(--u8)' }}>
             <div className="c7">
-              <h2 className="d2">
-                Von Diagnose
-                <br />
-                <span className="d-thin d-red">zur Eigenständigkeit.</span>
+              <h2 className="d2" data-reveal>
+                <span className="reveal-wipe">
+                  Von Diagnose
+                  <br />
+                  <span className="d-thin d-wide d-red">zur Eigenständigkeit.</span>
+                </span>
               </h2>
             </div>
             <div className="c5">
@@ -322,10 +337,12 @@ export default function Home() {
           {/* Break at the accent boundary. Wrapped to a measure instead, the
               red span opened mid-line and ran over the break, so the colour
               looked like it had landed where the text happened to fold. */}
-          <h2 className="d2" style={{ marginBottom: 'var(--u8)' }}>
-            Vier Dimensionen, in denen
-            <br />
-            <span className="d-thin d-red">KI Organisation neu denkt.</span>
+          <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)' }}>
+            <span className="reveal-wipe">
+              Vier Dimensionen, in denen
+              <br />
+              <span className="d-thin d-wide d-red">KI Organisation neu denkt.</span>
+            </span>
           </h2>
 
           <div className="hairgrid hairgrid-4">
