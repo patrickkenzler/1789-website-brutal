@@ -50,6 +50,10 @@ export type Testimonial = {
   title: string
   company: string
   photo: string
+  /** Crop override for the landscape band on the card: CSS object-position,
+   *  and an optional zoom about `origin` to push lettering in the source out
+   *  of the frame. Unset: centred, anchored high (where the faces are). */
+  frame?: { position?: string; zoom?: number; origin?: string }
   linkedin: string
   caseHref: string | null
   caseLabel: string | null
@@ -96,6 +100,10 @@ export const TESTIMONIALS: Testimonial[] = [
     title: 'Chief People and Culture Officer',
     company: 'WTS Deutschland',
     photo: '/testimonials/viola-krauss.jpg',
+    /* The source is a campaign visual with lettering down the left edge and
+       across the foot — zoomed from the top-right corner so only the portrait
+       stays in the band. */
+    frame: { position: '100% 0%', zoom: 1.35, origin: '100% 0%' },
     linkedin: 'https://www.linkedin.com/in/viola-krauss-3a09254b',
     caseHref: '/projekte/motivieren-und-entwickeln',
     caseLabel: 'Motivieren und Entwickeln',

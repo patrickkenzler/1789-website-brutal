@@ -69,14 +69,24 @@ export function Plate({
   label,
   coarse = false,
   ratio,
+  frame,
 }: {
   src?: string | null
   alt?: string
   label?: string
   coarse?: boolean
   ratio?: string
+  /** Crop override: object-position, and an optional zoom about `origin`. */
+  frame?: { position?: string; zoom?: number; origin?: string }
 }) {
   const style: CSSProperties = ratio ? { aspectRatio: ratio } : {}
+  const imgStyle: CSSProperties | undefined = frame
+    ? {
+        objectPosition: frame.position,
+        transform: frame.zoom ? `scale(${frame.zoom})` : undefined,
+        transformOrigin: frame.origin,
+      }
+    : undefined
 
   /* No source: the plate becomes a typographic slug rather than a blank dot
      field. A missing portrait was reading as four large empty textures with
@@ -103,7 +113,7 @@ export function Plate({
   return (
     <div className={`plate${coarse ? ' plate-coarse' : ''}`} style={style}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={asset(src)} alt={alt ?? ''} loading="lazy" />
+      <img src={asset(src)} alt={alt ?? ''} loading="lazy" style={imgStyle} />
       {label && (
         <span
           className="unit"

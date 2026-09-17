@@ -14,6 +14,8 @@ import {
 } from '@/components/ui'
 import { AsciiWaves } from '@/components/AsciiWaves'
 import { AiGlyph } from '@/components/AiGlyph'
+import { PhaseGlyph } from '@/components/PhaseGlyph'
+import { Rail } from '@/components/Rail'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
 export default function Home() {
@@ -216,19 +218,19 @@ export default function Home() {
       {/* ═══ Questions ticker ═══════════════════════════════════════════════ */}
       <Tape items={QUESTIONS} />
 
-      {/* ═══ 03 · STIMMEN ═══════════════════════════════════════════════════ */}
+      {/* ═══ 03 · STIMMEN ═══════════════════════════════════════════════════
+          A rail, not a grid: the cards run past the right edge of the shell
+          and scroll sideways. Each card leads with the portrait as a
+          landscape band, the quote underneath in the macro face.          */}
       <section className="slab">
         <div className="shell">
-          <SectionHead label="Stimmen" />
-
-          <div className="hairgrid hairgrid-2 stimmen-grid">
+          <Rail label="Stimmen" ariaLabel="Stimmen unserer Kunden">
             {TESTIMONIALS.map((t) => (
-              <figure key={t.name} className="pad stimme">
-                <div className="stimme-text">
-                  <span
-                    className="unit"
-                    style={{ display: 'block', marginBottom: 'var(--u3)' }}
-                  >
+              <figure key={t.name} className="stimme">
+                <Plate src={t.photo} alt={t.name} ratio="16 / 10" frame={t.frame} />
+
+                <div className="stimme-body">
+                  <span className="unit" style={{ display: 'block' }}>
                     {t.company}
                   </span>
 
@@ -236,17 +238,7 @@ export default function Home() {
                     <Emphasis text={t.quote} />
                   </blockquote>
 
-                  <figcaption
-                    className="stimme-cap"
-                    style={{
-                      borderTop: 'var(--rule)',
-                      paddingTop: 'var(--u2)',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      gap: 'var(--u2)',
-                      flexWrap: 'wrap',
-                    }}
-                  >
+                  <figcaption className="stimme-cap">
                     <span className="data" style={{ color: 'var(--ink)' }}>
                       {t.name} — {t.title}
                     </span>
@@ -257,28 +249,25 @@ export default function Home() {
                     )}
                   </figcaption>
                 </div>
-
-                <div className="stimme-photo">
-                  <Plate src={t.photo} alt={t.name} />
-                </div>
               </figure>
             ))}
 
-            {/* Five entries in two columns leave the sixth cell empty. Rather
-                than an unexplained gap, the grid ends on its own exit. */}
-            <Link href="/projekte" className="pad endcell">
+            {/* The rail ends on its own exit. */}
+            <Link href="/projekte" className="pad endcell stimme-end">
               <span className="unit">Weiterlesen</span>
               <span className="d3">
                 Alle Cases <span aria-hidden="true">→</span>
               </span>
             </Link>
-          </div>
+          </Rail>
         </div>
       </section>
 
       {/* ═══ UNSER ANSATZ ═══════════════════════════════════════════════════
-          Five phases as an index. The sequence reads top to bottom; the phase
-          titles carry it, no leading number.                               */}
+          Five phases as a strip, left to right. The arrow after each phase
+          label carries the sequence — no leading number — and a blueprint
+          diagram on top of each cell gives the phase a picture before its
+          words.                                                            */}
       <section className="slab">
         <div className="shell">
           <SectionHead
@@ -308,21 +297,31 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{ borderTop: 'var(--rule-bar)' }}>
-            {PHASES.map((p) => (
-              <Link key={p.num} href={`/ansatz#phase-${p.num}`} className="row">
-                <div>
-                  <h3 className="d3" style={{ marginBottom: 6 }}>
-                    {p.title}
+          <div className="hairgrid hairgrid-5">
+            {PHASES.map((p, i) => (
+              <Link key={p.num} href={`/ansatz#phase-${p.num}`} className="phase">
+                <PhaseGlyph index={i} />
+                <div className="phase-body">
+                  <span className="eyebrow">
+                    {p.meta}
+                    {i < PHASES.length - 1 && (
+                      <span className="phase-next" aria-hidden="true">
+                        {' '}
+                        →
+                      </span>
+                    )}
+                  </span>
+                  {/* Every title is "<verb-able> machen": breaking after the
+                      first word sets all five on two lines, so the repeated
+                      "machen" runs along the strip as one line. */}
+                  <h3 className="phase-title">
+                    {p.title.split(' ')[0]}
+                    <br />
+                    {p.title.split(' ').slice(1).join(' ')}
                   </h3>
-                  <p className="data" style={{ marginBottom: 8 }}>
-                    {p.meta} — {p.question}
-                  </p>
                   <p className="body">{p.tagline}</p>
+                  <p className="data phase-q">{p.question}</p>
                 </div>
-                <span className="row-arrow" aria-hidden="true">
-                  →
-                </span>
               </Link>
             ))}
           </div>
