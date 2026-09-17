@@ -41,10 +41,19 @@ export function Barcode() {
 }
 
 /* ── TICKER TAPE ──────────────────────────────────────────────────────────
-   Items are duplicated once so the -50% keyframe loops seamlessly.        */
+   Items are duplicated once so the -50% keyframe loops seamlessly. A short
+   list is first repeated `repeat` times, so half the track is still wider
+   than the widest screen and the loop never shows a gap.                  */
 
-export function Tape({ items }: { items: readonly string[] }) {
-  const doubled = [...items, ...items]
+export function Tape({
+  items,
+  repeat = 1,
+}: {
+  items: readonly string[]
+  repeat?: number
+}) {
+  const set = Array.from({ length: repeat }, () => items).flat()
+  const doubled = [...set, ...set]
   return (
     <div className="tape" aria-label={items.join(' · ')}>
       <div className="tape-track" aria-hidden="true">

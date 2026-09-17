@@ -11,6 +11,8 @@ export type LaborItem = {
   readTime?: string
   episode?: number
   excerpt: string
+  /** Kürzere Fassung für die Startseite */
+  teaser?: string
   image?: string
   href: string
 }
@@ -24,6 +26,8 @@ export const FEATURED: LaborItem = {
   readTime: '8 Min',
   excerpt:
     'Eine Reflexion über Distanz, Vertrauen und die Frage, wieso Organisationen den Mut zur Nähe oft erst auf der Bühne finden — und was das für moderne Operating Models bedeutet.',
+  teaser:
+    'Eine Reflexion über Distanz, Vertrauen und die Frage, wieso Organisationen den Mut zur Nähe oft erst auf der Bühne finden.',
   image: '/labor/Artikel_Cover_1.jpg',
   href: '#',
 }

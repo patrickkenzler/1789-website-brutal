@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { featuredCases } from '@/data/cases'
-import { PHASES, PILLARS, AI_DIMENSIONS } from '@/data/approach'
+import { PHASES, ARC, BLICK, WORK, AI_HUMAN_NATIVE } from '@/data/approach'
 import { TESTIMONIALS } from '@/data/team'
-import { FEATURED, ITEMS, itemMeta, byline } from '@/data/labor'
+import { FEATURED, ITEMS, itemMeta, byline, type LaborItem } from '@/data/labor'
 import { CLIENTS, QUESTIONS } from '@/data/site'
 import {
   SectionHead,
@@ -13,15 +13,21 @@ import {
   ClosingCta,
 } from '@/components/ui'
 import { AsciiWaves } from '@/components/AsciiWaves'
-import { AiGlyph } from '@/components/AiGlyph'
+import { AiBand } from '@/components/AiBand'
 import { PhaseGlyph } from '@/components/PhaseGlyph'
 import { Rail } from '@/components/Rail'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
 /* Denk Labor in three tiers: the lead piece, the pieces that carry a cover,
-   then the index of the ones that don't. */
+   then an index of three more. */
 const LAB_PLATED = ITEMS.filter((i) => i.image).slice(0, 2)
-const LAB_INDEX = ITEMS.filter((i) => !i.image).slice(0, 3)
+const LAB_INDEX = [
+  'Mission Boards als Entscheidungsformat',
+  'Strategie und Struktur — was zuerst?',
+  'Selbstorganisation ist kein Selbstläufer',
+]
+  .map((title) => ITEMS.find((i) => i.title === title))
+  .filter((i): i is LaborItem => i !== undefined)
 
 export default function Home() {
   return (
@@ -39,6 +45,7 @@ export default function Home() {
         </div>
 
         <div className="shell hero-fg">
+          <span className="eyebrow hero-kicker">Managementberatung für</span>
           <span
             className="eyebrow eyebrow-br"
             style={{ marginBottom: 'var(--u6)' }}
@@ -93,11 +100,12 @@ export default function Home() {
 
       <Tape items={CLIENTS} />
 
-      {/* ═══ 01 · DER 1789-BLICK ════════════════════════════════════════════ */}
+      {/* ═══ DER BLICK ══════════════════════════════════════════════════════
+          No label strip: the client tape above already closes off the hero,
+          and the headline opens the argument on its own. Three tensions, a
+          closing thesis — and its three questions run on in the ticker.    */}
       <section className="slab">
         <div className="shell">
-          <SectionHead label="Der 1789-Blick" />
-
           <div className="g12" style={{ rowGap: 'var(--u6)' }}>
             <div className="c7">
               <h2 className="d2" data-reveal>
@@ -110,61 +118,101 @@ export default function Home() {
                 </span>
               </h2>
             </div>
-            <div className="c5">
-              <p className="body">
-                Jede Organisation lebt von Entscheidungen, Routinen und informalen
-                Lösungen, die einmal funktioniert haben. Wir legen frei, welche
-                Ordnung heute noch trägt, wo sie blockiert und was neu entschieden
-                werden muss damit Verantwortung greift, Veränderung tragfähig wird
-                und Wertschöpfung &amp; Wirkung entstehen.
-              </p>
+            <div className="c5 lede">
+              {BLICK.intro.map((p) => (
+                <p key={p} className="body-lg">
+                  {p}
+                </p>
+              ))}
             </div>
           </div>
 
-          {/* ── Three pillars, razor-ruled ── */}
           <div className="hairgrid hairgrid-3" style={{ marginTop: 'var(--u8)' }}>
-            {PILLARS.map((p) => (
-              <article key={p.title} className="pad" style={{ display: 'flex', flexDirection: 'column' }}>
-                {/* "AI-Human-Native" runs to two lines where the other two
-                    pillars run to one; reserving both keeps all three bodies
-                    starting on the same line. The title itself is the marker —
-                    left-to-right order carries the sequence. */}
-                <h3 className="d3 h-2l" style={{ marginBottom: 'var(--u3)' }}>
-                  {p.title}
+            {BLICK.tensions.map((t) => (
+              <article key={t.title[0]} className="pad tension">
+                <h3 className="d3">
+                  {t.title[0]}
+                  <br />
+                  <span className="d-thin">{t.title[1]}</span>
                 </h3>
-
-                <p className="body" style={{ marginBottom: 'var(--u4)', flex: 1 }}>
-                  {p.body}
-                </p>
-
-                <ul style={{ borderTop: 'var(--rule)' }}>
-                  {p.items.map((it) => (
-                    <li
-                      key={it}
-                      className="data"
-                      style={{
-                        display: 'flex',
-                        gap: 'var(--u2)',
-                        paddingBlock: 8,
-                        borderBottom: 'var(--rule-faint)',
-                      }}
-                    >
-                      <span style={{ color: 'var(--red)' }}>›</span>
-                      {it}
-                    </li>
-                  ))}
-                </ul>
+                <p className="body">{t.body}</p>
+                <p className="close-line">{t.close}</p>
               </article>
             ))}
+          </div>
+
+          <p className="d3 statement">
+            {BLICK.close[0]}
+            <br />
+            <span className="d-thin">{BLICK.close[1]}</span>
+          </p>
+        </div>
+      </section>
+
+      <Tape items={QUESTIONS} repeat={4} />
+
+      {/* ═══ WORAN WIR ARBEITEN ═════════════════════════════════════════════
+          Three perspectives on the same organisation; the AI-Human-Native band
+          runs straight under them, across all three.                       */}
+      <section className="slab">
+        <div className="shell">
+          <SectionHead label="Woran wir arbeiten" />
+
+          <div className="g12" style={{ rowGap: 'var(--u6)' }}>
+            <div className="c7">
+              <h2 className="d2" data-reveal>
+                <span className="reveal-wipe">
+                  Ordnung entsteht ohnehin.
+                  <br />
+                  <span className="d-thin d-wide d-red">
+                    Wir machen sie entscheidbar.
+                  </span>
+                </span>
+              </h2>
+            </div>
+            <div className="c5 lede">
+              {WORK.intro.map((p) => (
+                <p key={p} className="body-lg">
+                  {p}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          <div className="hairgrid hairgrid-3" style={{ marginTop: 'var(--u8)' }}>
+            {WORK.perspectives.map((p) => (
+              <article key={p.title} className="pad tension tension-4">
+                <h3 className="d3">{p.title}</h3>
+                <p className="d4 d-thin">{p.lead}</p>
+                <p className="body">{p.body}</p>
+                <p className="close-line">{p.close}</p>
+              </article>
+            ))}
+          </div>
+
+          <AiBand
+            label="AI-Human-Native"
+            paragraphs={AI_HUMAN_NATIVE.home.paragraphs}
+            close={AI_HUMAN_NATIVE.home.close}
+            art={2}
+          />
+
+          <div className="g12 statement">
+            <p className="d3 c8">
+              {WORK.conclusion[0]}
+              <br />
+              <span className="d-thin">{WORK.conclusion[1]}</span>
+            </p>
+            <p className="c4 eyebrow eyebrow-br statement-coda">{WORK.coda}</p>
           </div>
         </div>
       </section>
 
-      {/* ═══ 02 · SHIFT CASES ═══════════════════════════════════════════════ */}
+      {/* ═══ CASES ══════════════════════════════════════════════════════════ */}
       <section className="slab slab-invert">
         <div className="shell">
           <SectionHead
-            label="Shift Cases"
+            label="Cases"
             end={
               <Link href="/projekte" className="link">
                 Alle Cases <span aria-hidden="true">→</span>
@@ -172,10 +220,11 @@ export default function Home() {
             }
           />
 
-          <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)', maxWidth: '18ch' }}>
+          <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)' }}>
             <span className="reveal-wipe">
-              Organisationen, die den{' '}
-              <span className="d-thin d-wide d-red">Shift</span> gewagt haben.
+              Organisationen,
+              <br />
+              die <span className="d-thin d-wide d-red">entschieden</span> haben.
             </span>
           </h2>
 
@@ -220,16 +269,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ Questions ticker ═══════════════════════════════════════════════ */}
-      <Tape items={QUESTIONS} />
-
-      {/* ═══ 03 · STIMMEN ═══════════════════════════════════════════════════
+      {/* ═══ STIMMEN ════════════════════════════════════════════════════════
           A rail, not a grid: the cards run past the right edge of the shell
           and scroll sideways. Each card leads with the portrait as a
           landscape band, the quote underneath in the macro face.          */}
       <section className="slab">
         <div className="shell">
-          <Rail label="Stimmen" ariaLabel="Stimmen unserer Kunden">
+          <Rail
+            label="Stimmen"
+            ariaLabel="Stimmen unserer Kunden"
+            heading={
+              <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)' }}>
+                <span className="reveal-wipe">
+                  Was Kunden <span className="d-thin d-wide d-red">sagen.</span>
+                </span>
+              </h2>
+            }
+          >
             {TESTIMONIALS.map((t) => (
               <figure key={t.name} className="stimme">
                 <Plate src={t.photo} alt={t.name} ratio="16 / 10" frame={t.frame} />
@@ -279,7 +335,7 @@ export default function Home() {
             label="Unser Ansatz"
             end={
               <Link href="/ansatz" className="link">
-                Vollständig lesen <span aria-hidden="true">→</span>
+                Den vollständigen Ansatz lesen <span aria-hidden="true">→</span>
               </Link>
             }
           />
@@ -288,17 +344,16 @@ export default function Home() {
             <div className="c7">
               <h2 className="d2" data-reveal>
                 <span className="reveal-wipe">
-                  Von Diagnose
+                  Fünf Phasen geben Orientierung,
                   <br />
-                  <span className="d-thin d-wide d-red">zur Eigenständigkeit.</span>
+                  <span className="d-thin d-wide d-red">
+                    ohne die Antwort vorwegzunehmen.
+                  </span>
                 </span>
               </h2>
             </div>
             <div className="c5">
-              <p className="body">
-                Fünf Phasen, in denen wir Organisationen von der ersten Diagnose
-                bis zur selbstständigen Weiterentwicklung begleiten.
-              </p>
+              <p className="body">{ARC.note}</p>
             </div>
           </div>
 
@@ -316,16 +371,9 @@ export default function Home() {
                       </span>
                     )}
                   </span>
-                  {/* Every title is "<verb-able> machen": breaking after the
-                      first word sets all five on two lines, so the repeated
-                      "machen" runs along the strip as one line. */}
-                  <h3 className="phase-title">
-                    {p.title.split(' ')[0]}
-                    <br />
-                    {p.title.split(' ').slice(1).join(' ')}
-                  </h3>
+                  <h3 className="phase-title">{p.title}</h3>
                   <p className="body">{p.tagline}</p>
-                  <p className="data phase-q">{p.question}</p>
+                  <p className="data phase-q">{p.questionShort ?? p.question}</p>
                 </div>
               </Link>
             ))}
@@ -333,37 +381,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ 05 · AI UND ORGANISATION ═══════════════════════════════════════ */}
-      <section className="slab slab-invert">
-        <div className="shell">
-          <SectionHead label="AI und Organisation" />
-
-          {/* Break at the accent boundary. Wrapped to a measure instead, the
-              red span opened mid-line and ran over the break, so the colour
-              looked like it had landed where the text happened to fold. */}
-          <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)' }}>
-            <span className="reveal-wipe">
-              Vier Dimensionen, in denen
-              <br />
-              <span className="d-thin d-wide d-red">KI Organisation neu denkt.</span>
-            </span>
-          </h2>
-
-          <div className="hairgrid hairgrid-4">
-            {AI_DIMENSIONS.map((d, i) => (
-              <article key={d.num} className="pad ai-card">
-                <h3 className="d4 h-2l" style={{ marginBottom: 'var(--u3)' }}>
-                  {d.title}
-                </h3>
-                <p className="body">{d.body}</p>
-                <AiGlyph index={i} />
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ 06 · DENK LABOR ════════════════════════════════════════════════
+      {/* ═══ DENK LABOR ═════════════════════════════════════════════════════
           Three tiers, each a step quieter: the lead piece on a large plate,
           the two that carry a cover on small plates, the index of the rest
           in type only. Open rather than boxed — the plates are framed
@@ -379,6 +397,14 @@ export default function Home() {
             }
           />
 
+          <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)' }}>
+            <span className="reveal-wipe">
+              Wo Organisationstheorie
+              <br />
+              <span className="d-thin d-wide d-red">auf Praxis trifft.</span>
+            </span>
+          </h2>
+
           <div className="lab">
             {/* ── Lead ── */}
             <Link href="/labor" className="lab-item lab-lead">
@@ -388,7 +414,7 @@ export default function Home() {
                   {FEATURED.type} · {itemMeta(FEATURED)}
                 </span>
                 <h3 className="d3">{FEATURED.title}</h3>
-                <p className="body">{FEATURED.excerpt}</p>
+                <p className="body">{FEATURED.teaser ?? FEATURED.excerpt}</p>
                 <span className="unit">{byline(FEATURED)}</span>
               </div>
             </Link>
@@ -434,19 +460,25 @@ export default function Home() {
                   Podcasts, Essays, Whitepaper und Experimente — was im
                   Hintergrund unserer Arbeit entsteht.
                 </p>
+                <div className="lab-newsletter">
+                  <span className="eyebrow">✉ Newsletter</span>
+                  <Link href="/labor#newsletter" className="link">
+                    Was im Labor entsteht — direkt im Postfach.{' '}
+                    <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-
-      {/* ═══ 07 · CTA ═══════════════════════════════════════════════════════ */}
+      {/* ═══ CTA ════════════════════════════════════════════════════════════ */}
       <ClosingCta
-        eyebrow="Bereit für den Shift?"
-        line1="Let's shift"
-        line2="your system."
-        body="Wir haben es uns zum Anspruch gemacht, unseren Kunden ein neues Verständnis ihrer Organisation aufzuzeigen und gemeinsam wirksame Veränderungen zu entwerfen."
+        eyebrow="Ihr Anlass"
+        line1="Was wird bei Ihnen"
+        line2="gerade neu verteilt?"
+        body="Ein Erstgespräch beginnt selten mit einer fertig formulierten Strukturfrage. Es reicht der Anlass: eine Neuordnung, eine Integration, ein neues Operating Model, AI in der täglichen Arbeit. Wir klären gemeinsam, welches Problem Ihre Organisation lösen will — und ob unsere Arbeitsweise dafür passt."
         cta="Erstgespräch vereinbaren"
       />
     </main>

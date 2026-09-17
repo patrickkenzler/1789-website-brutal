@@ -13,11 +13,14 @@ import { SectionHead } from '@/components/ui'
 export function Rail({
   label,
   ariaLabel,
+  heading,
   children,
 }: {
   label: string
   /** Name of the scrollable region for assistive technology. */
   ariaLabel: string
+  /** Section heading, set between the head strip and the track. */
+  heading?: ReactNode
   children: ReactNode
 }) {
   const track = useRef<HTMLDivElement>(null)
@@ -77,6 +80,7 @@ export function Rail({
           </span>
         }
       />
+      {heading}
       <div className="rail" ref={track} tabIndex={0} role="region" aria-label={ariaLabel}>
         {children}
       </div>

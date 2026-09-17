@@ -7,11 +7,11 @@
 
    The motif is the same throughout the site: the organisation is a field or
    a frame, the intervention is the solid block.
-     Diagnose   — a structure surfaces out of noise; the blocker is found
-     Zielbild   — a target: rings around one decided centre
-     Pilot      — a solid block in one corner, spreading along dashed lines
-     Praxis     — a loop with arrows, the model cycling inside it
-     Transfer   — the frame keeps its lattice; the block leaves to the right */
+     Beobachtung      — a structure surfaces out of noise; the blocker is found
+     Zielmodell       — a target: rings around one decided centre
+     Simulation       — a solid block in one corner, played out along dashed lines
+     Pilotierung      — a loop with arrows, the model cycling inside it
+     Eigenständigkeit — the frame keeps its lattice; the block leaves to the right */
 
 const W = 44
 const H = 16
@@ -63,8 +63,8 @@ class Canvas {
   }
 }
 
-/* Diagnose — a 3×3 structure surfaces out of the noise, one cell solid. */
-function diagnose(): string {
+/* Beobachtung — a 3×3 structure surfaces out of the noise, one cell solid. */
+function beobachtung(): string {
   const c = new Canvas()
   c.noise(11, 0.2, '..:')
   const gx = 12
@@ -77,8 +77,8 @@ function diagnose(): string {
   return c.toString()
 }
 
-/* Zielbild — rings around one decided centre, a crosshair through them. */
-function zielbild(): string {
+/* Zielmodell — rings around one decided centre, a crosshair through them. */
+function zielmodell(): string {
   const c = new Canvas()
   const cx = 21.5
   const cy = 7.5
@@ -97,9 +97,9 @@ function zielbild(): string {
   return c.toString()
 }
 
-/* Pilot — the frame is the organisation; a solid block in one corner spreads
-   along dashed lines towards a place drawn only in outline, so far. */
-function pilot(): string {
+/* Simulation — the frame is the organisation; a solid block in one corner is
+   played out along dashed lines towards a place drawn only in outline. */
+function simulation(): string {
   const c = new Canvas()
   c.rect(2, 1, 40, 14)
   c.noise(23, 0.1, '.', 3, 2, 40, 13)
@@ -112,8 +112,8 @@ function pilot(): string {
   return c.toString()
 }
 
-/* Praxis — a loop with arrows; the model sits inside and is cycled. */
-function praxis(): string {
+/* Pilotierung — a loop with arrows; the model sits inside and is cycled. */
+function pilotierung(): string {
   const c = new Canvas()
   c.rect(6, 2, 32, 12, '=', '|')
   c.set(22, 2, '>')
@@ -125,9 +125,9 @@ function praxis(): string {
   return c.toString()
 }
 
-/* Transfer — the frame keeps its own lattice; the right side is open and the
-   block has left through it. */
-function transfer(): string {
+/* Eigenständigkeit — the frame keeps its own lattice; the right side is open
+   and the block has left through it. */
+function eigenstaendigkeit(): string {
   const c = new Canvas()
   c.rect(2, 1, 30, 14)
   c.vline(31, 5, 10, ' ')
@@ -146,4 +146,10 @@ function transfer(): string {
 }
 
 /** In phase order — matches PHASES in ./approach. */
-export const PHASE_ART: readonly string[] = [diagnose(), zielbild(), pilot(), praxis(), transfer()]
+export const PHASE_ART: readonly string[] = [
+  beobachtung(),
+  zielmodell(),
+  simulation(),
+  pilotierung(),
+  eigenstaendigkeit(),
+]

@@ -218,6 +218,11 @@ body::after {
      can't divide (URLs, codes). */
   hyphens: auto;
   overflow-wrap: break-word;
+  /* …but only compounds. text-wrap: balance evens lines out by any means,
+     hyphenation included, and split ordinary words to do it: "ent-steht",
+     "Organizatio-nal", "Ope-rating". Words under 14 characters, or breaks
+     leaving fewer than 6 on either side, now wrap whole. */
+  hyphenate-limit-chars: 14 6 6;
 }
 
 .d0 {
@@ -528,17 +533,35 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
    own line-height, so this stays correct at every clamp() step.            */
 .h-2l { min-height: 2lh; }
 
-/* ── AI DIMENSION CARD — text over a schematic ASCII motif ──────────────────
-   The card is a column; the glyph takes the space below the copy and centres
-   in it, so the four motifs sit on a shared band across equal-height cards. */
-.ai-card { display: flex; flex-direction: column; container-type: inline-size; }
+/* ── AI-HUMAN-NATIVE BAND ─────────────────────────────────────────────────
+   The dark register inset into a section: statement left, a tonal ASCII
+   image right in Electric Aqua. Straight under a hairgrid it joins the grid
+   as a full-width row — the line that cuts across all three perspectives.
+   `flush` drops frame and padding where the band fills a dark section.     */
+.ai-band {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--u6);
+  align-items: center;
+  padding: var(--pad-dense);
+  border: var(--rule);
+}
+.hairgrid + .ai-band { border-top: 0; }
+.ai-band-flush { padding: 0; border: 0; }
+.ai-band-text { display: flex; flex-direction: column; gap: var(--u3); }
+.ai-band-text .d3 { margin-top: var(--u2); }
+.ai-band-art { display: flex; container-type: inline-size; }
+@media (max-width: 1024px) {
+  .ai-band { grid-template-columns: minmax(0, 1fr); }
+}
+
 .ai-ascii {
   flex: 1;
   display: grid;
   place-content: center;
-  margin: var(--u4) 0 0;
+  margin: 0;
   font-family: var(--font-micro);
-  /* Sized so the 92-column image fills the card width at any column count. */
+  /* Sized so the 92-column image fills its container's width. */
   font-size: clamp(3.5px, 1.72cqw, 9px);
   /* 1.2 matches the 0.5 glyph aspect the converter squashed to, so the image
      is not stretched vertically. */
@@ -657,8 +680,9 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 /* ── PHASES — the method as a strip ───────────────────────────────────────
    Five cells left to right; the accent arrow after each phase label carries
    the sequence. A blueprint diagram tops each cell: the field in ink, the
-   intervention in the accent. The title is a condensed cut sized to the
-   five-column track — "Entscheidbar" has to hold on one line. */
+   intervention in the accent. The titles run to three lines in the five
+   narrow tracks ("Unter realen Bedingungen erproben"); reserving three keeps
+   every tagline starting on the same line across the strip. */
 .hairgrid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .phase {
   display: flex;
@@ -704,7 +728,10 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   text-transform: uppercase;
   font-variation-settings: "wdth" 87.5;
   color: var(--ink);
-  min-height: 2lh;
+  min-height: 3lh;
+  text-wrap: balance;
+  hyphens: auto;
+  hyphenate-limit-chars: 14 6 6; /* as on the macro scale: compounds only */
   transition: color var(--snap);
 }
 .phase-q {
@@ -720,16 +747,98 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   .hairgrid-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hairgrid-5 > :last-child { grid-column-end: span 2; }
   .hairgrid-5 > :last-child .phase-art { aspect-ratio: 5 / 2; }
+  .phase-title { min-height: 2lh; }
 }
 @media (max-width: 720px) {
   .hairgrid-5 { grid-template-columns: minmax(0, 1fr); }
   /* one track: the span above would open an implicit second column */
   .hairgrid-5 > :last-child { grid-column-end: auto; }
+  .phase-title { min-height: 0; }
   .phase-art, .hairgrid-5 > :last-child .phase-art {
     aspect-ratio: 2 / 1;
     font-size: clamp(4px, 2.4cqw, 12px);
   }
 }
+
+/* ── LEDE, TENSION, STATEMENT ─────────────────────────────────────────────
+   The argument is carried in short sentences. A lede stacks them beside a
+   headline; a card closes on its verdict under a hairline; a section closes
+   on a statement under the heavy rule.                                     */
+.lede { display: flex; flex-direction: column; gap: var(--u2); }
+/* Cards in one row share their row tracks (subgrid): titles, leads, bodies
+   and verdicts each start on the same line across the row, whatever their
+   own line count. A card spans one row per child — three by default,
+   .tension-4 where a lead sits between title and body. */
+.tension {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  row-gap: var(--u3);
+  align-content: start;
+}
+.tension-4 { grid-row: span 4; }
+/* A third of the shell is narrower than a d3 line wants: "Gemeinsame
+   Aufgabe." broke to two lines per half at full size. A step down on the
+   condensed cut keeps each half of a title pair on one line. */
+.tension .d3 {
+  font-size: clamp(1.2rem, 1.9vw, 1.75rem);
+  font-variation-settings: "wdth" 87.5;
+}
+.close-line {
+  padding-top: var(--u2);
+  border-top: var(--rule);
+  font-family: var(--font-micro);
+  font-size: var(--t-13);
+  font-weight: 700;
+  line-height: var(--lead-body);
+  color: var(--ink);
+  text-wrap: pretty;
+  hyphens: auto;
+}
+.slab-invert .close-line { color: var(--paper); border-top-color: #2C333B; }
+.statement {
+  margin-top: var(--u8);
+  padding-top: var(--u4);
+  border-top: var(--rule-bar);
+}
+/* The thin second sentence as its own block, so text-wrap: balance evens it
+   out on its own — inline after a <br> it broke greedily and left a single
+   word on the last line. */
+.statement .d-thin, .ai-band-text .d-thin { display: block; }
+.statement-coda {
+  align-self: end;
+  justify-self: end;
+  text-align: right;
+  font-size: var(--t-12);
+  color: var(--ink);
+}
+
+/* Ruled text columns — an argument in steps, side by side. */
+.cols-ruled > * { padding-top: var(--u3); border-top: var(--rule); }
+.slab-invert .cols-ruled > * { border-top-color: #2C333B; }
+
+/* ── ARC INDEX (/ansatz) ──────────────────────────────────────────────────
+   Five phase cells link down to their sections; the sixth holds the chain
+   of model states the phases leave behind.                                 */
+.arc-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--u2);
+  transition: background var(--snap);
+}
+.arc-cell .d4 { flex: 1; transition: color var(--snap); }
+.arc-cell:hover { background: var(--sunk); }
+.arc-cell:hover .d4 { color: var(--red); }
+.arc-jump { color: var(--red); }
+.arc-chain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--u);
+  background: var(--sunk);
+}
+.arc-chain .data { color: var(--ink); }
+.arc-arrow { color: var(--red); }
 
 /* ── DENK LABOR — three tiers ─────────────────────────────────────────────
    Lead, pair, index — each tier a step quieter: the plate shrinks and then
@@ -779,6 +888,7 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   font-variation-settings: "wdth" 100;
   color: var(--ink);
   hyphens: auto;
+  hyphenate-limit-chars: 14 6 6;
   overflow-wrap: break-word;
   text-wrap: pretty;
 }
@@ -794,6 +904,15 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 }
 .row:hover .lab-row-title { color: var(--paper); }
 .lab-colophon { margin-top: auto; }
+.lab-newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--u);
+  margin-top: var(--u4);
+  padding-top: var(--u3);
+  border-top: var(--rule);
+}
 
 /* One column: the lead plate takes a ratio again. */
 @media (max-width: 1180px) {
@@ -860,6 +979,9 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 /* Eyebrow reads white and a step larger over the field (slab-invert otherwise
    dims it to grey). Brackets keep the red accent. */
 .hero-fg .eyebrow { color: var(--paper); font-size: 0.825rem; }
+/* "Managementberatung für" — the lead-in to the bracketed disciplines, a
+   step dimmer so the brackets stay the eyebrow. */
+.hero-fg .hero-kicker { color: #8A939A; margin-bottom: var(--u2); }
 /* The statement is the hierarchy: heavy, condensed (wdth 75 — the narrowest
    cut, same as the 1789 run), full measure. One vw-driven size holds each of
    the three parallel sentences on a single line across the whole range — the
