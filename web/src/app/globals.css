@@ -731,6 +731,89 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   }
 }
 
+/* ── DENK LABOR — three tiers ─────────────────────────────────────────────
+   Lead, pair, index — each tier a step quieter: the plate shrinks and then
+   drops out, the screen gets finer, the title steps down and the excerpt
+   goes. Open, not boxed: the plates carry a full frame, the index is ruled.
+   On the desktop the lead plate has no ratio of its own — it grows to the
+   height of the side column, so both columns end on one line.            */
+.lab {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--u6);
+}
+.lab-item { display: flex; flex-direction: column; }
+.lab-item .plate { border: var(--rule); }
+.lab-item:hover .plate::before { background-position: 3px 4px; }
+.lab-item .d3, .lab-title { transition: color var(--snap); }
+.lab-item:hover .d3, .lab-item:hover .lab-title { color: var(--red); }
+
+.lab-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--u);
+  padding-top: var(--u2);
+}
+/* a meta line that wraps in a narrow column splits evenly, never "… MÄRZ / 2024" */
+.lab-text .data { text-wrap: balance; }
+.lab-lead .lab-text { gap: var(--u2); padding-top: var(--u3); }
+.lab-lead .plate {
+  flex: 1 1 auto;
+  min-height: 18rem;
+  aspect-ratio: auto;
+}
+.lab-lead .plate img { position: absolute; inset: 0; }
+
+.lab-side { display: flex; flex-direction: column; gap: var(--u6); }
+.lab-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--u3);
+}
+.lab-title,
+.lab-row-title {
+  font-family: var(--font-macro);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-macro2);
+  font-variation-settings: "wdth" 100;
+  color: var(--ink);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+.lab-title     { font-size: clamp(0.9375rem, 1.25vw, 1.125rem); line-height: 1.2; }
+.lab-row-title { font-size: 0.875rem; line-height: 1.3; }
+
+.lab-index { border-top: var(--rule-bar); }
+.lab-index .row { padding-block: var(--u2); }
+.lab-index .row > div {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) / 2);
+}
+.row:hover .lab-row-title { color: var(--paper); }
+.lab-colophon { margin-top: auto; }
+
+/* One column: the lead plate takes a ratio again. */
+@media (max-width: 1180px) {
+  .lab { grid-template-columns: minmax(0, 1fr); }
+  .lab-lead .plate { flex: none; min-height: 0; aspect-ratio: 16 / 10; }
+}
+/* Phone: the pair turns into thumbnails beside their text, so the step down
+   from the lead's full-width plate stays visible. */
+@media (max-width: 600px) {
+  .lab-pair { grid-template-columns: minmax(0, 1fr); }
+  .lab-pair .lab-item {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: var(--u2);
+    align-items: start;
+  }
+  .lab-pair .plate { aspect-ratio: 1; }
+  .lab-pair .lab-text { padding-top: 0; }
+}
+
 /* ── HERO — statement over a full-bleed ASCII field ────────────────────────
    Viewport-tall, so the 1789 run that follows stays off the first screen and
    reads as a divider only on scroll. The ASCII field is the full background,

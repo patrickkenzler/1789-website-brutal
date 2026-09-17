@@ -18,6 +18,11 @@ import { PhaseGlyph } from '@/components/PhaseGlyph'
 import { Rail } from '@/components/Rail'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
+/* Denk Labor in three tiers: the lead piece, the pieces that carry a cover,
+   then the index of the ones that don't. */
+const LAB_PLATED = ITEMS.filter((i) => i.image).slice(0, 2)
+const LAB_INDEX = ITEMS.filter((i) => !i.image).slice(0, 3)
+
 export default function Home() {
   return (
     <main>
@@ -358,7 +363,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ 06 · DENK LABOR ════════════════════════════════════════════════ */}
+      {/* ═══ 06 · DENK LABOR ════════════════════════════════════════════════
+          Three tiers, each a step quieter: the lead piece on a large plate,
+          the two that carry a cover on small plates, the index of the rest
+          in type only. Open rather than boxed — the plates are framed
+          objects, the index is ruled, the gutter between them is air.     */}
       <section className="slab">
         <div className="shell">
           <SectionHead
@@ -370,44 +379,46 @@ export default function Home() {
             }
           />
 
-          <div className="g12" style={{ rowGap: 'var(--u6)' }}>
-            {/* ── Featured ── */}
-            <article className="c7">
-              <Link href="/labor" className="card">
-                <Plate
-                  src={FEATURED.image}
-                  alt={FEATURED.title}
-                  label="ESSAY"
-                  coarse
-                  ratio="16 / 9"
-                />
-                <div className="card-body">
-                  <span className="data" style={{ display: 'block', marginBottom: 'var(--u2)' }}>
-                    {FEATURED.type} · {FEATURED.readTime} · {FEATURED.date}
-                  </span>
-                  <h3 className="d3" style={{ marginBottom: 'var(--u3)' }}>
-                    {FEATURED.title}
-                  </h3>
-                  <p className="body">{FEATURED.excerpt}</p>
-                </div>
-                <div className="card-foot">
-                  <span className="unit">{FEATURED.author}</span>
-                </div>
-              </Link>
-            </article>
+          <div className="lab">
+            {/* ── Lead ── */}
+            <Link href="/labor" className="lab-item lab-lead">
+              <Plate src={FEATURED.image} alt={FEATURED.title} coarse />
+              <div className="lab-text">
+                <span className="data">
+                  {FEATURED.type} · {itemMeta(FEATURED)}
+                </span>
+                <h3 className="d3">{FEATURED.title}</h3>
+                <p className="body">{FEATURED.excerpt}</p>
+                <span className="unit">{byline(FEATURED)}</span>
+              </div>
+            </Link>
 
-            {/* ── Index of the rest ── */}
-            <div className="c5">
-              <div style={{ borderTop: 'var(--rule-bar)' }}>
-                {ITEMS.slice(0, 5).map((it) => (
-                  <Link key={it.title} href="/labor" className="row">
-                    <div>
-                      <span className="data" style={{ display: 'block', marginBottom: 4 }}>
+            <div className="lab-side">
+              {/* ── Pair ── */}
+              <div className="lab-pair">
+                {LAB_PLATED.map((it) => (
+                  <Link key={it.title} href="/labor" className="lab-item">
+                    <Plate src={it.image} alt={it.title} />
+                    <div className="lab-text">
+                      <span className="data">
                         {it.type} · {itemMeta(it)}
                       </span>
-                      <h4 className="d4" style={{ marginBottom: 4 }}>
-                        {it.title}
-                      </h4>
+                      <h3 className="lab-title">{it.title}</h3>
+                      <span className="unit">{byline(it)}</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* ── Index ── */}
+              <div className="lab-index">
+                {LAB_INDEX.map((it) => (
+                  <Link key={it.title} href="/labor" className="row">
+                    <div>
+                      <span className="data">
+                        {it.type} · {itemMeta(it)}
+                      </span>
+                      <h4 className="lab-row-title">{it.title}</h4>
                       <span className="unit">{byline(it)}</span>
                     </div>
                     <span className="row-arrow" aria-hidden="true">
@@ -417,7 +428,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div style={{ marginTop: 'var(--u4)' }}>
+              <div className="lab-colophon">
                 <Barcode />
                 <p className="unit" style={{ marginTop: 'var(--u2)' }}>
                   Podcasts, Essays, Whitepaper und Experimente — was im
