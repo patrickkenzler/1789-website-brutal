@@ -14,6 +14,14 @@ import {
 } from '@/components/ui'
 import { AsciiWaves } from '@/components/AsciiWaves'
 import { AiGlyph } from '@/components/AiGlyph'
+import { PhaseGlyph } from '@/components/PhaseGlyph'
+import { Rail } from '@/components/Rail'
+import { ScrollReveal } from '@/components/ScrollReveal'
+
+/* Denk Labor in three tiers: the lead piece, the pieces that carry a cover,
+   then the index of the ones that don't. */
+const LAB_PLATED = ITEMS.filter((i) => i.image).slice(0, 2)
+const LAB_INDEX = ITEMS.filter((i) => !i.image).slice(0, 3)
 
 export default function Home() {
   return (
@@ -23,6 +31,8 @@ export default function Home() {
           background, dimmed to a texture; the statement and actions sit in
           front. The hero fills the screen so the 1789 run below it stays off
           the first view and reads as a divider only once you scroll.       */}
+      <ScrollReveal />
+
       <section className="slab-invert hero-sec">
         <div className="hero-bg" aria-hidden="true">
           <AsciiWaves />
@@ -43,12 +53,18 @@ export default function Home() {
               sentence turns on rather than falling wherever it breaks. */}
           {/* The verbs stay at the headline's own bold weight (not the thin
               cut used elsewhere) so the red reads over the ASCII texture. */}
+          {/* Each sentence is its own block so it can shutter in on its own
+              beat (see .hero-line). */}
           <h1 className="d1">
-            Strategie <span className="d-red">scheitert</span> an Struktur.
-            <br />
-            Struktur <span className="d-red">überholt</span> Strategie.
-            <br />
-            Dazwischen <span className="d-red">entscheidet</span> Organisation.
+            <span className="hero-line">
+              Strategie <span className="d-red">scheitert</span> an Struktur.
+            </span>
+            <span className="hero-line">
+              Struktur <span className="d-red">überholt</span> Strategie.
+            </span>
+            <span className="hero-line">
+              Dazwischen <span className="d-red">entscheidet</span> Organisation.
+            </span>
           </h1>
 
           <div
@@ -84,11 +100,13 @@ export default function Home() {
 
           <div className="g12" style={{ rowGap: 'var(--u6)' }}>
             <div className="c7">
-              <h2 className="d2">
-                Was heute blockiert,
-                <br />
-                <span className="d-thin">
-                  hat gestern <span className="d-strike">getragen</span>.
+              <h2 className="d2" data-reveal>
+                <span className="reveal-wipe">
+                  Was heute blockiert,
+                  <br />
+                  <span className="d-thin d-wide">
+                    hat gestern <span className="d-strike">getragen</span>.
+                  </span>
                 </span>
               </h2>
             </div>
@@ -154,9 +172,11 @@ export default function Home() {
             }
           />
 
-          <h2 className="d2" style={{ marginBottom: 'var(--u8)', maxWidth: '18ch' }}>
-            Organisationen, die den{' '}
-            <span className="d-thin d-red">Shift</span> gewagt haben.
+          <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)', maxWidth: '18ch' }}>
+            <span className="reveal-wipe">
+              Organisationen, die den{' '}
+              <span className="d-thin d-wide d-red">Shift</span> gewagt haben.
+            </span>
           </h2>
 
           <div className="g3">
@@ -203,19 +223,19 @@ export default function Home() {
       {/* ═══ Questions ticker ═══════════════════════════════════════════════ */}
       <Tape items={QUESTIONS} />
 
-      {/* ═══ 03 · STIMMEN ═══════════════════════════════════════════════════ */}
+      {/* ═══ 03 · STIMMEN ═══════════════════════════════════════════════════
+          A rail, not a grid: the cards run past the right edge of the shell
+          and scroll sideways. Each card leads with the portrait as a
+          landscape band, the quote underneath in the macro face.          */}
       <section className="slab">
         <div className="shell">
-          <SectionHead label="Stimmen" />
-
-          <div className="hairgrid hairgrid-2 stimmen-grid">
+          <Rail label="Stimmen" ariaLabel="Stimmen unserer Kunden">
             {TESTIMONIALS.map((t) => (
-              <figure key={t.name} className="pad stimme">
-                <div className="stimme-text">
-                  <span
-                    className="unit"
-                    style={{ display: 'block', marginBottom: 'var(--u3)' }}
-                  >
+              <figure key={t.name} className="stimme">
+                <Plate src={t.photo} alt={t.name} ratio="16 / 10" frame={t.frame} />
+
+                <div className="stimme-body">
+                  <span className="unit" style={{ display: 'block' }}>
                     {t.company}
                   </span>
 
@@ -223,17 +243,7 @@ export default function Home() {
                     <Emphasis text={t.quote} />
                   </blockquote>
 
-                  <figcaption
-                    className="stimme-cap"
-                    style={{
-                      borderTop: 'var(--rule)',
-                      paddingTop: 'var(--u2)',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      gap: 'var(--u2)',
-                      flexWrap: 'wrap',
-                    }}
-                  >
+                  <figcaption className="stimme-cap">
                     <span className="data" style={{ color: 'var(--ink)' }}>
                       {t.name} — {t.title}
                     </span>
@@ -244,28 +254,25 @@ export default function Home() {
                     )}
                   </figcaption>
                 </div>
-
-                <div className="stimme-photo">
-                  <Plate src={t.photo} alt={t.name} />
-                </div>
               </figure>
             ))}
 
-            {/* Five entries in two columns leave the sixth cell empty. Rather
-                than an unexplained gap, the grid ends on its own exit. */}
-            <Link href="/projekte" className="pad endcell">
+            {/* The rail ends on its own exit. */}
+            <Link href="/projekte" className="pad endcell stimme-end">
               <span className="unit">Weiterlesen</span>
               <span className="d3">
                 Alle Cases <span aria-hidden="true">→</span>
               </span>
             </Link>
-          </div>
+          </Rail>
         </div>
       </section>
 
       {/* ═══ UNSER ANSATZ ═══════════════════════════════════════════════════
-          Five phases as an index. The sequence reads top to bottom; the phase
-          titles carry it, no leading number.                               */}
+          Five phases as a strip, left to right. The arrow after each phase
+          label carries the sequence — no leading number — and a blueprint
+          diagram on top of each cell gives the phase a picture before its
+          words.                                                            */}
       <section className="slab">
         <div className="shell">
           <SectionHead
@@ -279,10 +286,12 @@ export default function Home() {
 
           <div className="g12" style={{ rowGap: 'var(--u6)', marginBottom: 'var(--u8)' }}>
             <div className="c7">
-              <h2 className="d2">
-                Von Diagnose
-                <br />
-                <span className="d-thin d-red">zur Eigenständigkeit.</span>
+              <h2 className="d2" data-reveal>
+                <span className="reveal-wipe">
+                  Von Diagnose
+                  <br />
+                  <span className="d-thin d-wide d-red">zur Eigenständigkeit.</span>
+                </span>
               </h2>
             </div>
             <div className="c5">
@@ -293,21 +302,31 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{ borderTop: 'var(--rule-bar)' }}>
-            {PHASES.map((p) => (
-              <Link key={p.num} href={`/ansatz#phase-${p.num}`} className="row">
-                <div>
-                  <h3 className="d3" style={{ marginBottom: 6 }}>
-                    {p.title}
+          <div className="hairgrid hairgrid-5">
+            {PHASES.map((p, i) => (
+              <Link key={p.num} href={`/ansatz#phase-${p.num}`} className="phase">
+                <PhaseGlyph index={i} />
+                <div className="phase-body">
+                  <span className="eyebrow">
+                    {p.meta}
+                    {i < PHASES.length - 1 && (
+                      <span className="phase-next" aria-hidden="true">
+                        {' '}
+                        →
+                      </span>
+                    )}
+                  </span>
+                  {/* Every title is "<verb-able> machen": breaking after the
+                      first word sets all five on two lines, so the repeated
+                      "machen" runs along the strip as one line. */}
+                  <h3 className="phase-title">
+                    {p.title.split(' ')[0]}
+                    <br />
+                    {p.title.split(' ').slice(1).join(' ')}
                   </h3>
-                  <p className="data" style={{ marginBottom: 8 }}>
-                    {p.meta} — {p.question}
-                  </p>
                   <p className="body">{p.tagline}</p>
+                  <p className="data phase-q">{p.question}</p>
                 </div>
-                <span className="row-arrow" aria-hidden="true">
-                  →
-                </span>
               </Link>
             ))}
           </div>
@@ -322,10 +341,12 @@ export default function Home() {
           {/* Break at the accent boundary. Wrapped to a measure instead, the
               red span opened mid-line and ran over the break, so the colour
               looked like it had landed where the text happened to fold. */}
-          <h2 className="d2" style={{ marginBottom: 'var(--u8)' }}>
-            Vier Dimensionen, in denen
-            <br />
-            <span className="d-thin d-red">KI Organisation neu denkt.</span>
+          <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)' }}>
+            <span className="reveal-wipe">
+              Vier Dimensionen, in denen
+              <br />
+              <span className="d-thin d-wide d-red">KI Organisation neu denkt.</span>
+            </span>
           </h2>
 
           <div className="hairgrid hairgrid-4">
@@ -342,7 +363,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ 06 · DENK LABOR ════════════════════════════════════════════════ */}
+      {/* ═══ 06 · DENK LABOR ════════════════════════════════════════════════
+          Three tiers, each a step quieter: the lead piece on a large plate,
+          the two that carry a cover on small plates, the index of the rest
+          in type only. Open rather than boxed — the plates are framed
+          objects, the index is ruled, the gutter between them is air.     */}
       <section className="slab">
         <div className="shell">
           <SectionHead
@@ -354,44 +379,46 @@ export default function Home() {
             }
           />
 
-          <div className="g12" style={{ rowGap: 'var(--u6)' }}>
-            {/* ── Featured ── */}
-            <article className="c7">
-              <Link href="/labor" className="card">
-                <Plate
-                  src={FEATURED.image}
-                  alt={FEATURED.title}
-                  label="ESSAY"
-                  coarse
-                  ratio="16 / 9"
-                />
-                <div className="card-body">
-                  <span className="data" style={{ display: 'block', marginBottom: 'var(--u2)' }}>
-                    {FEATURED.type} · {FEATURED.readTime} · {FEATURED.date}
-                  </span>
-                  <h3 className="d3" style={{ marginBottom: 'var(--u3)' }}>
-                    {FEATURED.title}
-                  </h3>
-                  <p className="body">{FEATURED.excerpt}</p>
-                </div>
-                <div className="card-foot">
-                  <span className="unit">{FEATURED.author}</span>
-                </div>
-              </Link>
-            </article>
+          <div className="lab">
+            {/* ── Lead ── */}
+            <Link href="/labor" className="lab-item lab-lead">
+              <Plate src={FEATURED.image} alt={FEATURED.title} coarse />
+              <div className="lab-text">
+                <span className="data">
+                  {FEATURED.type} · {itemMeta(FEATURED)}
+                </span>
+                <h3 className="d3">{FEATURED.title}</h3>
+                <p className="body">{FEATURED.excerpt}</p>
+                <span className="unit">{byline(FEATURED)}</span>
+              </div>
+            </Link>
 
-            {/* ── Index of the rest ── */}
-            <div className="c5">
-              <div style={{ borderTop: 'var(--rule-bar)' }}>
-                {ITEMS.slice(0, 5).map((it) => (
-                  <Link key={it.title} href="/labor" className="row">
-                    <div>
-                      <span className="data" style={{ display: 'block', marginBottom: 4 }}>
+            <div className="lab-side">
+              {/* ── Pair ── */}
+              <div className="lab-pair">
+                {LAB_PLATED.map((it) => (
+                  <Link key={it.title} href="/labor" className="lab-item">
+                    <Plate src={it.image} alt={it.title} />
+                    <div className="lab-text">
+                      <span className="data">
                         {it.type} · {itemMeta(it)}
                       </span>
-                      <h4 className="d4" style={{ marginBottom: 4 }}>
-                        {it.title}
-                      </h4>
+                      <h3 className="lab-title">{it.title}</h3>
+                      <span className="unit">{byline(it)}</span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* ── Index ── */}
+              <div className="lab-index">
+                {LAB_INDEX.map((it) => (
+                  <Link key={it.title} href="/labor" className="row">
+                    <div>
+                      <span className="data">
+                        {it.type} · {itemMeta(it)}
+                      </span>
+                      <h4 className="lab-row-title">{it.title}</h4>
                       <span className="unit">{byline(it)}</span>
                     </div>
                     <span className="row-arrow" aria-hidden="true">
@@ -401,7 +428,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div style={{ marginTop: 'var(--u4)' }}>
+              <div className="lab-colophon">
                 <Barcode />
                 <p className="unit" style={{ marginTop: 'var(--u2)' }}>
                   Podcasts, Essays, Whitepaper und Experimente — was im

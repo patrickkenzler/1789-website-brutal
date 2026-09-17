@@ -50,6 +50,10 @@ export type Testimonial = {
   title: string
   company: string
   photo: string
+  /** Crop override for the landscape band on the card: CSS object-position,
+   *  and an optional zoom about `origin` to push lettering in the source out
+   *  of the frame. Unset: centred, anchored high (where the faces are). */
+  frame?: { position?: string; zoom?: number; origin?: string }
   linkedin: string
   caseHref: string | null
   caseLabel: string | null

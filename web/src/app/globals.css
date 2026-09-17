@@ -253,6 +253,45 @@ body::after {
 .d-thin { font-weight: 200; }
 .d-red  { color: var(--red); }
 
+/* Width-axis contrast — the other voice a variable mono can speak. An accent
+   phrase set wide against the condensed base line reads as a change of
+   register, not just of colour. Paired with .d-thin on section headings. */
+.d-wide { font-variation-settings: "wdth" 112; letter-spacing: -0.01em; }
+
+/* ── MECHANICAL MOTION ────────────────────────────────────────────────────
+   Every reveal is a hard clip wipe in steps — a shutter, not a fade. Nothing
+   here can hide content: the hero lines animate from a CSS keyframe with no
+   script dependency, and scroll reveals are only armed by JS after mount,
+   for headings still below the fold.                                       */
+
+/* Hero statement: three lines shutter in, one after another. */
+.hero-line { display: block; }
+@media (prefers-reduced-motion: no-preference) {
+  .hero-line { animation: hero-wipe 520ms steps(6, end) both; }
+  .hero-line:nth-child(2) { animation-delay: 150ms; }
+  .hero-line:nth-child(3) { animation-delay: 300ms; }
+}
+@keyframes hero-wipe {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* Scroll reveal: visible by default; .reveal-armed clips, .reveal-on wipes.
+   The clip sits on an inner wrapper rather than on the observed heading, so
+   what the observer measures is the heading's untouched box, independent of
+   how the wipe hides its content. */
+.reveal-wipe { display: block; }
+[data-reveal].reveal-armed > .reveal-wipe { clip-path: inset(0 100% 0 0); }
+[data-reveal].reveal-on > .reveal-wipe {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 480ms steps(6, end);
+}
+
+/* The print slips: on hover the misregistration screen of a case plate shifts
+   a couple of dots, in two hard steps. */
+.plate::before { transition: background-position 160ms steps(2, end); }
+a.card:hover .plate::before { background-position: 3px 4px; }
+
 /* Struck-through emphasis — a hazard-red strike, not an italic. */
 .d-strike {
   position: relative;
@@ -531,55 +570,248 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 
 @media (max-width: 720px) { .endcell { gap: var(--u4); } }
 
-/* ── STIMMEN — testimonial: quote + halftone portrait, uniform card height ──
-   A fixed row height makes every card equal; the quote is set a step smaller
-   and tighter so the longest one still fits, and the caption is pinned to the
-   card foot so all names align. The portrait fills the card height on the
-   right as a black-and-white halftone (the red screen is dropped here). */
-.stimmen-grid { grid-auto-rows: 24rem; }
-.stimme {
-  display: grid;
-  grid-template-columns: 1fr clamp(140px, 30%, 210px);
-  gap: var(--u4);
-  align-items: stretch;
+/* ── RAIL — a horizontal index ─────────────────────────────────────────────
+   Cards run past the right edge of the shell; the cut-off card is the
+   affordance, the arrows in the section head are the control. Dividers work
+   as in .hairgrid: item outlines meeting in a 1px gap. The 1px block padding
+   keeps those outlines inside the scrollport, which would otherwise clip
+   them; the bottom padding is room for the scrollbar. */
+.rail {
+  display: flex;
+  gap: var(--hair);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  margin-inline: calc(-1 * var(--gutter));
+  padding: var(--hair) var(--gutter) var(--u3);
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: thin;
+  scrollbar-color: var(--ink) transparent;
 }
-.stimme-text {
+.rail > * {
+  flex: 0 0 min(30rem, 86vw);
+  scroll-snap-align: start;
+  outline: var(--hair) solid var(--ink);
+}
+.rail-nav { display: inline-flex; gap: var(--u); }
+.rail-btn {
+  width: 44px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--rule);
+  font-family: var(--font-micro);
+  font-size: var(--t-13);
+  color: var(--ink);
+  transition: background var(--snap), color var(--snap), border-color var(--snap);
+}
+.rail-btn:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+.rail-btn:disabled { color: var(--ink-20); border-color: var(--ink-20); cursor: default; }
+
+/* ── STIMMEN — testimonial card on the rail ───────────────────────────────
+   Photo-led: the portrait is a landscape band across the top (every source
+   has the face in its upper part, so the crop anchors high), the quote is set
+   in the macro face — a pull-quote register, distinct from body copy — and
+   the caption is pinned to the foot so all names align along the rail. */
+.stimme {
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  background: var(--paper);
+}
+.stimme .plate img { object-position: 50% 18%; }
+.stimme-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--u3);
+  padding: var(--pad-dense);
 }
 .stimme-quote {
-  font-family: var(--font-micro);
-  font-size: 0.75rem;
-  line-height: 1.5;
-  color: var(--ink-70);
+  font-family: var(--font-macro);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: var(--ink);
   hyphens: auto;
   text-wrap: pretty;
-  margin-bottom: var(--u3);
 }
+.stimme-quote::before { content: "„"; }
+.stimme-quote::after  { content: "“"; }
 .stimme-quote strong {
   font-weight: 700;
-  color: var(--ink);
   box-shadow: inset 0 -1px 0 var(--red);
 }
-.stimme-cap { margin-top: auto; }
-.stimme-photo { position: relative; min-width: 0; }
-.stimme-photo .plate {
-  aspect-ratio: auto;
-  height: 100%;
-  border-bottom: 0;
+.stimme-cap {
+  margin-top: auto;
+  border-top: var(--rule);
+  padding-top: var(--u2);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--u2);
+  flex-wrap: wrap;
 }
-/* Pure black-and-white — drop the red misregistration screen. */
-.stimme-photo .plate::before { display: none; }
+.stimme-end { flex-basis: min(18rem, 60vw); }
 
-/* Below this the text column would be too narrow to hold the longest quote in
-   a fixed height, so the card stacks: portrait on top, text below, height
-   free. */
-@media (max-width: 1100px) {
-  .stimmen-grid { grid-auto-rows: auto; }
-  .stimme { grid-template-columns: 1fr; }
-  .stimme-photo { order: -1; height: 14rem; }
-  .stimme-cap { margin-top: var(--u4); }
+/* ── PHASES — the method as a strip ───────────────────────────────────────
+   Five cells left to right; the accent arrow after each phase label carries
+   the sequence. A blueprint diagram tops each cell: the field in ink, the
+   intervention in the accent. The title is a condensed cut sized to the
+   five-column track — "Entscheidbar" has to hold on one line. */
+.hairgrid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.phase {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  container-type: inline-size;
+  transition: background var(--snap);
+}
+.phase:hover { background: var(--sunk); }
+.phase:hover .phase-title { color: var(--red); }
+.phase-art {
+  margin: 0;
+  aspect-ratio: 5 / 4;
+  display: grid;
+  place-content: center;
+  overflow: hidden;
+  border-bottom: var(--rule);
+  font-family: var(--font-micro);
+  /* 44 columns at 0.6em fill ~95% of the cell width */
+  font-size: clamp(4px, 3.6cqw, 12px);
+  line-height: 1.2;
+  letter-spacing: 0;
+  white-space: pre;
+  color: var(--ink);
+  user-select: none;
+}
+.phase-art code { font: inherit; }
+.phase-art .hi { color: var(--red); }
+.phase-next { color: var(--red); }
+.phase-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--u2);
+  padding: var(--u3);
+}
+.phase-title {
+  font-family: var(--font-macro);
+  font-size: clamp(1rem, 1.35vw, 1.3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: var(--track-macro2);
+  text-transform: uppercase;
+  font-variation-settings: "wdth" 87.5;
+  color: var(--ink);
+  min-height: 2lh;
+  transition: color var(--snap);
+}
+.phase-q {
+  margin-top: auto;
+  padding-top: var(--u2);
+  border-top: var(--rule-faint);
+  color: var(--ink-70);
+}
+
+/* Three tracks leave a sixth slot empty; the last phase — the exit — takes
+   the remaining two, with its diagram in a wider, shorter box. */
+@media (max-width: 1180px) {
+  .hairgrid-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .hairgrid-5 > :last-child { grid-column-end: span 2; }
+  .hairgrid-5 > :last-child .phase-art { aspect-ratio: 5 / 2; }
+}
+@media (max-width: 720px) {
+  .hairgrid-5 { grid-template-columns: minmax(0, 1fr); }
+  /* one track: the span above would open an implicit second column */
+  .hairgrid-5 > :last-child { grid-column-end: auto; }
+  .phase-art, .hairgrid-5 > :last-child .phase-art {
+    aspect-ratio: 2 / 1;
+    font-size: clamp(4px, 2.4cqw, 12px);
+  }
+}
+
+/* ── DENK LABOR — three tiers ─────────────────────────────────────────────
+   Lead, pair, index — each tier a step quieter: the plate shrinks and then
+   drops out, the screen gets finer, the title steps down and the excerpt
+   goes. Open, not boxed: the plates carry a full frame, the index is ruled.
+   On the desktop the lead plate has no ratio of its own — it grows to the
+   height of the side column, so both columns end on one line.            */
+.lab {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--u6);
+}
+.lab-item { display: flex; flex-direction: column; }
+.lab-item .plate { border: var(--rule); }
+.lab-item:hover .plate::before { background-position: 3px 4px; }
+.lab-item .d3, .lab-title { transition: color var(--snap); }
+.lab-item:hover .d3, .lab-item:hover .lab-title { color: var(--red); }
+
+.lab-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--u);
+  padding-top: var(--u2);
+}
+/* a meta line that wraps in a narrow column splits evenly, never "… MÄRZ / 2024" */
+.lab-text .data { text-wrap: balance; }
+.lab-lead .lab-text { gap: var(--u2); padding-top: var(--u3); }
+.lab-lead .plate {
+  flex: 1 1 auto;
+  min-height: 18rem;
+  aspect-ratio: auto;
+}
+.lab-lead .plate img { position: absolute; inset: 0; }
+
+.lab-side { display: flex; flex-direction: column; gap: var(--u6); }
+.lab-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--u3);
+}
+.lab-title,
+.lab-row-title {
+  font-family: var(--font-macro);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--track-macro2);
+  font-variation-settings: "wdth" 100;
+  color: var(--ink);
+  hyphens: auto;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+.lab-title     { font-size: clamp(0.9375rem, 1.25vw, 1.125rem); line-height: 1.2; }
+.lab-row-title { font-size: 0.875rem; line-height: 1.3; }
+
+.lab-index { border-top: var(--rule-bar); }
+.lab-index .row { padding-block: var(--u2); }
+.lab-index .row > div {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) / 2);
+}
+.row:hover .lab-row-title { color: var(--paper); }
+.lab-colophon { margin-top: auto; }
+
+/* One column: the lead plate takes a ratio again. */
+@media (max-width: 1180px) {
+  .lab { grid-template-columns: minmax(0, 1fr); }
+  .lab-lead .plate { flex: none; min-height: 0; aspect-ratio: 16 / 10; }
+}
+/* Phone: the pair turns into thumbnails beside their text, so the step down
+   from the lead's full-width plate stays visible. */
+@media (max-width: 600px) {
+  .lab-pair { grid-template-columns: minmax(0, 1fr); }
+  .lab-pair .lab-item {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: var(--u2);
+    align-items: start;
+  }
+  .lab-pair .plate { aspect-ratio: 1; }
+  .lab-pair .lab-text { padding-top: 0; }
 }
 
 /* ── HERO — statement over a full-bleed ASCII field ────────────────────────
@@ -912,22 +1144,23 @@ textarea.input { resize: vertical; min-height: 120px; }
 a.card:hover { background: var(--sunk); }
 a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
 
-/* Image compartment inside a card — a duotone halftone. The grayscale image
-   multiplies over Electric Aqua (the imagery colour, matching the AI
-   graphics), so shadows fall to black and highlights take the blue. The dot
-   screens below keep the 1-bit rasterised print texture. */
+/* Image compartment inside a card. The photograph keeps its own colour, a
+   touch harder in contrast and saturation so it holds up under the screens;
+   the dot screens below turn it into a rasterised print. (Sources that are
+   black-and-white files stay black-and-white — there is no colour to show.)
+   The imageless slug plate keeps the Electric Aqua ground. */
 .plate {
   position: relative;
   overflow: hidden;
-  background: var(--accent-blue);
+  background: var(--sunk);
   border-bottom: var(--rule);
   aspect-ratio: 4 / 3;
 }
+.plate.dotfield { background-color: var(--accent-blue); }
 .plate img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.45) brightness(1.12);
-  mix-blend-mode: multiply;
+  filter: contrast(1.12) saturate(1.2);
 }
 
 /* ═══ 07 · HALFTONE + DITHER ═══════════════════════════════════════════════
@@ -941,8 +1174,8 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
   inset: 0;
   pointer-events: none;
   mix-blend-mode: multiply;
-  opacity: 0.9;
-  background-image: radial-gradient(var(--ink) 34%, transparent 36%);
+  opacity: 0.82;
+  background-image: radial-gradient(var(--ink) 31%, transparent 33%);
   background-size: 4px 4px;
   background-position: 0 0;
 }
@@ -959,7 +1192,7 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
   z-index: 1;
   pointer-events: none;
   mix-blend-mode: multiply;
-  opacity: 0.5;
+  opacity: 0.38;
   background-image: radial-gradient(var(--red) 30%, transparent 32%);
   background-size: 4px 4px;
   background-position: 1px 2px;
