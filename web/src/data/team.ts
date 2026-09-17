@@ -100,10 +100,6 @@ export const TESTIMONIALS: Testimonial[] = [
     title: 'Chief People and Culture Officer',
     company: 'WTS Deutschland',
     photo: '/testimonials/viola-krauss.jpg',
-    /* The source is a campaign visual with lettering down the left edge and
-       across the foot — zoomed from the top-right corner so only the portrait
-       stays in the band. */
-    frame: { position: '100% 0%', zoom: 1.35, origin: '100% 0%' },
     linkedin: 'https://www.linkedin.com/in/viola-krauss-3a09254b',
     caseHref: '/projekte/motivieren-und-entwickeln',
     caseLabel: 'Motivieren und Entwickeln',
