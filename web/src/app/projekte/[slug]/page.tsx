@@ -84,7 +84,7 @@ export default async function CasePage({
       {/* ═══ 01 · PLATE ═════════════════════════════════════════════════════ */}
       <section className="slab slab-dense">
         <div className="shell">
-          <Plate src={c.image} alt={c.title} label={c.client} coarse ratio="21 / 9" />
+          <Plate src={c.image} alt={c.title} label={c.client} note={null} coarse ratio="21 / 9"/>
         </div>
       </section>
 

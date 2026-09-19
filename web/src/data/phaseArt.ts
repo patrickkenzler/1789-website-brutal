@@ -1,9 +1,7 @@
 /* ═══ UNSER ANSATZ — one blueprint diagram per phase ═══════════════════════
-   Five schematic ASCII drawings on a 44×16 character canvas, generated at
-   module load — plain strings by the time a page renders, no client code.
-   Pure ASCII only: box-drawing and geometric glyphs fall back to a wider
-   font and break the grid. `#` is the accent run (PhaseGlyph colours it);
-   everything else is the field, set in ink.
+   Five schematic drawings on the 44×16 canvas, generated at module load —
+   plain strings by the time a page renders, no client code. `#` is the
+   accent run (AsciiArt colours it); everything else is the field, in ink.
 
    The motif is the same throughout the site: the organisation is a field or
    a frame, the intervention is the solid block.
@@ -13,55 +11,7 @@
      Pilotierung      — a loop with arrows, the model cycling inside it
      Eigenständigkeit — the frame keeps its lattice; the block leaves to the right */
 
-const W = 44
-const H = 16
-
-class Canvas {
-  private g: string[][] = Array.from({ length: H }, () => Array<string>(W).fill(' '))
-
-  set(x: number, y: number, ch: string) {
-    if (x >= 0 && x < W && y >= 0 && y < H) this.g[y][x] = ch
-  }
-  get(x: number, y: number): string {
-    return x >= 0 && x < W && y >= 0 && y < H ? this.g[y][x] : ' '
-  }
-  hline(x1: number, x2: number, y: number, ch: string, step = 1) {
-    for (let x = x1; x <= x2; x += step) this.set(x, y, ch)
-  }
-  vline(x: number, y1: number, y2: number, ch: string, step = 1) {
-    for (let y = y1; y <= y2; y += step) this.set(x, y, ch)
-  }
-  fill(x: number, y: number, w: number, h: number, ch: string) {
-    for (let j = y; j < y + h; j++) for (let i = x; i < x + w; i++) this.set(i, j, ch)
-  }
-  /** Outlined box with `+` corners. */
-  rect(x: number, y: number, w: number, h: number, hz = '-', vt = '|') {
-    this.hline(x, x + w - 1, y, hz)
-    this.hline(x, x + w - 1, y + h - 1, hz)
-    this.vline(x, y, y + h - 1, vt)
-    this.vline(x + w - 1, y, y + h - 1, vt)
-    for (const [cx, cy] of [[x, y], [x + w - 1, y], [x, y + h - 1], [x + w - 1, y + h - 1]]) {
-      this.set(cx, cy, '+')
-    }
-  }
-  /** Scatter `chars` over a region at `density` — seeded, so every build
-   *  draws the same field. */
-  noise(seed: number, density: number, chars: string, x1 = 0, y1 = 0, x2 = W - 1, y2 = H - 1) {
-    let s = seed >>> 0
-    const r = () => {
-      s = (Math.imul(s, 1664525) + 1013904223) >>> 0
-      return s / 4294967296
-    }
-    for (let y = y1; y <= y2; y++) {
-      for (let x = x1; x <= x2; x++) {
-        if (r() < density) this.set(x, y, chars[Math.floor(r() * chars.length)])
-      }
-    }
-  }
-  toString() {
-    return this.g.map((row) => row.join('')).join('\n')
-  }
-}
+import { Canvas, W, H } from './asciiCanvas'
 
 /* Beobachtung — a 3×3 structure surfaces out of the noise, one cell solid. */
 function beobachtung(): string {
