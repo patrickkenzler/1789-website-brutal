@@ -17,6 +17,7 @@ import { AiBand } from '@/components/AiBand'
 import { PhaseGlyph } from '@/components/PhaseGlyph'
 import { Rail } from '@/components/Rail'
 import { ScrollReveal } from '@/components/ScrollReveal'
+import { Tension } from '@/components/Tension'
 
 /* Denk Labor in three tiers: the lead piece, the pieces that carry a cover,
    then an index of three more. */
@@ -102,42 +103,33 @@ export default function Home() {
 
       {/* ═══ DER BLICK ══════════════════════════════════════════════════════
           No label strip: the client tape above already closes off the hero,
-          and the headline opens the argument on its own. Three tensions, a
-          closing thesis — and its three questions run on in the ticker.    */}
+          and the headline opens the argument on its own. One text axis:
+          headline, then the lede beneath it. Three tensions as cards that
+          show only the term pair and its verdict — the explanation is behind
+          them (see Tension) — and a closing thesis whose three questions
+          run on in the ticker.                                              */}
       <section className="slab">
         <div className="shell">
-          <div className="g12" style={{ rowGap: 'var(--u6)' }}>
-            <div className="c7">
-              <h2 className="d2" data-reveal>
-                <span className="reveal-wipe">
-                  Was heute blockiert,
-                  <br />
-                  <span className="d-thin d-wide">
-                    hat gestern <span className="d-strike">getragen</span>.
-                  </span>
-                </span>
-              </h2>
-            </div>
-            <div className="c5 lede">
-              {BLICK.intro.map((p) => (
-                <p key={p} className="body-lg">
-                  {p}
-                </p>
-              ))}
-            </div>
+          <h2 className="d2" data-reveal>
+            <span className="reveal-wipe">
+              Was heute blockiert,
+              <br />
+              <span className="d-thin d-wide">
+                hat gestern <span className="d-strike">getragen</span>.
+              </span>
+            </span>
+          </h2>
+          <div className="lede standfirst">
+            {BLICK.intro.map((p) => (
+              <p key={p} className="body-lg">
+                {p}
+              </p>
+            ))}
           </div>
 
-          <div className="hairgrid hairgrid-3" style={{ marginTop: 'var(--u8)' }}>
+          <div className="hairgrid hairgrid-3 tensions" style={{ marginTop: 'var(--u8)' }}>
             {BLICK.tensions.map((t) => (
-              <article key={t.title[0]} className="pad tension">
-                <h3 className="d3">
-                  {t.title[0]}
-                  <br />
-                  <span className="d-thin">{t.title[1]}</span>
-                </h3>
-                <p className="body">{t.body}</p>
-                <p className="close-line">{t.close}</p>
-              </article>
+              <Tension key={t.title[0]} title={t.title} body={t.body} close={t.close} />
             ))}
           </div>
 

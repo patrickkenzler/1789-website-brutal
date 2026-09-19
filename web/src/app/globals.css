@@ -765,6 +765,8 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
    headline; a card closes on its verdict under a hairline; a section closes
    on a statement under the heavy rule.                                     */
 .lede { display: flex; flex-direction: column; gap: var(--u2); }
+/* Lede set under its headline on the same axis, not beside it. */
+.standfirst { margin-top: var(--u6); }
 /* Cards in one row share their row tracks (subgrid): titles, leads, bodies
    and verdicts each start on the same line across the row, whatever their
    own line count. A card spans one row per child — three by default,
@@ -781,8 +783,92 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
    Aufgabe." broke to two lines per half at full size. A step down on the
    condensed cut keeps each half of a title pair on one line. */
 .tension .d3 {
-  font-size: clamp(1.2rem, 1.9vw, 1.75rem);
+  font-size: clamp(1.15rem, 1.9vw, 1.85rem);
   font-variation-settings: "wdth" 87.5;
+}
+
+/* ── TENSION, FLIPPED — the pair is the picture, the argument is behind it ─
+   The card shows the term pair (the new in ink, the old in the accent) and
+   its verdict. The explanation sits in the row between them, clipped shut;
+   it shutters in when the card is hovered, keyboard-focused or opened, and
+   the card inverts to ink so the reveal reads as the card turning over. On
+   pointer devices the text's row is reserved, so nothing shifts; on touch
+   the row is collapsed and the card grows on tap. */
+.tension-flip {
+  cursor: pointer;
+  transition: background var(--snap), color var(--snap);
+}
+.tension-flip .d3 { hyphens: manual; }
+/* The old half a step narrower than the new: the pair reads as two voices,
+   and "Getrenntes Interesse." (21 characters) holds one line across the
+   whole three-column range — at 87.5 it ran 5px over at 1440px. */
+.tension-flip .d3 .d-thin { font-variation-settings: "wdth" 80; }
+.tension-close {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--u2);
+}
+.tension-toggle {
+  flex: none;
+  font-family: var(--font-micro);
+  font-size: var(--t-12);
+  font-weight: 500;
+  letter-spacing: var(--track-data);
+  line-height: var(--lead-body);
+  color: var(--ink-45);
+  white-space: nowrap;
+  transition: color var(--snap);
+}
+.tension-flip.is-open,
+.tension-flip:has(.tension-toggle:focus-visible) {
+  background: var(--ink);
+  color: var(--paper);
+  --red: #F14800; /* the dark-ground accent, as under .slab-invert */
+}
+.tension-flip.is-open .d3,
+.tension-flip:has(.tension-toggle:focus-visible) .d3 { color: var(--paper); }
+.tension-flip.is-open .body,
+.tension-flip:has(.tension-toggle:focus-visible) .body { color: #AEB8B5; }
+.tension-flip.is-open .close-line,
+.tension-flip:has(.tension-toggle:focus-visible) .close-line {
+  color: var(--paper);
+  border-top-color: #2C333B;
+}
+.tension-flip.is-open .tension-toggle,
+.tension-flip:has(.tension-toggle:focus-visible) .tension-toggle { color: var(--red); }
+
+/* Three across, pointer device: the text's row is reserved and the card
+   answers hover — nothing shifts, the void fills. */
+@media (hover: hover) and (min-width: 1181px) {
+  .tension-flip .tension-body {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 360ms steps(5, end);
+  }
+  .tension-flip:hover {
+    background: var(--ink);
+    color: var(--paper);
+    --red: #F14800;
+  }
+  .tension-flip:hover .d3 { color: var(--paper); }
+  .tension-flip:hover .body { color: #AEB8B5; }
+  .tension-flip:hover .close-line { color: var(--paper); border-top-color: #2C333B; }
+  .tension-flip:hover .tension-toggle { color: var(--red); }
+  .tension-flip:hover .tension-body,
+  .tension-flip.is-open .tension-body,
+  .tension-flip:has(.tension-toggle:focus-visible) .tension-body { clip-path: inset(0); }
+}
+/* Stacked, or touch: an accordion — the row is collapsed and the card grows
+   when opened. No hover state, since a reveal here would shift the page. */
+@media (hover: none), (max-width: 1180px) {
+  .tension-flip:not(.is-open) { row-gap: 0; }
+  .tension-flip:not(.is-open) .tension-body { display: none; }
+  .tension-flip:not(.is-open) .close-line { margin-top: var(--u3); }
+}
+/* Three across only where "Getrenntes Interesse." holds one line in a
+   third of the shell; below that the tensions stack. */
+@media (max-width: 1180px) {
+  .tensions { grid-template-columns: minmax(0, 1fr); }
 }
 .close-line {
   padding-top: var(--u2);
