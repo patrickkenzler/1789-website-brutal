@@ -700,7 +700,8 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 }
 .phase:hover { background: var(--sunk); }
 .phase:hover .phase-title { color: var(--red); }
-.phase-art {
+.phase-art,
+.tile-art {
   margin: 0;
   aspect-ratio: 5 / 4;
   display: grid;
@@ -716,8 +717,8 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   color: var(--ink);
   user-select: none;
 }
-.phase-art code { font: inherit; }
-.phase-art .hi { color: var(--red); }
+.phase-art code, .tile-art code { font: inherit; }
+.phase-art .hi, .tile-art .hi { color: var(--red); }
 .phase-next { color: var(--red); }
 .phase-body {
   flex: 1;
@@ -949,6 +950,89 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 .slab-invert .arc-cell:hover { background: #1B2129; }
 .slab-invert .arc-chain { background: #1B2129; }
 .slab-invert .arc-chain .data { color: var(--paper); }
+
+/* ── TILE — a case or a piece as a cell of a grid ─────────────────────────
+   Picture first (a plate or a type glyph), then the copy, the byline pinned
+   to the foot. In a hairgrid the outlines are the borders; the tile itself
+   only carries its ground. On the dark ground the imageless plate stops
+   being aqua: a dotted field in the raised dark with the name on it, so five
+   name plates beside three photographs read as a set, not as five flags.   */
+.tile {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  container-type: inline-size;
+  transition: background var(--snap);
+}
+.tile:hover { background: var(--sunk); }
+.tile .d3, .tile .d4 { transition: color var(--snap); }
+.tile:hover .d3, .tile:hover .d4 { color: var(--red); }
+.tile .plate { border-bottom: var(--rule); }
+.tile-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--u2);
+  padding: var(--u3);
+}
+.tile-body > .unit:last-child { margin-top: auto; }
+.tile-foot { padding: var(--u2) var(--u3); border-top: var(--rule-faint); }
+
+.slab-invert .tile { background: var(--stock); }
+.slab-invert .tile:hover { background: #1B2129; }
+.slab-invert .tile .plate { border-bottom-color: #2C333B; }
+.slab-invert .tile-foot { border-top-color: #2C333B; }
+.slab-invert .plate.dotfield {
+  background-color: var(--stock);
+  background-image: radial-gradient(#2C333B 32%, transparent 34%);
+}
+.slab-invert .plate-slug { color: #8A939A; }
+
+/* ── MOSAIC — the Labor archive ───────────────────────────────────────────
+   Four tracks; the featured piece spans 2×2, wide tiles 2×1, the rest 1×1.
+   Dense flow lets a later small tile fill the hole beside an earlier wide
+   one. A wide tile is a two-column card: picture left, copy right, so it
+   keeps the row's height instead of stacking.                             */
+.mosaic {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: minmax(17rem, auto);
+  grid-auto-flow: dense;
+}
+.mosaic-xl { grid-column: span 2; grid-row: span 2; }
+.mosaic-wide { grid-column: span 2; }
+.tile-art {
+  aspect-ratio: 5 / 3;
+  font-size: clamp(4px, 3.4cqw, 10px);
+}
+.tile-wide {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+}
+.tile-wide .plate,
+.tile-wide .tile-art {
+  aspect-ratio: auto;
+  height: 100%;
+  border-bottom: 0;
+  border-right: var(--rule);
+}
+.tile-wide .plate img { position: absolute; inset: 0; }
+.mosaic .endcell { gap: var(--u6); }
+@media (max-width: 1180px) {
+  .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px) {
+  .mosaic { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; }
+  .mosaic-xl, .mosaic-wide { grid-column: auto; grid-row: auto; }
+  .tile-wide { grid-template-columns: minmax(0, 1fr); }
+  .tile-wide .plate,
+  .tile-wide .tile-art {
+    height: auto;
+    border-right: 0;
+    border-bottom: var(--rule);
+  }
+  .tile-wide .plate { aspect-ratio: 16 / 10; }
+  .tile-wide .tile-art { aspect-ratio: 5 / 3; }
+}
 
 /* ── DENK LABOR — three tiers ─────────────────────────────────────────────
    Lead, pair, index — each tier a step quieter: the plate shrinks and then
@@ -1387,6 +1471,8 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
   background: var(--sunk);
   border-bottom: var(--rule);
   aspect-ratio: 4 / 3;
+  /* the slug sizes itself to the plate, not to the viewport */
+  container-type: inline-size;
 }
 .plate.dotfield { background-color: var(--accent-blue); }
 .plate img {
@@ -1453,6 +1539,18 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
   text-transform: uppercase;
   color: var(--ink-45);
   user-select: none;
+}
+/* A name rather than initials: a step smaller, allowed to wrap, on the
+   narrow cut — "Procter & Gamble" becomes the plate's picture. */
+.plate-slug-word {
+  font-size: clamp(1.1rem, 8.5cqw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variation-settings: "wdth" 80;
+  text-align: center;
+  padding: 0 var(--u3);
+  hyphens: manual;
+  overflow-wrap: anywhere;
 }
 
 /* Dot-matrix field used as a standalone texture block. */

@@ -2,12 +2,6 @@ import Link from 'next/link'
 import { cases } from '@/data/cases'
 import { PageHero, SectionHead, Plate, ClosingCta } from '@/components/ui'
 
-/* Distinct tags across all cases, in order of first occurrence. */
-const allTags = Array.from(new Set(cases.flatMap((c) => c.tags)))
-
-const featured = cases.slice(0, 2)
-const list = cases.slice(2)
-
 export default function ProjektePage() {
   return (
     <main>
@@ -18,143 +12,38 @@ export default function ProjektePage() {
         body="Jedes Engagement beginnt mit einer ehrlichen Diagnose des Gaps. Was hier folgt, sind keine Erfolgsgeschichten — sondern Erkenntnisse aus echter Transformation."
       />
 
-      {/* ═══ HIGHLIGHT CASES ══════════════════════════════════════════════════
-          Two full-width units. Plate on one side, dossier on the other —
-          the alternation is done by the grid start column, not by margins. */}
+      {/* ═══ ALLE CASES ═══════════════════════════════════════════════════════
+          One grid of equal tiles, no highlight/list split: the archive stays
+          short by design — a dozen cases at most, so they stay current — and
+          every case gets the same picture-first tile. Where there is no
+          photograph, the client's name is the plate. Dark: the grid opens
+          the page's one chapter.                                           */}
       <section className="slab slab-invert">
-        <div className="shell">
-          <SectionHead label="★ Highlight Cases" />
-
-          {featured.map((c, i) => (
-            <article
-              key={c.slug}
-              className="g12"
-              style={{
-                rowGap: 'var(--u6)',
-                alignItems: 'start',
-                paddingTop: i === 0 ? 0 : 'var(--u8)',
-                marginTop: i === 0 ? 0 : 'var(--u8)',
-                borderTop: i === 0 ? undefined : '1px solid #2C333B',
-              }}
-            >
-              <div className="c5">
-                <Link href={`/projekte/${c.slug}`}>
-                  <Plate
-                    src={c.image}
-                    alt={c.title}
-                    label={c.client}
-                    coarse
-                    ratio="4 / 3"
-                  />
-                </Link>
-              </div>
-
-              <div className="c7">
-                <div
-                  className="chips"
-                  style={{ marginBottom: 'var(--u3)' }}
-                >
-                  {c.tags.map((t) => (
-                    <span key={t} className="chip">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                <span
-                  className="data"
-                  style={{ display: 'block', marginBottom: 'var(--u2)' }}
-                >
-                  {c.client} · {c.sector}
-                </span>
-
-                <h2 className="d2" style={{ marginBottom: 'var(--u3)' }}>
-                  {c.title}
-                </h2>
-
-                <p className="body-lg" style={{ marginBottom: 'var(--u6)' }}>
-                  {c.tagline}
-                </p>
-
-                <dl className="readout" style={{ marginBottom: 'var(--u6)' }}>
-                  <dt>Dauer</dt>
-                  <dd>{c.duration}</dd>
-                  <dt>Scope</dt>
-                  <dd>{c.scale}</dd>
-                </dl>
-
-                <Link href={`/projekte/${c.slug}`} className="link">
-                  Case lesen <span aria-hidden="true">→</span>
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* ═══ 02 · FILTER STRIP ══════════════════════════════════════════════
-          Presentational only — this page is a server component. The chips
-          declare the taxonomy, they do not operate it.                     */}
-      <section className="slab slab-dense">
-        <div className="shell">
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'baseline',
-              gap: 'var(--u3)',
-              flexWrap: 'wrap',
-            }}
-          >
-            <span className="eyebrow" style={{ color: 'var(--red)' }}>
-              Filter:
-            </span>
-            <div className="chips" style={{ flex: 1 }}>
-              <span className="chip chip-fill">Alle</span>
-              {allTags.map((t) => (
-                <span key={t} className="chip">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ ALLE CASES ═══════════════════════════════════════════════════════ */}
-      <section className="slab">
         <div className="shell">
           <SectionHead label="Alle Cases" />
 
-          <div style={{ borderTop: 'var(--rule-bar)' }}>
-            {list.map((c) => (
-              <Link key={c.slug} href={`/projekte/${c.slug}`} className="row">
-                <div>
-                  <div className="chips" style={{ marginBottom: 'var(--u2)' }}>
-                    {c.tags.slice(0, 2).map((t) => (
-                      <span key={t} className="chip">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <h3 className="d3" style={{ marginBottom: 6 }}>
-                    {c.title}
-                  </h3>
-                  <p className="body" style={{ marginBottom: 8 }}>
-                    {c.tagline}
-                  </p>
-                  <span className="data">
-                    {c.client} · {c.sector} · {c.duration}
+          <div className="hairgrid hairgrid-4 tiles">
+            {cases.map((c) => (
+              <Link key={c.slug} href={`/projekte/${c.slug}`} className="tile">
+                <Plate src={c.image} alt={c.title} label={c.client} note={null} ratio="4 / 3" />
+                <div className="tile-body">
+                  <span className="unit">
+                    {c.client} · {c.sector}
+                  </span>
+                  <h2 className="d4 h-2l">{c.title}</h2>
+                  <p className="body">{c.tagline}</p>
+                  <span className="data">{c.tags.slice(0, 2).join(' · ')}</span>
+                </div>
+                <div className="tile-foot">
+                  <span className="unit">
+                    {c.duration} · {c.scale}
                   </span>
                 </div>
-                <span className="row-arrow" aria-hidden="true">
-                  →
-                </span>
               </Link>
             ))}
           </div>
         </div>
       </section>
-
 
       <ClosingCta
         eyebrow="Bereit zur Diagnose?"

@@ -79,6 +79,7 @@ export function Plate({
   coarse = false,
   ratio,
   frame,
+  note = 'Foto folgt',
 }: {
   src?: string | null
   alt?: string
@@ -87,6 +88,10 @@ export function Plate({
   ratio?: string
   /** Crop override: object-position, and an optional zoom about `origin`. */
   frame?: { position?: string; zoom?: number; origin?: string }
+  /** Small note in the corner of an imageless plate — "Foto folgt" where a
+   *  photograph is pending; null where the slug is the image (a client name
+   *  standing in for a case with no picture). */
+  note?: string | null
 }) {
   const style: CSSProperties = ratio ? { aspectRatio: ratio } : {}
   const imgStyle: CSSProperties | undefined = frame
@@ -108,13 +113,19 @@ export function Plate({
         style={style}
         aria-hidden="true"
       >
-        <span className="plate-slug">{label ?? 'NO SIGNAL'}</span>
-        <span
-          className="unit"
-          style={{ position: 'absolute', left: 12, bottom: 10 }}
-        >
-          Foto folgt
+        {/* Initials set at plate scale; a name or a word a step smaller, so
+            "Procter & Gamble" wraps into the plate instead of out of it. */}
+        <span className={`plate-slug${(label ?? '').length > 6 ? ' plate-slug-word' : ''}`}>
+          {label ?? 'NO SIGNAL'}
         </span>
+        {note && (
+          <span
+            className="unit"
+            style={{ position: 'absolute', left: 12, bottom: 10 }}
+          >
+            {note}
+          </span>
+        )}
       </div>
     )
   }

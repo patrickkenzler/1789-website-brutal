@@ -2,19 +2,63 @@ import Link from 'next/link'
 import {
   FEATURED,
   ITEMS,
-  TYPES,
   FORMATS,
   ARCHIVE_NOTE,
   itemMeta,
   byline,
+  type LaborItem,
 } from '@/data/labor'
 import { NEWSLETTER_ACTION } from '@/data/site'
+import { laborArt } from '@/data/laborArt'
+import { seedFrom } from '@/data/asciiCanvas'
 import { PageHero, SectionHead, Plate, Barcode } from '@/components/ui'
+import { AsciiArt } from '@/components/AsciiArt'
 
-/* The two items carrying a plate open the archive as full units; the
-   remaining nine are dense index lines. */
-const PLATED = ITEMS.filter((i) => i.image)
-const DENSE = ITEMS.filter((i) => !i.image)
+/* ── The mosaic ────────────────────────────────────────────────────────────
+   Three tiers on one four-track grid: the featured piece 2×2, wide tiles
+   2×1, the rest 1×1. Wide are the pieces that carry a cover and the two
+   longest titles among the rest — the titles that need the width. With
+   twelve pieces and the archive cell that fills five rows exactly; the
+   grid packs densely, so a later small tile may sit before an earlier wide
+   one — a mosaic, not a list.                                               */
+type Size = 'xl' | 'wide' | 'small'
+
+const textOnly = ITEMS.filter((i) => !i.image)
+const longest = [...textOnly]
+  .sort((a, b) => b.title.length - a.title.length)
+  .slice(0, 2)
+  .map((i) => i.title)
+
+const sizeOf = (it: LaborItem): Size =>
+  it.image || longest.includes(it.title) ? 'wide' : 'small'
+
+function Tile({ it, size }: { it: LaborItem; size: Size }) {
+  const cls =
+    size === 'xl' ? 'tile mosaic-xl' : size === 'wide' ? 'tile tile-wide mosaic-wide' : 'tile'
+  return (
+    <Link href={it.href} className={cls}>
+      {it.image ? (
+        <Plate
+          src={it.image}
+          alt={it.title}
+          coarse={size === 'xl'}
+          ratio={size === 'xl' ? '16 / 9' : undefined}
+        />
+      ) : (
+        <AsciiArt art={laborArt(it.type, seedFrom(it.title))} className="tile-art" />
+      )}
+      <div className="tile-body">
+        <span className="data">
+          {it.type} · {itemMeta(it)}
+        </span>
+        <h2 className={size === 'xl' ? 'd3' : 'd4'}>{it.title}</h2>
+        {size === 'xl' && <p className="body">{it.excerpt}</p>}
+        {size === 'wide' && <p className="body">{it.teaser ?? it.excerpt}</p>}
+        <span className="unit">{byline(it)}</span>
+      </div>
+    </Link>
+  )
+}
 
 export default function LaborPage() {
   return (
@@ -28,144 +72,29 @@ export default function LaborPage() {
         }
       />
 
-      {/* ═══ FEATURED ═════════════════════════════════════════════════════════
-          One oversized plate against a dossier column. The only item on the
-          page that is allowed to breathe.                                  */}
-      <section className="slab">
-        <div className="shell">
-          <SectionHead label="★ Featured · diese Woche" />
-
-          <div className="g12" style={{ rowGap: 'var(--u6)', alignItems: 'start' }}>
-            <div className="c7">
-              <Plate
-                src={FEATURED.image}
-                alt={FEATURED.title}
-                label={FEATURED.type}
-                coarse
-                ratio="16 / 9"
-              />
-            </div>
-
-            <div className="c5">
-              <span
-                className="data"
-                style={{ display: 'block', marginBottom: 'var(--u3)' }}
-              >
-                {FEATURED.type} · {itemMeta(FEATURED)}
-              </span>
-
-              <h2 className="d2" style={{ marginBottom: 'var(--u3)' }}>
-                {FEATURED.title}
-              </h2>
-
-              <span
-                className="unit"
-                style={{ display: 'block', marginBottom: 'var(--u4)' }}
-              >
-                {byline(FEATURED)}
-              </span>
-
-              <p className="body" style={{ marginBottom: 'var(--u6)' }}>
-                {FEATURED.excerpt}
-              </p>
-
-              <Link href="#" className="link">
-                Weiterlesen <span aria-hidden="true">→</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ 02 · FILTER STRIP ══════════════════════════════════════════════
-          Presentational only — this page is a server component. The chips
-          declare the taxonomy, they do not operate it.                     */}
-      <section className="slab slab-dense">
-        <div className="shell">
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'baseline',
-              gap: 'var(--u3)',
-              flexWrap: 'wrap',
-            }}
-          >
-            <span className="eyebrow" style={{ color: 'var(--red)' }}>
-              Filter:
-            </span>
-            <div className="chips" style={{ flex: 1 }}>
-              <span className="chip chip-fill">Alle</span>
-              {TYPES.map((t) => (
-                <span key={t} className="chip">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ ARCHIV ═══════════════════════════════════════════════════════════
-          Two plated units, then the index. The rhythm is deliberate: the
-          archive thins out as it goes back in time.                        */}
+      {/* ═══ ARCHIV ═══════════════════════════════════════════════════════════ */}
       <section className="slab">
         <div className="shell">
           <SectionHead label="Archiv" />
 
-          <div className="hairgrid hairgrid-2" style={{ marginBottom: 'var(--u8)' }}>
-            {PLATED.map((it) => (
-              <article key={it.title}>
-                <Plate
-                  src={it.image}
-                  alt={it.title}
-                  label={it.type}
-                  ratio="16 / 9"
-                />
-                <div className="pad">
-                  <span
-                    className="data"
-                    style={{ display: 'block', marginBottom: 'var(--u3)' }}
-                  >
-                    {it.type} · {itemMeta(it)}
-                  </span>
-
-                  <h3 className="d3" style={{ marginBottom: 'var(--u2)' }}>
-                    {it.title}
-                  </h3>
-
-                  <span
-                    className="unit"
-                    style={{ display: 'block', marginBottom: 'var(--u3)' }}
-                  >
-                    {byline(it)}
-                  </span>
-
-                  <p className="body">{it.excerpt}</p>
-                </div>
-              </article>
+          <div className="hairgrid mosaic">
+            <Tile it={FEATURED} size="xl" />
+            {ITEMS.map((it) => (
+              <Tile key={it.title} it={it} size={sizeOf(it)} />
             ))}
-          </div>
 
-          <div style={{ borderTop: 'var(--rule-bar)' }}>
-            {DENSE.map((it) => (
-              <Link key={it.title} href={it.href} className="row">
-                <div>
-                  <span className="data" style={{ display: 'block', marginBottom: 6 }}>
-                    {it.type} · {itemMeta(it)}
-                  </span>
-                  <h3 className="d3" style={{ marginBottom: 6 }}>
-                    {it.title}
-                  </h3>
-                  <p className="body" style={{ marginBottom: 8 }}>
-                    {it.excerpt}
-                  </p>
-                  <span className="unit">{byline(it)}</span>
-                </div>
-                <span className="row-arrow" aria-hidden="true">
-                  →
+            {/* The grid ends on its own exit. */}
+            <Link href="#" className="pad endcell">
+              <span className="unit">Archiv</span>
+              <div>
+                <p className="body-sm" style={{ marginBottom: 'var(--u3)' }}>
+                  {ARCHIVE_NOTE}
+                </p>
+                <span className="d4">
+                  Vollständiges Archiv <span aria-hidden="true">→</span>
                 </span>
-              </Link>
-            ))}
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -217,8 +146,7 @@ export default function LaborPage() {
         </div>
       </section>
 
-
-      {/* ═══ 05 · NEWSLETTER ════════════════════════════════════════════════ */}
+      {/* ═══ NEWSLETTER ═══════════════════════════════════════════════════════ */}
       <section className="slab" id="newsletter">
         <div className="shell">
           <div className="g12" style={{ rowGap: 'var(--u6)', alignItems: 'start' }}>
@@ -268,32 +196,6 @@ export default function LaborPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ 06 · ARCHIV-FOOTER ═════════════════════════════════════════════ */}
-      <section className="slab slab-dense">
-        <div className="shell">
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'baseline',
-              gap: 'var(--u4)',
-              flexWrap: 'wrap',
-            }}
-          >
-            <div>
-              <span className="eyebrow" style={{ marginBottom: 'var(--u2)' }}>
-                Archiv
-              </span>
-              <p className="body">{ARCHIVE_NOTE}</p>
-            </div>
-
-            <Link href="#" className="link">
-              Vollständiges Archiv <span aria-hidden="true">→</span>
-            </Link>
           </div>
         </div>
       </section>
