@@ -536,8 +536,7 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 /* ── AI-HUMAN-NATIVE BAND ─────────────────────────────────────────────────
    The dark register inset into a section: statement left, a tonal ASCII
    image right in Electric Aqua. Straight under a hairgrid it joins the grid
-   as a full-width row — the line that cuts across all three perspectives.
-   `flush` drops frame and padding where the band fills a dark section.     */
+   as a full-width row — the line that cuts across all three perspectives. */
 .ai-band {
   display: grid;
   grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
@@ -547,7 +546,6 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   border: var(--rule);
 }
 .hairgrid + .ai-band { border-top: 0; }
-.ai-band-flush { padding: 0; border: 0; }
 .ai-band-text { display: flex; flex-direction: column; gap: var(--u3); }
 .ai-band-text .d3 { margin-top: var(--u2); }
 .ai-band-art { display: flex; container-type: inline-size; }
@@ -740,6 +738,15 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   border-top: var(--rule-faint);
   color: var(--ink-70);
 }
+/* On the dark ground — the strip as a chapter opener: cells in stock, the
+   diagram's field in the dimmed paper, its accent runs in the dark-ground
+   accent (via --red). */
+.slab-invert .phase { background: var(--stock); }
+.slab-invert .phase:hover { background: #1B2129; }
+.slab-invert .phase-art { color: #AEB8B5; border-bottom-color: #2C333B; }
+.slab-invert .phase-title { color: var(--paper); }
+.slab-invert .phase:hover .phase-title { color: var(--red); }
+.slab-invert .phase-q { color: #8A939A; border-top-color: #2C333B; }
 
 /* Three tracks leave a sixth slot empty; the last phase — the exit — takes
    the remaining two, with its diagram in a wider, shorter box. */
@@ -926,6 +933,10 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 }
 .arc-chain .data { color: var(--ink); }
 .arc-arrow { color: var(--red); }
+/* On the dark ground (the index opens the arc chapter). */
+.slab-invert .arc-cell:hover { background: #1B2129; }
+.slab-invert .arc-chain { background: #1B2129; }
+.slab-invert .arc-chain .data { color: var(--paper); }
 
 /* ── DENK LABOR — three tiers ─────────────────────────────────────────────
    Lead, pair, index — each tier a step quieter: the plate shrinks and then

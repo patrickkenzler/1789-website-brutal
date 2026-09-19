@@ -33,6 +33,15 @@ const LAB_INDEX = [
 export default function Home() {
   return (
     <main>
+      {/* GROUNDS — dark opens a chapter, light carries the reading.
+          The page tells three chapters: the diagnosis (hero → Blick → Woran
+          wir arbeiten), the evidence (Cases → Stimmen), the way (Ansatz →
+          Labor). Each opens on the dark ground with one full-bleed statement
+          and reads on Alabaster from there. A position statement inside a
+          chapter (the AI band) is a dark inset, never a slab of its own.
+          Aubergine appears once, at the end: the call.
+          Sequence: D · L L · D L · D L · A                                 */}
+
       {/* ═══ HERO ═══════════════════════════════════════════════════════════
           A viewport-tall inverted panel: the ASCII flow field is the full
           background, dimmed to a texture; the statement and actions sit in
@@ -324,8 +333,9 @@ export default function Home() {
           Five phases as a strip, left to right. The arrow after each phase
           label carries the sequence — no leading number — and a blueprint
           diagram on top of each cell gives the phase a picture before its
-          words.                                                            */}
-      <section className="slab">
+          words. Dark: this opens the third chapter (the way), after the
+          diagnosis and the evidence.                                       */}
+      <section className="slab slab-invert">
         <div className="shell">
           <SectionHead
             label="Unser Ansatz"

@@ -4,10 +4,11 @@ import { SectionHead, PageHero, ClosingCta } from '@/components/ui'
 import { AiBand } from '@/components/AiBand'
 import { ScrollReveal } from '@/components/ScrollReveal'
 
-/* Substrate rhythm: the grounds alternate section by section — the opening
-   sections dark, light, dark around the arc, then the first, third and fifth
-   phase inverted, so the run ends dark against the closing slab. */
-const INVERTED = ['01', '03', '05']
+/* Grounds as on the homepage: dark opens a chapter, light carries the
+   reading. Three chapters here — where we begin (dark), how we work (light,
+   with the AI band as its dark inset), the arc (dark index, then the five
+   phases as one light document). Aubergine once, at the end.
+   Sequence: L(hero) · D · L · D · L L L L L · A                            */
 
 export default function AnsatzPage() {
   return (
@@ -80,6 +81,15 @@ export default function AnsatzPage() {
             ))}
           </div>
 
+          {/* The position inside the chapter: a dark inset under the three
+              functions, as on the homepage. */}
+          <AiBand
+            label="AI-Human-Native"
+            paragraphs={AI_HUMAN_NATIVE.ansatz.paragraphs}
+            close={AI_HUMAN_NATIVE.ansatz.close}
+            art={1}
+          />
+
           <div className="g2 statement">
             {ANSATZ.logic.close.map((p) => (
               <p key={p} className="body-lg">
@@ -90,24 +100,12 @@ export default function AnsatzPage() {
         </div>
       </section>
 
-      {/* ═══ AI-HUMAN-NATIVE ════════════════════════════════════════════════ */}
-      <section className="slab slab-invert">
-        <div className="shell">
-          <SectionHead label="AI-Human-Native" />
-          <AiBand
-            paragraphs={AI_HUMAN_NATIVE.ansatz.paragraphs}
-            close={AI_HUMAN_NATIVE.ansatz.close}
-            art={1}
-            flush
-          />
-        </div>
-      </section>
-
       {/* ═══ DER ARBEITSBOGEN ═══════════════════════════════════════════════
           The five phases as a table of contents. Order is the reading order —
           the phase titles carry it. The sixth cell closes the 3×2 grid with
-          the chain of model states the phases leave behind.                */}
-      <section className="slab">
+          the chain of model states the phases leave behind. Dark: the index
+          opens the third chapter; the phases read on light after it.      */}
+      <section className="slab slab-invert">
         <div className="shell">
           <SectionHead label="Der Arbeitsbogen" />
 
@@ -154,13 +152,8 @@ export default function AnsatzPage() {
 
       {/* ═══ PHASEN ═══════════════════════════════════════════════════════════ */}
       {PHASES.map((p) => {
-        const invert = INVERTED.includes(p.num)
         return (
-          <section
-            key={p.num}
-            id={`phase-${p.num}`}
-            className={invert ? 'slab slab-invert' : 'slab'}
-          >
+          <section key={p.num} id={`phase-${p.num}`} className="slab">
             <div className="shell">
               <SectionHead
                 label={p.metaLong ?? p.meta}
@@ -190,13 +183,7 @@ export default function AnsatzPage() {
                     {p.text}
                   </p>
 
-                  <div
-                    className="box"
-                    style={{
-                      padding: 'var(--u3)',
-                      borderColor: invert ? '#2C333B' : 'var(--ink)',
-                    }}
-                  >
+                  <div className="box" style={{ padding: 'var(--u3)' }}>
                     <span
                       className="eyebrow"
                       style={{ marginBottom: 'var(--u2)' }}

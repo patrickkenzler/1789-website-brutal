@@ -2,16 +2,15 @@ import { AiGlyph } from '@/components/AiGlyph'
 
 /**
  * AI-HUMAN-NATIVE — statement on the left, a tonal ASCII image in Electric
- * Aqua on the right, always on the dark ground. On the homepage it runs
- * straight under the three perspectives, because it cuts across all three;
- * on /ansatz it fills its own dark section, `flush`, without a frame.
+ * Aqua on the right, on the dark ground. Always an inset: it runs straight
+ * under a light chapter's three-column grid, because the position cuts
+ * across all three columns — never a slab of its own.
  */
 export function AiBand({
   label,
   paragraphs,
   close,
   art,
-  flush = false,
 }: {
   label?: string
   paragraphs: readonly string[]
@@ -19,10 +18,9 @@ export function AiBand({
   close: readonly string[]
   /** Index into AI_ART. */
   art: number
-  flush?: boolean
 }) {
   return (
-    <div className={`ai-band slab-invert${flush ? ' ai-band-flush' : ''}`}>
+    <div className="ai-band slab-invert">
       <div className="ai-band-text">
         {label && <span className="eyebrow">{label}</span>}
         {paragraphs.map((p) => (
