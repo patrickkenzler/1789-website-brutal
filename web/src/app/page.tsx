@@ -3,7 +3,7 @@ import { featuredCases } from '@/data/cases'
 import { PHASES, ARC, BLICK, WORK, AI_HUMAN_NATIVE } from '@/data/approach'
 import { TESTIMONIALS } from '@/data/team'
 import { FEATURED, ITEMS, itemMeta, byline, type LaborItem } from '@/data/labor'
-import { CLIENTS, QUESTIONS } from '@/data/site'
+import { QUESTIONS } from '@/data/site'
 import {
   SectionHead,
   Tape,
@@ -14,6 +14,7 @@ import {
 } from '@/components/ui'
 import { AsciiWaves } from '@/components/AsciiWaves'
 import { AiBand } from '@/components/AiBand'
+import { LogoBand } from '@/components/LogoBand'
 import { PhaseGlyph } from '@/components/PhaseGlyph'
 import { Rail } from '@/components/Rail'
 import { Tension } from '@/components/Tension'
@@ -45,7 +46,8 @@ export default function Home() {
           A viewport-tall inverted panel: the ASCII flow field is the full
           background, dimmed to a texture; the statement and actions sit in
           front. The hero fills the screen so the 1789 run below it stays off
-          the first view and reads as a divider only once you scroll.       */}
+          the first view and reads as a divider only once you scroll. The
+          client marks run along its foot, white on the field.              */}
       <section className="slab-invert hero-sec">
         <div className="hero-bg" aria-hidden="true">
           <AsciiWaves />
@@ -98,6 +100,8 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
+        <LogoBand />
       </section>
 
       {/* Letterform run, cut off by both viewport edges — the divider between
@@ -106,10 +110,8 @@ export default function Home() {
         <span className="d0">1789—1789—1789—1789</span>
       </div>
 
-      <Tape items={CLIENTS} />
-
       {/* ═══ DER BLICK ══════════════════════════════════════════════════════
-          No label strip: the client tape above already closes off the hero,
+          No label strip: the 1789 run above already closes off the hero,
           and the headline opens the argument on its own. The lede sits
           beside the headline, set tight. Three tensions as cards that
           show only the term pair and its verdict — the explanation is behind

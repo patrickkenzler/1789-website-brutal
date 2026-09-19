@@ -1137,11 +1137,56 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   position: relative;
   overflow: hidden;
   min-height: calc(100svh - var(--nav-h));
-  display: flex;
+  /* statement centred in the space above, the logo band at the foot */
+  display: grid;
+  grid-template-rows: 1fr auto;
   align-items: center;
-  padding-block: var(--u8);
+  padding-block: var(--u8) 0;
   border-bottom: var(--rule);
   background: var(--stock);
+}
+
+/* ── LOGO BAND — client marks along the foot of the hero ──────────────────
+   White and dimmed on the transparent ground, the field showing through,
+   no rule of its own. The edges fade so the marks enter and leave rather
+   than being cut. Same loop as the tapes, slower; still under reduced
+   motion.                                                                 */
+.hero-logos {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--u6);
+  padding-block: var(--u4);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.hero-logos-track {
+  display: flex;
+  align-items: center;
+  gap: var(--u12);
+  width: max-content;
+  animation: tape 70s linear infinite;
+}
+.hero-logo {
+  flex: none;
+  display: flex;
+  align-items: center;
+  height: 2.5rem;
+  color: var(--paper);
+  opacity: 0.6;
+}
+.hero-logo svg {
+  display: block;
+  height: 100%;
+  width: auto;
+  overflow: visible;
+}
+@media (max-width: 720px) {
+  .hero-logos-track { gap: var(--u8); }
+  .hero-logo { height: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-logos-track { animation: none; }
 }
 /* Full-bleed field behind the copy. Generated larger than the section so
    overflow crops it to a cover rather than letterboxing. */
@@ -1153,14 +1198,18 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   justify-content: center;
   overflow: hidden;
   pointer-events: none;
+  /* the field sizes itself to this box, both axes (cqw / cqh below) */
+  container-type: size;
 }
 .ascii-waves {
   margin: 0;
   font-family: var(--font-micro);
-  /* vw-driven with NO upper cap so the 160-column field always overflows the
-     section width (160 × 0.6em × 1.12vw ≈ 108% of the viewport) and crops to a
-     full cover at any window size. */
-  font-size: max(9px, 1.12vw);
+  /* Cover, like background-size: cover — the glyph size is whichever the
+     box needs more: 160 columns × 0.6em must span the width (1.12cqw ≈ 108%)
+     and 96 rows × 1.02em the height (1.03cqh ≈ 101%). Width alone left blank
+     bands above and below in a tall, narrow window, with the logo band
+     stranded on bare ground at the foot. The overflow crops to the centre. */
+  font-size: max(9px, 1.12cqw, 1.03cqh);
   line-height: 1.02;
   letter-spacing: 0;
   white-space: pre;
