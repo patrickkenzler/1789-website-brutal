@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { PHASES, ARC, ANSATZ, AI_HUMAN_NATIVE } from '@/data/approach'
 import { SectionHead, PageHero, ClosingCta } from '@/components/ui'
 import { AiBand } from '@/components/AiBand'
-import { ScrollReveal } from '@/components/ScrollReveal'
 
 /* Grounds as on the homepage: dark opens a chapter, light carries the
    reading. Three chapters here — where we begin (dark), how we work (light,
@@ -13,8 +12,6 @@ import { ScrollReveal } from '@/components/ScrollReveal'
 export default function AnsatzPage() {
   return (
     <main>
-      <ScrollReveal />
-
       <PageHero
         eyebrow="Unser Ansatz"
         line1="Modelle verändern Praxis."
@@ -29,13 +26,11 @@ export default function AnsatzPage() {
         <div className="shell">
           <SectionHead label="Wo wir beginnen" />
 
-          <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)' }}>
-            <span className="reveal-wipe">
-              Jede Struktur hat einmal ein Problem gelöst.
-              <br />
-              <span className="d-thin d-wide d-red">
-                Wir beginnen bei dem, das sie heute stellt.
-              </span>
+          <h2 className="d2" style={{ marginBottom: 'var(--u8)' }}>
+            Jede Struktur hat einmal ein Problem gelöst.
+            <br />
+            <span className="d-thin d-wide d-red">
+              Wir beginnen bei dem, das sie heute stellt.
             </span>
           </h2>
 
@@ -56,13 +51,11 @@ export default function AnsatzPage() {
 
           <div className="g12" style={{ rowGap: 'var(--u6)' }}>
             <div className="c7">
-              <h2 className="d2" data-reveal>
-                <span className="reveal-wipe">
-                  Drei Funktionen tragen jedes Mandat.
-                  <br />
-                  <span className="d-thin d-wide d-red">
-                    Die Entscheidung gehört nicht dazu.
-                  </span>
+              <h2 className="d2">
+                Drei Funktionen tragen jedes Mandat.
+                <br />
+                <span className="d-thin d-wide d-red">
+                  Die Entscheidung gehört nicht dazu.
                 </span>
               </h2>
             </div>
@@ -111,13 +104,11 @@ export default function AnsatzPage() {
 
           <div className="g12" style={{ rowGap: 'var(--u6)', marginBottom: 'var(--u8)' }}>
             <div className="c7">
-              <h2 className="d2" data-reveal>
-                <span className="reveal-wipe">
-                  Fünf Phasen geben Orientierung,
-                  <br />
-                  <span className="d-thin d-wide d-red">
-                    ohne die Antwort vorwegzunehmen.
-                  </span>
+              <h2 className="d2">
+                Fünf Phasen geben Orientierung,
+                <br />
+                <span className="d-thin d-wide d-red">
+                  ohne die Antwort vorwegzunehmen.
                 </span>
               </h2>
             </div>

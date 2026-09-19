@@ -16,7 +16,6 @@ import { AsciiWaves } from '@/components/AsciiWaves'
 import { AiBand } from '@/components/AiBand'
 import { PhaseGlyph } from '@/components/PhaseGlyph'
 import { Rail } from '@/components/Rail'
-import { ScrollReveal } from '@/components/ScrollReveal'
 import { Tension } from '@/components/Tension'
 
 /* Denk Labor in three tiers: the lead piece, the pieces that carry a cover,
@@ -47,17 +46,15 @@ export default function Home() {
           background, dimmed to a texture; the statement and actions sit in
           front. The hero fills the screen so the 1789 run below it stays off
           the first view and reads as a divider only once you scroll.       */}
-      <ScrollReveal />
-
       <section className="slab-invert hero-sec">
         <div className="hero-bg" aria-hidden="true">
           <AsciiWaves />
         </div>
 
         <div className="shell hero-fg">
-          <span className="eyebrow hero-kicker">Managementberatung für</span>
+          <span className="eyebrow hero-kicker hero-in">Managementberatung für</span>
           <span
-            className="eyebrow eyebrow-br"
+            className="eyebrow eyebrow-br hero-in"
             style={{ marginBottom: 'var(--u6)' }}
           >
             Organizational Strategy // Governance Design // Target Operating
@@ -85,6 +82,7 @@ export default function Home() {
           </h1>
 
           <div
+            className="hero-actions"
             style={{
               marginTop: 'var(--u8)',
               display: 'flex',
@@ -121,13 +119,11 @@ export default function Home() {
         <div className="shell">
           <div className="g12" style={{ rowGap: 'var(--u6)' }}>
             <div className="c7">
-              <h2 className="d2" data-reveal>
-                <span className="reveal-wipe">
-                  Was heute blockiert,
-                  <br />
-                  <span className="d-thin d-wide">
-                    hat gestern <span className="d-strike">getragen</span>.
-                  </span>
+              <h2 className="d2">
+                Was heute blockiert,
+                <br />
+                <span className="d-thin d-wide">
+                  hat gestern <span className="d-strike">getragen</span>.
                 </span>
               </h2>
             </div>
@@ -171,13 +167,11 @@ export default function Home() {
 
           <div className="g12" style={{ rowGap: 'var(--u6)' }}>
             <div className="c7">
-              <h2 className="d2" data-reveal>
-                <span className="reveal-wipe">
-                  Ordnung entsteht ohnehin.
-                  <br />
-                  <span className="d-thin d-wide d-red">
-                    Wir machen sie entscheidbar.
-                  </span>
+              <h2 className="d2">
+                Ordnung entsteht ohnehin.
+                <br />
+                <span className="d-thin d-wide d-red">
+                  Wir machen sie entscheidbar.
                 </span>
               </h2>
             </div>
@@ -234,12 +228,10 @@ export default function Home() {
             }
           />
 
-          <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)' }}>
-            <span className="reveal-wipe">
-              Organisationen,
-              <br />
-              die <span className="d-thin d-wide d-red">entschieden</span> haben.
-            </span>
+          <h2 className="d2" style={{ marginBottom: 'var(--u8)' }}>
+            Organisationen,
+            <br />
+            die <span className="d-thin d-wide d-red">entschieden</span> haben.
           </h2>
 
           <div className="g3">
@@ -293,10 +285,8 @@ export default function Home() {
             label="Stimmen"
             ariaLabel="Stimmen unserer Kunden"
             heading={
-              <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)' }}>
-                <span className="reveal-wipe">
-                  Was Kunden <span className="d-thin d-wide d-red">sagen.</span>
-                </span>
+              <h2 className="d2" style={{ marginBottom: 'var(--u8)' }}>
+                Was Kunden <span className="d-thin d-wide d-red">sagen.</span>
               </h2>
             }
           >
@@ -357,13 +347,11 @@ export default function Home() {
 
           <div className="g12" style={{ rowGap: 'var(--u6)', marginBottom: 'var(--u8)' }}>
             <div className="c7">
-              <h2 className="d2" data-reveal>
-                <span className="reveal-wipe">
-                  Fünf Phasen geben Orientierung,
-                  <br />
-                  <span className="d-thin d-wide d-red">
-                    ohne die Antwort vorwegzunehmen.
-                  </span>
+              <h2 className="d2">
+                Fünf Phasen geben Orientierung,
+                <br />
+                <span className="d-thin d-wide d-red">
+                  ohne die Antwort vorwegzunehmen.
                 </span>
               </h2>
             </div>
@@ -412,12 +400,10 @@ export default function Home() {
             }
           />
 
-          <h2 className="d2" data-reveal style={{ marginBottom: 'var(--u8)' }}>
-            <span className="reveal-wipe">
-              Wo Organisationstheorie
-              <br />
-              <span className="d-thin d-wide d-red">auf Praxis trifft.</span>
-            </span>
+          <h2 className="d2" style={{ marginBottom: 'var(--u8)' }}>
+            Wo Organisationstheorie
+            <br />
+            <span className="d-thin d-wide d-red">auf Praxis trifft.</span>
           </h2>
 
           <div className="lab">
