@@ -54,14 +54,15 @@ export default function Home() {
         </div>
 
         <div className="shell hero-fg">
-          <span className="eyebrow hero-kicker hero-in">Managementberatung für</span>
-          <span
-            className="eyebrow eyebrow-br hero-in"
-            style={{ marginBottom: 'var(--u6)' }}
-          >
-            Organizational Strategy // Governance Design // Target Operating
-            Model
-          </span>
+          {/* One line: the lead-in dimmed, the three disciplines in the
+              accent brackets. */}
+          <p className="eyebrow hero-eyebrow hero-in">
+            <span className="hero-kicker">Managementberatung für</span>{' '}
+            <span className="eyebrow-br">
+              Organizational Strategy // Governance Design // Target Operating
+              Model
+            </span>
+          </p>
 
           {/* Each sentence holds one line at this measure. The copy is three
               parallel clauses and the red carries the three verbs —

@@ -336,8 +336,9 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 .eyebrow-red { color: var(--red); }
 
 /* [ BRACKETED ] — ASCII framing as a structural device */
-.eyebrow-br::before { content: "[ "; color: var(--red); }
-.eyebrow-br::after  { content: " ]"; color: var(--red); }
+/* No-break spaces: a bracket never ends or starts a line on its own. */
+.eyebrow-br::before { content: "[\00a0"; color: var(--red); }
+.eyebrow-br::after  { content: "\00a0]"; color: var(--red); }
 
 .data {
   font-family: var(--font-micro);
@@ -1224,7 +1225,15 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 .hero-fg .eyebrow { color: var(--paper); font-size: 0.825rem; }
 /* "Managementberatung für" — the lead-in to the bracketed disciplines, a
    step dimmer so the brackets stay the eyebrow. */
-.hero-fg .hero-kicker { color: #8A939A; margin-bottom: var(--u2); }
+.hero-fg .hero-kicker { color: #8A939A; }
+/* Lead-in and disciplines as one line. ~99 characters at 0.72em advance:
+   1.2vw keeps the line inside the shell down to ~1000px wide (it wraps
+   below that, as it must on a phone); 17px at the top. */
+.hero-fg .hero-eyebrow {
+  font-size: clamp(0.8rem, 1.2vw, 1.0625rem);
+  letter-spacing: 0.12em;
+  margin-bottom: var(--u6);
+}
 /* The statement is the hierarchy: heavy, condensed (wdth 75 — the narrowest
    cut, same as the 1789 run), full measure. One vw-driven size holds each of
    the three parallel sentences on a single line across the whole range — the
