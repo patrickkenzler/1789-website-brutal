@@ -4,7 +4,8 @@
  * In a monospace-only system the wordmark is not an illustration — it is
  * typeset in the same matrix as every other glyph on the page. "1789" at
  * weight 800 on a narrowed width axis, with the registration mark carrying
- * the single accent.
+ * the single accent. In the full lockup "CONSULTING" follows at the same
+ * size, cut and colour, in the light weight — one word, two voices.
  */
 export function Wordmark({
   size = 22,
@@ -18,7 +19,7 @@ export function Wordmark({
   consulting?: boolean
 }) {
   return (
-    <span style={{ display: 'inline-block', lineHeight: 1 }}>
+    <span style={{ display: 'inline-block', lineHeight: 1, whiteSpace: 'nowrap' }}>
       <span
         className="d3"
         style={{
@@ -39,11 +40,14 @@ export function Wordmark({
       {consulting && (
         <>
           <span
-            className="unit"
+            className="d3"
             style={{
-              fontSize: size * 0.46,
-              letterSpacing: '0.16em',
-              marginLeft: size * 0.36,
+              fontSize: size,
+              fontWeight: 300,
+              letterSpacing: '-0.01em',
+              fontVariationSettings: '"wdth" 80',
+              lineHeight: 1,
+              marginLeft: size * 0.35,
             }}
           >
             Consulting
