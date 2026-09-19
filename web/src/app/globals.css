@@ -1198,14 +1198,18 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   justify-content: center;
   overflow: hidden;
   pointer-events: none;
+  /* the field sizes itself to this box, both axes (cqw / cqh below) */
+  container-type: size;
 }
 .ascii-waves {
   margin: 0;
   font-family: var(--font-micro);
-  /* vw-driven with NO upper cap so the 160-column field always overflows the
-     section width (160 × 0.6em × 1.12vw ≈ 108% of the viewport) and crops to a
-     full cover at any window size. */
-  font-size: max(9px, 1.12vw);
+  /* Cover, like background-size: cover — the glyph size is whichever the
+     box needs more: 160 columns × 0.6em must span the width (1.12cqw ≈ 108%)
+     and 96 rows × 1.02em the height (1.03cqh ≈ 101%). Width alone left blank
+     bands above and below in a tall, narrow window, with the logo band
+     stranded on bare ground at the foot. The overflow crops to the centre. */
+  font-size: max(9px, 1.12cqw, 1.03cqh);
   line-height: 1.02;
   letter-spacing: 0;
   white-space: pre;
