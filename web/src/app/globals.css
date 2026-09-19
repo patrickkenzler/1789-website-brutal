@@ -835,7 +835,9 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   --red: #F14800; /* the dark-ground accent, as under .slab-invert */
 }
 .tension-flip.is-open .d3,
-.tension-flip:has(.tension-toggle:focus-visible) .d3 { color: var(--paper); }
+.tension-flip.is-open .d4,
+.tension-flip:has(.tension-toggle:focus-visible) .d3,
+.tension-flip:has(.tension-toggle:focus-visible) .d4 { color: var(--paper); }
 .tension-flip.is-open .body,
 .tension-flip:has(.tension-toggle:focus-visible) .body { color: #AEB8B5; }
 .tension-flip.is-open .close-line,
@@ -858,7 +860,8 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
     color: var(--paper);
     --red: #F14800;
   }
-  .tension-flip:hover .d3 { color: var(--paper); }
+  .tension-flip:hover .d3,
+  .tension-flip:hover .d4 { color: var(--paper); }
   .tension-flip:hover .body { color: #AEB8B5; }
   .tension-flip:hover .close-line { color: var(--paper); border-top-color: #2C333B; }
   .tension-flip:hover .tension-toggle { color: var(--red); }

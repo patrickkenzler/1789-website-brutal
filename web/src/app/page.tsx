@@ -142,7 +142,13 @@ export default function Home() {
 
           <div className="hairgrid hairgrid-3 tensions" style={{ marginTop: 'var(--u8)' }}>
             {BLICK.tensions.map((t) => (
-              <Tension key={t.title[0]} title={t.title} body={t.body} close={t.close} />
+              <Tension
+                key={t.title[0]}
+                title={t.title[0]}
+                pair={t.title[1]}
+                body={t.body}
+                close={t.close}
+              />
             ))}
           </div>
 
@@ -184,14 +190,17 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="hairgrid hairgrid-3" style={{ marginTop: 'var(--u8)' }}>
+          {/* Same card as the tensions: title and lead in front, the paragraph
+              behind, the verdict with its toggle. */}
+          <div className="hairgrid hairgrid-3 tensions" style={{ marginTop: 'var(--u8)' }}>
             {WORK.perspectives.map((p) => (
-              <article key={p.title} className="pad tension tension-4">
-                <h3 className="d3">{p.title}</h3>
-                <p className="d4 d-thin">{p.lead}</p>
-                <p className="body">{p.body}</p>
-                <p className="close-line">{p.close}</p>
-              </article>
+              <Tension
+                key={p.title}
+                title={p.title}
+                lead={p.lead}
+                body={p.body}
+                close={p.close}
+              />
             ))}
           </div>
 

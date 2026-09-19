@@ -3,18 +3,26 @@
 import { useId, useState } from 'react'
 
 /**
- * One of the three tensions in "Der Blick". The term pair and its verdict
- * are the front of the card; the explanation is its back. On pointer devices
- * the back shutters in on hover — its space is reserved, so nothing shifts —
- * and the toggle pins it open. On touch and keyboard the toggle is the way
- * in. All state is one class; the CSS under .tension-flip does the rest.
+ * A card whose argument sits behind it. The front shows the title — either
+ * a term pair (`pair`: the old half, thin, in the accent) or a title with a
+ * `lead` line beneath — and the verdict; the explanation is the back. On
+ * pointer devices three-across the back shutters in on hover, its space
+ * reserved so nothing shifts, and the toggle pins it open. Stacked or on
+ * touch the toggle is the way in. All state is one class; the CSS under
+ * .tension-flip does the rest.
  */
 export function Tension({
   title,
+  pair,
+  lead,
   body,
   close,
 }: {
-  title: readonly [string, string]
+  title: string
+  /** Second half of a term pair, set thin in the accent on its own line. */
+  pair?: string
+  /** A lead line under the title, set in the thin d4. */
+  lead?: string
   body: string
   close: string
 }) {
@@ -24,14 +32,20 @@ export function Tension({
 
   return (
     <article
-      className={`pad tension tension-flip${open ? ' is-open' : ''}`}
+      className={`pad tension tension-flip${lead ? ' tension-4' : ''}${open ? ' is-open' : ''}`}
       onClick={toggle}
     >
       <h3 className="d3">
-        {title[0]}
-        <br />
-        <span className="d-thin d-red">{title[1]}</span>
+        {title}
+        {pair && (
+          <>
+            <br />
+            <span className="d-thin d-red">{pair}</span>
+          </>
+        )}
       </h3>
+
+      {lead && <p className="d4 d-thin">{lead}</p>}
 
       <p id={bodyId} className="body tension-body" aria-hidden={!open}>
         {body}
