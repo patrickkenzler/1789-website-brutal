@@ -103,28 +103,32 @@ export default function Home() {
 
       {/* ═══ DER BLICK ══════════════════════════════════════════════════════
           No label strip: the client tape above already closes off the hero,
-          and the headline opens the argument on its own. One text axis:
-          headline, then the lede beneath it. Three tensions as cards that
+          and the headline opens the argument on its own. The lede sits
+          beside the headline, set tight. Three tensions as cards that
           show only the term pair and its verdict — the explanation is behind
           them (see Tension) — and a closing thesis whose three questions
           run on in the ticker.                                              */}
       <section className="slab">
         <div className="shell">
-          <h2 className="d2" data-reveal>
-            <span className="reveal-wipe">
-              Was heute blockiert,
-              <br />
-              <span className="d-thin d-wide">
-                hat gestern <span className="d-strike">getragen</span>.
-              </span>
-            </span>
-          </h2>
-          <div className="lede standfirst">
-            {BLICK.intro.map((p) => (
-              <p key={p} className="body-lg">
-                {p}
-              </p>
-            ))}
+          <div className="g12" style={{ rowGap: 'var(--u6)' }}>
+            <div className="c7">
+              <h2 className="d2" data-reveal>
+                <span className="reveal-wipe">
+                  Was heute blockiert,
+                  <br />
+                  <span className="d-thin d-wide">
+                    hat gestern <span className="d-strike">getragen</span>.
+                  </span>
+                </span>
+              </h2>
+            </div>
+            <div className="c5 lede">
+              {BLICK.intro.map((p) => (
+                <p key={p} className="body-lg">
+                  {p}
+                </p>
+              ))}
+            </div>
           </div>
 
           <div className="hairgrid hairgrid-3 tensions" style={{ marginTop: 'var(--u8)' }}>

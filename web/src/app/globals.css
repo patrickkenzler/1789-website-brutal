@@ -764,9 +764,10 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
    The argument is carried in short sentences. A lede stacks them beside a
    headline; a card closes on its verdict under a hairline; a section closes
    on a statement under the heavy rule.                                     */
-.lede { display: flex; flex-direction: column; gap: var(--u2); }
-/* Lede set under its headline on the same axis, not beside it. */
-.standfirst { margin-top: var(--u6); }
+/* Short sentences beside a headline read as one block, not as paragraphs:
+   half a module between them and the leading a step tighter than body. */
+.lede { display: flex; flex-direction: column; gap: var(--u); }
+.lede .body-lg { line-height: 1.5; }
 /* Cards in one row share their row tracks (subgrid): titles, leads, bodies
    and verdicts each start on the same line across the row, whatever their
    own line count. A card spans one row per child — three by default,
