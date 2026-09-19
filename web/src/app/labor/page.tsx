@@ -219,7 +219,7 @@ export default function LaborPage() {
 
 
       {/* ═══ 05 · NEWSLETTER ════════════════════════════════════════════════ */}
-      <section className="slab">
+      <section className="slab" id="newsletter">
         <div className="shell">
           <div className="g12" style={{ rowGap: 'var(--u6)', alignItems: 'start' }}>
             <div className="c6">

@@ -1,6 +1,6 @@
 /**
- * Tonal ASCII images for the four "AI und Organisation" cards — one photo each,
- * converted to a density ramp so the shading carries the depth:
+ * Tonal ASCII images for the AI-Human-Native band (see AiBand) — one photo
+ * each, converted to a density ramp so the shading carries the depth:
  *   0 Prozesse      a building apex receding into perspective
  *   1 Mensch        a classical marble head
  *   2 Entscheidungen a handshake

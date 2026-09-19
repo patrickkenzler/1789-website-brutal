@@ -41,8 +41,6 @@ export const LEGAL = [
 export const CLIENTS = [
   'Procter & Gamble',
   'Schwäbisch Hall',
-  'Deutsche Bank',
-  'Commerzbank',
   'Stadt Freiburg',
   'WTS',
   'Metro Digital',
@@ -54,16 +52,11 @@ export const CLIENTS = [
   'teccle group',
 ] as const
 
-/** Fragen, die Kunden stellen — Lauftext im Ticker. */
+/** Die drei Fragen, mit denen der Blick schließt — Lauftext im Ticker. */
 export const QUESTIONS = [
-  'Warum greifen unsere Strategien nicht mehr?',
-  'Wie bauen wir Eigenverantwortung wirklich in die Struktur ein?',
-  'Was hält uns davon ab, das zu sein, was wir wollen?',
-  'Wie schaffen wir Transformation ohne die Organisation zu lähmen?',
-  'Weshalb entscheiden wir noch wie vor 10 Jahren?',
-  'Wo beginnt eigentlich unsere Veränderung?',
-  'Was ist unser tatsächliches Operating Model?',
-  'Wie machen wir den Gap endlich besprechbar?',
+  'Wer entscheidet?',
+  'Was wird neu verteilt?',
+  'Was soll bestehen bleiben?',
 ] as const
 
 export const NEWSLETTER_ACTION =

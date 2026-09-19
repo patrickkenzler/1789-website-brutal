@@ -122,13 +122,13 @@
   --pad-vast:  clamp(56px, 10vh, 140px);
 
   /* ── MOTION ────────────────────────────────────────────────────────────
-     Mechanical, not organic. No easing that suggests softness.            */
+     Mechanical, not organic. No easing that suggests softness. The policy
+     for what moves at all is under 02 · TYPOGRAPHY, "MOTION POLICY".      */
   --snap:  80ms linear;
-  --sweep: 220ms cubic-bezier(0.2, 0, 0, 1);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  :root { --snap: 0ms; --sweep: 0ms; }
+  :root { --snap: 0ms; }
 }
 
 /* ═══ 00 · RESET ═══════════════════════════════════════════════════════════ */
@@ -218,6 +218,11 @@ body::after {
      can't divide (URLs, codes). */
   hyphens: auto;
   overflow-wrap: break-word;
+  /* …but only compounds. text-wrap: balance evens lines out by any means,
+     hyphenation included, and split ordinary words to do it: "ent-steht",
+     "Organizatio-nal", "Ope-rating". Words under 14 characters, or breaks
+     leaving fewer than 6 on either side, now wrap whole. */
+  hyphenate-limit-chars: 14 6 6;
 }
 
 .d0 {
@@ -258,33 +263,42 @@ body::after {
    register, not just of colour. Paired with .d-thin on section headings. */
 .d-wide { font-variation-settings: "wdth" 112; letter-spacing: -0.01em; }
 
-/* ── MECHANICAL MOTION ────────────────────────────────────────────────────
-   Every reveal is a hard clip wipe in steps — a shutter, not a fade. Nothing
-   here can hide content: the hero lines animate from a CSS keyframe with no
-   script dependency, and scroll reveals are only armed by JS after mount,
-   for headings still below the fold.                                       */
+/* ── MOTION POLICY ────────────────────────────────────────────────────────
+   Three kinds of motion on the site, nothing else:
+   1. One entrance. The hero is the only choreographed moment: the eyebrow
+      lines, then the three sentences one after another, then the actions —
+      slow enough to read as a sequence (2s in all), in the system's
+      mechanical steps(), from CSS keyframes with no script dependency.
+   2. Feedback. State changes the reader causes — hover, focus, toggle —
+      snap in --snap (80ms); a reveal of content (a card's back) shutters in
+      360ms. Same timing wherever the same thing happens.
+   3. Ambience. One continuous motion at a time: the hero field (paused
+      off-screen), the tapes as dividers.
+   No scroll-triggered reveals. They fire at the viewport edge where nobody
+   looks, delay reading, and repeat one gesture down the whole page until
+   the signature becomes a tic. Content is there when you arrive.        */
 
-/* Hero statement: three lines shutter in, one after another. */
+/* The entrance. Each wipe is a hard clip in four steps — a shutter, not a
+   fade — and each element starts when the one before is two thirds in, so
+   the sequence flows without the parts blurring into one movement. Before
+   its delay an element holds the keyframe's from-state (fill both); under
+   reduced motion none of this applies and everything is simply there.    */
 .hero-line { display: block; }
 @media (prefers-reduced-motion: no-preference) {
-  .hero-line { animation: hero-wipe 520ms steps(6, end) both; }
-  .hero-line:nth-child(2) { animation-delay: 150ms; }
-  .hero-line:nth-child(3) { animation-delay: 300ms; }
+  .hero-in { animation: hero-wipe 420ms steps(4, end) both; }
+  .hero-in + .hero-in { animation-delay: 140ms; }
+  .hero-line { animation: hero-wipe 640ms steps(4, end) both; }
+  .hero-line:nth-child(1) { animation-delay: 260ms; }
+  .hero-line:nth-child(2) { animation-delay: 700ms; }
+  .hero-line:nth-child(3) { animation-delay: 1140ms; }
+  /* The actions wipe like everything else. (A 1ms opacity "snap" with
+     steps(1) was tried: its end progress computes as 0.9999…, one whole step
+     short of 1, and the compositor held the buttons invisible for good.) */
+  .hero-actions { animation: hero-wipe 420ms steps(4, end) 1600ms both; }
 }
 @keyframes hero-wipe {
   from { clip-path: inset(0 100% 0 0); }
   to   { clip-path: inset(0 0 0 0); }
-}
-
-/* Scroll reveal: visible by default; .reveal-armed clips, .reveal-on wipes.
-   The clip sits on an inner wrapper rather than on the observed heading, so
-   what the observer measures is the heading's untouched box, independent of
-   how the wipe hides its content. */
-.reveal-wipe { display: block; }
-[data-reveal].reveal-armed > .reveal-wipe { clip-path: inset(0 100% 0 0); }
-[data-reveal].reveal-on > .reveal-wipe {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 480ms steps(6, end);
 }
 
 /* The print slips: on hover the misregistration screen of a case plate shifts
@@ -528,17 +542,33 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
    own line-height, so this stays correct at every clamp() step.            */
 .h-2l { min-height: 2lh; }
 
-/* ── AI DIMENSION CARD — text over a schematic ASCII motif ──────────────────
-   The card is a column; the glyph takes the space below the copy and centres
-   in it, so the four motifs sit on a shared band across equal-height cards. */
-.ai-card { display: flex; flex-direction: column; container-type: inline-size; }
+/* ── AI-HUMAN-NATIVE BAND ─────────────────────────────────────────────────
+   The dark register inset into a section: statement left, a tonal ASCII
+   image right in Electric Aqua. Straight under a hairgrid it joins the grid
+   as a full-width row — the line that cuts across all three perspectives. */
+.ai-band {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--u6);
+  align-items: center;
+  padding: var(--pad-dense);
+  border: var(--rule);
+}
+.hairgrid + .ai-band { border-top: 0; }
+.ai-band-text { display: flex; flex-direction: column; gap: var(--u3); }
+.ai-band-text .d3 { margin-top: var(--u2); }
+.ai-band-art { display: flex; container-type: inline-size; }
+@media (max-width: 1024px) {
+  .ai-band { grid-template-columns: minmax(0, 1fr); }
+}
+
 .ai-ascii {
   flex: 1;
   display: grid;
   place-content: center;
-  margin: var(--u4) 0 0;
+  margin: 0;
   font-family: var(--font-micro);
-  /* Sized so the 92-column image fills the card width at any column count. */
+  /* Sized so the 92-column image fills its container's width. */
   font-size: clamp(3.5px, 1.72cqw, 9px);
   /* 1.2 matches the 0.5 glyph aspect the converter squashed to, so the image
      is not stretched vertically. */
@@ -657,8 +687,9 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 /* ── PHASES — the method as a strip ───────────────────────────────────────
    Five cells left to right; the accent arrow after each phase label carries
    the sequence. A blueprint diagram tops each cell: the field in ink, the
-   intervention in the accent. The title is a condensed cut sized to the
-   five-column track — "Entscheidbar" has to hold on one line. */
+   intervention in the accent. The titles run to three lines in the five
+   narrow tracks ("Unter realen Bedingungen erproben"); reserving three keeps
+   every tagline starting on the same line across the strip. */
 .hairgrid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .phase {
   display: flex;
@@ -704,7 +735,10 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   text-transform: uppercase;
   font-variation-settings: "wdth" 87.5;
   color: var(--ink);
-  min-height: 2lh;
+  min-height: 3lh;
+  text-wrap: balance;
+  hyphens: auto;
+  hyphenate-limit-chars: 14 6 6; /* as on the macro scale: compounds only */
   transition: color var(--snap);
 }
 .phase-q {
@@ -713,6 +747,15 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   border-top: var(--rule-faint);
   color: var(--ink-70);
 }
+/* On the dark ground — the strip as a chapter opener: cells in stock, the
+   diagram's field in the dimmed paper, its accent runs in the dark-ground
+   accent (via --red). */
+.slab-invert .phase { background: var(--stock); }
+.slab-invert .phase:hover { background: #1B2129; }
+.slab-invert .phase-art { color: #AEB8B5; border-bottom-color: #2C333B; }
+.slab-invert .phase-title { color: var(--paper); }
+.slab-invert .phase:hover .phase-title { color: var(--red); }
+.slab-invert .phase-q { color: #8A939A; border-top-color: #2C333B; }
 
 /* Three tracks leave a sixth slot empty; the last phase — the exit — takes
    the remaining two, with its diagram in a wider, shorter box. */
@@ -720,16 +763,192 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   .hairgrid-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hairgrid-5 > :last-child { grid-column-end: span 2; }
   .hairgrid-5 > :last-child .phase-art { aspect-ratio: 5 / 2; }
+  .phase-title { min-height: 2lh; }
 }
 @media (max-width: 720px) {
   .hairgrid-5 { grid-template-columns: minmax(0, 1fr); }
   /* one track: the span above would open an implicit second column */
   .hairgrid-5 > :last-child { grid-column-end: auto; }
+  .phase-title { min-height: 0; }
   .phase-art, .hairgrid-5 > :last-child .phase-art {
     aspect-ratio: 2 / 1;
     font-size: clamp(4px, 2.4cqw, 12px);
   }
 }
+
+/* ── LEDE, TENSION, STATEMENT ─────────────────────────────────────────────
+   The argument is carried in short sentences. A lede stacks them beside a
+   headline; a card closes on its verdict under a hairline; a section closes
+   on a statement under the heavy rule.                                     */
+/* Short sentences beside a headline read as one block, not as paragraphs:
+   half a module between them and the leading a step tighter than body. */
+.lede { display: flex; flex-direction: column; gap: var(--u); }
+.lede .body-lg { line-height: 1.5; }
+/* Cards in one row share their row tracks (subgrid): titles, leads, bodies
+   and verdicts each start on the same line across the row, whatever their
+   own line count. A card spans one row per child — three by default,
+   .tension-4 where a lead sits between title and body. */
+.tension {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  row-gap: var(--u3);
+  align-content: start;
+}
+.tension-4 { grid-row: span 4; }
+/* A third of the shell is narrower than a d3 line wants: "Gemeinsame
+   Aufgabe." broke to two lines per half at full size. A step down on the
+   condensed cut keeps each half of a title pair on one line. */
+.tension .d3 {
+  font-size: clamp(1.15rem, 1.9vw, 1.85rem);
+  font-variation-settings: "wdth" 87.5;
+}
+
+/* ── TENSION, FLIPPED — the pair is the picture, the argument is behind it ─
+   The card shows the term pair (the new in ink, the old in the accent) and
+   its verdict. The explanation sits in the row between them, clipped shut;
+   it shutters in when the card is hovered, keyboard-focused or opened, and
+   the card inverts to ink so the reveal reads as the card turning over. On
+   pointer devices the text's row is reserved, so nothing shifts; on touch
+   the row is collapsed and the card grows on tap. */
+.tension-flip {
+  cursor: pointer;
+  transition: background var(--snap), color var(--snap);
+}
+.tension-flip .d3 { hyphens: manual; }
+/* The old half a step narrower than the new: the pair reads as two voices,
+   and "Getrenntes Interesse." (21 characters) holds one line across the
+   whole three-column range — at 87.5 it ran 5px over at 1440px. */
+.tension-flip .d3 .d-thin { font-variation-settings: "wdth" 80; }
+.tension-close {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--u2);
+}
+.tension-toggle {
+  flex: none;
+  font-family: var(--font-micro);
+  font-size: var(--t-12);
+  font-weight: 500;
+  letter-spacing: var(--track-data);
+  line-height: var(--lead-body);
+  color: var(--ink-45);
+  white-space: nowrap;
+  transition: color var(--snap);
+}
+.tension-flip.is-open,
+.tension-flip:has(.tension-toggle:focus-visible) {
+  background: var(--ink);
+  color: var(--paper);
+  --red: #F14800; /* the dark-ground accent, as under .slab-invert */
+}
+.tension-flip.is-open .d3,
+.tension-flip.is-open .d4,
+.tension-flip:has(.tension-toggle:focus-visible) .d3,
+.tension-flip:has(.tension-toggle:focus-visible) .d4 { color: var(--paper); }
+.tension-flip.is-open .body,
+.tension-flip:has(.tension-toggle:focus-visible) .body { color: #AEB8B5; }
+.tension-flip.is-open .close-line,
+.tension-flip:has(.tension-toggle:focus-visible) .close-line {
+  color: var(--paper);
+  border-top-color: #2C333B;
+}
+.tension-flip.is-open .tension-toggle,
+.tension-flip:has(.tension-toggle:focus-visible) .tension-toggle { color: var(--red); }
+
+/* Three across, pointer device: the text's row is reserved and the card
+   answers hover — nothing shifts, the void fills. */
+@media (hover: hover) and (min-width: 1181px) {
+  .tension-flip .tension-body {
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 360ms steps(5, end);
+  }
+  .tension-flip:hover {
+    background: var(--ink);
+    color: var(--paper);
+    --red: #F14800;
+  }
+  .tension-flip:hover .d3,
+  .tension-flip:hover .d4 { color: var(--paper); }
+  .tension-flip:hover .body { color: #AEB8B5; }
+  .tension-flip:hover .close-line { color: var(--paper); border-top-color: #2C333B; }
+  .tension-flip:hover .tension-toggle { color: var(--red); }
+  .tension-flip:hover .tension-body,
+  .tension-flip.is-open .tension-body,
+  .tension-flip:has(.tension-toggle:focus-visible) .tension-body { clip-path: inset(0); }
+}
+/* Stacked, or touch: an accordion — the row is collapsed and the card grows
+   when opened. No hover state, since a reveal here would shift the page. */
+@media (hover: none), (max-width: 1180px) {
+  .tension-flip:not(.is-open) { row-gap: 0; }
+  .tension-flip:not(.is-open) .tension-body { display: none; }
+  .tension-flip:not(.is-open) .close-line { margin-top: var(--u3); }
+}
+/* Three across only where "Getrenntes Interesse." holds one line in a
+   third of the shell; below that the tensions stack. */
+@media (max-width: 1180px) {
+  .tensions { grid-template-columns: minmax(0, 1fr); }
+}
+.close-line {
+  padding-top: var(--u2);
+  border-top: var(--rule);
+  font-family: var(--font-micro);
+  font-size: var(--t-13);
+  font-weight: 700;
+  line-height: var(--lead-body);
+  color: var(--ink);
+  text-wrap: pretty;
+  hyphens: auto;
+}
+.slab-invert .close-line { color: var(--paper); border-top-color: #2C333B; }
+.statement {
+  margin-top: var(--u8);
+  padding-top: var(--u4);
+  border-top: var(--rule-bar);
+}
+/* The thin second sentence as its own block, so text-wrap: balance evens it
+   out on its own — inline after a <br> it broke greedily and left a single
+   word on the last line. */
+.statement .d-thin, .ai-band-text .d-thin { display: block; }
+.statement-coda {
+  align-self: end;
+  justify-self: end;
+  text-align: right;
+  font-size: var(--t-12);
+  color: var(--ink);
+}
+
+/* Ruled text columns — an argument in steps, side by side. */
+.cols-ruled > * { padding-top: var(--u3); border-top: var(--rule); }
+.slab-invert .cols-ruled > * { border-top-color: #2C333B; }
+
+/* ── ARC INDEX (/ansatz) ──────────────────────────────────────────────────
+   Five phase cells link down to their sections; the sixth holds the chain
+   of model states the phases leave behind.                                 */
+.arc-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--u2);
+  transition: background var(--snap);
+}
+.arc-cell .d4 { flex: 1; transition: color var(--snap); }
+.arc-cell:hover { background: var(--sunk); }
+.arc-cell:hover .d4 { color: var(--red); }
+.arc-jump { color: var(--red); }
+.arc-chain {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--u);
+  background: var(--sunk);
+}
+.arc-chain .data { color: var(--ink); }
+.arc-arrow { color: var(--red); }
+/* On the dark ground (the index opens the arc chapter). */
+.slab-invert .arc-cell:hover { background: #1B2129; }
+.slab-invert .arc-chain { background: #1B2129; }
+.slab-invert .arc-chain .data { color: var(--paper); }
 
 /* ── DENK LABOR — three tiers ─────────────────────────────────────────────
    Lead, pair, index — each tier a step quieter: the plate shrinks and then
@@ -779,6 +998,7 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   font-variation-settings: "wdth" 100;
   color: var(--ink);
   hyphens: auto;
+  hyphenate-limit-chars: 14 6 6;
   overflow-wrap: break-word;
   text-wrap: pretty;
 }
@@ -794,6 +1014,15 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 }
 .row:hover .lab-row-title { color: var(--paper); }
 .lab-colophon { margin-top: auto; }
+.lab-newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--u);
+  margin-top: var(--u4);
+  padding-top: var(--u3);
+  border-top: var(--rule);
+}
 
 /* One column: the lead plate takes a ratio again. */
 @media (max-width: 1180px) {
@@ -860,6 +1089,9 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 /* Eyebrow reads white and a step larger over the field (slab-invert otherwise
    dims it to grey). Brackets keep the red accent. */
 .hero-fg .eyebrow { color: var(--paper); font-size: 0.825rem; }
+/* "Managementberatung für" — the lead-in to the bracketed disciplines, a
+   step dimmer so the brackets stay the eyebrow. */
+.hero-fg .hero-kicker { color: #8A939A; margin-bottom: var(--u2); }
 /* The statement is the hierarchy: heavy, condensed (wdth 75 — the narrowest
    cut, same as the 1789 run), full measure. One vw-driven size holds each of
    the three parallel sentences on a single line across the whole range — the
@@ -1238,12 +1470,12 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
 }
 
 /* ═══ 08 · MOTION ══════════════════════════════════════════════════════════
-   Motion is confined to state changes the user causes: the --snap hover
-   inversions on .btn / .link / .row, and the client marquee. There is no
-   scroll-reveal. Every page is a server component in a static export, so a
-   reveal would mean shipping an observer purely to hide content that is
-   already painted — and content that starts at opacity:0 is content that
-   stays invisible if that script fails.                                    */
+   See "MOTION POLICY" under 02 · TYPOGRAPHY: one entrance (the hero
+   sequence), feedback on state changes the reader causes (--snap), one
+   ambient motion at a time (the hero field, the tapes). No scroll-reveal:
+   every page is a server component in a static export, and content that
+   waits for a script to show it is content that stays hidden if the script
+   fails.                                                                   */
 
 /* ═══ 09 · RESPONSIVE COLLAPSE ═════════════════════════════════════════════
    The grid does not reflow gracefully — it collapses to a single stack.
