@@ -474,14 +474,22 @@ a.card:hover .plate::before { background-position: 3px 4px; }
   --red: var(--orange);  /* Molten Orange — accent on the dark ground */
   --red-ink: #11151C;    /* ink text on an orange fill */
 }
-.slab-invert .d0, .slab-invert .d1, .slab-invert .d2,
-.slab-invert .d3, .slab-invert .d4 { color: var(--paper); }
-.slab-invert .body, .slab-invert .body-lg { color: #AEB8B5; }
-.slab-invert .body-lg { color: #CDD6D3; }
-.slab-invert .eyebrow { color: #8A939A; }
-.slab-invert .hairgrid { border-color: #2C333B; }
-.slab-invert .hairgrid > * { outline-color: #2C333B; }
-.slab-invert .body strong, .slab-invert .body-lg strong { color: var(--paper); }
+/* The class is doubled so a dark island keeps its own values inside another
+   ground: the AI band sits in the orange section, and that section's
+   single-class rules would otherwise paint the band's text ink on ink. */
+.slab-invert.slab-invert .d0, .slab-invert.slab-invert .d1,
+.slab-invert.slab-invert .d2, .slab-invert.slab-invert .d3,
+.slab-invert.slab-invert .d4 { color: var(--paper); }
+.slab-invert.slab-invert .body,
+.slab-invert.slab-invert .body-lg { color: #AEB8B5; }
+.slab-invert.slab-invert .body-lg { color: #CDD6D3; }
+.slab-invert.slab-invert .eyebrow,
+.slab-invert.slab-invert .data { color: #8A939A; }
+.slab-invert.slab-invert .unit { color: var(--ink-45); }
+.slab-invert.slab-invert .hairgrid { border-color: #2C333B; }
+.slab-invert.slab-invert .hairgrid > * { outline-color: #2C333B; }
+.slab-invert.slab-invert .body strong,
+.slab-invert.slab-invert .body-lg strong { color: var(--paper); }
 
 /* Accent slab — full Molten Orange. The loudest unit; use once a page. */
 .slab-red { background: var(--red); color: var(--red-ink); }
