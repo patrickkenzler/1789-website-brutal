@@ -237,11 +237,13 @@ body::after {
    headings need more leading than a Latin-only setting would. 0.9 collides. */
 .d1 { font-size: var(--t-d1); font-weight: 800; line-height: 1.12; }
 .d2 { font-size: var(--t-d2); font-weight: 700; line-height: 1.1; }
+/* 1.0 collided: the diaereses of Ü/Ä/Ö sit above the cap line, so "auf die
+   BÜHNE" touched the line above it. 1.12, as on d1. */
 .d3 {
   font-size: var(--t-d3);
   font-weight: 700;
   letter-spacing: var(--track-macro2);
-  line-height: 1.0;
+  line-height: 1.12;
   font-variation-settings: "wdth" 100;
 }
 .d4 {
