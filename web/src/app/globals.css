@@ -46,6 +46,8 @@
      name stays --red so every reference switches at once.                   */
   --red:     #5D2A42;   /* Aubergine — accent on the light ground */
   --red-ink: #DDE5E3;   /* foreground when sitting on the accent fill */
+  --orange:  #F14800;   /* Molten Orange — the accent on the dark ground,
+                           and the ground of the one loud slab */
   --accent-blue: #00E5FF; /* Electric Aqua — special third accent */
 
   /* ── RULES ─────────────────────────────────────────────────────────────
@@ -469,17 +471,25 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 .slab-invert {
   background: var(--stock);
   color: var(--paper);
-  --red: #F14800;       /* Molten Orange — accent on the dark ground */
-  --red-ink: #11151C;   /* ink text on an orange fill */
+  --red: var(--orange);  /* Molten Orange — accent on the dark ground */
+  --red-ink: #11151C;    /* ink text on an orange fill */
 }
-.slab-invert .d0, .slab-invert .d1, .slab-invert .d2,
-.slab-invert .d3, .slab-invert .d4 { color: var(--paper); }
-.slab-invert .body, .slab-invert .body-lg { color: #AEB8B5; }
-.slab-invert .body-lg { color: #CDD6D3; }
-.slab-invert .eyebrow { color: #8A939A; }
-.slab-invert .hairgrid { border-color: #2C333B; }
-.slab-invert .hairgrid > * { outline-color: #2C333B; }
-.slab-invert .body strong, .slab-invert .body-lg strong { color: var(--paper); }
+/* The class is doubled so a dark island keeps its own values inside another
+   ground: the AI band sits in the orange section, and that section's
+   single-class rules would otherwise paint the band's text ink on ink. */
+.slab-invert.slab-invert .d0, .slab-invert.slab-invert .d1,
+.slab-invert.slab-invert .d2, .slab-invert.slab-invert .d3,
+.slab-invert.slab-invert .d4 { color: var(--paper); }
+.slab-invert.slab-invert .body,
+.slab-invert.slab-invert .body-lg { color: #AEB8B5; }
+.slab-invert.slab-invert .body-lg { color: #CDD6D3; }
+.slab-invert.slab-invert .eyebrow,
+.slab-invert.slab-invert .data { color: #8A939A; }
+.slab-invert.slab-invert .unit { color: var(--ink-45); }
+.slab-invert.slab-invert .hairgrid { border-color: #2C333B; }
+.slab-invert.slab-invert .hairgrid > * { outline-color: #2C333B; }
+.slab-invert.slab-invert .body strong,
+.slab-invert.slab-invert .body-lg strong { color: var(--paper); }
 
 /* Accent slab — full Molten Orange. The loudest unit; use once a page. */
 .slab-red { background: var(--red); color: var(--red-ink); }
@@ -487,6 +497,31 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 .slab-red .d3, .slab-red .d4 { color: var(--red-ink); }
 .slab-red .body, .slab-red .body-lg { color: rgba(221, 229, 227, 0.85); }
 .slab-red .eyebrow { color: rgba(221, 229, 227, 0.72); }
+
+/* Orange slab — the loudest ground the system has. Everything on it is set
+   in ink (the only value with enough contrast on this orange); the second
+   voice, where a section needs one, is Alabaster. Cards keep no ground of
+   their own, so the hairgrid cuts the orange into compartments; a card
+   inverts to ink when the reader opens it. */
+.slab-orange {
+  background: var(--orange);
+  color: var(--ink);
+  /* No second colour here: Alabaster on this orange measures 2.89:1, under
+     the floor even for display sizes, and a thin cut in a light value
+     vibrates on it. The second voice is the thin wide cut alone, as in the
+     Blick headline. */
+  --red: var(--ink);
+  --red-ink: var(--orange);
+}
+.slab-orange .d0, .slab-orange .d1, .slab-orange .d2,
+.slab-orange .d3, .slab-orange .d4 { color: var(--ink); }
+.slab-orange .body, .slab-orange .body-lg { color: var(--ink); }
+.slab-orange .eyebrow, .slab-orange .data { color: rgba(17, 21, 28, 0.72); }
+.slab-orange .unit { color: rgba(17, 21, 28, 0.6); }
+.slab-orange .tension-toggle { color: rgba(17, 21, 28, 0.55); }
+.slab-orange .close-line { color: var(--ink); }
+.slab-orange .link { color: var(--ink); border-bottom-color: var(--ink); }
+.slab-orange .link:hover { color: var(--paper); border-bottom-color: var(--paper); }
 
 /* ═══ 04 · RULES + COMPARTMENTS ════════════════════════════════════════════ */
 
