@@ -39,8 +39,9 @@ export default function Home() {
           Labor). Each opens on the dark ground with one full-bleed statement
           and reads on Alabaster from there. A position statement inside a
           chapter (the AI band) is a dark inset, never a slab of its own.
-          Aubergine appears once, at the end: the call.
-          Sequence: D · L L · D L · D L · A                                 */}
+          One orange slab — what we do — and aubergine once, at the end: the
+          call.
+          Sequence: D · L O · D L · D L · A                                 */}
 
       {/* ═══ HERO ═══════════════════════════════════════════════════════════
           A viewport-tall inverted panel: the ASCII flow field is the full
@@ -163,8 +164,10 @@ export default function Home() {
 
       {/* ═══ WORAN WIR ARBEITEN ═════════════════════════════════════════════
           Three perspectives on the same organisation; the AI-Human-Native band
-          runs straight under them, across all three.                       */}
-      <section className="slab">
+          runs straight under them, across all three. Orange: what 1789 does
+          is the page's loudest claim, and it breaks the two light grounds
+          the diagnosis would otherwise run across.                        */}
+      <section className="slab slab-orange">
         <div className="shell">
           <SectionHead label="Woran wir arbeiten" />
 
