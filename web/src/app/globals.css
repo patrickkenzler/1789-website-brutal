@@ -1697,6 +1697,115 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
   .strip { flex-wrap: wrap; }
 }
 
+/* ═══ 10 · STYLEGUIDE (/styleguide) ════════════════════════════════════════
+   The specification, as a page. Everything here is layout for the document
+   itself — the examples inside it use the system's own classes, so the
+   styleguide shows the system rather than reproducing it. The same page is
+   the source of the PDF (scripts/styleguide-pdf.mjs).                       */
+
+.spec-cover { padding-block: var(--u12) var(--u8); }
+.spec-standfirst { margin-top: var(--u4); max-width: 56ch; }
+.spec-meta { margin-top: var(--u8); max-width: 32rem; }
+.spec-pdf { margin-top: var(--u6); }
+
+/* Chapter head: number in the accent over the title, lede beneath. */
+.spec-ch-head { margin-bottom: var(--u8); }
+.spec-num { display: block; color: var(--red); margin-bottom: var(--u2); }
+.spec-lead { margin-top: var(--u3); max-width: 58ch; }
+
+.spec-demo { margin-top: var(--u8); }
+.spec-demo > .eyebrow { margin-bottom: var(--u3); }
+.spec-demo .body { margin-top: var(--u3); }
+.spec-cols { margin-top: var(--u8); row-gap: var(--u8); }
+.spec-cols .spec-demo { margin-top: 0; }
+.spec-note { margin-top: var(--u8); }
+.spec-row-wrap { display: flex; flex-wrap: wrap; gap: var(--u2); align-items: center; }
+
+/* Numbered rule list — a ruled register, not bullets. */
+.spec-rules { border-top: var(--rule-bar); }
+.spec-rule {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: var(--u3);
+  padding-block: var(--u3);
+  border-bottom: var(--rule);
+}
+.spec-rule-n { color: var(--red); }
+.spec-rule .d4 { margin-bottom: var(--u); }
+.slab-invert .spec-rules { border-top-color: var(--paper); }
+.slab-invert .spec-rule { border-bottom-color: #2C333B; }
+
+/* Colour fields. Token and hex are content here, not marginalia: .unit's
+   tertiary ink measures 2.85:1 on paper, so the line steps up to body ink. */
+.spec-swatch { display: flex; flex-direction: column; gap: 6px; }
+.spec-swatch .unit, .spec-type-meta .unit { color: var(--ink-70); }
+.spec-chip { height: 96px; border: var(--rule); }
+.spec-chip-sm { height: 56px; }
+.spec-swatch-name { color: var(--ink); }
+
+/* The four grounds, each shown on itself. */
+.spec-grounds {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--u3);
+}
+.spec-ground {
+  padding-block: 0;
+  border: var(--rule);
+  border-bottom: var(--rule);
+}
+.spec-ground-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--u2);
+  padding: var(--pad-dense);
+}
+.spec-sequence { letter-spacing: 0.18em; }
+
+/* Type specimen: values left, the live cut right. */
+.spec-type { border-top: var(--rule-bar); }
+.spec-type-row {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: var(--u4);
+  align-items: baseline;
+  padding-block: var(--u3);
+  border-bottom: var(--rule);
+}
+.spec-type-meta { display: flex; flex-direction: column; gap: 4px; }
+.spec-type-sample { overflow: hidden; }
+.spec-mods { display: flex; flex-wrap: wrap; gap: var(--u4); }
+
+/* Die Skala im Zusammenhang: eine Sektion im Kleinen. */
+.spec-specimen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--u4);
+  padding: var(--pad-dense);
+  border: var(--rule);
+}
+.spec-specimen-grid { row-gap: 0; }
+.spec-specimen-note { color: var(--ink-45); }
+
+/* Rule weights and the spacing module, drawn to scale. */
+.spec-line-row {
+  display: grid;
+  grid-template-columns: 7rem minmax(0, 1fr);
+  gap: var(--u3);
+  align-items: center;
+  padding-block: var(--u2);
+}
+.spec-line { width: 100%; }
+.spec-units { display: flex; flex-direction: column; gap: var(--u2); }
+.spec-unit { display: flex; align-items: center; gap: var(--u3); }
+.spec-unit-bar { height: 8px; background: var(--ink); flex: none; }
+
+@media (max-width: 860px) {
+  .spec-grounds { grid-template-columns: minmax(0, 1fr); }
+  .spec-type-row { grid-template-columns: minmax(0, 1fr); gap: var(--u2); }
+  .spec-rule { grid-template-columns: 2.5rem minmax(0, 1fr); }
+}
+
 /* ═══ PRINT ════════════════════════════════════════════════════════════════
    The design is already a document. Printing should be near-lossless.       */
 
@@ -1704,4 +1813,86 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
   body::after { display: none; }
   .tape, .btn { display: none; }
   .slab-invert, .slab-red { background: var(--paper) !important; color: var(--ink) !important; }
+}
+
+/* ── PRINT · the specification ────────────────────────────────────────────
+   The rule above flattens the dark and accent grounds, which is right for an
+   article and wrong for the styleguide: there the grounds ARE the content.
+   Inside .spec they are restored (two classes beat one) and forced to print
+   their colour.                                                            */
+@media print {
+  /* No page margin: the substrate is the page. The chapters carry their own
+     inset instead, so a dark or orange chapter bleeds to the sheet's edge
+     rather than sitting in a white frame like a pasted screenshot. */
+  @page { size: A4; margin: 0; }
+
+  .spec, .spec * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body:has(.spec) {
+    background: var(--paper);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* The site frame is not part of the document. */
+  body > header, body > footer { display: none !important; }
+
+  .spec .slab-invert { background: var(--stock) !important; color: var(--paper) !important; }
+  .spec .slab-red { background: var(--red) !important; color: var(--red-ink) !important; }
+  .spec .slab-orange { background: var(--orange) !important; color: var(--ink) !important; }
+  .spec .btn { display: inline-flex; }
+
+  /* One chapter per sheet. Only small units are held together — holding a
+     whole demo together pushed half-empty pages. */
+  .spec .spec-ch { break-before: page; }
+  .spec .spec-rule,
+  .spec .spec-type-row,
+  .spec .spec-swatch,
+  .spec .spec-grounds > *,
+  .spec .statement,
+  .spec .readout,
+  .spec .tensions,
+  .spec .spec-demo > .hairgrid,
+  .spec article { break-inside: avoid; }
+  .spec .spec-demo > .eyebrow { break-after: avoid; }
+
+  /* Nur das Schlusskapitel füllt sein Blatt: sein dunkler Grund endete sonst
+     kurz vor der Kante und hinterließ einen hellen Streifen. Auf alle Kapitel
+     angewandt schob die Regel ein leeres Blatt zwischen zwei Kapitel. */
+  .spec .spec-ch:last-child { min-height: 297mm; }
+
+  /* Das 8px-Modul liegend: als Spalte kostet es eine halbe Seite und drängt
+     den Satzspiegel auf ein eigenes Blatt. */
+  .spec .spec-units { flex-direction: row; flex-wrap: wrap; align-items: flex-end; gap: var(--u3); }
+  .spec .spec-unit { flex-direction: column; align-items: flex-start; gap: 4px; }
+
+  /* Screen padding is vast by design; on paper the sheet's own inset carries. */
+  .spec .slab { padding-block: 0; border-bottom: 0; }
+  .spec .shell { max-width: none; padding-inline: 0; }
+  /* Kein Fußsteg: endet ein Kapitel knapp an der Blattkante, kippt sonst
+     allein sein Steg auf das nächste Blatt — und der Umbruch des folgenden
+     Kapitels lässt ein leeres Blatt dazwischen. */
+  .spec .spec-ch, .spec .spec-cover { padding: 18mm 16mm 0; }
+  .spec .spec-cover { padding-top: 34mm; }
+  .spec .spec-ch-head { margin-bottom: var(--u4); }
+  .spec .spec-demo, .spec .spec-cols, .spec .spec-note { margin-top: var(--u4); }
+  .spec .spec-cols { row-gap: var(--u4); }
+  .spec .spec-ground-body { padding: var(--u2) var(--u3); }
+  .spec .spec-grounds { gap: var(--u2); }
+  .spec .statement { margin-top: var(--u6); }
+
+  /* Das Layoutmuster ist das Herz des Typografie-Kapitels: eigene Seite,
+     nicht zerrissen, und mit mehr Platz je Spalte als auf dem Schirm. Der
+     Umbruch sitzt am Block mitsamt Beschriftung — am Muster allein ließe er
+     die Überschrift auf der Vorseite zurück. */
+  .spec .spec-demo:has(.spec-specimen) { break-before: page; }
+  .spec .spec-specimen {
+    break-inside: avoid;
+    padding: var(--u3);
+    gap: var(--u3);
+  }
+  .spec .spec-specimen .pad { padding: var(--u2); }
+  .spec .spec-specimen .tension { row-gap: var(--u2); }
 }
