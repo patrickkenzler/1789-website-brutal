@@ -71,7 +71,7 @@ kommt er zuerst dorthin.
 
 Cases haben zwei Tiefen. Die kurze Fassung trägt `gap` / `shift` / `result`,
 die Lesefassung trägt `sections` — Kapitel aus Blöcken (Text, Liste, Zitat,
-Link) in der Reihenfolge des Quelldokuments, dazu `summary`, `transfer`, `faq`,
+Link, Bild) in der Reihenfolge des Quelldokuments, dazu `summary`, `transfer`, `faq`,
 `related` und `close`. `src/app/projekte/[slug]/page.tsx` rendert, was ein Case
 hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
 Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
@@ -79,7 +79,8 @@ Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 Die Kapitel stehen als `.doc-ch`: im Rand (4 Spalten, mitlaufend) die
 Kapitelmarke und der Vorspann, daneben (8 Spalten) die Prosa zweispaltig im
 Lesemaß. Zitate mit Porträt brechen beide Spalten, Stimmen ohne Bild stehen in
-ihrer Spalte.
+ihrer Spalte. Ein Bildblock nennt sein Seitenverhältnis und ob es die Spalten
+bricht; gerendert wird es wie jedes Bild durch `<Plate>`.
 
 ---
 
@@ -103,8 +104,6 @@ ihrer Spalte.
       umgestellt — einzige Stelle mit Alt-Tokens (terra/sage).
 - [ ] Team-Portraits und Büro-Foto fehlen (`photo: null` → Initialen-Plate).
 - [ ] Alle Labor-Links zeigen auf `#`; Kontaktformular hat kein Backend.
-- [ ] Das Bild zum WD-40-Pilot aus der Lesefassung fehlt — die Stelle bleibt
-      leer, statt einen Platzhalter zu zeigen.
 - [ ] Die Schluss-CTA wiederholt auf den Lesefassungs-Cases die Aussage des
       Schlusssatzes („beginnt mit dem Gap“). Entweder die stehende Zeile auf
       diesen Seiten ändern oder den Schlusssatz streichen — Textentscheidung.

@@ -59,6 +59,16 @@ function Blocks({ blocks }: { blocks: CaseBlock[] }) {
       {blocks.map((b, i) => {
         if (b.kind === 'quote') return <Testimony key={i} q={b} />
 
+        /* A photograph is a plate like any other: the halftone screen is what
+           makes it belong to the page. Wide formats break both columns, tall
+           ones stand in theirs and the text runs beside them. */
+        if (b.kind === 'image')
+          return (
+            <div key={i} className={b.span ? 'doc-fig doc-span' : 'doc-fig'}>
+              <Plate src={b.src} alt={b.alt} ratio={b.ratio} note={null} coarse={b.span} />
+            </div>
+          )
+
         if (b.kind === 'list')
           return (
             <ul key={i} className="ruled cols-2" style={{ marginBlock: 'var(--u4)' }}>
@@ -114,19 +124,23 @@ function groupByGround(sections: CaseSection[]) {
    the text — so the opening paragraph buys its entry point for free. Where a
    chapter brings its own headline, that headline is the opening. */
 function Chapter({ s, solo }: { s: CaseSection; solo?: boolean }) {
-  const [first, ...rest] = s.blocks
-  const deck = !s.lead && first?.kind === 'text' ? first : null
+  /* The opening paragraph moves to the margin, wherever it stands: teccle's
+     Gap opens on a photograph and a quotation, and without this the margin of
+     its longest chapter would hold nothing but the mark. */
+  const di = s.lead ? -1 : s.blocks.findIndex((b) => b.kind === 'text')
+  const deck = di >= 0 ? s.blocks[di] : null
+  const rest = di >= 0 ? s.blocks.filter((_, i) => i !== di) : s.blocks
 
   return (
     <div className={solo ? 'doc-ch doc-ch-solo' : 'doc-ch'}>
       <div className="doc-side">
         <h2 className="d3">{s.label}</h2>
         {s.lead && <p className="d2">{s.lead}</p>}
-        {deck && <p className="body-lg">{deck.text}</p>}
+        {deck?.kind === 'text' && <p className="body-lg">{deck.text}</p>}
       </div>
 
       <div className="doc-body">
-        <Blocks blocks={deck ? rest : s.blocks} />
+        <Blocks blocks={rest} />
       </div>
     </div>
   )

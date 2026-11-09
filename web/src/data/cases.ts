@@ -9,6 +9,15 @@ export type CaseBlock =
   | { kind: 'list'; items: string[] }
   | { kind: 'quote'; text: string; author: string; role: string; photo?: string }
   | { kind: 'link'; label: string; href: string; intro?: string }
+  | {
+      kind: 'image'
+      src: string
+      alt: string
+      /** Zuschnitt auf der Seite — '3 / 4', '16 / 9', '21 / 9' … */
+      ratio: string
+      /** true: bricht beide Spalten als Band; sonst steht es in seiner Spalte */
+      span?: boolean
+    }
 
 export type CaseSection = {
   /** Kapitelmarke — 'Der Gap', 'Der Shift', 'Das Ergebnis' … */
@@ -114,6 +123,12 @@ export const cases: CaseStudy[] = [
             text: 'Bevor das Framework für alle galt, musste es an einem echten Geschäftsfall bestehen. Ein cross-funktionales Team testete es in einem Design Thinking Sprint an einem Produkt, dessen Wachstum stagnierte. Die Erfahrungen des Pilotteams flossen in einer Retrospektive zurück in das Framework. Analyse, Framework-Entwicklung und Pilot dauerten zusammen acht Monate.',
           },
           {
+            kind: 'image',
+            src: '/projects/wd40-matrix.jpg',
+            alt: 'Eine Workshop-Wand aus Packpapier mit Karten auf den Achsen Impact und Effort; davor erläutert eine Teilnehmerin eine Karte.',
+            ratio: '3 / 4',
+          },
+          {
             kind: 'text',
             text: 'Den ersten regulären Zyklus begleitete 1789 von der Ideensession mit der ganzen Belegschaft bis zur Scoping-Runde. Dort priorisierte das Leadership-Team die Vorschläge entlang der Strategie und gab zwei Projekte frei. Die Moderation übernimmt WD-40 dabei schrittweise selbst.',
           },
@@ -124,6 +139,13 @@ export const cases: CaseStudy[] = [
         lead: 'Ein Design Thinking Sprint als Belastungsprobe für das Framework',
         ground: 'dark',
         blocks: [
+          {
+            kind: 'image',
+            src: '/projects/wd40-pilot.jpg',
+            alt: 'Das Pilotteam im Baumarkt vor einem Verkaufsdisplay mit WD-40-Dosen.',
+            ratio: '21 / 9',
+            span: true,
+          },
           {
             kind: 'text',
             text: 'Ein Produkt von WD-40 war über Jahre gut gewachsen und stagnierte nun. Das Leadership-Team machte die nächste Wachstumsphase dieses Produkts zur ersten Aufgabe im Strategic Impact Framework. Es wählte bewusst ein Thema, für das es noch keine fertige Lösung gab.',
@@ -166,6 +188,12 @@ export const cases: CaseStudy[] = [
               'Innerhalb des vereinbarten Rahmens arbeiten die Teams eigenständig. In Reviews binden sie die betroffenen Bereiche ein, damit Entscheidungen rechtzeitig dort ankommen, wo sie umgesetzt werden.',
               'Abgeschlossene Projekte übernimmt eine verantwortliche Person in der Linie. Einmal im Jahr prüft das Leadership-Team auch das Framework selbst.',
             ],
+          },
+          {
+            kind: 'image',
+            src: '/projects/wd40-framework.jpg',
+            alt: 'Präsentation im Besprechungsraum, auf zwei Bildschirmen die Folie „From Innovation Framework to Learning Identity“.',
+            ratio: '16 / 9',
           },
           {
             kind: 'text',
@@ -254,6 +282,13 @@ export const cases: CaseStudy[] = [
         label: 'Der Gap',
         blocks: [
           {
+            kind: 'image',
+            src: '/projects/teccle-vision.jpg',
+            alt: 'Werkstattraum mit Zuhörenden; an der Wand das Plakat „Konkret: Die Vision.“, davor zwei Geschäftsführer im Gespräch.',
+            ratio: '16 / 9',
+            span: true,
+          },
+          {
             kind: 'quote',
             text: 'Aktuell sind wir viele gute Unternehmen, aber noch keine gute Gruppe.',
             author: 'Sven Kalisch',
@@ -290,6 +325,12 @@ export const cases: CaseStudy[] = [
             text: 'Auf dieser Grundlage legten die Geschäftsführer Designprinzipien fest, deren Kern lautet: Was der Markt braucht, entsteht lokal. Was Zusammenarbeit braucht, wird zentral geregelt. Nach rund drei Monaten Analyse stand ein erstes Referenzmodell, das teccle Operating Model. In weiteren rund vier Monaten stimmte die Geschäftsführung es mit allen Geschäftsführern und freiwilligen Change Agents ab und plante den Pilot.',
           },
           {
+            kind: 'image',
+            src: '/projects/teccle-potenziale.jpg',
+            alt: 'Beschriftete Haftnotizen an einer Fensterscheibe, dahinter eine Baustelle mit Kränen.',
+            ratio: '3 / 4',
+          },
+          {
             kind: 'text',
             text: 'Vier Tochterfirmen mit rund 80 Mitarbeitenden testeten das Modell als „Public Cloud Powerhouse“ rund sechs Monate im Alltag. Die Detailprozesse entwickelten die Mitarbeitenden selbst. Ein zentrales Order-to-Cash-Team für den ganzen Pilotbereich klang sinnvoll, doch die Vertragslogiken waren unterschiedlicher als gedacht. Erst die Arbeit mit Order-to-Cash, Vertrieb und Delivery zeigte, was gebraucht wurde, und teccle überarbeitete daraufhin seine Portfoliostruktur.',
           },
@@ -322,6 +363,12 @@ export const cases: CaseStudy[] = [
               'Klassische Führungsrollen sind in Teamrollen übersetzt, Teams entscheiden innerhalb gemeinsamer Regeln selbst.',
               'Die Führung ist mitgewachsen. Geschäftsbereiche und geregelte Verantwortlichkeiten halten die Gruppe steuerbar und entlasten das Top-Management.',
             ],
+          },
+          {
+            kind: 'image',
+            src: '/projects/teccle-team.jpg',
+            alt: 'Drei Personen im Workshop, daneben eine Wand voller Haftnotizen.',
+            ratio: '3 / 2',
           },
           {
             kind: 'text',
