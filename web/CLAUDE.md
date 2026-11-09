@@ -80,7 +80,10 @@ Die Kapitel stehen als `.doc-ch`: im Rand (4 Spalten, mitlaufend) die
 Kapitelmarke und der Vorspann, daneben (8 Spalten) die Prosa zweispaltig im
 Lesemaß. Zitate mit Porträt brechen beide Spalten, Stimmen ohne Bild stehen in
 ihrer Spalte. Ein Bildblock nennt sein Seitenverhältnis und ob es die Spalten
-bricht; gerendert wird es wie jedes Bild durch `<Plate>`.
+bricht; gerendert wird es wie jedes Bild durch `<Plate>`. Bilder stehen am
+Anfang eines Kapitels oder direkt hinter einem spaltenbrechenden Element —
+mitten im Spaltenfluss stehen sie neben nichts. Figuren tragen ihren Abstand
+nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 
 ---
 

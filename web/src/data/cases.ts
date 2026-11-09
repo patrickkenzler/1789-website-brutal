@@ -115,18 +115,18 @@ export const cases: CaseStudy[] = [
         label: 'Der Shift',
         blocks: [
           {
+            kind: 'image',
+            src: '/projects/wd40-matrix.jpg',
+            alt: 'Eine Workshop-Wand aus Packpapier mit Karten auf den Achsen Impact und Effort; davor erläutert eine Teilnehmerin eine Karte.',
+            ratio: '3 / 4',
+          },
+          {
             kind: 'text',
             text: '1789 führte zunächst zehn leitfadengestützte Interviews in Vertrieb, Marketing und den zentralen Diensten. Dabei zeigte sich, dass für Vorhaben außerhalb des Tagesgeschäfts feste Projektrollen und nachvollziehbare Entscheidungswege fehlten. Mit 1789 baute das Leadership-Team um General Manager Daniel Kalisch dafür das Strategic Impact Framework auf. Es ist ein Jahreszyklus aus Planung, Projektphase und Auswertung, in dem das Leadership-Team an festen Punkten entscheidet.',
           },
           {
             kind: 'text',
             text: 'Bevor das Framework für alle galt, musste es an einem echten Geschäftsfall bestehen. Ein cross-funktionales Team testete es in einem Design Thinking Sprint an einem Produkt, dessen Wachstum stagnierte. Die Erfahrungen des Pilotteams flossen in einer Retrospektive zurück in das Framework. Analyse, Framework-Entwicklung und Pilot dauerten zusammen acht Monate.',
-          },
-          {
-            kind: 'image',
-            src: '/projects/wd40-matrix.jpg',
-            alt: 'Eine Workshop-Wand aus Packpapier mit Karten auf den Achsen Impact und Effort; davor erläutert eine Teilnehmerin eine Karte.',
-            ratio: '3 / 4',
           },
           {
             kind: 'text',
@@ -313,6 +313,12 @@ export const cases: CaseStudy[] = [
         label: 'Der Shift',
         blocks: [
           {
+            kind: 'image',
+            src: '/projects/teccle-potenziale.jpg',
+            alt: 'Beschriftete Haftnotizen an einer Fensterscheibe, dahinter eine Baustelle mit Kränen.',
+            ratio: '3 / 4',
+          },
+          {
             kind: 'text',
             text: 'Zuerst musste teccle entscheiden, nach welchem Vorbild sich die Gruppe organisiert. Der Markt kannte zwei Antworten. Große Konkurrenten integrieren voll in Matrix- oder Linienorganisationen und stellen damit Standardisierung vor das individuelle Kundenproblem. Lose Netzwerke kleiner Systemhäuser bleiben nah am Kunden, skalieren aber nicht.',
           },
@@ -323,12 +329,6 @@ export const cases: CaseStudy[] = [
           {
             kind: 'text',
             text: 'Auf dieser Grundlage legten die Geschäftsführer Designprinzipien fest, deren Kern lautet: Was der Markt braucht, entsteht lokal. Was Zusammenarbeit braucht, wird zentral geregelt. Nach rund drei Monaten Analyse stand ein erstes Referenzmodell, das teccle Operating Model. In weiteren rund vier Monaten stimmte die Geschäftsführung es mit allen Geschäftsführern und freiwilligen Change Agents ab und plante den Pilot.',
-          },
-          {
-            kind: 'image',
-            src: '/projects/teccle-potenziale.jpg',
-            alt: 'Beschriftete Haftnotizen an einer Fensterscheibe, dahinter eine Baustelle mit Kränen.',
-            ratio: '3 / 4',
           },
           {
             kind: 'text',
