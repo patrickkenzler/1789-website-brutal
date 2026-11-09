@@ -24,7 +24,10 @@ type QuoteBlock = Extract<CaseBlock, { kind: 'quote' }>
    every ground rule and would paint ink on ink inside a dark chapter.      */
 function Testimony({ q }: { q: QuoteBlock }) {
   return (
-    <figure className="box-bar pad regmark" style={{ marginBlock: 'var(--u4)' }}>
+    <figure
+      className={q.photo ? 'box-bar pad regmark doc-span' : 'box-bar pad regmark'}
+      style={{ marginBlock: 'var(--u4)' }}
+    >
       <div className="g12" style={{ rowGap: 'var(--u4)' }}>
         {q.photo && (
           <div className="c3">
@@ -58,7 +61,7 @@ function Blocks({ blocks }: { blocks: CaseBlock[] }) {
 
         if (b.kind === 'list')
           return (
-            <ul key={i} className="ruled" style={{ marginBlock: 'var(--u4)' }}>
+            <ul key={i} className="ruled cols-2" style={{ marginBlock: 'var(--u4)' }}>
               {b.items.map((it) => (
                 <li key={it}>
                   <span className="body">{it}</span>
@@ -104,6 +107,29 @@ function groupByGround(sections: CaseSection[]) {
     else groups.push({ ground, items: [s] })
   }
   return groups
+}
+
+/* A chapter in two zones: its mark and its opening in the margin, its prose
+   in two columns beside them. The margin costs no height — it stands next to
+   the text — so the opening paragraph buys its entry point for free. Where a
+   chapter brings its own headline, that headline is the opening. */
+function Chapter({ s, solo }: { s: CaseSection; solo?: boolean }) {
+  const [first, ...rest] = s.blocks
+  const deck = !s.lead && first?.kind === 'text' ? first : null
+
+  return (
+    <div className={solo ? 'doc-ch doc-ch-solo' : 'doc-ch'}>
+      <div className="doc-side">
+        <h2 className="d3">{s.label}</h2>
+        {s.lead && <p className="d2">{s.lead}</p>}
+        {deck && <p className="body-lg">{deck.text}</p>}
+      </div>
+
+      <div className="doc-body">
+        <Blocks blocks={deck ? rest : s.blocks} />
+      </div>
+    </div>
+  )
 }
 
 export default async function CasePage({
@@ -217,17 +243,7 @@ export default async function CasePage({
           g.items.map((s) => (
             <section key={s.label} className="slab slab-invert">
               <div className="shell">
-                <SectionHead label={s.label} />
-                <div className="g12" style={{ rowGap: 'var(--u6)' }}>
-                  {s.lead && (
-                    <div className="c5">
-                      <h2 className="d2">{s.lead}</h2>
-                    </div>
-                  )}
-                  <div className={s.lead ? 'c6 s7' : 'c8'}>
-                    <Blocks blocks={s.blocks} />
-                  </div>
-                </div>
+                <Chapter s={s} solo />
               </div>
             </section>
           ))
@@ -236,29 +252,9 @@ export default async function CasePage({
             <div className="shell">
               {gi === 0 && <SectionHead label="Befund" />}
 
-              <div style={{ borderTop: 'var(--rule-bar)' }}>
+              <div className="doc">
                 {g.items.map((s) => (
-                  <div
-                    key={s.label}
-                    className="g12"
-                    style={{
-                      rowGap: 'var(--u3)',
-                      paddingBlock: 'var(--u6)',
-                      borderBottom: 'var(--rule)',
-                    }}
-                  >
-                    <div className="c4">
-                      <h2 className="d3">{s.label}</h2>
-                      {s.lead && (
-                        <p className="unit" style={{ marginTop: 'var(--u2)' }}>
-                          {s.lead}
-                        </p>
-                      )}
-                    </div>
-                    <div className="c7 s5">
-                      <Blocks blocks={s.blocks} />
-                    </div>
-                  </div>
+                  <Chapter key={s.label} s={s} />
                 ))}
               </div>
             </div>
@@ -311,7 +307,7 @@ export default async function CasePage({
           <div className="shell">
             <SectionHead label="Übertragbar auf" />
             <div className="g12">
-              <ul className="ruled ruled-lg c9">
+              <ul className="ruled ruled-lg cols-2 c12">
                 {c.transfer.map((t) => (
                   <li key={t}>
                     <span className="d4">{t}</span>
@@ -329,19 +325,19 @@ export default async function CasePage({
           <div className="shell">
             <SectionHead label="Häufige Fragen" />
 
-            <div style={{ borderTop: 'var(--rule-bar)' }}>
+            <div className="cols-2">
               {c.faq.map((f) => (
                 <div
                   key={f.q}
-                  className="g12"
                   style={{
-                    rowGap: 'var(--u2)',
-                    paddingBlock: 'var(--u6)',
-                    borderBottom: 'var(--rule-faint)',
+                    borderTop: 'var(--rule)',
+                    paddingBlock: 'var(--u3) var(--u6)',
                   }}
                 >
-                  <h3 className="d4 c5">{f.q}</h3>
-                  <p className="body c6 s7">{f.a}</p>
+                  <h3 className="d4" style={{ marginBottom: 'var(--u3)' }}>
+                    {f.q}
+                  </h3>
+                  <p className="body">{f.a}</p>
                 </div>
               ))}
             </div>

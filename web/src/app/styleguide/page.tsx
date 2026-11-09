@@ -406,12 +406,21 @@ export default function Styleguide() {
             <dd>
               {MEASURES.padDense} dicht · {MEASURES.padVast} weit
             </dd>
+            <dt>Langtext</dt>
+            <dd>{MEASURES.docColumns}</dd>
           </dl>
           <p className="body">
             Unter 1024px fällt jede Spalte unter halber Breite auf die Hälfte,
             jede darüber auf die volle. Unter 720px steht alles in einer
             Spalte. Das Raster reflowt nicht elegant, es kollabiert — und
             behält dabei alle Linien.
+          </p>
+          <p className="body">
+            Langtext bekommt zwei Zonen: im Rand die Kapitelmarke und der
+            Vorspann, daneben die Prosa in zwei Spalten im selben Lesemaß. Der
+            Rand kostet keine Höhe, weil er neben dem Text steht. Unter 1180px
+            stapelt sich der Rand über den Text, die zwei Spalten bleiben;
+            unter 860px bleibt eine.
           </p>
         </Demo>
       </Chapter>

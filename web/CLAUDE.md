@@ -76,6 +76,11 @@ Link) in der Reihenfolge des Quelldokuments, dazu `summary`, `transfer`, `faq`,
 hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
 Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
+Die Kapitel stehen als `.doc-ch`: im Rand (4 Spalten, mitlaufend) die
+Kapitelmarke und der Vorspann, daneben (8 Spalten) die Prosa zweispaltig im
+Lesemaß. Zitate mit Porträt brechen beide Spalten, Stimmen ohne Bild stehen in
+ihrer Spalte.
+
 ---
 
 ## 4. Harte Regeln

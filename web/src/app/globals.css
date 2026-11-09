@@ -456,6 +456,73 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 .s5{grid-column-start:5}  .s7{grid-column-start:7}  .s8{grid-column-start:8}
 .s9{grid-column-start:9}
 
+/* ── DOKUMENT-KAPITEL ─────────────────────────────────────────────────────
+   Ein Case-Bericht ist Langtext. In einer einzigen 68ch-Spalte wird daraus
+   ein Band über zehn Bildschirme — lesbar, aber mühsam, und die halbe Seite
+   bleibt leer. Das Kapitel bekommt deshalb zwei Zonen: im Rand die Marke und
+   der Vorspann, daneben die Prosa in zwei Spalten. Der Rand kostet keine
+   Höhe (er steht neben dem Text, nicht darüber) und läuft beim Scrollen mit,
+   damit klar bleibt, worin man liest.                                      */
+
+.doc { border-top: var(--rule-bar); }
+
+.doc-ch {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--u3);
+  padding-block: var(--u8);
+  border-bottom: var(--rule);
+}
+/* Ein Kapitel, das allein in seiner Sektion steht, braucht weder die Linie
+   noch die Luft — die Sektion bringt beides mit. */
+.doc-ch-solo { padding-block: 0; border-bottom: 0; }
+
+.doc-side {
+  grid-column: 1 / span 4;
+  position: sticky;
+  top: calc(var(--nav-h) + var(--u3));
+  align-self: start;
+}
+.doc-side .body-lg { max-width: none; margin-top: var(--u4); }
+.doc-side .d2 { margin-top: var(--u4); }
+
+.doc-body {
+  grid-column: 5 / span 8;
+  columns: 2;
+  column-gap: var(--u6);
+}
+/* In der Spalte gilt das Maß der Spalte, nicht das der Seite. */
+.doc-body .body { max-width: none; }
+.doc-body > figure { break-inside: avoid; margin-block: var(--u4); }
+/* Eine Stimme mit Gesicht bricht beide Spalten, eine ohne steht in ihrer. */
+.doc-body > .doc-span,
+.doc-body > ul { column-span: all; }
+.doc-body > .doc-span { margin-block: var(--u6); }
+
+/* Zweispaltig für kurze Einträge: Aufzählungen, Frage und Antwort. */
+.cols-2 { columns: 2; column-gap: var(--u6); }
+.cols-2 > * { break-inside: avoid; }
+/* In zwei Spalten zeichnet der Rahmen der Liste nur um den ganzen Block.
+   Die Linie wandert deshalb an den Kopf jeder Zeile — dann hat auch die
+   erste Zeile der zweiten Spalte eine. */
+.ruled.cols-2 { border-top: 0; }
+.ruled.cols-2 > li { border-top: var(--rule-faint); border-bottom: 0; }
+
+/* Ab hier trägt der Rand keine eigene Spalte mehr — er stapelt sich über den
+   Text. Zweispaltig bleibt es trotzdem: der Text hat jetzt die volle Breite,
+   und zwei Spalten im Lesemaß sind besser als eine halbe leere Seite. */
+@media (max-width: 1180px) {
+  .doc-side { grid-column: 1 / -1; position: static; }
+  .doc-body { grid-column: 1 / -1; }
+  .doc-side .body-lg { max-width: 62ch; }
+}
+/* Unter dieser Breite trägt keine zweite Spalte mehr das Lesemaß. */
+@media (max-width: 860px) {
+  .doc-body { columns: 1; }
+  .doc-body .body { max-width: 68ch; }
+  .cols-2 { columns: 1; }
+}
+
 /* ── HAIRLINE GRID ────────────────────────────────────────────────────────
    gap:1px over an ink parent generates mathematically perfect razor-thin
    dividers with no per-child border declarations. The core structural trick. */
