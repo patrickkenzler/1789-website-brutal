@@ -483,8 +483,7 @@ a.card:hover .plate::before { background-position: 3px 4px; }
   top: calc(var(--nav-h) + var(--u3));
   align-self: start;
 }
-.doc-side .body-lg { max-width: none; margin-top: var(--u4); }
-.doc-side .d2 { margin-top: var(--u4); }
+.doc-side .d4 { margin-top: var(--u3); }
 
 .doc-body {
   grid-column: 5 / span 8;
@@ -529,7 +528,6 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 @media (max-width: 1180px) {
   .doc-side { grid-column: 1 / -1; position: static; }
   .doc-body { grid-column: 1 / -1; }
-  .doc-side .body-lg { max-width: 62ch; }
 }
 /* Unter dieser Breite trägt keine zweite Spalte mehr das Lesemaß. */
 @media (max-width: 860px) {

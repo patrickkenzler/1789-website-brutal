@@ -77,8 +77,7 @@ hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
 Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
 Die Kapitel stehen als `.doc-ch`: im Rand (4 Spalten, mitlaufend) die
-Kapitelmarke und der Vorspann, daneben (8 Spalten) die Prosa zweispaltig im
-Lesemaß. Zitate mit Porträt brechen beide Spalten, Stimmen ohne Bild stehen in
+Kapitelmarke, daneben (8 Spalten) die Prosa zweispaltig im Lesemaß. Zitate mit Porträt brechen beide Spalten, Stimmen ohne Bild stehen in
 ihrer Spalte. Ein Bildblock nennt sein Seitenverhältnis und ob es die Spalten
 bricht; gerendert wird es wie jedes Bild durch `<Plate>`. Bilder stehen am
 Anfang eines Kapitels oder direkt hinter einem spaltenbrechenden Element —
@@ -91,6 +90,11 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 
 1. Deutsche Texte sind **verbatim** zu übernehmen — nie umschreiben, kürzen oder übersetzen.
    Referenz: `../CONTENT_INVENTORY.md`.
+   Das gilt auch für die Auszeichnung: was im Quelldokument gleich ausgezeichnet
+   ist, wird auf der Seite gleich gesetzt. Alle Absätze eines Kapitels tragen
+   dasselbe Register, alle Aufzählungen dasselbe. Gliederung entsteht über
+   Gründe, Marken und Raster — nie über einen Schriftgrad, den das Dokument
+   nicht hergibt. Kein Vorspann, kein Hervorheben „des wichtigen Absatzes".
 2. Nur Klassen verwenden, die in `globals.css` existieren. Keine neuen Farben, keine
    neuen Schriften, kein Tailwind.
 3. Abstände ausschließlich über `var(--u)`…`var(--u16)`. Keine px-Literale.
