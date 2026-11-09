@@ -27,7 +27,7 @@ export default function ProjektePage() {
               <Link key={c.slug} href={`/projekte/${c.slug}`} className="tile">
                 <Plate src={c.image} alt={c.title} label={c.client} note={null} ratio="4 / 3" />
                 <div className="tile-body">
-                  <span className="unit">
+                  <span className="unit h-2l clamp-2">
                     {c.client} · {c.sector}
                   </span>
                   <h2 className="d4 h-2l">{c.title}</h2>

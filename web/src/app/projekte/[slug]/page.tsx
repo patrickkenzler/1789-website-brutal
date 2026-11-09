@@ -1,17 +1,110 @@
+import { Fragment } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { cases, getCaseBySlug } from '@/data/cases'
+import { cases, getCaseBySlug, type CaseBlock, type CaseSection } from '@/data/cases'
 import { SectionHead, Plate, ClosingCta } from '@/components/ui'
 
 export function generateStaticParams() {
   return cases.map((c) => ({ slug: c.slug }))
 }
 
-const NARRATIVE = [
-  { num: '01', label: 'Der Gap', field: 'gap' },
-  { num: '02', label: 'Der Shift', field: 'shift' },
-  { num: '03', label: 'Das Ergebnis', field: 'result' },
+/* Two depths of case. The short ones carry three fields, the reading versions
+   carry chapters in the order of their document. The page renders whichever a
+   case has — nothing is normalised away.                                   */
+const LEGACY = [
+  { label: 'Der Gap', field: 'gap' },
+  { label: 'Der Shift', field: 'shift' },
+  { label: 'Das Ergebnis', field: 'result' },
 ] as const
+
+type QuoteBlock = Extract<CaseBlock, { kind: 'quote' }>
+
+/* Testimony is its own compartment: a heavy frame, and a portrait where one
+   exists. Colours come from classes, never inline — an inline colour beats
+   every ground rule and would paint ink on ink inside a dark chapter.      */
+function Testimony({ q }: { q: QuoteBlock }) {
+  return (
+    <figure className="box-bar pad regmark" style={{ marginBlock: 'var(--u4)' }}>
+      <div className="g12" style={{ rowGap: 'var(--u4)' }}>
+        {q.photo && (
+          <div className="c3">
+            <Plate src={q.photo} alt={q.author} ratio="1 / 1" note={null} />
+          </div>
+        )}
+        <div className={q.photo ? 'c8 s4' : 'c11'}>
+          <blockquote
+            className={q.text.length > 140 ? 'quote-long' : 'd3'}
+            style={{ marginBottom: 'var(--u4)' }}
+          >
+            &bdquo;{q.text}&ldquo;
+          </blockquote>
+          <figcaption className="rule-faint" style={{ paddingTop: 'var(--u2)' }}>
+            <span className="data data-strong" style={{ display: 'block' }}>
+              {q.author}
+            </span>
+            <span className="unit">{q.role}</span>
+          </figcaption>
+        </div>
+      </div>
+    </figure>
+  )
+}
+
+function Blocks({ blocks }: { blocks: CaseBlock[] }) {
+  return (
+    <>
+      {blocks.map((b, i) => {
+        if (b.kind === 'quote') return <Testimony key={i} q={b} />
+
+        if (b.kind === 'list')
+          return (
+            <ul key={i} className="ruled" style={{ marginBlock: 'var(--u4)' }}>
+              {b.items.map((it) => (
+                <li key={it}>
+                  <span className="body">{it}</span>
+                </li>
+              ))}
+            </ul>
+          )
+
+        if (b.kind === 'link')
+          return (
+            <p key={i} className="body" style={{ marginBottom: 'var(--u3)' }}>
+              {b.intro && (
+                <>
+                  {b.intro}
+                  <br />
+                </>
+              )}
+              <a className="link" href={b.href} target="_blank" rel="noopener noreferrer">
+                {b.label} <span aria-hidden="true">↗</span>
+              </a>
+            </p>
+          )
+
+        return (
+          <p key={i} className="body" style={{ marginBottom: 'var(--u3)' }}>
+            {b.text}
+          </p>
+        )
+      })}
+    </>
+  )
+}
+
+/* Consecutive light chapters share one ground, so the reading runs on; a dark
+   chapter always opens its own. "Dunkel eröffnet ein Kapitel, hell trägt das
+   Lesen."                                                                  */
+function groupByGround(sections: CaseSection[]) {
+  const groups: { ground: 'light' | 'dark'; items: CaseSection[] }[] = []
+  for (const s of sections) {
+    const ground = s.ground === 'dark' ? 'dark' : 'light'
+    const last = groups[groups.length - 1]
+    if (ground === 'light' && last?.ground === 'light') last.items.push(s)
+    else groups.push({ ground, items: [s] })
+  }
+  return groups
+}
 
 export default async function CasePage({
   params,
@@ -23,7 +116,25 @@ export default async function CasePage({
 
   if (!c) notFound()
 
-  const others = cases.filter((x) => x.slug !== c.slug).slice(0, 3)
+  const related = c.related
+    ? c.related.map(getCaseBySlug).filter((x): x is NonNullable<typeof x> => Boolean(x))
+    : cases.filter((x) => x.slug !== c.slug).slice(0, 3)
+
+  const groups = groupByGround(c.sections ?? [])
+
+  /* The data sheet in the order of the reading version. A short case has no
+     Struktur, no separate Größe and no Leistungsfeld — those rows simply do
+     not appear, and its five rows stay in the order they always had. */
+  const readout: [string, string][] = [
+    ['Mandant', c.meta?.mandant ?? c.client],
+    ...(c.meta?.structure ? ([['Struktur', c.meta.structure]] as [string, string][]) : []),
+    ['Sektor', c.sector],
+    ...(c.meta?.scope ? ([['Größe', c.scale]] as [string, string][]) : []),
+    ['Dauer', c.duration],
+    ['Scope', c.meta?.scope ?? c.scale],
+    ['Lead', c.lead],
+    ...(c.meta?.field ? ([['Leistungsfeld', c.meta.field]] as [string, string][]) : []),
+  ]
 
   return (
     <main>
@@ -55,25 +166,23 @@ export default async function CasePage({
               </div>
 
               <h1 className="d1" style={{ marginBottom: 'var(--u4)' }}>
-                {c.title}
+                {c.headline ?? c.title}
               </h1>
 
               <p className="body-lg">{c.tagline}</p>
             </div>
 
+            {/* The data sheet. The reading versions deliver more rows than the
+                short cases — each one appears only where it has a value. */}
             <div className="c4">
               <div className="box regmark" style={{ padding: 'var(--u3)' }}>
                 <dl className="readout">
-                  <dt>Mandant</dt>
-                  <dd>{c.client}</dd>
-                  <dt>Sektor</dt>
-                  <dd>{c.sector}</dd>
-                  <dt>Dauer</dt>
-                  <dd>{c.duration}</dd>
-                  <dt>Scope</dt>
-                  <dd>{c.scale}</dd>
-                  <dt>Lead</dt>
-                  <dd>{c.lead}</dd>
+                  {readout.map(([k, v]) => (
+                    <Fragment key={k}>
+                      <dt>{k}</dt>
+                      <dd>{v}</dd>
+                    </Fragment>
+                  ))}
                 </dl>
               </div>
             </div>
@@ -88,56 +197,157 @@ export default async function CasePage({
         </div>
       </section>
 
-      {/* ═══ NARRATIVE ════════════════════════════════════════════════════════
-          A report: ruled blocks, label left, body right. The block label
-          (Der Gap / Der Shift / Das Ergebnis) leads each one.               */}
-      <section className="slab">
-        <div className="shell">
-          <SectionHead label="Befund" />
+      {/* ═══ 02 · AUF EINEN BLICK ═══════════════════════════════════════════
+          One paragraph on the dark ground: the whole case before the reader
+          decides whether to read the whole case.                          */}
+      {c.summary && (
+        <section className="slab slab-invert">
+          <div className="shell">
+            <SectionHead label={c.summary.label} />
+            <div className="g12">
+              <p className="body-lg c8">{c.summary.text}</p>
+            </div>
+          </div>
+        </section>
+      )}
 
-          <div style={{ borderTop: 'var(--rule-bar)' }}>
-            {NARRATIVE.map((n) => (
-              <div
-                key={n.num}
-                className="g12"
-                style={{
-                  rowGap: 'var(--u3)',
-                  paddingBlock: 'var(--u6)',
-                  borderBottom: 'var(--rule)',
-                }}
-              >
-                <div className="c4">
-                  <h2 className="d3">{n.label}</h2>
-                </div>
-                <div className="c7 s5">
-                  <p className="body">{c[n.field]}</p>
+      {/* ═══ 03 · KAPITEL ═══════════════════════════════════════════════════ */}
+      {groups.map((g, gi) =>
+        g.ground === 'dark' ? (
+          g.items.map((s) => (
+            <section key={s.label} className="slab slab-invert">
+              <div className="shell">
+                <SectionHead label={s.label} />
+                <div className="g12" style={{ rowGap: 'var(--u6)' }}>
+                  {s.lead && (
+                    <div className="c5">
+                      <h2 className="d2">{s.lead}</h2>
+                    </div>
+                  )}
+                  <div className={s.lead ? 'c6 s7' : 'c8'}>
+                    <Blocks blocks={s.blocks} />
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </section>
+          ))
+        ) : (
+          <section key={gi} className="slab">
+            <div className="shell">
+              {gi === 0 && <SectionHead label="Befund" />}
 
-          {/* ── Optional testimony ── */}
-          {c.quote && (
-            <figure
-              className="box-bar pad regmark"
-              style={{ marginTop: 'var(--u8)' }}
-            >
-              <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u3)' }}>
-                Zitat
-              </span>
-              <blockquote className="d3" style={{ marginBottom: 'var(--u4)' }}>
-                &ldquo;{c.quote.text}&rdquo;
-              </blockquote>
-              <figcaption style={{ borderTop: 'var(--rule)', paddingTop: 'var(--u2)' }}>
-                <span className="data" style={{ color: 'var(--ink)', display: 'block' }}>
-                  {c.quote.author}
-                </span>
-                <span className="unit">{c.quote.role}</span>
-              </figcaption>
-            </figure>
-          )}
-        </div>
-      </section>
+              <div style={{ borderTop: 'var(--rule-bar)' }}>
+                {g.items.map((s) => (
+                  <div
+                    key={s.label}
+                    className="g12"
+                    style={{
+                      rowGap: 'var(--u3)',
+                      paddingBlock: 'var(--u6)',
+                      borderBottom: 'var(--rule)',
+                    }}
+                  >
+                    <div className="c4">
+                      <h2 className="d3">{s.label}</h2>
+                      {s.lead && (
+                        <p className="unit" style={{ marginTop: 'var(--u2)' }}>
+                          {s.lead}
+                        </p>
+                      )}
+                    </div>
+                    <div className="c7 s5">
+                      <Blocks blocks={s.blocks} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      )}
+
+      {/* ═══ 03b · KURZFASSUNG ══════════════════════════════════════════════
+          Cases without a reading version keep the three ruled rows.       */}
+      {!c.sections && (
+        <section className="slab">
+          <div className="shell">
+            <SectionHead label="Befund" />
+
+            <div style={{ borderTop: 'var(--rule-bar)' }}>
+              {LEGACY.map((n) => (
+                <div
+                  key={n.label}
+                  className="g12"
+                  style={{
+                    rowGap: 'var(--u3)',
+                    paddingBlock: 'var(--u6)',
+                    borderBottom: 'var(--rule)',
+                  }}
+                >
+                  <div className="c4">
+                    <h2 className="d3">{n.label}</h2>
+                  </div>
+                  <div className="c7 s5">
+                    <p className="body">{c[n.field]}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {c.quote && (
+              <Testimony
+                q={{ kind: 'quote', ...c.quote }}
+              />
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ═══ 04 · ÜBERTRAGBAR AUF ═══════════════════════════════════════════
+          The one loud ground of the page, and the one place that speaks to
+          the reader's own situation rather than the client's.             */}
+      {c.transfer && (
+        <section className="slab slab-orange">
+          <div className="shell">
+            <SectionHead label="Übertragbar auf" />
+            <div className="g12">
+              <ul className="ruled ruled-lg c9">
+                {c.transfer.map((t) => (
+                  <li key={t}>
+                    <span className="d4">{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ═══ 05 · HÄUFIGE FRAGEN ════════════════════════════════════════════ */}
+      {c.faq && (
+        <section className="slab">
+          <div className="shell">
+            <SectionHead label="Häufige Fragen" />
+
+            <div style={{ borderTop: 'var(--rule-bar)' }}>
+              {c.faq.map((f) => (
+                <div
+                  key={f.q}
+                  className="g12"
+                  style={{
+                    rowGap: 'var(--u2)',
+                    paddingBlock: 'var(--u6)',
+                    borderBottom: 'var(--rule-faint)',
+                  }}
+                >
+                  <h3 className="d4 c5">{f.q}</h3>
+                  <p className="body c6 s7">{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ═══ WEITERE SHIFTS ═══════════════════════════════════════════════════ */}
       <section className="slab">
@@ -152,7 +362,7 @@ export default async function CasePage({
           />
 
           <div className="g3">
-            {others.map((o) => (
+            {related.map((o) => (
               <Link key={o.slug} href={`/projekte/${o.slug}`} className="card">
                 <div className="card-head">
                   <span className="unit">{o.client}</span>
@@ -182,7 +392,10 @@ export default async function CasePage({
         eyebrow="Bereit zur Diagnose?"
         line1="Jede Transformation"
         line2="beginnt mit dem Gap."
-        body="Das Erstgespräch dient der gegenseitigen Erkenntnis. Kein Pitch. Kein Sales-Deck."
+        body={
+          c.close ??
+          'Das Erstgespräch dient der gegenseitigen Erkenntnis. Kein Pitch. Kein Sales-Deck.'
+        }
         cta="Erstgespräch anfragen"
       />
     </main>

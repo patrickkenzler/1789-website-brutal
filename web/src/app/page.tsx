@@ -268,7 +268,7 @@ export default function Home() {
                   <h3 className="d4 h-2l" style={{ marginBottom: 'var(--u3)' }}>
                     {c.title}
                   </h3>
-                  {c.teaser && <p className="body">{c.teaser}</p>}
+                  <p className="body">{c.teaser ?? c.tagline}</p>
                 </div>
                 <div className="card-foot" style={{ borderTopColor: '#2C333B' }}>
                   <span className="unit">
