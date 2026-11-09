@@ -21,7 +21,7 @@ export const FEATURED: LaborItem = {
   type: 'Essay',
   title:
     'Nähe als Organisationsprinzip — warum wir Corporate Therapy auf die Bühne bringen',
-  author: 'Huma Nagafi',
+  author: 'Human Nagafi',
   date: 'April 2024',
   readTime: '8 Min',
   excerpt:
@@ -108,7 +108,7 @@ export const ITEMS: LaborItem[] = [
   {
     type: 'Essay',
     title: 'Operating Models sind keine Org-Charts',
-    author: 'Huma Nagafi',
+    author: 'Human Nagafi',
     date: 'Dezember 2023',
     readTime: '10 Min',
     excerpt:

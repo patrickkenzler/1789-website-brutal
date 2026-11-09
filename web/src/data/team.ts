@@ -11,7 +11,7 @@ export type Person = {
 
 export const TEAM: Person[] = [
   {
-    name: 'Huma Nagafi',
+    name: 'Human Nagafi',
     role: 'Founder & Partner',
     initials: 'HN',
     photo: null,

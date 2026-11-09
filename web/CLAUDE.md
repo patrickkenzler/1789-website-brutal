@@ -69,6 +69,13 @@ src/data/        SÄMTLICHE Texte — site, approach, services, team, labor, leg
 **Seiten importieren Inhalte, sie enthalten keine.** Fehlt ein Text im Datenlayer,
 kommt er zuerst dorthin.
 
+Cases haben zwei Tiefen. Die kurze Fassung trägt `gap` / `shift` / `result`,
+die Lesefassung trägt `sections` — Kapitel aus Blöcken (Text, Liste, Zitat,
+Link) in der Reihenfolge des Quelldokuments, dazu `summary`, `transfer`, `faq`,
+`related` und `close`. `src/app/projekte/[slug]/page.tsx` rendert, was ein Case
+hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
+Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
+
 ---
 
 ## 4. Harte Regeln
@@ -91,6 +98,11 @@ kommt er zuerst dorthin.
       umgestellt — einzige Stelle mit Alt-Tokens (terra/sage).
 - [ ] Team-Portraits und Büro-Foto fehlen (`photo: null` → Initialen-Plate).
 - [ ] Alle Labor-Links zeigen auf `#`; Kontaktformular hat kein Backend.
+- [ ] Das Bild zum WD-40-Pilot aus der Lesefassung fehlt — die Stelle bleibt
+      leer, statt einen Platzhalter zu zeigen.
+- [ ] Die Schluss-CTA wiederholt auf den Lesefassungs-Cases die Aussage des
+      Schlusssatzes („beginnt mit dem Gap“). Entweder die stehende Zeile auf
+      diesen Seiten ändern oder den Schlusssatz streichen — Textentscheidung.
 - [ ] Zwei E-Mail-Adressen im Bestand: Footer `hello@1789consulting.de`,
       Kontaktseite `hello@1789.consulting` — bewusst so übernommen, mit dem
       Kunden zu klären.

@@ -4,7 +4,7 @@
    zeigt, die vom CSS abweichen. Ändert sich ein Token im CSS, ändert es sich
    hier mit.                                                                */
 
-export const REVISION = 'REV 002'
+export const REVISION = 'REV 003'
 
 export type Swatch = {
   token: string

@@ -57,20 +57,9 @@ export default function LeistungenPage() {
                       Deliverables
                     </span>
 
-                    <ul style={{ borderTop: 'var(--rule)', flex: 1 }}>
+                    <ul className="ruled" style={{ flex: 1 }}>
                       {s.deliverables.map((d) => (
-                        <li
-                          key={d}
-                          style={{
-                            display: 'grid',
-                            gridTemplateColumns: '20px 1fr',
-                            gap: 'var(--u2)',
-                            alignItems: 'baseline',
-                            paddingBlock: 'var(--u2)',
-                            borderBottom: 'var(--rule-faint)',
-                          }}
-                        >
-                          <span style={{ color: 'var(--red)' }}>›</span>
+                        <li key={d}>
                           <span className="d4">{d}</span>
                         </li>
                       ))}

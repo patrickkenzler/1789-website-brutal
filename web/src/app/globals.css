@@ -257,6 +257,20 @@ body::after {
   text-wrap: pretty;
 }
 
+/* A long quotation is testimony, not a statement. Set at d3 it becomes eight
+   lines of display capitals — a wall, not a voice. Above roughly 140
+   characters it moves to the macro face at reading size, mixed case; shorter
+   lines keep the display register. No colour here: the ground decides. */
+.quote-long {
+  font-family: var(--font-macro);
+  font-size: var(--t-15);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+  hyphens: auto;
+}
+
 /* Light-weight counterpoint inside a macro line — the only "voice" change
    available in a mono-only system. Used where the old design used italics. */
 .d-thin { font-weight: 200; }
@@ -352,6 +366,11 @@ a.card:hover .plate::before { background-position: 3px 4px; }
   color: var(--ink-45);
   font-variant-numeric: tabular-nums;
 }
+
+/* An attribution carries a name — it reads at full ink, and it has to survive
+   a dark ground. As a class, not an inline colour: an inline style beats every
+   ground rule and painted ink on ink. */
+.data-strong { color: var(--ink); }
 
 .unit {
   font-family: var(--font-micro);
@@ -485,7 +504,13 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 .slab-invert.slab-invert .body-lg { color: #CDD6D3; }
 .slab-invert.slab-invert .eyebrow,
 .slab-invert.slab-invert .data { color: #8A939A; }
+.slab-invert.slab-invert .data-strong { color: var(--paper); }
 .slab-invert.slab-invert .unit { color: var(--ink-45); }
+.slab-invert.slab-invert .box { border-color: #2C333B; }
+.slab-invert.slab-invert .box-bar { border-color: #3A424B; }
+.slab-invert.slab-invert .rule-faint,
+.slab-invert.slab-invert .ruled,
+.slab-invert.slab-invert .ruled > li { border-color: #2C333B; }
 .slab-invert.slab-invert .hairgrid { border-color: #2C333B; }
 .slab-invert.slab-invert .hairgrid > * { outline-color: #2C333B; }
 .slab-invert.slab-invert .body strong,
@@ -579,6 +604,16 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
    a grid row starting on the same line. `lh` resolves against the element's
    own line-height, so this stays correct at every clamp() step.            */
 .h-2l { min-height: 2lh; }
+
+/* A data line in a tile runs one or two lines, never three: WD-40's sector
+   names two markets and pushed its heading a line below every neighbour's.
+   The full value stands in the case's data sheet. */
+.clamp-2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
 
 /* ── AI-HUMAN-NATIVE BAND ─────────────────────────────────────────────────
    The dark register inset into a section: statement left, a tonal ASCII
@@ -1454,6 +1489,25 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 .slab-red .chip { border-color: rgba(221, 229, 227,0.45); color: var(--red-ink); }
 
 .chips { display: flex; flex-wrap: wrap; gap: var(--u); }
+
+/* ── RULED LIST ───────────────────────────────────────────────────────────
+   An enumeration as a stack of ruled rows, the marker in the accent. The
+   compartment comes from the line, not from a bullet glyph. The pattern
+   existed inline in the deliverables list on /leistungen; the case reports
+   need it a second time, so it becomes a class. `.ruled-lg` gives each row
+   the air a macro-set statement needs.                                    */
+
+.ruled { border-top: var(--rule-faint); }
+.ruled > li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: var(--u2);
+  align-items: baseline;
+  padding-block: var(--u2);
+  border-bottom: var(--rule-faint);
+}
+.ruled > li::before { content: "\203A"; color: var(--red); }
+.ruled-lg > li { padding-block: var(--u4); }
 
 /* ── FORM CONTROLS ────────────────────────────────────────────────────────  */
 

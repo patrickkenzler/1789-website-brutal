@@ -450,6 +450,24 @@ export default function Styleguide() {
           </Demo>
         </div>
 
+        <Demo label=".ruled — Aufzählung als geruhte Zeilen">
+          <ul className="ruled">
+            <li>
+              <span className="d4">Jede Zeile ein Kompartiment</span>
+            </li>
+            <li>
+              <span className="body">
+                Die Marke steht im Akzent. Der Eintrag steht im Register, das
+                der Kontext verlangt — Makro in einer Liste von Ergebnissen,
+                Fließtext in einem Bericht.
+              </span>
+            </li>
+            <li>
+              <span className="d4">.ruled-lg gibt jeder Zeile mehr Luft</span>
+            </li>
+          </ul>
+        </Demo>
+
         <div className="g2 spec-cols">
           <Demo label=".plate — jedes Bild wird ein Raster">
             <Plate src="/projects/wd40.jpg" alt="Beispiel" ratio="16 / 10" />
