@@ -422,6 +422,12 @@ export default function Styleguide() {
             stapelt sich der Rand über den Text, die zwei Spalten bleiben;
             unter 860px bleibt eine.
           </p>
+          <p className="body">
+            Ein Bild eröffnet den Rumpf seines Kapitels oder folgt direkt auf
+            ein spaltenbrechendes Element — nur dort steht es auf derselben
+            Linie wie der Text daneben. Seine Oberkante sitzt dabei auf der
+            Versalhöhe dieses Textes, nicht auf dessen Zeilenkasten.
+          </p>
         </Demo>
       </Chapter>
 

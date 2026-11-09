@@ -493,12 +493,26 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 }
 /* In der Spalte gilt das Maß der Spalte, nicht das der Seite. */
 .doc-body .body { max-width: none; }
+/* Ein Bild oder ein Zitat am Kopf einer Spalte muss auf derselben Linie
+   sitzen wie der Text daneben. Ein oberer Abstand verschiebt es um genau
+   diesen Betrag nach unten und lässt es neben nichts mehr stehen — der
+   Abstand steht deshalb nur unten; über dem Bild trägt ihn der Absatz. */
 .doc-body > figure,
-.doc-body > .doc-fig { break-inside: avoid; margin-block: var(--u4); }
+.doc-body > .doc-fig {
+  break-inside: avoid;
+  /* Die Oberkante sitzt auf der Versalhöhe des Textes daneben, nicht auf
+     dessen Zeilenkasten: über den Versalien steht der halbe Durchschuss plus
+     die Oberlängenreserve, zusammen 0.43em. Ohne die Korrektur steht das
+     Bild sichtbar fünf Pixel zu hoch. In der Makroschrift der Kapitelmarke
+     ist der Betrag fast derselbe (5.9 statt 5.5px), eine Korrektur genügt. */
+  margin-top: calc(var(--t-13) * 0.43);
+  margin-bottom: var(--u4);
+}
 /* Eine Stimme mit Gesicht bricht beide Spalten, eine ohne steht in ihrer. */
 .doc-body > .doc-span,
 .doc-body > ul { column-span: all; }
-.doc-body > .doc-span { margin-block: var(--u6); }
+.doc-body > .doc-span { margin-bottom: var(--u6); }
+.doc-body > .doc-span:not(:first-child) { margin-top: var(--u6); }
 
 /* Zweispaltig für kurze Einträge: Aufzählungen, Frage und Antwort. */
 .cols-2 { columns: 2; column-gap: var(--u6); }
