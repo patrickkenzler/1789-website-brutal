@@ -493,7 +493,8 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 }
 /* In der Spalte gilt das Maß der Spalte, nicht das der Seite. */
 .doc-body .body { max-width: none; }
-.doc-body > figure { break-inside: avoid; margin-block: var(--u4); }
+.doc-body > figure,
+.doc-body > .doc-fig { break-inside: avoid; margin-block: var(--u4); }
 /* Eine Stimme mit Gesicht bricht beide Spalten, eine ohne steht in ihrer. */
 .doc-body > .doc-span,
 .doc-body > ul { column-span: all; }
