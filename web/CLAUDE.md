@@ -109,7 +109,11 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 
 - [ ] `/labor/svg-morph` ist ein Alt-Werkzeug und noch **nicht** auf das neue System
       umgestellt — einzige Stelle mit Alt-Tokens (terra/sage).
-- [ ] Team-Portraits und Büro-Foto fehlen (`photo: null` → Initialen-Plate).
+- [ ] Für die vierte Person stehen Rolle und Kurzprofil noch aus, bei Patrick
+      Breitenbach das Kurzprofil. Der Name Serap Yılmaz-Dreger stammt aus der
+      WD-40-Lesefassung, nicht aus einer Angabe des Kunden.
+- [ ] `src/data/team.ts` schreibt „Mary Jane Bolton", die Lesefassungen und
+      `cases.ts` schreiben „Mary-Jane Bolten". Mit dem Kunden zu klären.
 - [ ] Alle Labor-Links zeigen auf `#`; Kontaktformular hat kein Backend.
 - [ ] Die Schluss-CTA wiederholt auf den Lesefassungs-Cases die Aussage des
       Schlusssatzes („beginnt mit dem Gap“). Entweder die stehende Zeile auf

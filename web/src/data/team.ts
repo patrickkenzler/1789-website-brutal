@@ -1,11 +1,16 @@
-/* ═══ TEAM ═════════════════════════════════════════════════════════════════
-   Alle Portraits fehlen noch (photo: null) → Initialen-Plate.              */
+/* ═══ TEAM ══════════════════════════════════════════════════════════════ */
 
 export type Person = {
   name: string
   role: string
   initials: string
   photo: string | null
+  /** Ausschnitt im Kartenformat 4:5 — die Aufnahmen sind 9:16. Die Werte
+   *  sind nicht nach Augenmaß gesetzt: alle vier Portraits entstanden an
+   *  demselben Tisch, und die Tischkante liegt in den Dateien zwischen 62,6
+   *  und 75,6 % der Höhe. Jeder Ausschnitt rückt sie auf 82 % der Platte,
+   *  damit die vier Karten als eine Aufnahme lesen. */
+  frame?: { position?: string; zoom?: number; origin?: string }
   bio: string
 }
 
@@ -14,29 +19,35 @@ export const TEAM: Person[] = [
     name: 'Human Nagafi',
     role: 'Founder & Partner',
     initials: 'HN',
-    photo: null,
+    photo: '/team/human-nagafi.jpg',
+    frame: { position: '50% 53%' },
     bio: 'Gründerin von 1789. Begleitet Organisationen seit über zwei Jahrzehnten durch strukturelle Transformation — vom Mittelstand bis zum Konzern.',
   },
   {
     name: 'Mary Jane Bolton',
     role: 'Partner',
     initials: 'MB',
-    photo: null,
+    photo: '/team/mary-jane-bolten.jpg',
+    frame: { position: '50% 17%' },
     bio: 'Verantwortet Governance-Design und Target-Operating-Modelle. Übersetzt Komplexität in tragfähige Strukturen, die im Alltag halten.',
   },
   {
     name: 'Patrick Breitenbach',
     role: 'Partner',
     initials: 'PB',
-    photo: null,
+    photo: '/team/patrick-breitenbach.jpg',
+    frame: { position: '50% 60%' },
     bio: '[Kurzprofil folgt — Rollenbeschreibung wird ergänzt.]',
   },
   {
-    name: '[Platzhalter]',
-    role: 'Partner',
-    initials: '??',
-    photo: null,
-    bio: '[Person und Kurzprofil folgen.]',
+    /* Name und Schreibweise aus der WD-40-Lesefassung („Serap Yılmaz-Dreger,
+       Mary-Jane Bolten" als Lead). Rolle und Kurzprofil stehen noch aus. */
+    name: 'Serap Yılmaz-Dreger',
+    role: '[Rolle folgt]',
+    initials: 'SY',
+    photo: '/team/serap-yilmaz-dreger.jpg',
+    frame: { position: '50% 49%' },
+    bio: '[Kurzprofil folgt.]',
   },
 ]
 

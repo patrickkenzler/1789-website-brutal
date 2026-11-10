@@ -1577,6 +1577,10 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
    need it a second time, so it becomes a class. `.ruled-lg` gives each row
    the air a macro-set statement needs.                                    */
 
+/* Dieselbe Korrektur wie bei den Bildern im Bericht, nur für eine Platte
+   neben einer Makrozeile: über den Versalien von .d2 stehen 0.154em. */
+.cap-d2 { margin-top: calc(var(--t-d2) * 0.154); }
+
 .ruled { border-top: var(--rule-faint); }
 .ruled > li {
   display: grid;
