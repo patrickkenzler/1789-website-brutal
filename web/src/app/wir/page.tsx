@@ -27,7 +27,7 @@ export default function WirPage() {
                 <Plate
                   src={p.photo}
                   alt={p.name}
-                  label={p.initials}
+                  label={p.photo ? undefined : p.initials}
                   frame={p.frame}
                   note={null}
                   coarse
@@ -55,18 +55,17 @@ export default function WirPage() {
 
           <div className="g12" style={{ rowGap: 'var(--u6)', alignItems: 'start' }}>
             <div className="c5">
-              {/* Das Büro mit allen vieren darin. 16:9 wie aufgenommen —
-                  ein engerer Ausschnitt schneidet die Außenstehenden an.
-                  Die Oberkante sitzt auf der Versalhöhe der Zeile daneben. */}
+              {/* Der Raum, nicht die Leute darin — die Köpfe stehen eine
+                  Sektion höher. 16:9 wie aufgenommen. Die Oberkante sitzt
+                  auf der Versalhöhe der Zeile daneben. */}
               <div className="cap-d2">
-              <Plate
-                src="/team/buero-team.jpg"
-                alt="Das Team von 1789 im Büro vor dem Bücherregal"
-                label="Büro"
-                note={null}
-                coarse
-                ratio="16 / 9"
-              />
+                <Plate
+                  src="/team/buero.jpg"
+                  alt="Das Büro von 1789: Parkett, Bücherregal, Arbeitsplätze, im Vordergrund ein Tisch mit Blumen"
+                  note={null}
+                  coarse
+                  ratio="16 / 9"
+                />
               </div>
               <div
                 style={{
