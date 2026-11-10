@@ -20,7 +20,10 @@ export const TEAM: Person[] = [
     role: 'Founder & Partner',
     initials: 'HN',
     photo: '/team/human-nagafi.jpg',
-    frame: { position: '50% 53%' },
+    /* Weiter von der Kamera weg aufgenommen als die drei anderen. Der Zoom
+       skaliert um die Tischkante herum (origin 82 %), damit die Kante auf
+       ihrer Linie bleibt und nur der Maßstab sich angleicht. */
+    frame: { position: '50% 53%', zoom: 1.2, origin: '50% 82%' },
     bio: 'Gründerin von 1789. Begleitet Organisationen seit über zwei Jahrzehnten durch strukturelle Transformation — vom Mittelstand bis zum Konzern.',
   },
   {
