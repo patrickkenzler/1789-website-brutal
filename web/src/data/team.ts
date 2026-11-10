@@ -5,11 +5,15 @@ export type Person = {
   role: string
   initials: string
   photo: string | null
-  /** Ausschnitt im Kartenformat 4:5 — die Aufnahmen sind 9:16. Die Werte
-   *  sind nicht nach Augenmaß gesetzt: alle vier Portraits entstanden an
-   *  demselben Tisch, und die Tischkante liegt in den Dateien zwischen 62,6
-   *  und 75,6 % der Höhe. Jeder Ausschnitt rückt sie auf 82 % der Platte,
-   *  damit die vier Karten als eine Aufnahme lesen. */
+  /** Ausschnitt im Kartenformat 4:5 — die Aufnahmen sind 9:16.
+   *  Die Werte sind gerechnet, nicht nach Augenmaß gesetzt. Gemessen wurden
+   *  je Datei die Kopfoberkante und die Tischkante; daraus die Spanne Kopf →
+   *  Tisch: 662 / 643 / 640 / 858 px. Serap sitzt am nächsten an der Kamera,
+   *  also gibt ihre Spanne den Maßstab vor — ein Bild lässt sich hineinzoomen,
+   *  aber nicht heraus, ohne dass unter der Deckung Lücken entstehen. Die drei
+   *  anderen zoomen auf ihren Maßstab, jeweils um die Tischkante herum
+   *  (origin 89 %), damit beide Linien stehen: Tischkante auf 89 %,
+   *  Kopfoberkante auf 20,4 % der Platte. */
   frame?: { position?: string; zoom?: number; origin?: string }
   bio: string
 }
@@ -20,7 +24,7 @@ export const TEAM: Person[] = [
     role: 'Founder & Partner',
     initials: 'HN',
     photo: '/team/human-nagafi.jpg',
-    frame: { position: '50% 53%' },
+    frame: { position: '50% 36%', zoom: 1.296, origin: '50% 89%' },
     bio: 'Gründerin von 1789. Begleitet Organisationen seit über zwei Jahrzehnten durch strukturelle Transformation — vom Mittelstand bis zum Konzern.',
   },
   {
@@ -28,7 +32,7 @@ export const TEAM: Person[] = [
     role: 'Partner',
     initials: 'MB',
     photo: '/team/mary-jane-bolten.jpg',
-    frame: { position: '50% 17%' },
+    frame: { position: '50% 0%', zoom: 1.334, origin: '50% 89%' },
     bio: 'Verantwortet Governance-Design und Target-Operating-Modelle. Übersetzt Komplexität in tragfähige Strukturen, die im Alltag halten.',
   },
   {
@@ -36,7 +40,7 @@ export const TEAM: Person[] = [
     role: 'Partner',
     initials: 'PB',
     photo: '/team/patrick-breitenbach.jpg',
-    frame: { position: '50% 60%' },
+    frame: { position: '50% 44%', zoom: 1.341, origin: '50% 89%' },
     bio: '[Kurzprofil folgt — Rollenbeschreibung wird ergänzt.]',
   },
   {
@@ -46,7 +50,7 @@ export const TEAM: Person[] = [
     role: '[Rolle folgt]',
     initials: 'SY',
     photo: '/team/serap-yilmaz-dreger.jpg',
-    frame: { position: '50% 49%' },
+    frame: { position: '50% 32%' },
     bio: '[Kurzprofil folgt.]',
   },
 ]
