@@ -12,9 +12,11 @@ export default function WirPage() {
         body="1789 ist klein und bewusst klein gehalten. Wir arbeiten als Partner, nicht als Lieferant — und stehen jedem Mandat persönlich gegenüber. Hier sind die vier Ansprechpartner, mit denen Sie es zu tun haben."
       />
 
-      {/* ═══ TEAM ═════════════════════════════════════════════════════════════
-          No portraits exist yet — every plate is a dot field carrying the
-          person's initials.                                                */}
+      {/* ═══ TEAM ═══════════════════════════════════════════════════════════
+          One sitting, one table, one wall: the four portraits come from the
+          same set, so the row reads as one picture cut in four. The crop to
+          4:5 happens here, not in the file — `frame` sets where each head
+          sits in the plate.                                                */}
       <section className="slab">
         <div className="shell">
           <SectionHead label="Partner & Ansprechpartner" />
@@ -22,7 +24,15 @@ export default function WirPage() {
           <div className="g4">
             {TEAM.map((p) => (
               <article key={p.name} className="card">
-                <Plate label={p.initials} coarse ratio="4 / 5" />
+                <Plate
+                  src={p.photo}
+                  alt={p.name}
+                  label={p.initials}
+                  frame={p.frame}
+                  note={null}
+                  coarse
+                  ratio="4 / 5"
+                />
                 <div className="card-head">
                   <span className="unit">{p.role}</span>
                 </div>
@@ -45,7 +55,19 @@ export default function WirPage() {
 
           <div className="g12" style={{ rowGap: 'var(--u6)', alignItems: 'start' }}>
             <div className="c5">
-              <Plate label="Büro" coarse ratio="4 / 3" />
+              {/* Das Büro mit allen vieren darin. 16:9 wie aufgenommen —
+                  ein engerer Ausschnitt schneidet die Außenstehenden an.
+                  Die Oberkante sitzt auf der Versalhöhe der Zeile daneben. */}
+              <div className="cap-d2">
+              <Plate
+                src="/team/buero-team.jpg"
+                alt="Das Team von 1789 im Büro vor dem Bücherregal"
+                label="Büro"
+                note={null}
+                coarse
+                ratio="16 / 9"
+              />
+              </div>
               <div
                 style={{
                   borderTop: 'var(--rule)',

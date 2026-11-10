@@ -119,28 +119,24 @@ function groupByGround(sections: CaseSection[]) {
   return groups
 }
 
-/* A chapter in two zones: its mark and its opening in the margin, its prose
-   in two columns beside them. The margin costs no height — it stands next to
-   the text — so the opening paragraph buys its entry point for free. Where a
-   chapter brings its own headline, that headline is the opening. */
+/* A chapter in two zones: its mark in the margin, its prose in two columns
+   beside it. Every paragraph keeps the same register — the reading version
+   gives the first one no more weight than the rest, and a standfirst would
+   claim a hierarchy the document does not make. Only where the document
+   itself sets a line apart does the margin carry a second element. */
 function Chapter({ s, solo }: { s: CaseSection; solo?: boolean }) {
-  /* The opening paragraph moves to the margin, wherever it stands: teccle's
-     Gap opens on a photograph and a quotation, and without this the margin of
-     its longest chapter would hold nothing but the mark. */
-  const di = s.lead ? -1 : s.blocks.findIndex((b) => b.kind === 'text')
-  const deck = di >= 0 ? s.blocks[di] : null
-  const rest = di >= 0 ? s.blocks.filter((_, i) => i !== di) : s.blocks
-
   return (
     <div className={solo ? 'doc-ch doc-ch-solo' : 'doc-ch'}>
       <div className="doc-side">
         <h2 className="d3">{s.label}</h2>
-        {s.lead && <p className="d2">{s.lead}</p>}
-        {deck?.kind === 'text' && <p className="body-lg">{deck.text}</p>}
+        {/* Die Lesefassung setzt diese Zeile fett unter die Kapitelüberschrift,
+            also eine Stufe unter ihr. Als d2 stand sie größer da als die
+            Marke darüber und drehte die Hierarchie des Dokuments um. */}
+        {s.lead && <p className="d4">{s.lead}</p>}
       </div>
 
       <div className="doc-body">
-        <Blocks blocks={rest} />
+        <Blocks blocks={s.blocks} />
       </div>
     </div>
   )
@@ -245,7 +241,7 @@ export default async function CasePage({
           <div className="shell">
             <SectionHead label={c.summary.label} />
             <div className="g12">
-              <p className="body-lg c8">{c.summary.text}</p>
+              <p className="body c8">{c.summary.text}</p>
             </div>
           </div>
         </section>
@@ -264,8 +260,6 @@ export default async function CasePage({
         ) : (
           <section key={gi} className="slab">
             <div className="shell">
-              {gi === 0 && <SectionHead label="Befund" />}
-
               <div className="doc">
                 {g.items.map((s) => (
                   <Chapter key={s.label} s={s} />
@@ -321,10 +315,10 @@ export default async function CasePage({
           <div className="shell">
             <SectionHead label="Übertragbar auf" />
             <div className="g12">
-              <ul className="ruled ruled-lg cols-2 c12">
+              <ul className="ruled cols-2 c12">
                 {c.transfer.map((t) => (
                   <li key={t}>
-                    <span className="d4">{t}</span>
+                    <span className="body">{t}</span>
                   </li>
                 ))}
               </ul>

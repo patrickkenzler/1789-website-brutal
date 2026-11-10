@@ -77,8 +77,7 @@ hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
 Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
 Die Kapitel stehen als `.doc-ch`: im Rand (4 Spalten, mitlaufend) die
-Kapitelmarke und der Vorspann, daneben (8 Spalten) die Prosa zweispaltig im
-Lesemaß. Zitate mit Porträt brechen beide Spalten, Stimmen ohne Bild stehen in
+Kapitelmarke, daneben (8 Spalten) die Prosa zweispaltig im Lesemaß. Zitate mit Porträt brechen beide Spalten, Stimmen ohne Bild stehen in
 ihrer Spalte. Ein Bildblock nennt sein Seitenverhältnis und ob es die Spalten
 bricht; gerendert wird es wie jedes Bild durch `<Plate>`. Bilder stehen am
 Anfang eines Kapitels oder direkt hinter einem spaltenbrechenden Element —
@@ -91,6 +90,11 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 
 1. Deutsche Texte sind **verbatim** zu übernehmen — nie umschreiben, kürzen oder übersetzen.
    Referenz: `../CONTENT_INVENTORY.md`.
+   Das gilt auch für die Auszeichnung: was im Quelldokument gleich ausgezeichnet
+   ist, wird auf der Seite gleich gesetzt. Alle Absätze eines Kapitels tragen
+   dasselbe Register, alle Aufzählungen dasselbe. Gliederung entsteht über
+   Gründe, Marken und Raster — nie über einen Schriftgrad, den das Dokument
+   nicht hergibt. Kein Vorspann, kein Hervorheben „des wichtigen Absatzes".
 2. Nur Klassen verwenden, die in `globals.css` existieren. Keine neuen Farben, keine
    neuen Schriften, kein Tailwind.
 3. Abstände ausschließlich über `var(--u)`…`var(--u16)`. Keine px-Literale.
@@ -105,7 +109,11 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 
 - [ ] `/labor/svg-morph` ist ein Alt-Werkzeug und noch **nicht** auf das neue System
       umgestellt — einzige Stelle mit Alt-Tokens (terra/sage).
-- [ ] Team-Portraits und Büro-Foto fehlen (`photo: null` → Initialen-Plate).
+- [ ] Für die vierte Person stehen Rolle und Kurzprofil noch aus, bei Patrick
+      Breitenbach das Kurzprofil. Der Name Serap Yılmaz-Dreger stammt aus der
+      WD-40-Lesefassung, nicht aus einer Angabe des Kunden.
+- [ ] `src/data/team.ts` schreibt „Mary Jane Bolton", die Lesefassungen und
+      `cases.ts` schreiben „Mary-Jane Bolten". Mit dem Kunden zu klären.
 - [ ] Alle Labor-Links zeigen auf `#`; Kontaktformular hat kein Backend.
 - [ ] Die Schluss-CTA wiederholt auf den Lesefassungs-Cases die Aussage des
       Schlusssatzes („beginnt mit dem Gap“). Entweder die stehende Zeile auf

@@ -483,8 +483,7 @@ a.card:hover .plate::before { background-position: 3px 4px; }
   top: calc(var(--nav-h) + var(--u3));
   align-self: start;
 }
-.doc-side .body-lg { max-width: none; margin-top: var(--u4); }
-.doc-side .d2 { margin-top: var(--u4); }
+.doc-side .d4 { margin-top: var(--u3); }
 
 .doc-body {
   grid-column: 5 / span 8;
@@ -529,7 +528,6 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 @media (max-width: 1180px) {
   .doc-side { grid-column: 1 / -1; position: static; }
   .doc-body { grid-column: 1 / -1; }
-  .doc-side .body-lg { max-width: 62ch; }
 }
 /* Unter dieser Breite trägt keine zweite Spalte mehr das Lesemaß. */
 @media (max-width: 860px) {
@@ -1578,6 +1576,10 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
    existed inline in the deliverables list on /leistungen; the case reports
    need it a second time, so it becomes a class. `.ruled-lg` gives each row
    the air a macro-set statement needs.                                    */
+
+/* Dieselbe Korrektur wie bei den Bildern im Bericht, nur für eine Platte
+   neben einer Makrozeile: über den Versalien von .d2 stehen 0.154em. */
+.cap-d2 { margin-top: calc(var(--t-d2) * 0.154); }
 
 .ruled { border-top: var(--rule-faint); }
 .ruled > li {
