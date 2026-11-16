@@ -639,6 +639,17 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 .slab-orange .close-line { color: var(--ink); }
 .slab-orange .link { color: var(--ink); border-bottom-color: var(--ink); }
 .slab-orange .link:hover { color: var(--paper); border-bottom-color: var(--paper); }
+/* Die Haarlinie hängt am Grund wie der Akzent. --ink-20 ist für das helle
+   Substrat gemacht und liegt dort bei 1.44:1; auf Orange wird daraus eine
+   fast weiße Linie bei 2.01:1, also heller als der Grund statt dunkler. Der
+   dunkle Grund hat dafür längst seinen eigenen Wert (#2C333B, 1.43:1) — dem
+   orangen fehlte er nur, weil bis zuletzt nichts mit Haarlinien darauf stand.
+   #C13D06 ist Ink in Orange, 1.44:1, dieselbe Stärke wie auf beiden anderen
+   Gründen. */
+.slab-orange.slab-orange .rule-faint,
+.slab-orange.slab-orange .ruled,
+.slab-orange.slab-orange .ruled > li { border-color: #C13D06; }
+.slab-orange.slab-orange .readout dd { border-bottom-color: #C13D06; }
 
 /* ═══ 04 · RULES + COMPARTMENTS ════════════════════════════════════════════ */
 
