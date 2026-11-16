@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "styleguide:pdf": "node scripts/styleguide-pdf.mjs"
+    "styleguide:pdf": "node scripts/styleguide-pdf.mjs",
+    "covers": "node --env-file-if-exists=.env.local scripts/case-covers.mjs"
   },
   "dependencies": {
     "next": "16.1.6",
