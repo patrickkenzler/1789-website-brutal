@@ -77,6 +77,13 @@ Link, Bild) in der Reihenfolge des Quelldokuments, dazu `summary`, `transfer`, `
 hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
 Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
+`src/data/services.ts` trägt die Leistungen als `SERVICES_INTRO` (Seitenkopf und
+Mandatsabsatz) und `SERVICES`. Jede Leistung führt den Namen zweigeteilt
+(`titleThin` dünn, `titleBold` voll, gestapelt gesetzt), dazu Unterzeile, Text,
+`results`, `endpoint`, `fit`, `frame` und `cases` — Case-Slugs mit dem Label aus
+dem Dokument. Das Datenblatt der Cases kennt zusätzlich `meta.group` für die
+Zeile „Konzern".
+
 Der Spaltensatz hängt an der Menge Prosa: ein Kapitel mit höchstens zwei
 Absätzen läuft einspaltig im Lesemaß (`.doc-body-flow`), ab drei Absätzen
 zweispaltig. Bild, Aufzählung und Stimme zählen nicht mit — sie brechen ohnehin

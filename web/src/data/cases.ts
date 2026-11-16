@@ -69,6 +69,8 @@ export type CaseStudy = {
     participants?: string
     /** Zeile „Leistungen" der Lesefassung */
     services?: string
+    /** Zeile „Konzern" — wo eine Tochter unter einem Konzern steht */
+    group?: string
     field?: string
   }
   sections?: CaseSection[]
@@ -717,16 +719,141 @@ export const cases: CaseStudy[] = [
   {
     slug: 'kohaerente-vision',
     client: 'METRO.digital',
-    sector: 'Digital / Corporate',
+    sector: 'Handel, Konzern-IT',
     title: 'Kohärente Vision',
-    tagline: 'Target Operating Model für eine Organisation im Übergang.',
-    tags: ['Target Operating Model', 'Strategie', 'Selbstorganisation'],
-    duration: '7 Monate',
-    scale: '~2.000 Mitarbeitende',
-    lead: 'Mary-Jane Bolten',
-    gap: 'Trotz positiver Kulturveränderung stagnierten Produktivitätssteigerungen. Viele Initiativen zielten in unterschiedliche, teils widersprüchliche Richtungen. Führungsverantwortung war unklar — eine Organisation, die sich selbst im Weg stand.',
-    shift: 'Entwicklung eines "Far Future Model" als zukunftsweisende Vision: kohärente Strukturen für Führung, Entscheidungsfindung, Budgetierung und Personalmanagement. Organisationsübergreifendes Team, evidenzbasiert durch Pilotphasen.',
-    result: 'Ein integriertes Target Operating Model mit selbstorganisierten, kundenorientierten Teams und agilen Arbeitsweisen. Richtung gewonnen — ohne die Energie der laufenden Transformation zu bremsen.',
+    headline: 'Ein Operating Model, das die Kultur trägt',
+    tagline:
+      'Wie die Digitaltochter der METRO AG erkannte, dass ihre Kultur der eigenen Struktur davongelaufen war.',
+    tags: ['Target Operating Model', 'Governance Design'],
+    duration: 'acht Monate',
+    scale: 'rund 2.000 Mitarbeitende, Teams in Deutschland und Rumänien',
+    lead: 'Mary-Jane Bolten, Human Nagafi',
+    meta: {
+      mandant: 'METRO.digital',
+      group: 'METRO AG',
+      scope: 'Operating Model · gesamte METRO.digital',
+      participants:
+        'Organisationsentwicklungsteam, Leitungsteam des Programms mit drei Arbeitsgruppen, drei Experimentteams',
+      services: 'Strukturdiagnose, Strukturentscheidung, Strukturtransformation',
+      field: 'Target Operating Model, Governance Design',
+    },
+    summary: {
+      label: 'Auf einen Blick',
+      text: 'METRO.digital, die Digitaltochter der METRO AG mit rund 2.000 Mitarbeitenden, hatte ihre Kultur auf Eigenverantwortung umgestellt; Budget, Planung und Entscheidungen folgten jedoch weiter bürokratischen Regeln. In einer Strukturdiagnose machte 1789 Innovations diesen Widerspruch sichtbar. METRO.digital entwarf daraufhin ein Target Operating Model für autonome Teams und testete es in Experimenten. Nach acht Monaten mit 1789 hatte die Organisation eine tragende Struktur, die sie kontinuierlich selbstständig weiterentwickeln konnte.',
+    },
+    sections: [
+      {
+        label: 'Die Strukturfrage',
+        blocks: [
+          {
+            kind: 'text',
+            text: 'METRO.digital hatte eine umfassende kulturelle Transformation hinter sich. Von verstaubter Konzern-IT zu einer Tech Organisation, teambasiertem Arbeiten und einer Reduktion der Hierarchie auf vier Ebenen. Teamarbeit und Autonomie waren gelebte Werte, doch trotz der intensiven Arbeit an der Kultur bliebe die erwarteten Produktivitätsgewinne aus. Kundennutzen stand selten im Vordergrund, Teams hielten sich mit Entscheidungen zurück und Ziele waren unklar. Gleichzeitig wollte die Tochter für den Konzern digitaler Treiber sein, auf Augenhöhe mit den Länderorganisationen. Im Konzern war dieses Mandat noch nicht anerkannt, und METRO.digital musste es sich mit Leistung verdienen.',
+          },
+        ],
+      },
+      {
+        over: 'Der Weg',
+        label: 'Strukturdiagnose',
+        ground: 'dark',
+        blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
+          {
+            kind: 'text',
+            text: '1789 begann durch Interviews und Prozessaufnahmen die aktuellen Ordnungen zu verstehen. Die kulturelle Transformation war weit vorangeschritten, die Struktur hatte nicht mitgezogen. METRO.digital war im Kern eine verkleinerte Bürokratie mit einem außergewöhnlichen Kulturanspruch.',
+          },
+          {
+            kind: 'text',
+            text: 'Ownership wurde als Haltung verlangt, Verantwortung und Rechenschaft lagen aber bei verschiedenen Positionen. In einem zweitägigen Workshop klärten rund 20 Mitglieder des Organisationsentwicklungsteams, welchen Wert METRO.digital für den Konzern stiften soll und was Hochleistung dabei heißt. Danach stand fest, wo der Umbau ansetzt: In der Führungsstruktur der Teams, der Budgetierung und Leistungsmessung.',
+          },
+        ],
+      },
+      {
+        over: 'Der Weg',
+        label: 'Strukturentscheidung',
+        blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
+          {
+            kind: 'text',
+            text: 'METRO.digital wählte ein radikales Zielbild und einen schrittweisen Weg dorthin. Das Zielbild sollte jeden weiteren Schritt auf eine Netzwerkorganisation ausrichten. Im Konzeptsprint erarbeitete das Leitungsteam des Programms mit Arbeitsgruppen zu Personal, Märkten und Finanzen ein „Far Future Model“. Dieses Referenzmodell zeigt METRO.digital in rund drei Jahren und beruht auf elf Gestaltungsprinzipien, darunter Ownership und Lokalität.',
+          },
+          {
+            kind: 'text',
+            text: 'Teams arbeiten darin weitgehend autonom und stimmen ihre Ziele regelmäßig mit einer zentralen Plattform ab. Die Führungsspitze von METRO.digital prüfte das Modell kritisch und gab es für erste Experimente frei. Dieses Modell sollte nun dazu dienen, einen gemeinsamen Diskussionsrahmen und Fahrplan zu nutzen, um in verschiedenen Bereichen Veränderungen durchzuführen.',
+          },
+        ],
+      },
+      {
+        over: 'Der Weg',
+        label: 'Strukturtransformation',
+        blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
+          {
+            kind: 'text',
+            text: 'In der Detailgestaltung arbeiteten Experimentteams aus METRO.digital mit 1789 aus, wie einzelne Teile im Alltag funktionieren sollen, mit Hypothesen, Ablauf und Messpunkten. Drei Experimente brachten sie in den Betrieb.',
+          },
+          {
+            kind: 'text',
+            text: 'In der Domäne Customer Order Fulfillment in Rumänien bereiteten Produktteams eigene Investment Cases vor und organisierten sich dafür selbst in Arbeitsgruppen. Die Enterprisearchitekten kamen von sich aus auf 1789 zu und stellten sich als neues Team auf, das gemeinsam verantwortlich ist. Eine Tech Community sollte klären, wie Engineers zwischen neuen Funktionen und Qualität abwägen, ohne die Hierarchie nutzen zu müssen.',
+          },
+          {
+            kind: 'text',
+            text: 'Das Referenzmodell diente als Schnittmenge: Die einzelnen Experimente kannten den Rahmen, in den sie arbeiteten, waren aber bemächtigt innerhalb des Rahmens neue strukturelle Lösungen zu entwickeln. 1789 übergab alle drei Experimente schrittweise an interne Verantwortliche. METRO.digital führte sie danach weiter, detaillierte das Referenzmodell selbstständig aus und setzte es um.',
+          },
+        ],
+      },
+      {
+        label: 'Die neue Ordnung',
+        blocks: [
+          {
+            kind: 'text',
+            text: 'METRO.digital hat durch den Prozess die Verbindung zwischen kulturellem Anspruch und Strukturarbeit ausgebaut und arbeitet heute mit einem Referenzmodell, das die Organisation nach der Übergabe selbst ausgearbeitet und umgesetzt hat. Es legt fest, wie Teams arbeiten, entscheiden und an Budget kommen.',
+          },
+          {
+            kind: 'list',
+            items: [
+              'Agile Teams arbeiten funktionsübergreifend an Produkten, für die sie die Verantwortung tragen.',
+              'Die Nutzer und Kunden stehen im Zentrum von Entscheidungen.',
+              'Entscheidungen trifft, wer sich am besten auskennt, nachdem er Betroffene und Fachleute gehört hat.',
+              'Nach den oben genannten Experimenten wurden viele weitere Experimente initiiert und durchgeführt, die das Modell langfristig ausbauten.',
+            ],
+          },
+        ],
+      },
+    ],
+    transfer: [
+      'IT- und Digitaltöchter von Konzernen, die vom internen Dienstleister zum Treiber werden wollen',
+      'Organisationen, deren Kultur auf Eigenverantwortung setzt, während Budget und Planung zentral bleiben',
+      'Tech-Einheiten mit Teams an mehreren Standorten und in mehreren Ländern',
+    ],
+    faq: [
+      {
+        q: 'Warum ändert sich das Verhalten in einer Organisation trotz guter Kultur kaum?',
+        a: 'Bei METRO.digital lag es an der Struktur. Verantwortung und Rechenschaft lagen bei verschiedenen Positionen, Budget und Planung blieben zentral. Eine Strukturdiagnose zeigte, dass vor allem Budgetierung und Leistungsmessung die Kultur ausbremsten.',
+      },
+      {
+        q: 'Wie testet eine Konzerntochter ein radikal neues Operating Model, ohne den Betrieb zu gefährden?',
+        a: 'METRO.digital entwarf ein Referenzmodell für rund drei Jahre und testete einzelne Teile in Experimenten mit festgelegten Messpunkten. Budget-Pitching lief in einer Domäne in Rumänien, die Architekten stellten sich als eigenes Team mit klarer Verantwortung auf. So konnte die Organisation steuern, wie viel Veränderung auf einmal möglich ist. Nach der Übergabe führte METRO.digital die Experimente selbst weiter und arbeitete das Modell weiter aus.',
+      },
+      {
+        q: 'Wie führt eine Organisation den Umbau nach der Beratung selbst weiter?',
+        a: '1789 übergab die drei Experimente schrittweise an interne Verantwortliche, ohne harten Schnitt für die Teams. Das Referenzmodell gab den Rahmen vor, in dem die Teams eigene strukturelle Lösungen entwickelten. METRO.digital führte die Experimente weiter, startete neue und arbeitete das Modell selbstständig aus.',
+      },
+    ],
+    related: ['integration', 'effektivitaet-und-kundennaehe', 'skalierung-und-qualitaet'],
+    close:
+      'Ob die Struktur einer Organisation mit ihrer Kultur Schritt hält, zeigt eine Strukturdiagnose.',
     color: 'terra',
   },
   {
@@ -880,17 +1007,144 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: 'verbindliche-entscheidungen',
-    client: 'Medizin Gruppe',
+    client: 'Medizin-Gruppe',
     sector: 'Gesundheitswesen',
     title: 'Verbindliche Entscheidungen',
-    tagline: 'Governance für einen Konzern mit 40 Tochterunternehmen.',
-    tags: ['Governance', 'Top-Level', 'Dezentralität'],
-    duration: '9 Monate',
-    scale: '40+ Tochterunternehmen, ~8.000 Beschäftigte',
-    lead: 'Mary-Jane Bolten',
-    gap: 'Dezentrale Autonomie ermöglichte Agilität — verhinderte aber strategische Gesamtmaßnahmen. Die Balance zwischen unternehmerischer Freiheit und zentralen Entscheidungen war nicht strukturell gelöst, sondern wurde täglich neu ausgehandelt.',
-    shift: 'Interviews und Workshops mit Geschäftsführern und Tochterunternehmen-Repräsentanten. Koordination verschiedener Perspektiven zu einem strukturierten Governance-Modell mit klassifizierten Verbindlichkeitsstufen.',
-    result: 'Governance-Struktur mit klar klassifizierten Verbindlichkeitsstufen: bindend, gemeinsam, freiwillig. Implementierungsmechanismen wie Verrechnungspreise und Anreize für Early Adopter. Verbindlichkeit ohne Autonomieverlust.',
+    headline: 'Aus strategischen Überlegungen werden verbindliche Entscheidungen',
+    tagline:
+      'Wie eine Holding im Gesundheitswesen Regeln für verbindliche gemeinsame Projekte fand und ihren Standorten so viel Autonomie wie möglich ließ.',
+    tags: ['Governance Design'],
+    duration: 'neun Monate',
+    scale: 'rund 8.000 Mitarbeitende',
+    lead: 'Mary-Jane Bolten, Human Nagafi',
+    meta: {
+      mandant: 'Medizin-Gruppe (anonymisiert)',
+      structure: 'Holding mit über 40 eigenständigen Standorten, teils inhabergeführt',
+      scope: 'Governance · Holding, Standorte und Zentralbereiche',
+      participants:
+        'Vorstand, Change Team mit zehn Mitgliedern, Strategiegremium aus zwölf Standortleitungen',
+      services: 'Strukturdiagnose, Strukturentscheidung',
+      field: 'Governance Design',
+    },
+    summary: {
+      label: 'Auf einen Blick',
+      text: 'Eine Medizin-Gruppe führt über 40 Standorte mit rund 8.000 Mitarbeitenden als eigenständige Gesellschaften unter einer Holding. Die Standorte mit eigener Ergebnisverantwortung wurden größtenteils autonom geführt. Strategische Überlegungen des Vorstands galten dort als Empfehlung, und gruppenweite Projekte kamen nur langsam voran. In neun Monaten klärte 1789 Innovations die Ursachen und bereitete mit Vorstand, Standort- und Bereichsleitungen eine neue Top-Level-Governance vor. Die Medizin-Gruppe lebt heute eine Governance, die in drei Kategorien festlegt, wann die Gruppe gemeinsam handelt und wann jeder Standort frei wählt.',
+    },
+    sections: [
+      {
+        label: 'Die Strukturfrage',
+        blocks: [
+          {
+            kind: 'text',
+            text: 'In der Medizin-Gruppe, einer Holding mit über 40 Standorten, galten Entscheidungen des Vorstands an den Standorten als Empfehlung. Die Zentralbereiche planten Projekte, die sie für beschlossen hielten, und die Standorte erwarteten eine Nachverhandlung. Die Standorte sind wirtschaftlich eigenständige Einheiten mit erfahrenen Leitungen und eigenen Erfolgsgeschichten. Das Unternehmertum der Standortleitungen ist ein Grundwert der Gruppe und hält sie nah am Markt.',
+          },
+          {
+            kind: 'text',
+            text: 'Gleichzeitig verlangte die Digitalisierung immer öfter Lösungen für alle Standorte, etwa ein neues Warenwirtschaftssystem. Deren Nutzen entsteht erst, wenn alle Standorte mitziehen. Gruppenweite Projekte dauerten lange, wurden durch Sonderwünsche teuer und verfehlten den Nutzen für die Gruppe. Ohne Änderung drohten mehr Nacharbeit, Frust und gegenseitige Schuldzuweisungen zwischen Standorten und Zentralbereichen.',
+          },
+          {
+            kind: 'text',
+            text: 'Einen früheren Versuch mit weisungsbefugten Zentralbereichen hatte die Gruppe nach dem Widerstand der Standorte zurückgenommen. Seitdem waren Rolle und Durchgriff der Zentralbereiche ungeklärt und das Vertrauen belastet. Nach Leitbild, Aufgabenklärung und Personalentwicklung nahm sich der Vorstand als nächsten Schritt die Governance vor. Er beauftragte 1789, verbindliche Entscheidungsprozesse herzustellen und den Standorten dabei so viel Autonomie wie möglich zu lassen.',
+          },
+        ],
+      },
+      {
+        over: 'Der Weg',
+        label: 'Strukturdiagnose',
+        ground: 'dark',
+        blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
+          {
+            kind: 'text',
+            text: '1789 sichtete zuerst die Unterlagen der Medizin-Gruppe und führte über rund drei Monate 19 Interviews mit Vorstand, Standortleitungen und Bereichsleitungen. Die Interviews zeigten, warum Beschlüsse versandeten. Jede Umstellung belastet das Ergebnis eines Standorts zunächst, deshalb wollten viele Standorte als Letzte umstellen, wenn die Anfangsprobleme gelöst sind. Weil viele so handelten, verzögerte sich jede Einführung weiter.',
+          },
+          {
+            kind: 'text',
+            text: 'Für den Vorstand fasste 1789 die Interviews zusammen. Die Governance musste offenlegen, wann welche Entscheidung für wen konkrete Nachteile bringt. Regeln, die an den Gemeinsinn appellieren, reichten dafür allein nicht aus. Die Gruppe brauchte Anreize, die Standortleitungen als Unternehmer nutzen können.',
+          },
+        ],
+      },
+      {
+        over: 'Der Weg',
+        label: 'Strukturentscheidung',
+        blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
+          {
+            kind: 'text',
+            text: 'Für das Modell galt von Anfang an eine Prämisse. Die Medizin-Gruppe sollte weder ein Konzern mit weisungsbefugten Zentralbereichen werden noch ein loses Portfolio ohne gemeinsame Projekte. Die organisationsstrategische Setzung dahinter lautete „Unternehmer in der Gruppe“.',
+          },
+          {
+            kind: 'text',
+            text: 'Auf dieser Grundlage legte 1789 einen Strohmann vor, einen ersten Entwurf des Governance-Modells, der zum Widersprechen gebaut war. Der Vorstand prüfte ihn zuerst. Danach arbeitete einen ganzen Tag lang das Change Team daran, zehn Mitglieder aus Vorstand, Standort- und Bereichsleitungen.',
+          },
+          {
+            kind: 'text',
+            text: 'Den Kern des Modells bildet eine Einteilung aller Lösungen für mehrere Standorte in drei Kategorien: Basis, Integration und Service. Damit ist für jedes Vorhaben vorab klar, ob der Vorstand für alle entscheidet, ob Standorte über Anreize früh einsteigen oder ob jeder Standort frei wählt. Das schuf zuerst Planbarkeit für alle und darüber eine neue Verbindlichkeit.',
+          },
+          {
+            kind: 'text',
+            text: 'Im Workshop sorgten sich Bereichsleitungen, ob sie als Dienstleister noch selbst bestimmen, was sie anbieten. Die Setzung „Unternehmer in der Gruppe“ gilt jedoch auch für sie. Die Zentralbereiche werden damit zu Partnern der Standorte auf Augenhöhe.',
+          },
+          {
+            kind: 'text',
+            text: 'In einem weiteren Workshop erarbeitete das Change Team die Mechanismen, die Beschlüsse verbindlich machen. Nach zwei Briefings verabschiedete der Vorstand die neue Governance. Das Strategiegremium der Standortleitungen gab dazu Rückmeldung, und auf der Tagung aller Standortleitungen wurde sie anschließend vorgestellt. Über die neun Monate arbeitete 1789 eng mit dem Vorstand der Holding und den Leitungen der Standorte.',
+          },
+        ],
+      },
+      {
+        label: 'Die neue Ordnung',
+        blocks: [
+          {
+            kind: 'text',
+            text: 'Die Medizin-Gruppe lebt heute die Governance, die ihr Vorstand verabschiedet hat. Sie legt für jede Lösung über mehrere Standorte fest, wer entscheidet und wie verbindlich sie ist.',
+          },
+          {
+            kind: 'list',
+            items: [
+              'Bei Basis-Lösungen entscheidet der Vorstand, und sie gelten für alle Standorte. Service-Lösungen nutzen die Standorte freiwillig und vereinbaren sie bilateral.',
+              'Bei Integration entscheidet der Vorstand nach Konsultation des Strategiegremiums, und alle Standorte stellen innerhalb eines Zeitrahmens um. Diese Einstufung setzt mindestens eines von vier Kriterien voraus: Rendite der Gruppe, kritische Geschäftsfähigkeit, standortübergreifendes medizinisches Geschäft oder Wettbewerbsvorteil.',
+              'Ein Strategiegremium aus zwölf Standortleitungen vertritt die Standorte. Es ordnet Vorhaben ein, gibt dem Vorstand realistische Einschätzungen und bringt eigene Ideen ein. Seine Mitglieder setzen neue Lösungen als Erste um.',
+              'Die Zentralbereiche arbeiten als Unternehmer in der Gruppe, als Dienstleister mit einem eigenen Leistungsportfolio. Projekte regeln sie in Vereinbarungen über Zeitrahmen, Leistungsniveau und Abnahme und rechnen über Verrechnungspreise ab. Gemessen werden sie am Wachstum ihres internen Marktes.',
+              'Neue Lösungen werden in Kohorten eingeführt. Vorreiter gestalten mit und werden bei der Einführung entlastet, Nachzügler tragen die vollen Kosten. Ein Opt-out gibt es nur auf Antrag beim Vorstand, und er kommt in jedem Planungsgespräch neu auf den Tisch.',
+            ],
+          },
+          {
+            kind: 'text',
+            text: 'Die Standortleitungen sind heute stärker in den Strategieprozess der Gruppe eingebunden, und größere Vorhaben setzt die Medizin-Gruppe mit mehr Verbindlichkeit um. Die Zentralbereiche passt sie Stück für Stück an das neue System an.',
+          },
+        ],
+      },
+    ],
+    transfer: [
+      'Holdings mit vielen inhaber- oder gründergeführten Tochtergesellschaften, die gemeinsame Projekte verbindlich beschließen wollen',
+      'Gruppen nach vielen Zukäufen, die gemeinsame IT- oder Plattformprojekte einführen müssen',
+      'Gruppen, deren Zentralbereiche als Dienstleister für eigenständige Einheiten arbeiten sollen',
+    ],
+    faq: [
+      {
+        q: 'Wie setzt eine Holding gruppenweite Projekte durch, ohne die Leitungen ihrer Standorte zu entmachten?',
+        a: 'Die Medizin-Gruppe ordnet jede Lösung für mehrere Standorte einer von drei Kategorien zu. Verbindlich für alle entscheidet der Vorstand nur bei Basis- und Integrationslösungen, und Integration setzt eines von vier festen Kriterien voraus. Alle anderen zentralen Angebote nutzen die Standorte freiwillig.',
+      },
+      {
+        q: 'Was hilft, wenn Standorte mit der Umstellung auf gemeinsame Lösungen warten?',
+        a: 'In der Medizin-Gruppe werden neue Lösungen in Kohorten eingeführt. Vorreiter gestalten mit und werden bei der Einführung entlastet, Nachzügler tragen die vollen Kosten. Ein Opt-out gibt es nur auf Antrag beim Vorstand.',
+      },
+      {
+        q: 'Wie lange dauert es, eine solche Governance zu entwickeln?',
+        a: 'Bei der Medizin-Gruppe dauerte das Projekt neun Monate. Dazu gehörten eine Strukturdiagnose mit 19 Interviews, zwei Workshops mit dem Change Team und die Verabschiedung durch den Vorstand.',
+      },
+    ],
+    related: ['integration', 'innovationskraft-durch-zusammenarbeit'],
+    close:
+      'Wo Beschlüsse einer Holding vor Ort als Empfehlung gelten, bereitet die Strukturentscheidung eine Ordnung vor, die die Führung verbindlich beschließen kann.',
     color: 'ink',
   },
   {
