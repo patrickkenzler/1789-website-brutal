@@ -1,7 +1,8 @@
-import Link from 'next/link'
-import { PHASES, ARC, ANSATZ, AI_HUMAN_NATIVE } from '@/data/approach'
-import { SectionHead, PageHero, ClosingCta } from '@/components/ui'
-import { AiBand } from '@/components/AiBand'
+import Link from "next/link";
+import { PHASES, ARC, ANSATZ, AI_HUMAN_NATIVE } from "@/data/approach";
+import { Fragment } from "react";
+import { SectionHead, PageHero, ClosingCta, Hazard } from "@/components/ui";
+import { AiBand } from "@/components/AiBand";
 
 /* Grounds as on the homepage: dark opens a chapter, light carries the
    reading. Three chapters here — where we begin (dark), how we work (light,
@@ -25,7 +26,7 @@ export default function AnsatzPage() {
         <div className="shell">
           <SectionHead label="Wo wir beginnen" />
 
-          <h2 className="d2" style={{ marginBottom: 'var(--u8)' }}>
+          <h2 className="d2" style={{ marginBottom: "var(--u8)" }}>
             Jede Struktur hat einmal ein Problem gelöst.
             <br />
             <span className="d-thin d-wide d-red">
@@ -48,7 +49,7 @@ export default function AnsatzPage() {
         <div className="shell">
           <SectionHead label="Unsere Arbeitslogik" />
 
-          <div className="g12" style={{ rowGap: 'var(--u6)' }}>
+          <div className="g12" style={{ rowGap: "var(--u6)" }}>
             <div className="c7">
               <h2 className="d2">
                 Drei Funktionen tragen jedes Mandat.
@@ -63,7 +64,10 @@ export default function AnsatzPage() {
             </div>
           </div>
 
-          <div className="hairgrid hairgrid-3" style={{ marginTop: 'var(--u8)' }}>
+          <div
+            className="hairgrid hairgrid-3"
+            style={{ marginTop: "var(--u8)" }}
+          >
             {ANSATZ.logic.functions.map((f) => (
               <article key={f.title} className="pad tension">
                 <h3 className="d3">{f.title}</h3>
@@ -101,7 +105,10 @@ export default function AnsatzPage() {
         <div className="shell">
           <SectionHead label="Der Arbeitsbogen" />
 
-          <div className="g12" style={{ rowGap: 'var(--u6)', marginBottom: 'var(--u8)' }}>
+          <div
+            className="g12"
+            style={{ rowGap: "var(--u6)", marginBottom: "var(--u8)" }}
+          >
             <div className="c7">
               <h2 className="d2">
                 Fünf Phasen geben Orientierung,
@@ -118,7 +125,11 @@ export default function AnsatzPage() {
 
           <div className="hairgrid hairgrid-3">
             {PHASES.map((p) => (
-              <Link key={p.num} href={`#phase-${p.num}`} className="pad arc-cell">
+              <Link
+                key={p.num}
+                href={`#phase-${p.num}`}
+                className="pad arc-cell"
+              >
                 <span className="eyebrow">{p.metaLong ?? p.meta}</span>
                 <h3 className="d4">{p.title}</h3>
                 <span className="unit arc-jump">↓ Zur Phase</span>
@@ -129,7 +140,7 @@ export default function AnsatzPage() {
                 <span key={p.model} className="data">
                   {i > 0 && (
                     <span className="arc-arrow" aria-hidden="true">
-                      →{' '}
+                      →{" "}
                     </span>
                   )}
                   {p.model}
@@ -140,61 +151,74 @@ export default function AnsatzPage() {
         </div>
       </section>
 
-      {/* ═══ PHASEN ═══════════════════════════════════════════════════════════ */}
-      {PHASES.map((p) => {
+      {/* ═══ PHASEN ═══════════════════════════════════════════════════════════
+          Fünf gleichrangige Kapitel auf hellem Grund. Der Styleguide setzt den
+          Schnitt spätestens nach zwei hellen Flächen — eine Phase dunkel zu
+          setzen würde aber behaupten, sie wiege schwerer als die anderen, und
+          die fünf sind eine Folge, keine Rangordnung. Den Schnitt trägt
+          deshalb ein Trenner: das Warnband, bedeutungsfrei wie Barcode und
+          Punktfeld, bisher als einzige Textur des Systems ungenutzt. Es steht
+          nach der zweiten und nach der vierten Phase. */}
+      {PHASES.map((p, i) => {
         return (
-          <section key={p.num} id={`phase-${p.num}`} className="slab">
-            <div className="shell">
-              <SectionHead
-                label={p.metaLong ?? p.meta}
-                end={<span className="unit">{p.title}</span>}
-              />
+          <Fragment key={p.num}>
+            {(i === 2 || i === 4) && <Hazard />}
+            <section id={`phase-${p.num}`} className="slab">
+              <div className="shell">
+                <SectionHead
+                  label={p.metaLong ?? p.meta}
+                  end={<span className="unit">{p.title}</span>}
+                />
 
-              <div className="g12" style={{ rowGap: 'var(--u6)' }}>
-                {/* ── Title + Leitfrage ── */}
-                <div className="c7">
-                  <h2 className="d2" style={{ marginBottom: 'var(--u4)' }}>
-                    {p.title}
-                  </h2>
+                <div className="g12" style={{ rowGap: "var(--u6)" }}>
+                  {/* ── Title + Leitfrage ── */}
+                  <div className="c7">
+                    <h2 className="d2" style={{ marginBottom: "var(--u4)" }}>
+                      {p.title}
+                    </h2>
 
-                  <div
-                    style={{
-                      borderTop: 'var(--rule-red)',
-                      paddingTop: 'var(--u3)',
-                    }}
-                  >
-                    <p className="d3">{p.question}</p>
-                  </div>
-                </div>
-
-                {/* ── Text, what it makes possible, outputs ── */}
-                <div className="c5">
-                  <p className="body-lg" style={{ marginBottom: 'var(--u6)' }}>
-                    {p.text}
-                  </p>
-
-                  <div className="box" style={{ padding: 'var(--u3)' }}>
-                    <span
-                      className="eyebrow"
-                      style={{ marginBottom: 'var(--u2)' }}
+                    <div
+                      style={{
+                        borderTop: "var(--rule-red)",
+                        paddingTop: "var(--u3)",
+                      }}
                     >
-                      Was dadurch möglich wird
-                    </span>
-                    <p className="body">{p.outcome}</p>
+                      <p className="d3">{p.question}</p>
+                    </div>
                   </div>
 
-                  <div className="chips" style={{ marginTop: 'var(--u3)' }}>
-                    {p.outputs.map((o) => (
-                      <span key={o} className="chip">
-                        {o}
+                  {/* ── Text, what it makes possible, outputs ── */}
+                  <div className="c5">
+                    <p
+                      className="body-lg"
+                      style={{ marginBottom: "var(--u6)" }}
+                    >
+                      {p.text}
+                    </p>
+
+                    <div className="box" style={{ padding: "var(--u3)" }}>
+                      <span
+                        className="eyebrow"
+                        style={{ marginBottom: "var(--u2)" }}
+                      >
+                        Was dadurch möglich wird
                       </span>
-                    ))}
+                      <p className="body">{p.outcome}</p>
+                    </div>
+
+                    <div className="chips" style={{ marginTop: "var(--u3)" }}>
+                      {p.outputs.map((o) => (
+                        <span key={o} className="chip">
+                          {o}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-        )
+            </section>
+          </Fragment>
+        );
       })}
 
       <ClosingCta
@@ -205,5 +229,5 @@ export default function AnsatzPage() {
         cta="Erstgespräch vereinbaren"
       />
     </main>
-  )
+  );
 }
