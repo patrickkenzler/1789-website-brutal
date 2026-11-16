@@ -64,7 +64,6 @@ export default function LaborPage() {
   return (
     <main>
       <PageHero
-        eyebrow="Denk Labor"
         line1="Wo Theorie"
         line2="auf Praxis trifft."
         body={

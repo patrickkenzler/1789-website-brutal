@@ -5,7 +5,6 @@ export default function KontaktPage() {
   return (
     <main>
       <PageHero
-        eyebrow="Kontakt"
         line1="Erstgespräch"
         line2="vereinbaren."
       />

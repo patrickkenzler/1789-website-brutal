@@ -6,7 +6,6 @@ export default function WirPage() {
   return (
     <main>
       <PageHero
-        eyebrow="Wir"
         line1="Vier Köpfe,"
         line2="eine Haltung."
         body="1789 ist klein und bewusst klein gehalten. Wir arbeiten als Partner, nicht als Lieferant — und stehen jedem Mandat persönlich gegenüber. Hier sind die vier Ansprechpartner, mit denen Sie es zu tun haben."

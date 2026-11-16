@@ -19,10 +19,6 @@ export default function LeistungenPage() {
         <div className="shell">
           <div className="g12" style={{ alignItems: 'start', rowGap: 'var(--u8)' }}>
             <div className="c7">
-              <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u4)' }}>
-                Leistungen
-              </span>
-
               <h1 className="d1">
                 {SERVICES_INTRO.line1}
                 <br />

@@ -19,9 +19,6 @@ export function LegalPage({
     <main>
       <header className="slab slab-dense" style={{ paddingTop: 'var(--u8)' }}>
         <div className="shell">
-          <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u3)' }}>
-            Legal
-          </span>
           <h1 className="d1">{title}</h1>
           <p className="unit" style={{ marginTop: 'var(--u3)' }}>
             {sections.length} Abschnitte · REV 001 · 1789 Innovations GmbH

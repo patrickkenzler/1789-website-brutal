@@ -13,7 +13,6 @@ export default function AnsatzPage() {
   return (
     <main>
       <PageHero
-        eyebrow="Unser Ansatz"
         line1="Modelle verändern Praxis."
         line2="Praxis verändert Modelle."
         body={ANSATZ.intro}
