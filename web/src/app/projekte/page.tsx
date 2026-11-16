@@ -6,7 +6,6 @@ export default function ProjektePage() {
   return (
     <main>
       <PageHero
-        eyebrow="Shift Cases"
         line1="Organisationen,"
         line2="die den Shift gewagt haben."
         body="Jedes Engagement beginnt mit einer ehrlichen Diagnose des Gaps. Was hier folgt, sind keine Erfolgsgeschichten — sondern Erkenntnisse aus echter Transformation."

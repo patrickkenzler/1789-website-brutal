@@ -237,12 +237,10 @@ export function ClosingCta({
    Vast negative space, one oversized headline, a hard rule underneath.    */
 
 export function PageHero({
-  eyebrow,
   line1,
   line2,
   body,
 }: {
-  eyebrow: string
   line1: string
   line2?: string
   body?: string
@@ -250,9 +248,10 @@ export function PageHero({
   return (
     <header className="slab" style={{ paddingTop: 'calc(var(--nav-h) + var(--u8))' }}>
       <div className="shell">
-        <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u4)' }}>
-          {eyebrow}
-        </span>
+        {/* Keine Seitenmarke über der Schlagzeile: die Navigation zeigt den
+            aktiven Punkt bereits an, und der Titel darunter sagt dasselbe
+            noch einmal. Die Marken innerhalb der Seiten bleiben — die
+            benennen Abschnitte, nicht die Seite. */}
         <h1 className="d1" style={{ maxWidth: '20ch' }}>
           {line1}
           {line2 && (
