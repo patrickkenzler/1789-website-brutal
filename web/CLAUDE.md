@@ -8,8 +8,9 @@ Verbindliche Referenz für alle KI-Assistenten in diesem Repo.
 
 Ein **Dark-Horse-Redesign**: dieselben Inhalte wie die Kundenversion, aber ein
 komplett neu geschriebenes Design-System im brutalistischen Stil.
-Das Repo ist eigenständig — **kein Remote**, keine Verbindung zum Kundenprojekt.
-Die vollständige Original-Historie liegt als Bundle unter
+Das Repo ist eigenständig: eigenes Remote
+(`github.com/patrickkenzler/1789-website-brutal`), keine Verbindung zum
+Kundenprojekt. Die vollständige Original-Historie liegt als Bundle unter
 `../../1789_Website_ORIGINAL-history.bundle`.
 
 **Stack:** Next.js 16 (App Router), React 19, TypeScript. **Kein Tailwind.**
@@ -76,6 +77,14 @@ Link, Bild) in der Reihenfolge des Quelldokuments, dazu `summary`, `transfer`, `
 hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
 Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
+Wo ein Dokument eine Ebene über die Kapitel setzt („Der Weg" über
+Strukturdiagnose, -entscheidung und -transformation), trägt das Kapitel sie als
+`over` — eine Mikrozeile über der Marke, kein zweiter Schriftgrad. Das
+Datenblatt kennt neben `scope` und `field` auch `participants` („Beteiligt")
+und `services` („Leistungen"); jede Zeile erscheint nur, wo der Case sie hat.
+Nennt ein Case unter `related` weniger als drei Nachbarn, füllen die nächsten
+Cases das Dreierraster auf.
+
 Die Kapitel stehen als `.doc-ch`: im Rand (4 Spalten, mitlaufend) die
 Kapitelmarke, daneben (8 Spalten) die Prosa zweispaltig im Lesemaß. Zitate mit Porträt brechen beide Spalten, Stimmen ohne Bild stehen in
 ihrer Spalte. Ein Bildblock nennt sein Seitenverhältnis und ob es die Spalten
@@ -118,6 +127,19 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 - [ ] Die Schluss-CTA wiederholt auf den Lesefassungs-Cases die Aussage des
       Schlusssatzes („beginnt mit dem Gap“). Entweder die stehende Zeile auf
       diesen Seiten ändern oder den Schlusssatz streichen — Textentscheidung.
+- [ ] Die Lesefassung der Branddirektion Frankfurt am Main ist ein Arbeitsstand.
+      Das Zitat von Markus Röck steht dort als Vorschlag mit ausstehender
+      Freigabe und ist deshalb **nicht** übernommen. Offen außerdem: ob die
+      Informationsebene (Kennzahlen, Rückmeldung aus der Ausbildung) beschlossen
+      ist — sonst fällt der letzte Punkt der neuen Ordnung weg — und ob die
+      Szene aus dem Strategieworkshop öffentlich stehen darf.
+- [ ] WTS und greyt tragen die Kurz-Labels des Bestands weiter
+      („Motivieren und Entwickeln"), weil die Lesefassungen keine Kachel-Titel
+      liefern. Bei greyt ist der Titel auf die Lesefassung gezogen.
+- [ ] Zwei Tippfehler stehen verbatim aus den Lesefassungen auf der Seite:
+      bei greyt „Hieraus verhandelten 1789 und die Gründer daraus", und in beiden
+      Dokumenten ein Bindestrich als Gedankenstrich („ - "). Zu korrigieren ist
+      das im Quelldokument, nicht hier.
 - [ ] Zwei E-Mail-Adressen im Bestand: Footer `hello@1789consulting.de`,
       Kontaktseite `hello@1789.consulting` — bewusst so übernommen, mit dem
       Kunden zu klären.
