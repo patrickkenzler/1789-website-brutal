@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { SERVICES, SERVICES_INTRO } from '@/data/services'
-import { servicePlate } from '@/data/serviceArt'
 import { SectionHead, ClosingCta, Barcode } from '@/components/ui'
-import { AsciiArt } from '@/components/AsciiArt'
 
 export default function LeistungenPage() {
   return (
@@ -97,16 +95,6 @@ export default function LeistungenPage() {
                     <p className="body" style={{ marginTop: 'var(--u4)' }}>
                       {s.body}
                     </p>
-
-                    {/* Die Platte schließt die Lesespalte ab. Dieselbe Figur
-                        je Leistung, aus der Kennung geseedet — drei Proben
-                        eines Schnitts, keine drei Aussagen. */}
-                    <div
-                      className="sheet-art-box"
-                      style={{ marginTop: 'var(--u6)', borderTop: 'var(--rule)', paddingTop: 'var(--u3)' }}
-                    >
-                      <AsciiArt art={servicePlate(s.id)} className="sheet-art" />
-                    </div>
                   </div>
 
                   {/* ── Rechts: Ergebnis, Endpunkt, Passung ── */}
