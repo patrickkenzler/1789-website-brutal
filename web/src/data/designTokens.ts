@@ -91,7 +91,7 @@ export const MEASURES = {
   padDense: 'clamp(24px, 4vw, 40px)',
   padVast: 'clamp(56px, 10vh, 140px)',
   bodyMeasure: '68 Zeichen',
-  docColumns: 'Rand 4 Spalten · Text 8 Spalten, zweispaltig',
+  docColumns: 'Rand 4 Spalten · Text 8 Spalten, ab drei Absätzen zweispaltig',
 } as const
 
 export const MOTION = {

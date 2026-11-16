@@ -11,8 +11,12 @@ export type CaseBlock =
   | { kind: 'link'; label: string; href: string; intro?: string }
   | {
       kind: 'image'
-      src: string
-      alt: string
+      /** Ohne `src` ist der Block ein gehaltener Platz: die Platte fällt auf
+          ihr Punktfeld mit dem Mandantennamen zurück und trägt den Vermerk
+          „Foto folgt". Liegt das Foto vor, kommen `src` und `alt` dazu, und
+          das Kapitel behält den Rhythmus, den es schon hat. */
+      src?: string
+      alt?: string
       /** Zuschnitt auf der Seite — '3 / 4', '16 / 9', '21 / 9' … */
       ratio: string
       /** true: bricht beide Spalten als Band; sonst steht es in seiner Spalte */
@@ -463,7 +467,13 @@ export const cases: CaseStudy[] = [
       {
         over: 'Der Weg',
         label: 'Strukturdiagnose',
+        ground: 'dark',
         blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
           {
             kind: 'text',
             text: 'Der Groschen fiel im Gespräch mit der Kraft, die die Kommunikation mit Bewerbenden führt, und bei der Auswertung der Daten. Ändern sich Anforderungen, bekommt das niemand mit. Jede Stelle in der Kette ist überlastet, aber nirgends taucht das als Verantwortung auf. Die Anforderungen werden nicht neu kommuniziert, und der Prozess passt sich nicht an.',
@@ -482,6 +492,11 @@ export const cases: CaseStudy[] = [
         over: 'Der Weg',
         label: 'Strukturentscheidung',
         blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
           {
             kind: 'text',
             text: 'Aus der Diagnose folgte ein Grundsatz: erst die Struktur, dann der Prozess. Die Zielarchitektur legt keine neuen Prozessschritte fest. Sie schafft die Bedingungen, unter denen sich Abläufe ändern können. Die Branddirektion entschied sich für einen Prozesseigner als Einzelperson und verwarf ein Gremium, weil es die Zurechenbarkeit verwässert hätte.',
@@ -597,7 +612,13 @@ export const cases: CaseStudy[] = [
       {
         over: 'Der Weg',
         label: 'Strukturdiagnose',
+        ground: 'dark',
         blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
           {
             kind: 'text',
             text: 'Zuerst klärte WTS mit 1789, wie die einzelnen Bereiche Wert schaffen. In Interviews beschrieben Vorstand, Partnerinnen und Partner sowie von ihnen nominierte Mitarbeitende ihre Geschäftsmodelle, vom Projektgeschäft bis zum Business Partnering. Ein Fragebogen an die Partner ergänzte das Bild.',
@@ -616,6 +637,11 @@ export const cases: CaseStudy[] = [
         over: 'Der Weg',
         label: 'Strukturentscheidung',
         blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
           {
             kind: 'text',
             text: 'Um zu klären, was in der Partnerschaft wirklich gelten muss, legte 1789 dem Führungskreis ein Radikalmodell vor. Es war zum Widersprechen gebaut und sollte ausloten, wo harte Grenzen liegen.',
@@ -742,7 +768,13 @@ export const cases: CaseStudy[] = [
       {
         over: 'Der Weg',
         label: 'Strukturdiagnose',
+        ground: 'dark',
         blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
           {
             kind: 'text',
             text: 'Zuerst ging es darum, wofür greyt stehen will. 1789 führte Gespräche mit den Gesellschaftern, analysierte Markt, Wettbewerb und Arbeitsmarkt und holte im Kick-off-Workshop alle Mitarbeitenden dazu. Dort beschrieben sie, wie die Arbeit heute läuft und wo sie hakt: kurzfristige Planung, unklare Briefings, ständige Umpriorisierung. Der Austausch sollte auch zeigen, welche Stärken greyt schon hatte und weiterentwickeln konnte.',
@@ -758,6 +790,11 @@ export const cases: CaseStudy[] = [
         label: 'Strukturentscheidung',
         blocks: [
           {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
+          {
             kind: 'text',
             text: 'Das Pool-Modell mit festen Themen-Teams ist in Agenturen verbreitet und bietet Abwechslung, bringt aber mit jeder neuen Stelle mehr Hierarchie und Koordinationsaufwand. 1789 entwickelte mit greyt eine Alternative: Im Team-Modell betreut ein festes Business Team seine Kunden selbst, und die Agentur wächst über neue Teams. Den Ausschlag gab die Nähe zum Auftrag für alle Erfahrungsstufen. Kapazitätssteuerung, die Entwicklung der Mitarbeitenden und der Unternehmergeist ließen sich in festen Teams besser verbinden. Tiefe Expertise bündeln eigene Specialist Teams.',
           },
@@ -771,6 +808,11 @@ export const cases: CaseStudy[] = [
         over: 'Der Weg',
         label: 'Strukturtransformation',
         blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
           {
             kind: 'text',
             text: 'In den folgenden sechs Monaten brachte greyt das Modell mit den Mitarbeitenden in den Alltag. Die Gründer ordneten zuerst ihre eigene Rolle und legten als Regie Aufgaben, Entscheidungsbefugnisse und den Strategieprozess fest. Danach klärten Regie und 1789 das Staffing: wer welche Rolle übernimmt, welche Stellen fehlen und wie neue Kolleginnen und Kollegen ankommen.',

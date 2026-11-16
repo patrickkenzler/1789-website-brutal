@@ -107,17 +107,25 @@ export function Plate({
      the initials set at 10px in the corner — the placeholder has to carry the
      identity at plate scale, or the grid looks broken rather than pending. */
   if (!src) {
+    /* Ohne Namen ist die Platte kein Ersatz für das Bild, sondern der Platz,
+       den es bekommt: vertiefter Grund statt Aqua, kein Slug, nur der Vermerk
+       in der Ecke. So steht im Kapitel eine ruhige Reserve und nicht die
+       lauteste Fläche der Seite. */
+    const reserved = !label
+
     return (
       <div
-        className={`plate dotfield${coarse ? ' plate-coarse' : ''}`}
+        className={`plate dotfield${reserved ? ' plate-reserved' : ''}${coarse ? ' plate-coarse' : ''}`}
         style={style}
         aria-hidden="true"
       >
         {/* Initials set at plate scale; a name or a word a step smaller, so
             "Procter & Gamble" wraps into the plate instead of out of it. */}
-        <span className={`plate-slug${(label ?? '').length > 6 ? ' plate-slug-word' : ''}`}>
-          {label ?? 'NO SIGNAL'}
-        </span>
+        {label && (
+          <span className={`plate-slug${label.length > 6 ? ' plate-slug-word' : ''}`}>
+            {label}
+          </span>
+        )}
         {note && (
           <span
             className="unit"
