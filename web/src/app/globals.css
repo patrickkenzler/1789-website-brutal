@@ -1191,6 +1191,14 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   background-image: radial-gradient(#2C333B 32%, transparent 34%);
 }
 .slab-invert .plate-slug { color: #8A939A; }
+/* Der Schriftzug auf einem Foto steht in Weiß. Das ist die einzige Stelle
+   im System mit einem Wert außerhalb der Palette: --paper ist der hellste
+   Ton, aber hinter dem Schriftzug liegt die Bildhelligkeit zwischen 0.12 und
+   0.27, und dort bringt Weiß rund 4.2:1 statt 3.3:1. Auf einem Bild gibt es
+   keinen Grund, der den Ton halten könnte — nur Weiß trägt über jedes Motiv.
+   Doppelt gewählt, weil .slab-invert .plate-slug dieselbe Spezifität hätte
+   und die Kachelwand auf dunklem Grund steht. */
+.plate-slug.plate-slug-over { color: #FFFFFF; }
 
 /* ── MOSAIC — the Labor archive ───────────────────────────────────────────
    Four tracks; the featured piece spans 2×2, wide tiles 2×1, the rest 1×1.
