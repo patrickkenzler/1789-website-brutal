@@ -1,23 +1,61 @@
 import Link from 'next/link'
 import { SERVICES, SERVICES_INTRO } from '@/data/services'
-import { SectionHead, PageHero, ClosingCta, Barcode } from '@/components/ui'
+import { SERVICE_PLATE } from '@/data/serviceArt'
+import { SectionHead, ClosingCta, Barcode } from '@/components/ui'
+import { AsciiArt } from '@/components/AsciiArt'
 
 export default function LeistungenPage() {
   return (
     <main>
-      <PageHero
-        eyebrow="Leistungen"
-        line1={SERVICES_INTRO.line1}
-        line2={SERVICES_INTRO.line2}
-        body={SERVICES_INTRO.lead}
-      />
+      {/* ═══ KOPF ═════════════════════════════════════════════════════════════
+          Das Kopfpaar der Startseite: links die Aussage und der Vorspann,
+          rechts eine Fläche. Der gemeinsame PageHero trägt nur Text über die
+          halbe Breite — hier steht neben ihm die Zeichnung, und der Kopf ist
+          keine leere helle Fläche mehr.                                   */}
+      <header
+        className="slab"
+        style={{ paddingTop: 'calc(var(--nav-h) + var(--u8))' }}
+      >
+        <div className="shell">
+          <div className="g12" style={{ alignItems: 'start', rowGap: 'var(--u8)' }}>
+            <div className="c7">
+              <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u4)' }}>
+                Leistungen
+              </span>
+
+              <h1 className="d1">
+                {SERVICES_INTRO.line1}
+                <br />
+                <span className="d-thin d-red">{SERVICES_INTRO.line2}</span>
+              </h1>
+
+              <p className="body-lg" style={{ marginTop: 'var(--u6)' }}>
+                {SERVICES_INTRO.lead}
+              </p>
+            </div>
+
+            {/* Die Zeichnung dieser Seite: ein Schnitt durch Schichten, mit
+                einer Bohrung hindurch. Eigene Figur — das Wellenfeld gehört
+                der Startseite, die Phasenbilder dem Ansatz. */}
+            <div className="c4 s9">
+              <div className="box" style={{ padding: 'var(--u3)' }}>
+                <AsciiArt art={SERVICE_PLATE} className="phase-art" />
+                <span className="unit" style={{ display: 'block', marginTop: 'var(--u2)' }}>
+                  Schnitt · Schichten und Bohrung
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
 
       {/* ═══ MANDAT ═══════════════════════════════════════════════════════════
-          Der zweite Absatz des Dokuments: wer beauftragt, mit welchem Anlass,
-          unter welcher Perspektive. Er trägt kein eigenes Register — dasselbe
-          body-lg wie der Vorspann, nur eine Fläche weiter.                 */}
-      <section className="slab slab-dense">
+          Dunkel, weil die Strecke sonst von der Kopfzeile bis zur CTA auf
+          einem Grund läge. Wer beauftragt, mit welchem Anlass, unter welcher
+          Perspektive — ein Absatz, der für sich steht.                    */}
+      <section className="slab slab-invert">
         <div className="shell">
+          <SectionHead label="Wer beauftragt" />
           <div className="g12">
             <p className="body-lg c8">{SERVICES_INTRO.mandate}</p>
           </div>
@@ -25,12 +63,13 @@ export default function LeistungenPage() {
       </section>
 
       {/* ═══ DIE DREI LEISTUNGEN ══════════════════════════════════════════════
+          Die laute Fläche der Seite, einmal: die drei Datenblätter stehen auf
+          Orange, in Ink gezeichnet. Auf diesem Grund gibt es keine zweite
+          Farbe — der Rahmen trägt den Kontrast, nicht ein Fülltön.
           Je ein Datenblatt: Kopfstreifen mit dem Rahmen, links der Name und
           die Erklärung, rechts das Ergebnis und die beiden Zeilen, die sagen,
-          wo die Leistung endet und wann sie passt. Der Fuß nennt die Cases.
-          Der Name steht zweigeteilt — dünn und voll —, wie im Dokument; das
-          ist die zweite Stimme des Mono-Systems, nicht ein zweiter Grad.  */}
-      <section className="slab">
+          wo die Leistung endet und wann sie passt. Der Fuß nennt die Cases. */}
+      <section className="slab slab-orange">
         <div className="shell">
           <SectionHead label="Drei Leistungen, einzeln zu beauftragen" />
 
@@ -42,7 +81,6 @@ export default function LeistungenPage() {
                   style={{
                     padding: 'var(--u2) var(--pad-dense)',
                     borderBottom: 'var(--rule)',
-                    background: 'var(--sunk)',
                   }}
                 >
                   <span className="data" style={{ color: 'var(--ink)' }}>

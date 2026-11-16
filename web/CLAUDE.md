@@ -77,6 +77,12 @@ Link, Bild) in der Reihenfolge des Quelldokuments, dazu `summary`, `transfer`, `
 hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
 Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
+Die Leistungsseite trägt die Gründe hell · dunkel · orange · aubergine: Kopf
+mit der Zeichnung aus `src/data/serviceArt.ts` (ein Schnitt durch Schichten,
+eigene Figur — das Wellenfeld gehört der Startseite, die Phasenbilder dem
+Ansatz, die Formatglyphen dem Labor), dann das Mandat auf dunklem Grund, dann
+die drei Datenblätter auf der einen lauten Fläche der Seite.
+
 `src/data/services.ts` trägt die Leistungen als `SERVICES_INTRO` (Seitenkopf und
 Mandatsabsatz) und `SERVICES`. Jede Leistung führt den Namen zweigeteilt
 (`titleThin` dünn, `titleBold` voll, gestapelt gesetzt), dazu Unterzeile, Text,
