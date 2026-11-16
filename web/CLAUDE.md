@@ -8,8 +8,9 @@ Verbindliche Referenz für alle KI-Assistenten in diesem Repo.
 
 Ein **Dark-Horse-Redesign**: dieselben Inhalte wie die Kundenversion, aber ein
 komplett neu geschriebenes Design-System im brutalistischen Stil.
-Das Repo ist eigenständig — **kein Remote**, keine Verbindung zum Kundenprojekt.
-Die vollständige Original-Historie liegt als Bundle unter
+Das Repo ist eigenständig: eigenes Remote
+(`github.com/patrickkenzler/1789-website-brutal`), keine Verbindung zum
+Kundenprojekt. Die vollständige Original-Historie liegt als Bundle unter
 `../../1789_Website_ORIGINAL-history.bundle`.
 
 **Stack:** Next.js 16 (App Router), React 19, TypeScript. **Kein Tailwind.**
