@@ -128,6 +128,9 @@ function Chapter({ s, solo }: { s: CaseSection; solo?: boolean }) {
   return (
     <div className={solo ? 'doc-ch doc-ch-solo' : 'doc-ch'}>
       <div className="doc-side">
+        {/* Wo das Dokument eine Ebene über die Kapitelmarke setzt, steht sie
+            als Mikrozeile darüber — eine Marke im Rand, kein zweiter Grad. */}
+        {s.over && <p className="unit">{s.over}</p>}
         <h2 className="d3">{s.label}</h2>
         {/* Die Lesefassung setzt diese Zeile fett unter die Kapitelüberschrift,
             also eine Stufe unter ihr. Als d2 stand sie größer da als die
@@ -152,9 +155,17 @@ export default async function CasePage({
 
   if (!c) notFound()
 
-  const related = c.related
-    ? c.related.map(getCaseBySlug).filter((x): x is NonNullable<typeof x> => Boolean(x))
-    : cases.filter((x) => x.slug !== c.slug).slice(0, 3)
+  /* Die Lesefassungen benennen ihre Nachbarn selbst, manche aber nur einen
+     oder zwei. Das Raster trägt drei Karten, also stehen die benannten vorn
+     und die nächsten Cases füllen auf — eine Lücke im Dreier läse sich als
+     Fehler, nicht als Auswahl. */
+  const named = (c.related ?? [])
+    .map(getCaseBySlug)
+    .filter((x): x is NonNullable<typeof x> => Boolean(x))
+  const related = [
+    ...named,
+    ...cases.filter((x) => x.slug !== c.slug && !named.some((n) => n.slug === x.slug)),
+  ].slice(0, 3)
 
   const groups = groupByGround(c.sections ?? [])
 
@@ -168,6 +179,10 @@ export default async function CasePage({
     ...(c.meta?.scope ? ([['Größe', c.scale]] as [string, string][]) : []),
     ['Dauer', c.duration],
     ['Scope', c.meta?.scope ?? c.scale],
+    ...(c.meta?.participants
+      ? ([['Beteiligt', c.meta.participants]] as [string, string][])
+      : []),
+    ...(c.meta?.services ? ([['Leistungen', c.meta.services]] as [string, string][]) : []),
     ['Lead', c.lead],
     ...(c.meta?.field ? ([['Leistungsfeld', c.meta.field]] as [string, string][]) : []),
   ]
