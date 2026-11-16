@@ -35,8 +35,8 @@
 
   /* ── INK ─────────────────────────────────────────────────────────────── */
   --ink:     #11151C;   /* Ink Black */
-  --ink-70:  #465059;   /* secondary body / metadata (cool) */
-  --ink-45:  #7E878E;   /* tertiary — unit ids, coordinates, disabled */
+  --ink-70:  #44494E;   /* secondary body / metadata (cool) — 7.1:1 auf --paper */
+  --ink-45:  #61666A;   /* tertiary — unit ids, coordinates, disabled — 4.5:1 auf --paper */
   --ink-20:  #B7C1BE;   /* hairline on hairline, dot matrices */
 
   /* ── ACCENT ────────────────────────────────────────────────────────────
@@ -72,7 +72,7 @@
   --t-10:  0.625rem;    /* registration marks, coordinates */
   --t-11:  0.6875rem;   /* telemetry, table data */
   --t-12:  0.75rem;     /* eyebrows, nav, labels */
-  --t-13:  0.8125rem;   /* body default */
+  --t-14:  0.875rem;    /* body default */
   --t-15:  0.9375rem;   /* lead body */
   --t-18:  1.125rem;    /* standfirst */
 
@@ -155,7 +155,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-micro);
-  font-size: var(--t-13);
+  font-size: var(--t-14);
   line-height: var(--lead-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -387,7 +387,7 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 
 .body {
   font-family: var(--font-micro);
-  font-size: var(--t-13);
+  font-size: var(--t-14);
   line-height: var(--lead-body);
   color: var(--ink-70);
   max-width: 68ch;
@@ -512,7 +512,7 @@ a.card:hover .plate::before { background-position: 3px 4px; }
      die Oberlängenreserve, zusammen 0.43em. Ohne die Korrektur steht das
      Bild sichtbar fünf Pixel zu hoch. In der Makroschrift der Kapitelmarke
      ist der Betrag fast derselbe (5.9 statt 5.5px), eine Korrektur genügt. */
-  margin-top: calc(var(--t-13) * 0.43);
+  margin-top: calc(var(--t-14) * 0.43);
   margin-bottom: var(--u4);
 }
 /* Eine Stimme mit Gesicht bricht beide Spalten, eine ohne steht in ihrer. */
@@ -580,6 +580,10 @@ a.card:hover .plate::before { background-position: 3px 4px; }
   color: var(--paper);
   --red: var(--orange);  /* Molten Orange — accent on the dark ground */
   --red-ink: #11151C;    /* ink text on an orange fill */
+  /* Die dritte Ink-Stufe ist auf hellem Grund dunkel genug für Kleintext und
+     wäre auf diesem Grund zu dunkel (3.15:1). Der Grund legt sie deshalb um,
+     wie er es mit dem Akzent tut — 5.85:1 statt 5.0:1 wie zuvor. */
+  --ink-45: #8A939A;
 }
 /* The class is doubled so a dark island keeps its own values inside another
    ground: the AI band sits in the orange section, and that section's
@@ -793,7 +797,7 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   justify-content: center;
   border: var(--rule);
   font-family: var(--font-micro);
-  font-size: var(--t-13);
+  font-size: var(--t-14);
   color: var(--ink);
   transition: background var(--snap), color var(--snap), border-color var(--snap);
 }
@@ -1056,7 +1060,7 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   padding-top: var(--u2);
   border-top: var(--rule);
   font-family: var(--font-micro);
-  font-size: var(--t-13);
+  font-size: var(--t-14);
   font-weight: 700;
   line-height: var(--lead-body);
   color: var(--ink);
@@ -1619,7 +1623,7 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   background: var(--sunk);
   border: var(--rule);
   font-family: var(--font-micro);
-  font-size: var(--t-13);
+  font-size: var(--t-14);
   color: var(--ink);
 }
 .input::placeholder { color: var(--ink-45); }

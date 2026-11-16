@@ -277,7 +277,7 @@ export default function Styleguide() {
                   <h4 className="d4">{t}</h4>
                   <p className="d4 d-thin">{lead}</p>
                   <p className="body">
-                    Der Fließtext trägt die Erklärung: 13px, offener
+                    Der Fließtext trägt die Erklärung: 14px, offener
                     Zeilenabstand, harter Satzspiegel.
                   </p>
                   <p className="close-line">{close}</p>
@@ -285,7 +285,7 @@ export default function Styleguide() {
               ))}
             </div>
             <p className="body-sm spec-specimen-note">
-              Kartentitel 20px, Unterzeile im dünnen Schnitt, Fließtext 13px,
+              Kartentitel 20px, Unterzeile im dünnen Schnitt, Fließtext 14px,
               Schlusssatz fett über einer Haarlinie. Vier Stufen auf engem
               Raum — unterschieden durch Größe, Gewicht und Linie, nie durch
               eine zweite Schrift.
@@ -321,7 +321,7 @@ export default function Styleguide() {
 
         <Demo label="Fließtext">
           <p className="body">
-            Monospace bleibt bei 13px mit offenem Zeilenabstand und einem
+            Monospace bleibt bei 14px mit offenem Zeilenabstand und einem
             Satzspiegel von {MEASURES.bodyMeasure} lesbar, darüber nicht mehr.{' '}
             <strong>Hervorhebungen</strong> tragen eine Unterlegung aus einer
             Haarlinie im Akzent — kein Farbblock, der wie ein Textmarker wirkt.

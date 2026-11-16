@@ -28,8 +28,8 @@ export const SWATCHES: readonly Swatch[] = [
 /** Die Ink-Treppe — vier Werte, kein Grau dazwischen. */
 export const INKS: readonly Swatch[] = [
   { token: '--ink', hex: '#11151C', name: 'Ink', role: 'Überschriften, Linien, alles Tragende' },
-  { token: '--ink-70', hex: '#465059', name: 'Ink 70', role: 'Fließtext' },
-  { token: '--ink-45', hex: '#7E878E', name: 'Ink 45', role: 'Marker, Koordinaten, Deaktiviertes' },
+  { token: '--ink-70', hex: '#44494E', name: 'Ink 70', role: 'Fließtext' },
+  { token: '--ink-45', hex: '#61666A', name: 'Ink 45', role: 'Marker, Koordinaten, Deaktiviertes' },
   { token: '--ink-20', hex: '#B7C1BE', name: 'Ink 20', role: 'Rasterlinien, Punktfelder' },
 ]
 
@@ -60,7 +60,7 @@ export const MICRO_SCALE: readonly { token: string; px: string; use: string }[] 
   { token: '--t-10', px: '10px', use: 'Registermarken, Koordinaten · .unit' },
   { token: '--t-11', px: '11px', use: 'Telemetrie, Tabellendaten · .eyebrow .data' },
   { token: '--t-12', px: '12px', use: 'Navigation, Beschriftungen' },
-  { token: '--t-13', px: '13px', use: 'Fließtext · .body' },
+  { token: '--t-14', px: '14px', use: 'Fließtext · .body' },
   { token: '--t-15', px: '15px', use: 'Vorspann · .body-lg' },
   { token: '--t-18', px: '18px', use: 'Standfirst' },
 ]
