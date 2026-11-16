@@ -26,3 +26,9 @@ dist/
 # claude code worktrees
 .claude/worktrees/
 art-src/
+
+# Sync-Dubletten ("Datei 2.jpg"). Ein Dienst legt sie hier an; sie sind
+# byte-gleich mit dem Original und haben zweimal etwas kaputt gemacht:
+# in .next/types/ brachen sie tsc, in public/projects/ landeten sie im Commit.
+* 2.*
+* 3.*
