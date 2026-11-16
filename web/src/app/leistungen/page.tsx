@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { SERVICES, SERVICES_INTRO } from '@/data/services'
-import { SERVICE_PLATE } from '@/data/serviceArt'
+import { servicePlate } from '@/data/serviceArt'
 import { SectionHead, ClosingCta, Barcode } from '@/components/ui'
 import { AsciiArt } from '@/components/AsciiArt'
 
@@ -28,22 +28,13 @@ export default function LeistungenPage() {
                 <br />
                 <span className="d-thin d-red">{SERVICES_INTRO.line2}</span>
               </h1>
-
-              <p className="body-lg" style={{ marginTop: 'var(--u6)' }}>
-                {SERVICES_INTRO.lead}
-              </p>
             </div>
 
-            {/* Die Zeichnung dieser Seite: ein Schnitt durch Schichten, mit
-                einer Bohrung hindurch. Eigene Figur — das Wellenfeld gehört
-                der Startseite, die Phasenbilder dem Ansatz. */}
-            <div className="c4 s9">
-              <div className="box" style={{ padding: 'var(--u3)' }}>
-                <AsciiArt art={SERVICE_PLATE} className="phase-art" />
-                <span className="unit" style={{ display: 'block', marginTop: 'var(--u2)' }}>
-                  Schnitt · Schichten und Bohrung
-                </span>
-              </div>
+            {/* Der Vorspann steht neben der Aussage, nicht darunter — das
+                Kopfpaar der Startseite. Die Zeichnungen sitzen bei den
+                Leistungen, wo sie etwas zu begleiten haben. */}
+            <div className="c4 s9 lede">
+              <p className="body-lg">{SERVICES_INTRO.lead}</p>
             </div>
           </div>
         </div>
@@ -110,6 +101,16 @@ export default function LeistungenPage() {
                     <p className="body" style={{ marginTop: 'var(--u4)' }}>
                       {s.body}
                     </p>
+
+                    {/* Die Platte schließt die Lesespalte ab. Dieselbe Figur
+                        je Leistung, aus der Kennung geseedet — drei Proben
+                        eines Schnitts, keine drei Aussagen. */}
+                    <div
+                      className="sheet-art-box"
+                      style={{ marginTop: 'var(--u6)', borderTop: 'var(--rule)', paddingTop: 'var(--u3)' }}
+                    >
+                      <AsciiArt art={servicePlate(s.id)} className="sheet-art" />
+                    </div>
                   </div>
 
                   {/* ── Rechts: Ergebnis, Endpunkt, Passung ── */}

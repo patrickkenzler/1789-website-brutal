@@ -70,6 +70,11 @@ export function sectionPlate(seed: number): string {
   return c.toString()
 }
 
-/** Die Zeichnung der Leistungsseite — fest geseedet, damit jeder Build
- *  dieselbe Platte druckt. */
-export const SERVICE_PLATE = sectionPlate(seedFrom('Strukturdiagnose · Strukturentscheidung · Strukturtransformation'))
+/** Je Leistung eine Platte. Es ist dieselbe Figur, aus demselben Seed-Wert
+ *  der Kennung gezogen — drei Proben, nicht drei Aussagen. Eine eigene
+ *  Zeichnung je Leistung würde behaupten, sie bilde diese Leistung ab; das
+ *  gibt das Dokument nicht her, und Texturen tragen im System keine
+ *  Bedeutung. Fest geseedet, damit jeder Build dieselben Platten druckt. */
+export function servicePlate(id: string): string {
+  return sectionPlate(seedFrom(id))
+}

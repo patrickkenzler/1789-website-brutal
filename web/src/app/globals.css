@@ -892,6 +892,27 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   user-select: none;
 }
 .phase-art code, .tile-art code { font: inherit; }
+
+/* Eine Zeichnung, die ein Fach füllt statt darin zu schweben. .phase-art ist
+   für kleine Phasenzellen gemacht: 5/4 bei einem 44×16-Raster und eine Decke
+   bei 12px — die Zeichnung stand dann auf 44% der Fläche. Hier trägt der
+   Kasten den Container, damit die cqw-Angabe überhaupt greift, und die Höhe
+   folgt dem Raster statt umgekehrt. */
+.sheet-art-box { container-type: inline-size; }
+.sheet-art {
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--font-micro);
+  /* 44 Spalten zu 0.6em füllen die Breite bei 100/26.4 = 3.78cqw. */
+  font-size: clamp(5px, 3.7cqw, 20px);
+  line-height: 1.2;
+  letter-spacing: 0;
+  white-space: pre;
+  color: var(--ink);
+  user-select: none;
+}
+.sheet-art code { font: inherit; }
+.sheet-art .hi { color: var(--red); }
 .phase-art .hi, .tile-art .hi { color: var(--red); }
 .phase-next { color: var(--red); }
 .phase-body {
