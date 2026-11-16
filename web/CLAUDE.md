@@ -170,6 +170,13 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 - [ ] Die Schluss-CTA wiederholt auf den Lesefassungs-Cases die Aussage des
       Schlusssatzes („beginnt mit dem Gap“). Entweder die stehende Zeile auf
       diesen Seiten ändern oder den Schlusssatz streichen — Textentscheidung.
+- [ ] Sechs der neun Case-Cover sind **generiert**, nicht fotografiert:
+      steuerung-der-personalgewinnung, motivieren-und-entwickeln,
+      kohaerente-vision, skalierung-und-qualitaet, verbindliche-entscheidungen
+      und entscheidungen-mit-strategischem-ausmass. Arbeitsmaterial, bis echte
+      Fotos da sind. Erzeugt mit `npm run covers` (Flux, Black Forest Labs).
+      Echt sind nur wd40.jpg, teccle.jpg und pg.jpg sowie alle Bilder in den
+      Kapiteln. Wer sie ersetzt, tauscht nur die Datei.
 - [ ] Die Lesefassung der Branddirektion Frankfurt am Main ist ein Arbeitsstand.
       Das Zitat von Markus Röck steht dort als Vorschlag mit ausstehender
       Freigabe und ist deshalb **nicht** übernommen. Offen außerdem: ob die
