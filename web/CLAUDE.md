@@ -79,16 +79,15 @@ Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
 Die Leistungsseite trägt die Gründe hell · dunkel · orange · aubergine: Kopf
 als Kopfpaar (Aussage links, Vorspann rechts), dann das Mandat auf dunklem
-Grund, dann die drei Datenblätter auf der einen lauten Fläche der Seite. Jedes
-Datenblatt schließt seine Lesespalte mit einer Platte aus
-`src/data/serviceArt.ts` ab — ein Schnitt durch Schichten, je Leistung aus der
-Kennung geseedet. Eigene Figur: das Wellenfeld gehört der Startseite, die
-Phasenbilder dem Ansatz, die Formatglyphen dem Labor.
+Grund, dann die drei Datenblätter auf der einen lauten Fläche der Seite. Die Seite trägt
+bewusst keine Zeichnung: zwei Anläufe (eine Platte im Kopf, dann je eine im
+Datenblatt) hat Patrick verworfen, sie fügten nichts hinzu. Wer es erneut
+versucht, findet den Generator im Commit 9949d29.
 
-Für solche Zeichnungen gibt es `.sheet-art` in einem `.sheet-art-box`.
-`.phase-art` ist für kleine Phasenzellen gemacht (5/4 bei einem 44×16-Raster,
-Decke bei 12px) — darin steht eine Platte auf 44% ihrer Fläche und wirkt
-schwach.
+Falls doch wieder eine ASCII-Zeichnung gebraucht wird: `.phase-art` ist für
+kleine Phasenzellen gemacht (5/4 bei einem 44×16-Raster, Decke bei 12px).
+Darin steht eine größere Platte auf 44% ihrer Fläche und wirkt schwach — sie
+braucht eine eigene Klasse mit Container und ohne diese Decke.
 
 `src/data/services.ts` trägt die Leistungen als `SERVICES_INTRO` (Seitenkopf und
 Mandatsabsatz) und `SERVICES`. Jede Leistung führt den Namen zweigeteilt
