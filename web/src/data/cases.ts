@@ -564,6 +564,7 @@ export const cases: CaseStudy[] = [
     close:
       'Wo Bewerbungen eingehen und Stellen trotzdem leer bleiben, klärt eine Strukturdiagnose, an welcher Stelle der Weg abreißt.',
     color: 'neutral',
+    image: '/projects/steuerung-der-personalgewinnung.jpg',
   },
   {
     slug: 'motivieren-und-entwickeln',
@@ -715,6 +716,7 @@ export const cases: CaseStudy[] = [
     close:
       'Wo viele Partner mitentscheiden, klärt die Strukturentscheidung, was für alle gelten muss.',
     color: 'neutral',
+    image: '/projects/motivieren-und-entwickeln.jpg',
   },
   {
     slug: 'kohaerente-vision',
@@ -855,6 +857,7 @@ export const cases: CaseStudy[] = [
     close:
       'Ob die Struktur einer Organisation mit ihrer Kultur Schritt hält, zeigt eine Strukturdiagnose.',
     color: 'terra',
+    image: '/projects/kohaerente-vision.jpg',
   },
   {
     slug: 'skalierung-und-qualitaet',
@@ -1004,6 +1007,7 @@ export const cases: CaseStudy[] = [
     close:
       'Wo Wachstum an den Gründern hängt, klärt eine Strukturdiagnose, welche Ordnung trägt.',
     color: 'sage',
+    image: '/projects/skalierung-und-qualitaet.jpg',
   },
   {
     slug: 'verbindliche-entscheidungen',
@@ -1146,6 +1150,7 @@ export const cases: CaseStudy[] = [
     close:
       'Wo Beschlüsse einer Holding vor Ort als Empfehlung gelten, bereitet die Strukturentscheidung eine Ordnung vor, die die Führung verbindlich beschließen kann.',
     color: 'ink',
+    image: '/projects/verbindliche-entscheidungen.jpg',
   },
   {
     slug: 'entscheidungen-mit-strategischem-ausmass',
@@ -1161,6 +1166,7 @@ export const cases: CaseStudy[] = [
     shift: 'Zweimonatige intensive Zusammenarbeit mit dem siebenköpfigen Team. Interviews, Sparrings und der Einsatz des 1789 Board Games zur Visualisierung von Entscheidungen und Abhängigkeiten. Abschluss durch Transformations-Workshop.',
     result: 'Klar definierte individuelle und gemeinsame Verantwortlichkeiten. Transparente Kommunikationswege. Neuer operativer Führungspunkt für Entscheidungssicherheit — ein kleines Team, das wieder weiß, was es zu entscheiden hat.',
     color: 'neutral',
+    image: '/projects/entscheidungen-mit-strategischem-ausmass.jpg',
   },
 ]
 
