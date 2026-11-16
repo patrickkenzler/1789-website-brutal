@@ -87,6 +87,13 @@ Wo eine Folge gleichrangiger Kapitel den Schnitt braucht (die fünf Phasen im
 Ansatz), trägt ihn ein Trenner, nicht ein Grundwechsel: eine Phase dunkel zu
 setzen würde behaupten, sie wiege schwerer. `Hazard` ist dafür da.
 
+Der Mandantenname steht groß auf dem Cover, nicht als Schildchen in der Ecke
+— derselbe Schriftzug wie auf der Platte ohne Bild (`.plate-slug`), über dem
+Bild in Weiß (`.plate-slug-over`). Das ist der einzige Wert im System
+außerhalb der Palette: auf einem Foto gibt es keinen Grund, der einen Ton
+halten könnte, und hinter dem Schriftzug liegt die Bildhelligkeit zwischen
+0.12 und 0.27 — dort bringt Weiß rund 4.2:1 statt 3.3:1 mit `--paper`.
+
 Texturen sind in Ink gezeichnet und brauchen auf dunklem Grund ihren eigenen
 Wert — `.barcode` und `.hazard` haben ihn jetzt (#AEB8B5, wie die
 ASCII-Zeichnungen). Dasselbe gilt für Haarlinien je Grund: hell `--ink-20`,

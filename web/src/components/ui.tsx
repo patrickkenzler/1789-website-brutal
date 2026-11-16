@@ -142,18 +142,14 @@ export function Plate({
     <div className={`plate${coarse ? ' plate-coarse' : ''}`} style={style}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={asset(src)} alt={alt ?? ''} loading="lazy" style={imgStyle} />
+      {/* Der Name steht auf dem Cover, nicht als Schildchen in der Ecke:
+          derselbe Schriftzug wie auf der Platte ohne Bild, nur im hellen
+          Wert. Die Cover sind dunkle Bilder, und das Halbtonraster liegt
+          ohnehin darüber — es nimmt dem Foto die Spitzen, auf denen sonst
+          Buchstaben zerfielen. */}
       {label && (
         <span
-          className="unit"
-          style={{
-            position: 'absolute',
-            left: 10,
-            bottom: 8,
-            background: 'var(--paper)',
-            padding: '2px 6px',
-            color: 'var(--red)',
-            zIndex: 2,
-          }}
+          className={`plate-slug plate-slug-over${label.length > 6 ? ' plate-slug-word' : ''}`}
         >
           {label}
         </span>
