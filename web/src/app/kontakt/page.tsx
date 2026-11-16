@@ -12,7 +12,12 @@ export default function KontaktPage() {
       {/* ═══ 01 · KONTAKT-SPLIT ═════════════════════════════════════════════
           Left: the premise plus a technical readout. Right: the form as a
           bordered compartment. No backend — the form declares intent.     */}
-      <section className="slab" style={{ borderBottom: 0 }}>
+      {/* Prämisse und Daten auf dunklem Grund, die Form hell darunter. Beides
+          stand vorher in einer hellen Sektion nebeneinander, und die Seite
+          hatte damit über ihre ganze Länge keinen Schnitt. Die Form bleibt
+          hell: ihre Felder sind auf den vertieften Grund gebaut, und für den
+          dunklen gibt es dafür keine Variante. */}
+      <section className="slab slab-invert">
         <div className="shell">
           <SectionHead
             label="Erstgespräch"
@@ -20,14 +25,15 @@ export default function KontaktPage() {
           />
 
           <div className="g12" style={{ rowGap: 'var(--u8)', alignItems: 'start' }}>
-            {/* ── Links ── */}
-            <div className="c5">
-              <p className="body-lg" style={{ marginBottom: 'var(--u8)' }}>
+            <div className="c7">
+              <p className="body-lg">
                 Das Erstgespräch dient der gegenseitigen Erkenntnis. Kein Pitch.
                 Kein Sales-Deck. Wir hören zu — und prüfen gemeinsam, ob ein
                 Systemshift der richtige Schritt ist.
               </p>
+            </div>
 
+            <div className="c4 s9">
               <dl className="readout">
                 <dt>E-Mail</dt>
                 <dd>
@@ -40,13 +46,15 @@ export default function KontaktPage() {
                   {CONTACT.country}
                 </dd>
               </dl>
-
-              <div style={{ marginTop: 'var(--u8)' }}>
-              </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            {/* ── Rechts ── */}
-            <div className="c6 s7">
+      <section className="slab" style={{ borderBottom: 0 }}>
+        <div className="shell">
+          <div className="g12">
+            <div className="c7 s4">
               <div className="box regmark pad">
                 <span className="eyebrow" style={{ marginBottom: 'var(--u6)' }}>
                   Anfrage

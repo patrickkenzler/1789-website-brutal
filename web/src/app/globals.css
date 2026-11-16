@@ -598,6 +598,25 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 .slab-invert.slab-invert .data { color: #8A939A; }
 .slab-invert.slab-invert .data-strong { color: var(--paper); }
 .slab-invert.slab-invert .unit { color: var(--ink-45); }
+/* Texturen sind in Ink gezeichnet und verschwinden deshalb auf dem dunklen
+   Grund. Sie nehmen dort denselben Wert wie die ASCII-Zeichnungen (#AEB8B5),
+   damit sie als Textur lesen statt als Lücke. */
+.slab-invert .barcode {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #AEB8B5 0 1px, transparent 1px 3px,
+    #AEB8B5 3px 5px, transparent 5px 6px,
+    #AEB8B5 6px 7px, transparent 7px 11px,
+    #AEB8B5 11px 14px, transparent 14px 15px
+  );
+}
+.slab-invert .hazard {
+  background-image: repeating-linear-gradient(
+    45deg,
+    #AEB8B5 0 10px,
+    transparent 10px 20px
+  );
+}
 .slab-invert.slab-invert .box { border-color: #2C333B; }
 .slab-invert.slab-invert .box-bar { border-color: #3A424B; }
 .slab-invert.slab-invert .rule-faint,

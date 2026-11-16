@@ -77,6 +77,21 @@ Link, Bild) in der Reihenfolge des Quelldokuments, dazu `summary`, `transfer`, `
 hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
 Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
+Die Grundfolge je Seite (Stand nach dem Durchgang): Start `D L O D L D L A`,
+Ansatz `L D L D L L | L L | L A` (`|` = Warnband), Case-Lesefassung
+`L L D L D L O L L A`, Labor `L L D L`, Leistungen `L D O A`, Cases `L D A`,
+Wir `L L D`, Kontakt `L D L`. Nie mehr als zwei helle in Folge, nie zwei
+dunkle nebeneinander, höchstens ein Orange je Seite.
+
+Wo eine Folge gleichrangiger Kapitel den Schnitt braucht (die fünf Phasen im
+Ansatz), trägt ihn ein Trenner, nicht ein Grundwechsel: eine Phase dunkel zu
+setzen würde behaupten, sie wiege schwerer. `Hazard` ist dafür da.
+
+Texturen sind in Ink gezeichnet und brauchen auf dunklem Grund ihren eigenen
+Wert — `.barcode` und `.hazard` haben ihn jetzt (#AEB8B5, wie die
+ASCII-Zeichnungen). Dasselbe gilt für Haarlinien je Grund: hell `--ink-20`,
+dunkel `#2C333B`, orange `#C13D06`, alle bei rund 1.44:1.
+
 Die Leistungsseite trägt die Gründe hell · dunkel · orange · aubergine: Kopf
 als Kopfpaar (Aussage links, Vorspann rechts), dann das Mandat auf dunklem
 Grund, dann die drei Datenblätter auf der einen lauten Fläche der Seite. Die Seite trägt

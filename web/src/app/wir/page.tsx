@@ -48,7 +48,12 @@ export default function WirPage() {
       </section>
 
       {/* ═══ OFFICE + ÜBER 1789 ═════════════════════════════════════════════ */}
-      <section className="slab">
+      {/* Dunkler Grund: die Seite lief sonst über drei helle Sektionen, und
+          der Styleguide setzt den Schnitt spätestens nach zweien. Dieser
+          Abschnitt trägt das Büro-Foto — ein Halbton auf Ink ist die
+          stärkste Fläche, die das System kennt, und die Platte bringt ihre
+          Dunkelvariante mit. */}
+      <section className="slab slab-invert">
         <div className="shell">
           <SectionHead label="Über 1789" />
 
@@ -66,9 +71,12 @@ export default function WirPage() {
                   ratio="16 / 9"
                 />
               </div>
+              {/* .rule-faint statt einer gesetzten Linie: der dunkle Grund
+                  belegt diese Klasse mit seinem eigenen Wert, eine inline
+                  gesetzte Ink-Linie wäre hier unsichtbar. */}
               <div
+                className="rule-faint"
                 style={{
-                  borderTop: 'var(--rule)',
                   marginTop: 'var(--u2)',
                   paddingTop: 'var(--u2)',
                   display: 'flex',
