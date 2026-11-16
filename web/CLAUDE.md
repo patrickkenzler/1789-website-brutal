@@ -78,10 +78,17 @@ hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
 Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
 Die Leistungsseite trägt die Gründe hell · dunkel · orange · aubergine: Kopf
-mit der Zeichnung aus `src/data/serviceArt.ts` (ein Schnitt durch Schichten,
-eigene Figur — das Wellenfeld gehört der Startseite, die Phasenbilder dem
-Ansatz, die Formatglyphen dem Labor), dann das Mandat auf dunklem Grund, dann
-die drei Datenblätter auf der einen lauten Fläche der Seite.
+als Kopfpaar (Aussage links, Vorspann rechts), dann das Mandat auf dunklem
+Grund, dann die drei Datenblätter auf der einen lauten Fläche der Seite. Jedes
+Datenblatt schließt seine Lesespalte mit einer Platte aus
+`src/data/serviceArt.ts` ab — ein Schnitt durch Schichten, je Leistung aus der
+Kennung geseedet. Eigene Figur: das Wellenfeld gehört der Startseite, die
+Phasenbilder dem Ansatz, die Formatglyphen dem Labor.
+
+Für solche Zeichnungen gibt es `.sheet-art` in einem `.sheet-art-box`.
+`.phase-art` ist für kleine Phasenzellen gemacht (5/4 bei einem 44×16-Raster,
+Decke bei 12px) — darin steht eine Platte auf 44% ihrer Fläche und wirkt
+schwach.
 
 `src/data/services.ts` trägt die Leistungen als `SERVICES_INTRO` (Seitenkopf und
 Mandatsabsatz) und `SERVICES`. Jede Leistung führt den Namen zweigeteilt
