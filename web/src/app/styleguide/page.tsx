@@ -423,10 +423,21 @@ export default function Styleguide() {
             unter 860px bleibt eine.
           </p>
           <p className="body">
+            Zwei Spalten tragen einen Bericht, nicht zwei Absätze: die stehen
+            sonst als zwei halbe Säulen nebeneinander, zwischen denen das Auge
+            einen Anschluss sucht, den es nicht gibt. Ein Kapitel mit höchstens
+            zwei Absätzen läuft deshalb einspaltig im Lesemaß der Seite.
+            Gezählt wird die Prosa — Bild, Aufzählung und Stimme brechen
+            ohnehin beide Spalten.
+          </p>
+          <p className="body">
             Ein Bild eröffnet den Rumpf seines Kapitels oder folgt direkt auf
             ein spaltenbrechendes Element — nur dort steht es auf derselben
             Linie wie der Text daneben. Seine Oberkante sitzt dabei auf der
-            Versalhöhe dieses Textes, nicht auf dessen Zeilenkasten.
+            Versalhöhe dieses Textes, nicht auf dessen Zeilenkasten. Ein
+            Bildplatz ohne Vorlage bleibt ein gehaltener Platz: vertiefter
+            Grund, Punktraster, der Vermerk „Foto folgt“ in der Ecke. Der
+            Aqua-Grund gehört der Slug-Platte, wo der Name das Bild ersetzt.
           </p>
         </Demo>
       </Chapter>

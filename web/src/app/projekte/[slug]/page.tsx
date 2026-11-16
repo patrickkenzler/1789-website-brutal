@@ -61,17 +61,27 @@ function Blocks({ blocks }: { blocks: CaseBlock[] }) {
 
         /* A photograph is a plate like any other: the halftone screen is what
            makes it belong to the page. Wide formats break both columns, tall
-           ones stand in theirs and the text runs beside them. */
+           ones stand in theirs and the text runs beside them.
+           A block without a source is a place kept, not a gap: the plate falls
+           back to its dot field with the client's name, and the corner note
+           says the photograph is still to come. Delivering one means adding
+           `src` — the chapter keeps the rhythm it already has. */
         if (b.kind === 'image')
           return (
             <div key={i} className={b.span ? 'doc-fig doc-span' : 'doc-fig'}>
-              <Plate src={b.src} alt={b.alt} ratio={b.ratio} note={null} coarse={b.span} />
+              <Plate
+                src={b.src}
+                alt={b.alt}
+                ratio={b.ratio}
+                note={b.src ? null : 'Foto folgt'}
+                coarse={b.span}
+              />
             </div>
           )
 
         if (b.kind === 'list')
           return (
-            <ul key={i} className="ruled cols-2" style={{ marginBlock: 'var(--u4)' }}>
+            <ul key={i} className="ruled ruled-lg cols-2" style={{ marginBlock: 'var(--u4)' }}>
               {b.items.map((it) => (
                 <li key={it}>
                   <span className="body">{it}</span>
@@ -124,7 +134,19 @@ function groupByGround(sections: CaseSection[]) {
    gives the first one no more weight than the rest, and a standfirst would
    claim a hierarchy the document does not make. Only where the document
    itself sets a line apart does the margin carry a second element. */
+/* Zwei Spalten sind die Figur für einen Bericht, nicht für zwei Absätze: die
+   stehen dann als zwei halbe Säulen da, zwischen denen das Auge einen
+   Anschluss sucht, den es nicht gibt. Gezählt wird die Prosa, nicht die Zahl
+   der Blöcke — ein Bild, eine Liste und eine Stimme brechen ohnehin beide
+   Spalten und tragen deshalb nichts zur Entscheidung bei. Bis zu dieser Zahl
+   von Absätzen läuft das Kapitel einspaltig im Lesemaß, darüber trägt es den
+   zweispaltigen Satz, den der Styleguide für Langtext festlegt. */
+const FLOW_MAX_PARAGRAPHS = 2
+
 function Chapter({ s, solo }: { s: CaseSection; solo?: boolean }) {
+  const flow =
+    s.blocks.filter((b) => b.kind === 'text').length <= FLOW_MAX_PARAGRAPHS
+
   return (
     <div className={solo ? 'doc-ch doc-ch-solo' : 'doc-ch'}>
       <div className="doc-side">
@@ -138,7 +160,7 @@ function Chapter({ s, solo }: { s: CaseSection; solo?: boolean }) {
         {s.lead && <p className="d4">{s.lead}</p>}
       </div>
 
-      <div className="doc-body">
+      <div className={flow ? 'doc-body doc-body-flow' : 'doc-body'}>
         <Blocks blocks={s.blocks} />
       </div>
     </div>

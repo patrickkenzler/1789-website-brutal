@@ -77,6 +77,15 @@ Link, Bild) in der Reihenfolge des Quelldokuments, dazu `summary`, `transfer`, `
 hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
 Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
+Der Spaltensatz hängt an der Menge Prosa: ein Kapitel mit höchstens zwei
+Absätzen läuft einspaltig im Lesemaß (`.doc-body-flow`), ab drei Absätzen
+zweispaltig. Bild, Aufzählung und Stimme zählen nicht mit — sie brechen ohnehin
+beide Spalten. Ein Bildblock ohne `src` ist ein gehaltener Platz: die Platte
+fällt auf vertieften Grund mit „Foto folgt" zurück, nicht auf den Aqua-Grund
+der Slug-Platte. Liegt das Foto vor, kommen `src` und `alt` dazu, sonst nichts.
+Dunkel eröffnet „Der Weg": das Kapitel Strukturdiagnose trägt `ground: 'dark'`,
+damit die Kapitelstrecke überhaupt einen Schnitt hat.
+
 Wo ein Dokument eine Ebene über die Kapitel setzt („Der Weg" über
 Strukturdiagnose, -entscheidung und -transformation), trägt das Kapitel sie als
 `over` — eine Mikrozeile über der Marke, kein zweiter Schriftgrad. Das

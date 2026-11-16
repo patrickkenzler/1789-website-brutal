@@ -492,6 +492,14 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 }
 /* In der Spalte gilt das Maß der Spalte, nicht das der Seite. */
 .doc-body .body { max-width: none; }
+
+/* Zwei Spalten tragen einen Bericht, aber nicht zwei Absätze: die stehen dann
+   als zwei halbe Säulen nebeneinander, und das Auge sucht den Anschluss, wo
+   keiner ist. Ein kurzes Kapitel läuft deshalb in einer Spalte, zurück im
+   Lesemaß der Seite. Die Zone bleibt dieselbe — es ändert sich der Satz,
+   nicht das Raster. */
+.doc-body-flow { columns: auto; }
+.doc-body-flow .body { max-width: 68ch; }
 /* Ein Bild oder ein Zitat am Kopf einer Spalte muss auf derselben Linie
    sitzen wie der Text daneben. Ein oberer Abstand verschiebt es um genau
    diesen Betrag nach unten und lässt es neben nichts mehr stehen — der
@@ -1708,6 +1716,12 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
   container-type: inline-size;
 }
 .plate.dotfield { background-color: var(--accent-blue); }
+/* Ein gehaltener Platz ist keine Slug-Platte: dort ersetzt der Name das Bild
+   und trägt dafür den Aqua-Grund. Hier kommt das Bild noch, der Platz soll
+   nur zeigen, wo. Also der vertiefte Grund, den das System für Wannen führt,
+   die Punktraster darüber und sonst nichts — Aqua bliebe sonst drei-, viermal
+   die lauteste Fläche einer Leseseite. */
+.plate.plate-reserved { background-color: var(--sunk); }
 .plate img {
   width: 100%; height: 100%;
   object-fit: cover;
