@@ -856,6 +856,15 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
    narrow tracks ("Unter realen Bedingungen erproben"); reserving three keeps
    every tagline starting on the same line across the strip. */
 .hairgrid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* Ein Zweierfach, dessen linke Hälfte Fließtext trägt, kommt unter dieser
+   Breite auf rund 35 Zeichen je Zeile. Es fällt deshalb zusammen, wie
+   .cols-2 und .doc-body weiter oben; die Linie bleibt und wird zur
+   Querlinie zwischen den Fächern. Die Regel steht hinter der Basisangabe,
+   weil beide dieselbe Spezifität haben. */
+@media (max-width: 860px) {
+  .hairgrid-2 { grid-template-columns: minmax(0, 1fr); }
+}
 .phase {
   display: flex;
   flex-direction: column;

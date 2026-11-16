@@ -197,6 +197,7 @@ export default async function CasePage({
   const readout: [string, string][] = [
     ['Mandant', c.meta?.mandant ?? c.client],
     ...(c.meta?.structure ? ([['Struktur', c.meta.structure]] as [string, string][]) : []),
+    ...(c.meta?.group ? ([['Konzern', c.meta.group]] as [string, string][]) : []),
     ['Sektor', c.sector],
     ...(c.meta?.scope ? ([['Größe', c.scale]] as [string, string][]) : []),
     ['Dauer', c.duration],
