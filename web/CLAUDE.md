@@ -89,10 +89,10 @@ setzen würde behaupten, sie wiege schwerer. `Hazard` ist dafür da.
 
 Der Mandantenname steht groß auf dem Cover, nicht als Schildchen in der Ecke
 — derselbe Schriftzug wie auf der Platte ohne Bild (`.plate-slug`), über dem
-Bild in Weiß (`.plate-slug-over`). Das ist der einzige Wert im System
-außerhalb der Palette: auf einem Foto gibt es keinen Grund, der einen Ton
-halten könnte, und hinter dem Schriftzug liegt die Bildhelligkeit zwischen
-0.12 und 0.27 — dort bringt Weiß rund 4.2:1 statt 3.3:1 mit `--paper`.
+Bild in `--paper` (`.plate-slug-over`), demselben Wert wie der Kacheltitel
+darunter. Reines Weiß wäre kontrastreicher, wäre aber der einzige Wert
+außerhalb der Palette und stünde eine Stufe über dem Titel, der die Kachel
+führt.
 
 Texturen sind in Ink gezeichnet und brauchen auf dunklem Grund ihren eigenen
 Wert — `.barcode` und `.hazard` haben ihn jetzt (#AEB8B5, wie die
