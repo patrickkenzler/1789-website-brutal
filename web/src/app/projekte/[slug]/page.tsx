@@ -143,6 +143,28 @@ function groupByGround(sections: CaseSection[]) {
    zweispaltigen Satz, den der Styleguide für Langtext festlegt. */
 const FLOW_MAX_PARAGRAPHS = 2
 
+/* „Struktur" ist das Wort, um das die Lesefassungen gebaut sind — es steht in
+   jeder Kapitelmarke und im Namen jeder Leistung. Es trägt deshalb den Akzent.
+   Die Klasse nimmt `--red`, und das Token wird je Grund neu belegt: Aubergine
+   auf hell, Molten Orange auf dunkel. Das Signature-Orange fest zu setzen wäre
+   zweierlei Bruch — die harte Regel „ein Akzent je Grund", und auf dem hellen
+   Substrat stünde es bei 2.89:1, unter der Schwelle selbst für Großtext. */
+function Accent({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/(Struktur)/i).map((part, i) =>
+        /^struktur$/i.test(part) ? (
+          <span key={i} className="d-red">
+            {part}
+          </span>
+        ) : (
+          part
+        )
+      )}
+    </>
+  )
+}
+
 function Chapter({ s, solo }: { s: CaseSection; solo?: boolean }) {
   const flow =
     s.blocks.filter((b) => b.kind === 'text').length <= FLOW_MAX_PARAGRAPHS
@@ -153,7 +175,7 @@ function Chapter({ s, solo }: { s: CaseSection; solo?: boolean }) {
         {/* Wo das Dokument eine Ebene über die Kapitelmarke setzt, steht sie
             als Mikrozeile darüber — eine Marke im Rand, kein zweiter Grad. */}
         {s.over && <p className="unit">{s.over}</p>}
-        <h2 className="d3">{s.label}</h2>
+        <h2 className="d3"><Accent text={s.label} /></h2>
         {/* Die Lesefassung setzt diese Zeile fett unter die Kapitelüberschrift,
             also eine Stufe unter ihr. Als d2 stand sie größer da als die
             Marke darüber und drehte die Hierarchie des Dokuments um. */}
@@ -240,7 +262,7 @@ export default async function CasePage({
               </div>
 
               <h1 className="d1" style={{ marginBottom: 'var(--u4)' }}>
-                {c.headline ?? c.title}
+                <Accent text={c.headline ?? c.title} />
               </h1>
 
               <p className="body-lg">{c.tagline}</p>
