@@ -64,6 +64,21 @@ const WELT = [
    Stil, und sie legt die Komposition nicht fest. */
 const SATZ = 'the middle of the frame is the darkest area, uncluttered'
 
+/* Das Labor hat eine eigene Welt, und zwar die der drei vorhandenen
+   Beitragsbilder: helles Tageslicht, ein gefundener Ort, dokumentarisch und
+   trocken beobachtet — ein Affe auf einer Mauer, ein Gewächshaus voller
+   Tomatenreihen. Nichts Dunkles, nichts Abstraktes, keine Metapher mit
+   erhobenem Zeigefinger. Quadratisch wie die vorhandenen. */
+const LABOR_WELT = [
+  'bright daylight documentary photograph of a real place',
+  'natural light, plain and observational, no studio setup',
+  'ordinary subject seen straight on, dry and matter-of-fact',
+  'no people in the foreground',
+  /* Flux schreibt sonst Pseudo-Buchstaben auf jede Fläche, die nach
+     Beschriftung aussieht — Bootsrümpfe, Schilder, Verpackungen. */
+  'absolutely no lettering, no numbers, no signage, no writing on any surface, unmarked',
+].join(', ')
+
 /* Je Case eine eigene Bildart: Malerei, Langzeitbelichtung, Architektur,
    Textil, Luftbild, Optik. Keine zwei teilen Medium, Maßstab oder
    Lichtführung. Keine bildet den Mandanten oder seine Arbeit ab — die
@@ -100,6 +115,14 @@ const COVERS = [
     motiv:
       'layered broken glass over a black surface, petrol-coloured caustics and thin vermilion refractions thrown across the shards, sharp fracture lines, optical, studio-lit from one side',
   },
+  {
+    slug: 'zoe-flottenverband',
+    ordner: 'labor',
+    quadrat: true,
+    welt: LABOR_WELT,
+    motiv:
+      'small wooden boats moored side by side in a quiet harbour on a clear morning, seen from above at a distance, each boat slightly different, calm green water, plain unmarked hulls',
+  },
 ]
 
 /* ── Argumente ──────────────────────────────────────────────────────────── */
@@ -113,7 +136,11 @@ const DRY = has('--dry')
 const FORCE = has('--force')
 const ONLY = val('--only')
 
-const prompt = (c) => `${c.motiv}. ${WELT}. ${SATZ}`
+const prompt = (c) =>
+  c.welt ? `${c.motiv}. ${c.welt}` : `${c.motiv}. ${WELT}. ${SATZ}`
+const zielOrdner = (c) => (c.ordner ? join(ROOT, 'public', c.ordner) : OUT)
+/* Die API deckelt beide Kanten bei 1440. */
+const masse = (c) => (c.quadrat ? [1440, 1440] : [WIDTH, HEIGHT])
 
 const vorhanden = async (p) => {
   try {
@@ -125,14 +152,14 @@ const vorhanden = async (p) => {
 }
 
 /* ── Die API ────────────────────────────────────────────────────────────── */
-async function erzeuge(key, text) {
+async function erzeuge(key, text, w = WIDTH, h = HEIGHT) {
   const start = await fetch(ENDPOINT, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'x-key': key },
     body: JSON.stringify({
       prompt: text,
-      width: WIDTH,
-      height: HEIGHT,
+      width: w,
+      height: h,
       output_format: 'jpeg',
       safety_tolerance: 2,
       prompt_upsampling: false,
@@ -197,16 +224,20 @@ await mkdir(OUT, { recursive: true })
 
 let erzeugt = 0
 for (const c of liste) {
-  const ziel = join(OUT, `${c.slug}.jpg`)
+  const ziel = join(zielOrdner(c), `${c.slug}.jpg`)
   if (!FORCE && (await vorhanden(ziel))) {
     console.log(`übersprungen  ${c.slug} (vorhanden, --force überschreibt)`)
     continue
   }
   process.stdout.write(`erzeuge       ${c.slug} … `)
   try {
-    const bild = await erzeuge(KEY, prompt(c))
+    const [w, h] = masse(c)
+    await mkdir(zielOrdner(c), { recursive: true })
+    const bild = await erzeuge(KEY, prompt(c), w, h)
     await writeFile(ziel, bild)
-    console.log(`${Math.round(bild.length / 1024)} kB → public/projects/${c.slug}.jpg`)
+    console.log(
+      `${Math.round(bild.length / 1024)} kB → public/${c.ordner ?? 'projects'}/${c.slug}.jpg`
+    )
     erzeugt++
   } catch (e) {
     console.log('fehlgeschlagen')
