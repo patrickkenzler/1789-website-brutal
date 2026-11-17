@@ -760,6 +760,8 @@ export const cases: CaseStudy[] = [
         blocks: [
           {
             kind: 'image',
+            src: '/projects/metro-workshop.jpg',
+            alt: 'Workshop bei METRO.digital: eine Person spricht vor der Projektion, daneben zwei Flipcharts mit einer Vier-Felder-Matrix und beklebten Haftnotizen.',
             ratio: '16 / 9',
             span: true,
           },
