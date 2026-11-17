@@ -41,43 +41,64 @@ const ENDPOINT = `https://api.bfl.ai/v1/${MODEL}`
 const WIDTH = 1440
 const HEIGHT = 960
 
-/* Gemeinsamer Teil des Briefings. Steht vor jedem einzelnen Motiv, damit die
-   sechs als eine Familie lesen. */
-const STIL = [
-  'abstract macro photograph, no people, no text, no logos, no recognisable place',
-  'very dark near-black ground, deep teal and petrol blue, sparse burnt orange and red accents',
-  'strong grain, fine particles and specks suspended in the frame',
-  'high micro-contrast, sharp detail against deep shadow, single directional light',
-  'no studio look, no gradient backdrop, photographic not illustrated',
+/* Gemeinsam ist den Bildern nur die Welt, nicht die Machart: dunkler Grund,
+   eine enge Palette, ein leuchtendes Ereignis in der Dunkelheit. Genau das
+   verbindet auch die drei vorhandenen Cover — teccle ist Malerei, P&G eine
+   Flüssigkeit mit Tiefe, WD-40 ein gefundener urbaner Moment. Drei
+   verschiedene Bildarten, eine Farbwelt.
+
+   Im ersten Anlauf stand hier zusätzlich "abstract macro photograph",
+   dieselbe Lichtführung und dasselbe Korn für alle sechs. Das Ergebnis sah
+   aus wie ein einziges Shooting: die Behandlung schlägt das Motiv. Deshalb
+   trägt der gemeinsame Teil jetzt nur noch Palette, Dunkelheit und die
+   Verbote — jede Machart steht im Motiv selbst. */
+const WELT = [
+  'very dark, near-black ground',
+  'restricted palette: deep teal and petrol blue, burnt orange and vermilion, nothing else',
+  'one luminous event against darkness',
+  'no people, no text, no logos, no brand marks',
 ].join(', ')
 
-/* Ein Motiv je Case. Die Motive sind Material und Phänomen, nicht Branche:
-   keines bildet den Mandanten oder seine Arbeit ab. Die Zuordnung ist frei —
-   sie sorgt nur dafür, dass die sechs Bilder sich voneinander unterscheiden. */
+/* Der Schriftzug steht mittig auf dem Bild. Die Mitte muss deshalb der
+   dunkelste Teil sein — eine Anforderung an die Lesbarkeit, keine an den
+   Stil, und sie legt die Komposition nicht fest. */
+const SATZ = 'the middle of the frame is the darkest area, uncluttered'
+
+/* Je Case eine eigene Bildart: Malerei, Langzeitbelichtung, Architektur,
+   Textil, Luftbild, Optik. Keine zwei teilen Medium, Maßstab oder
+   Lichtführung. Keine bildet den Mandanten oder seine Arbeit ab — die
+   Zuordnung ist frei und sorgt nur dafür, dass die sechs unterscheidbar
+   bleiben. */
 const COVERS = [
   {
     slug: 'steuerung-der-personalgewinnung',
-    motiv: 'ink diffusing through cold water in slow heavy threads, dense black ground, one thin orange filament cutting across',
+    motiv:
+      'long-exposure photograph in a dark empty industrial hall at night, continuous light trails drawn by a moving source, thin orange and teal streaks crossing the black space, motion blur, visible sensor noise',
   },
   {
     slug: 'motivieren-und-entwickeln',
-    motiv: 'cracked mineral surface in raking light, deep teal stone with rust-coloured veins, dust caught in the beam',
+    motiv:
+      'thick oil paint dragged across a dark panel with a palette knife, impasto ridges catching light, teal and rust pigment smeared into near-black, painterly, visible brush and knife texture, canvas weave showing through',
   },
   {
     slug: 'kohaerente-vision',
-    motiv: 'condensation on dark glass at night, droplets scattering points of turquoise and amber light, depth falling off fast',
+    motiv:
+      'brutalist concrete structure photographed from below at dusk, hard geometric edges and deep shadow, a single cold teal skylight above, warm sodium reflections on the concrete, architectural photography, sharp',
   },
   {
     slug: 'skalierung-und-qualitaet',
-    motiv: 'spilled pigment powder on wet black asphalt, teal and vermilion granules clustering and dispersing',
+    motiv:
+      'extreme close-up of dark woven fabric, frayed threads of teal and vermilion crossing the weave, fibres lifting from the surface, shallow depth of field, textile macro',
   },
   {
     slug: 'verbindliche-entscheidungen',
-    motiv: 'layered sediment in a cut section, dark banded strata with a thin oxidised orange seam running through',
+    motiv:
+      'aerial view of a dark river delta at night, branching channels splitting across black terrain, thin oxidised orange light along the water edges, high altitude, graphic and flat',
   },
   {
     slug: 'entscheidungen-mit-strategischem-ausmass',
-    motiv: 'oil film on dark water, interference colours in petrol and copper breaking into fine cells',
+    motiv:
+      'layered broken glass over a black surface, petrol-coloured caustics and thin vermilion refractions thrown across the shards, sharp fracture lines, optical, studio-lit from one side',
   },
 ]
 
@@ -92,7 +113,7 @@ const DRY = has('--dry')
 const FORCE = has('--force')
 const ONLY = val('--only')
 
-const prompt = (c) => `${c.motiv}. ${STIL}`
+const prompt = (c) => `${c.motiv}. ${WELT}. ${SATZ}`
 
 const vorhanden = async (p) => {
   try {
