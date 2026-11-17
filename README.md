@@ -21,6 +21,7 @@ geschriebenes Design-System im brutalistischen Stil.
 | [`DESIGN_SYSTEM.md`](DESIGN_SYSTEM.md) | Verbindliche Spezifikation des Design-Systems |
 | [`CONTENT_INVENTORY.md`](CONTENT_INVENTORY.md) | Vollständige Verbatim-Extraktion aller Texte |
 | [`web/CLAUDE.md`](web/CLAUDE.md) | Arbeitsanweisung für KI-Assistenten |
+| [`HOSTING.md`](HOSTING.md) | Weg vom statischen Export zum gehosteten Betrieb |
 | `/styleguide` | Live-Spezifikation als auditierbares Dokument |
 
 ## Entwicklung
