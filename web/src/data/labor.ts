@@ -18,21 +18,34 @@ export type LaborItem = {
 }
 
 export const FEATURED: LaborItem = {
-  type: 'Essay',
+  type: 'Fachartikel',
   title:
-    'Nähe als Organisationsprinzip — warum wir Corporate Therapy auf die Bühne bringen',
-  author: 'Human Nagafi',
-  date: 'April 2024',
-  readTime: '8 Min',
+    'Governance für dezentrale Strukturen: Über die Steuerung eines Flottenverbandes',
+  author: 'Mary-Jane Bolten, Tobias Schulz-Isenbeck',
+  date: 'Juli 2025',
   excerpt:
-    'Eine Reflexion über Distanz, Vertrauen und die Frage, wieso Organisationen den Mut zur Nähe oft erst auf der Bühne finden — und was das für moderne Operating Models bedeutet.',
+    'Wie eine Gruppe aus eigenständigen Einheiten verbindlich entscheidet, ohne ihre Autonomie aufzugeben. Erschienen auf zoe-online.org; die Leseprobe ist frei, der vollständige Text steht hinter einer Paywall.',
   teaser:
-    'Eine Reflexion über Distanz, Vertrauen und die Frage, wieso Organisationen den Mut zur Nähe oft erst auf der Bühne finden.',
-  image: '/labor/Artikel_Cover_1.jpg',
-  href: '#',
+    'Wie eine Gruppe aus eigenständigen Einheiten verbindlich entscheidet, ohne ihre Autonomie aufzugeben.',
+  image: '/labor/zoe-flottenverband.jpg',
+  href: 'https://zoe-online.org/praxis/erfahrung/geteilte-verantwortung-governance-fuer-dezentrale-strukturen--ueber-die-steuerung-eines-flottenverbandes-5131',
 }
 
 export const ITEMS: LaborItem[] = [
+  {
+    type: 'Essay',
+    title:
+      'Nähe als Organisationsprinzip — warum wir Corporate Therapy auf die Bühne bringen',
+    author: 'Human Nagafi',
+    date: 'April 2024',
+    readTime: '8 Min',
+    excerpt:
+      'Eine Reflexion über Distanz, Vertrauen und die Frage, wieso Organisationen den Mut zur Nähe oft erst auf der Bühne finden — und was das für moderne Operating Models bedeutet.',
+    teaser:
+      'Eine Reflexion über Distanz, Vertrauen und die Frage, wieso Organisationen den Mut zur Nähe oft erst auf der Bühne finden.',
+    image: '/labor/Artikel_Cover_1.jpg',
+    href: '#',
+  },
   {
     type: 'Podcast',
     title: 'Das Internet: Utopie, Infrastruktur, Schlachtfeld',

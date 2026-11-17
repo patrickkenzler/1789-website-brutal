@@ -1126,6 +1126,14 @@ export const cases: CaseStudy[] = [
             kind: 'text',
             text: 'Die Standortleitungen sind heute stärker in den Strategieprozess der Gruppe eingebunden, und größere Vorhaben setzt die Medizin-Gruppe mit mehr Verbindlichkeit um. Die Zentralbereiche passt sie Stück für Stück an das neue System an.',
           },
+          {
+            kind: 'link',
+            intro:
+              'Mary-Jane Bolten und Tobias Schulz-Isenbeck über das Verfahren dahinter, erschienen am 4. Juli 2025 auf zoe-online.org. Leseprobe, der vollständige Text steht hinter einer Paywall.',
+            label:
+              'Governance für dezentrale Strukturen: Über die Steuerung eines Flottenverbandes',
+            href: 'https://zoe-online.org/praxis/erfahrung/geteilte-verantwortung-governance-fuer-dezentrale-strukturen--ueber-die-steuerung-eines-flottenverbandes-5131',
+          },
         ],
       },
     ],
