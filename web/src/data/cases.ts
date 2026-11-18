@@ -259,17 +259,144 @@ export const cases: CaseStudy[] = [
   {
     slug: 'effektivitaet-und-kundennaehe',
     client: 'Procter & Gamble',
-    sector: 'Consumer Goods',
-    title: 'Effektivität und Kundennähe durch Dezentralität',
-    tagline: 'Wenn Effizienz-Logik der Kundennähe im Weg steht.',
-    teaser: 'Jeder Fall ein Standardfall, jede Antwort zentral geregelt — bis Kunden andere Fragen stellten. Die Führung verteilte neu, wer entscheidet: Teams, die ihre Kunden kennen.',
-    tags: ['Transformation', 'Dezentralisierung', 'Operating Model'],
-    duration: '9 Monate',
-    scale: '200 Mitarbeitende',
-    lead: 'Patrick Breitenbach',
-    gap: 'Die Customer Service Organisation war auf Masseneffizienz ausgerichtet — in einer Welt, die individuelle Reaktionsfähigkeit verlangt. Das erzeugte strukturellen Reibungsverlust: Kunden warteten, Mitarbeitende fühlten sich handlungsunfähig.',
-    shift: 'Partizipative Entwicklung eines neuen Operating Models: Leadership Workshops, Intensivanalysen, ein freiwilliges Projektteam das gemeinsam mit 1789 das Konzept entwickelte — pilotiert, bevor es unternehmensweit ausgerollt wurde.',
-    result: 'Autonome, kundennahe Teams mit echter Entscheidungskraft. Schnellere Reaktionsfähigkeit auf individuelle Anforderungen. Dezentralisierung nicht als Kontrollverlust — sondern als Wertschöpfungsgewinn.',
+    sector: 'Konsumgüter',
+    title: 'Kundennähe durch cross-funktionale Teams',
+    tagline:
+      'Wie eine auf Effizienz gebaute Serviceorganisation ihre neue Ordnung mit den eigenen Leuten entwarf.',
+    tags: ['Target Operating Model', 'Governance Design'],
+    duration: '12 Monate',
+    scale: 'rund 200 Mitarbeitende',
+    lead: 'Human Nagafi',
+    meta: {
+      mandant: 'Procter & Gamble, Customer Service Organization in Deutschland',
+      scope: 'Operating Model · gesamte Customer Service Organization',
+      participants:
+        'Arbeitsgruppe aus zehn Freiwilligen, rund 50 Mitarbeitende im Pilot',
+      services: 'Strukturdiagnose, Strukturentscheidung, Strukturtransformation',
+      field: 'Target Operating Model, Governance Design',
+    },
+    summary: {
+      label: 'Auf einen Blick',
+      text: 'Die Customer Service Organization von Procter & Gamble in Deutschland bearbeitet alle Kundenaufträge vom Eingang bis zum Versand. Jeder Auftrag lief durch eine lange Kette spezialisierter Funktionen, Umsetzungszeiten wurden länger, und frühere Umbauten von oben hatten Widerstand erzeugt. Nach einer Strukturdiagnose erarbeitete 1789 Innovations mit zehn Freiwilligen ein neues Modell: Squads, die je eine Kundengruppe verantworten. Rund 50 Mitarbeitende erprobten es im Pilot, danach stellte die ganze Abteilung um. Das Projekt dauerte rund zwölf Monate, die Squads arbeiten bis heute.',
+    },
+    sections: [
+      {
+        label: 'Die Strukturfrage',
+        blocks: [
+          {
+            kind: 'text',
+            text: 'In der Customer Service Organization von Procter & Gamble lief jeder Kundenauftrag vom Eingang bis zum Versand durch eine lange Kette spezialisierter Funktionen. Die Silostruktur war über Jahre gewachsen, und Begriffe wie gemeinsame Verantwortung oder End-to-End-Verantwortung waren im Alltag kaum präsent. Nach einigen Automatisierungen blieben vor allem komplexe Anfragen, doch Umsetzungszeiten wurden länger und die Beziehungen zu den Kunden litten.',
+          },
+          {
+            kind: 'text',
+            text: 'Viele Mitarbeitende fürchteten, dass Automatisierung einen Teil ihrer Arbeit überflüssig macht. Gleichzeitig drängten neue Wettbewerber über E-Commerce und Handelsmarken in die Regale. Procter & Gamble brauchte weiter die Effizienz seiner großen Abläufe und zugleich mehr Tempo und Nähe zum Kunden.',
+          },
+        ],
+      },
+      {
+        over: 'Der Weg',
+        label: 'Strukturdiagnose',
+        ground: 'dark',
+        blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
+          {
+            kind: 'text',
+            text: 'Die Arbeit begann mit einem Leadership Workshop, in dem die Führung Aufgabe und Problem schärfte. Es folgten Interviews und Gespräche in der Abteilung. Dabei zeigte sich, dass sich Struktur und Gewohnheiten der Customer Service Organization nur ändern ließen, wenn die Veränderung auf allen Ebenen spürbar wurde.',
+          },
+          {
+            kind: 'text',
+            text: 'Die Führung entschied daraufhin, den Umbau im Auftragsprozess vom Eingang bis zum Versand zu beginnen und das neue Modell mit den Betroffenen zu gestalten. Dafür setzte sie einen Rahmen aus einigen wenigen Gestaltungsprinzipien, die 1789 einbrachte, und klaren Grenzen. Klar war, zum Beispiel, dass das SAP-System nicht zur Disposition stand. Interne Abläufe und Team-Konstellationen hingegen konnten betrachtet werden.',
+          },
+        ],
+      },
+      {
+        over: 'Der Weg',
+        label: 'Strukturentscheidung',
+        blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
+          {
+            kind: 'text',
+            text: 'Auf einen Aufruf meldeten sich zehn Freiwillige aus verschiedenen Funktionen, die das Projekt übernahmen. Sie bildeten die Arbeitsgruppe, mit der 1789 das neue Modell erarbeitete. Gemeinsam formulierten Arbeitsgruppe und 1789 zuerst eine Vision, Zieldimensionen, Handlungsfelder und Regeln für die Zusammenarbeit. Dann zeichneten sie die bestehenden Abläufe auf. Die Prozesslandkarte wurde acht Meter lang und hing ausgedruckt im gemeinsamen Arbeitsbereich, für alle sichtbar. So wurde Veränderung schon während der Konzeption greifbar.',
+          },
+          {
+            kind: 'text',
+            text: 'Es entstand ein Operating Model, in dem sich die Abteilung nach Kundengruppen organisiert, damit sie so schnell wie möglich reagieren kann. Am Ende stand ein Referenzmodell für Squads, kleine Teams mit voller Verantwortung für ihre Kundengruppe. Arbeitsgruppe und Führung beschlossen es gemeinsam.',
+          },
+          {
+            kind: 'quote',
+            text: 'In Zeiten hoher Komplexität braucht organisationale Veränderung mehr als traditionelle Beratung. 1789 ist ein großartiger Partner, wenn man wirklich neue Wege organisationaler Innovation gehen möchte.',
+            author: 'Angelika Tramnitzke',
+            role: 'Human Resources, Procter & Gamble',
+          },
+        ],
+      },
+      {
+        over: 'Der Weg',
+        label: 'Strukturtransformation',
+        blocks: [
+          {
+            kind: 'image',
+            ratio: '16 / 9',
+            span: true,
+          },
+          {
+            kind: 'text',
+            text: 'In der Strukturtransformation arbeiteten rund 50 Mitarbeitende mit 1789 das Referenzmodell im Detail aus. Sie legten die Formate fest, in denen die Squads planen und sich abstimmen, und erprobten das Modell im Pilot - die Teams setzten sich neu, organisierten sich neu und Kunden wurden miteinbezogen. Procter & Gamble ging dabei bewusst in kleinen Schritten vor. Nach dem Pilot stellte die gesamte Customer Service Organization um, betroffen waren rund 200 Mitarbeitende. 1789 begleitete den Umbau mit fortlaufendem Feedback und Weiterbildung für die neuen Aufgaben. Insgesamt dauerte das Projekt rund zwölf Monate.',
+          },
+        ],
+      },
+      {
+        label: 'Die neue Ordnung',
+        blocks: [
+          {
+            kind: 'text',
+            text: 'Heute arbeitet die Customer Service Organization von Procter & Gamble in sogenannten Squads, kleinen Teams, die sich selbst steuern.',
+          },
+          {
+            kind: 'list',
+            items: [
+              'Jeder Squad hat acht bis zwölf Mitglieder. Sie verantwortet für eine Kundengruppe den gesamten Ablauf, von der Auftragsbearbeitung über die Produktverfügbarkeit bis zur Planung der Auslieferung.',
+              'Neben der operativen Arbeit gibt es in jedem Squads vier Teamrollen. Der Facilitator hält alle Informationen aktuell, der Developer entwickelt Abläufe, Werkzeuge und Fähigkeiten weiter. Der Economist stimmt die Leistungsvereinbarung ab, der Coach führt Einzelgespräche und vermittelt bei Konflikten.',
+              'Was den Squad bremst und außerhalb ihres Einflusses liegt, meldet er an die Führung. Für Abstimmungen über einen Squad hinaus bilden die Squads Koordinationsgruppen, und ein digitales Dashboard zeigt Ziele und Fortschritt in Echtzeit.',
+            ],
+          },
+          {
+            kind: 'text',
+            text: 'Procter & Gamble bewertete den Umbau intern als Beispiel dafür, wie historisch gewachsene Strukturen in eine Organisation übergehen, die den heutigen Anforderungen entspricht.',
+          },
+        ],
+      },
+    ],
+    transfer: [
+      'Serviceorganisationen in Konzernen, deren Abläufe auf Effizienz und Spezialisierung gebaut sind und die schneller auf Kunden reagieren müssen.',
+      'Bereiche, in denen frühere Veränderungsprojekte von oben auf Widerstand gestoßen sind.',
+      'Back-Office-Funktionen, in denen Automatisierung Aufgaben verschiebt und Mitarbeitende neue Rollen übernehmen.',
+    ],
+    faq: [
+      {
+        q: 'Wie lässt sich ein Kundenservice so organisieren, dass ein Team einen Auftrag vom Eingang bis zum Versand verantwortet?',
+        a: 'Die Customer Service Organization von Procter & Gamble in Deutschland arbeitet dafür in Squads mit acht bis zwölf Mitgliedern. Jeder Squad verantwortet für eine Kundengruppe Aufträge, Produktverfügbarkeit und die Planung der Auslieferung. Eine Leistungsvereinbarung mit einem internen Auftraggeber legt alle drei Monate fest, was sie liefert und was sie dafür braucht.',
+      },
+      {
+        q: 'Wie gelingt ein Umbau, wenn frühere Veränderungsprojekte auf Widerstand gestoßen sind?',
+        a: 'Bei Procter & Gamble setzte die Führung einen Rahmen aus Gestaltungsprinzipien und festen Grenzen und holte die Betroffenen in die Gestaltung. 1789 Innovations erarbeitete mit einer Arbeitsgruppe aus zehn Freiwilligen ein Referenzmodell, das Arbeitsgruppe und Führung gemeinsam beschlossen. Rund 50 Mitarbeitende arbeiteten es aus und erprobten es im Pilot, danach stellte die gesamte Customer Service Organization um.',
+      },
+      {
+        q: 'Wer übernimmt in selbststeuernden Teams die Aufgaben der Teamleitung?',
+        a: 'In der Customer Service Organization von Procter & Gamble liegen sie in der Squad selbst. Neben der operativen Arbeit gibt es dort vier Teamrollen: Facilitator, Developer, Economist und Coach. Der Coach führt regelmäßig Einzelgespräche und vermittelt bei Konflikten, der Economist stimmt die Leistungsvereinbarung mit dem internen Auftraggeber ab.',
+      },
+    ],
+    related: ['innovationskraft-durch-zusammenarbeit', 'integration', 'motivieren-und-entwickeln'],
+    close:
+      'Wo Vorgaben von oben am Widerstand scheitern, entsteht die Strukturentscheidung mit den Menschen, die später im Modell arbeiten.',
     color: 'ink',
     featured: true,
     image: '/projects/pg.jpg',

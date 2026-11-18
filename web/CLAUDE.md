@@ -197,11 +197,18 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       Szene aus dem Strategieworkshop öffentlich stehen darf.
 - [ ] WTS und greyt tragen die Kurz-Labels des Bestands weiter
       („Motivieren und Entwickeln"), weil die Lesefassungen keine Kachel-Titel
-      liefern. Bei greyt ist der Titel auf die Lesefassung gezogen.
-- [ ] Zwei Tippfehler stehen verbatim aus den Lesefassungen auf der Seite:
-      bei greyt „Hieraus verhandelten 1789 und die Gründer daraus", und in beiden
-      Dokumenten ein Bindestrich als Gedankenstrich („ - "). Zu korrigieren ist
-      das im Quelldokument, nicht hier.
+      liefern. Bei greyt ist der Titel auf die Lesefassung gezogen, bei
+      Procter & Gamble ebenfalls („Kundennähe durch cross-funktionale Teams"
+      statt „Effektivität und Kundennähe durch Dezentralität"). Die Lesefassung
+      korrigiert dort außerdem drei Angaben des Bestands: Lead Human Nagafi
+      statt Patrick Breitenbach, Dauer zwölf statt neun Monate, Sektor
+      Konsumgüter statt Consumer Goods.
+- [ ] Vier Stellen stehen verbatim aus den Lesefassungen auf der Seite,
+      obwohl sie Fehler sind: bei greyt „Hieraus verhandelten 1789 und die
+      Gründer daraus"; in mehreren Dokumenten ein Bindestrich als Gedankenstrich
+      („ - "); bei Procter & Gamble in der neuen Ordnung „Jeder Squad hat acht
+      bis zwölf Mitglieder. Sie verantwortet …" (Genus wechselt im Satz) und
+      „in jedem Squads". Zu korrigieren ist das im Quelldokument, nicht hier.
 - [ ] Zwei E-Mail-Adressen im Bestand: Footer `hello@1789consulting.de`,
       Kontaktseite `hello@1789.consulting` — bewusst so übernommen, mit dem
       Kunden zu klären.
