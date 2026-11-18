@@ -111,11 +111,6 @@ const COVERS = [
       'aerial view of a dark river delta at night, branching channels splitting across black terrain, thin oxidised orange light along the water edges, high altitude, graphic and flat',
   },
   {
-    slug: 'entscheidungen-mit-strategischem-ausmass',
-    motiv:
-      'layered broken glass over a black surface, petrol-coloured caustics and thin vermilion refractions thrown across the shards, sharp fracture lines, optical, studio-lit from one side',
-  },
-  {
     slug: 'zoe-flottenverband',
     ordner: 'labor',
     quadrat: true,

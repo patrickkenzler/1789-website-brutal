@@ -1162,22 +1162,6 @@ export const cases: CaseStudy[] = [
     color: 'ink',
     image: '/projects/verbindliche-entscheidungen.jpg',
   },
-  {
-    slug: 'entscheidungen-mit-strategischem-ausmass',
-    client: 'Procter & Gamble',
-    sector: 'Consumer Goods',
-    title: 'Entscheidungen mit strategischem Ausmaß',
-    tagline: 'Operating Model für eine Stabstelle, die alles koordiniert — aber sich selbst nicht.',
-    tags: ['Operating Model', 'Führung', 'Governance'],
-    duration: '2 Monate',
-    scale: '7-köpfiges Führungsteam',
-    lead: 'Patrick Breitenbach',
-    gap: 'Nach einem Führungswechsel herrschten in der zentralen Stabstelle unklare Verantwortlichkeiten und Kompetenzen. Das Ergebnis: Zurückhaltung, Unsicherheit, Lähmung — ausgerechnet dort, wo strategische Impulse entstehen sollten.',
-    shift: 'Zweimonatige intensive Zusammenarbeit mit dem siebenköpfigen Team. Interviews, Sparrings und der Einsatz des 1789 Board Games zur Visualisierung von Entscheidungen und Abhängigkeiten. Abschluss durch Transformations-Workshop.',
-    result: 'Klar definierte individuelle und gemeinsame Verantwortlichkeiten. Transparente Kommunikationswege. Neuer operativer Führungspunkt für Entscheidungssicherheit — ein kleines Team, das wieder weiß, was es zu entscheiden hat.',
-    color: 'neutral',
-    image: '/projects/entscheidungen-mit-strategischem-ausmass.jpg',
-  },
 ]
 
 export function getCaseBySlug(slug: string): CaseStudy | undefined {
