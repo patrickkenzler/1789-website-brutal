@@ -150,12 +150,21 @@ const FLOW_MAX_PARAGRAPHS = 2
    zweierlei Bruch — die harte Regel „ein Akzent je Grund", und auf dem hellen
    Substrat stünde es bei 2.89:1, unter der Schwelle selbst für Großtext. */
 function Accent({ text }: { text: string }) {
+  /* Die Marke steht in der Randspalte und muss dort umbrechen. Die
+     Silbentrennung des Browsers endet an der Span-Grenze, also brach er
+     „STRUKTURENTSCHEIDUNG" als „STRUKTURENTSCHEID / UNG" — mitten in der
+     Silbe und ohne Strich. Ein weiches Trennzeichen hinter dem Akzent gibt
+     ihm die Fuge des Kompositums, an der das Wort ohnehin geteilt wird.
+     Nur wenn danach ein eigenes Glied folgt: „Strukturen" bekäme sonst die
+     Trennung „Struktur-/en". */
+  const teile = text.split(/(Struktur)/i)
   return (
     <>
-      {text.split(/(Struktur)/i).map((part, i) =>
+      {teile.map((part, i) =>
         /^struktur$/i.test(part) ? (
           <span key={i} className="d-red">
             {part}
+            {(teile[i + 1] ?? '').length >= 4 && '\u00AD'}
           </span>
         ) : (
           part
