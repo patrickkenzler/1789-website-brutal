@@ -177,10 +177,15 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 - [ ] Die Schluss-CTA wiederholt auf den Lesefassungs-Cases die Aussage des
       Schlusssatzes („beginnt mit dem Gap“). Entweder die stehende Zeile auf
       diesen Seiten ändern oder den Schlusssatz streichen — Textentscheidung.
-- [ ] Sechs der neun Case-Cover sind **generiert**, nicht fotografiert:
+- [ ] Das Leistungen-Dokument nennt unter „Aus der Praxis" der
+      Strukturentscheidung drei Cases: teccle group, METRO.digital und
+      Procter & Gamble, Stabsstelle der Geschäftsführung. Der dritte ist auf
+      Wunsch von der Seite genommen, der Verweis darum entfernt. Das Dokument
+      sagt an dieser Stelle also mehr als die Seite.
+- [ ] Fünf der acht Case-Cover sind **generiert**, nicht fotografiert:
       steuerung-der-personalgewinnung, motivieren-und-entwickeln,
-      kohaerente-vision, skalierung-und-qualitaet, verbindliche-entscheidungen
-      und entscheidungen-mit-strategischem-ausmass. Arbeitsmaterial, bis echte
+      kohaerente-vision, skalierung-und-qualitaet und
+      verbindliche-entscheidungen. Arbeitsmaterial, bis echte
       Fotos da sind. Erzeugt mit `npm run covers` (Flux, Black Forest Labs).
       Echt sind nur wd40.jpg, teccle.jpg und pg.jpg sowie alle Bilder in den
       Kapiteln. Wer sie ersetzt, tauscht nur die Datei.

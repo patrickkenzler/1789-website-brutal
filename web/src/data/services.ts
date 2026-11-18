@@ -68,10 +68,6 @@ export const SERVICES: readonly Service[] = [
     cases: [
       { slug: 'integration', label: 'teccle group' },
       { slug: 'kohaerente-vision', label: 'METRO.digital' },
-      {
-        slug: 'entscheidungen-mit-strategischem-ausmass',
-        label: 'Procter & Gamble, Stabsstelle der Geschäftsführung',
-      },
     ],
   },
   {
