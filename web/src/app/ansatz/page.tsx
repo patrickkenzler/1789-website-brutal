@@ -30,7 +30,7 @@ export default function AnsatzPage() {
             Jede Struktur hat einmal ein Problem gelöst.
             <br />
             <span className="d-thin d-wide d-red">
-              Wir beginnen bei dem, das sie heute stellt.
+              Wir beginnen bei dem Problem, das sie heute stellt.
             </span>
           </h2>
 
@@ -55,7 +55,7 @@ export default function AnsatzPage() {
                 Drei Funktionen tragen jedes Mandat.
                 <br />
                 <span className="d-thin d-wide d-red">
-                  Die Entscheidung gehört nicht dazu.
+                  Sie wirken simultan.
                 </span>
               </h2>
             </div>
@@ -226,7 +226,7 @@ export default function AnsatzPage() {
         line1="Welche Strukturfrage"
         line2="steht bei Ihnen an?"
         body={ANSATZ.cta}
-        cta="Erstgespräch vereinbaren"
+        cta="Gespräch anfragen"
       />
     </main>
   );

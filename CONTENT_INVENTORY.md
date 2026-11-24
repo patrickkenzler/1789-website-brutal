@@ -355,7 +355,7 @@ Team-Daten (`TEAM`), alle `photo: null` → Platzhalter-Gradient mit Initialen:
 | # | Name | Rolle | Initialen | Foto | Akzent | Bio |
 |---|---|---|---|---|---|---|
 | 1 | `Huma Nagafi` | `Founder & Partner` | `HN` | `null` | terra | `Gründerin von 1789. Begleitet Organisationen seit über zwei Jahrzehnten durch strukturelle Transformation — vom Mittelstand bis zum Konzern.` |
-| 2 | `Mary Jane Bolton` | `Partner` | `MB` | `null` | sage | `Verantwortet Governance-Design und Target-Operating-Modelle. Übersetzt Komplexität in tragfähige Strukturen, die im Alltag halten.` |
+| 2 | `Mary-Jane Bolten` | `Partner` | `MB` | `null` | sage | `Verantwortet Governance-Design und Target-Operating-Modelle. Übersetzt Komplexität in tragfähige Strukturen, die im Alltag halten.` |
 | 3 | `Patrick Breitenbach` | `Partner` | `PB` | `null` | terra | `[Kurzprofil folgt — Rollenbeschreibung wird ergänzt.]` |
 | 4 | `[Platzhalter]` | `Partner` | `??` | `null` | sage | `[Person und Kurzprofil folgen.]` |
 
@@ -617,7 +617,7 @@ Alle 11 `ITEMS` verbatim:
   {
     type:     'Debatte',
     title:    'Selbstorganisation ist kein Selbstläufer',
-    author:   'Mary Jane Bolton',
+    author:   'Mary-Jane Bolten',
     date:     'Februar 2024',
     readTime: '6 Min',
     excerpt:  'Warum sich Selbstorganisation nicht installieren lässt — und welche Voraussetzungen Führung schaffen muss, damit sie überhaupt tragen kann.',
@@ -685,7 +685,7 @@ Alle 11 `ITEMS` verbatim:
   {
     type:     'Debatte',
     title:    'KI ist kein Add-on zur Organisation',
-    author:   'Mary Jane Bolton',
+    author:   'Mary-Jane Bolten',
     date:     'November 2023',
     readTime: '7 Min',
     excerpt:  'Warum die meisten KI-Initiativen scheitern, weil sie als Tool-Einführung behandelt werden — und nicht als organisationaler Eingriff.',
@@ -1010,7 +1010,7 @@ Drei-Tier-Editorial-Spread. Alle Item-Links zeigen auf `/labor`.
 |---|---|---|---|
 | `Experiment · 2023` | `Mission Boards als Entscheidungsformat` | `Pilot bei greyt.` | `/labor` |
 | `Podcast · #141 · 52 Min` | `Strategie und Struktur — was zuerst?` | `mit Patrick Breitenbach` | `/labor` |
-| `Essay · 6 Min · 2024` | `Selbstorganisation ist kein Selbstläufer` | `Mary Jane Bolton` | `/labor` |
+| `Essay · 6 Min · 2024` | `Selbstorganisation ist kein Selbstläufer` | `Mary-Jane Bolten` | `/labor` |
 
 ### Bottom-Cluster
 

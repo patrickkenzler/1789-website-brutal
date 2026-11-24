@@ -5,8 +5,8 @@ export default function KontaktPage() {
   return (
     <main>
       <PageHero
-        line1="Erstgespräch"
-        line2="vereinbaren."
+        line1="Was wird bei Ihnen"
+        line2="gerade neu verhandelt?"
       />
 
       {/* ═══ 01 · KONTAKT-SPLIT ═════════════════════════════════════════════
@@ -27,9 +27,9 @@ export default function KontaktPage() {
           <div className="g12" style={{ rowGap: 'var(--u8)', alignItems: 'start' }}>
             <div className="c7">
               <p className="body-lg">
-                Das Erstgespräch dient der gegenseitigen Erkenntnis. Kein Pitch.
-                Kein Sales-Deck. Wir hören zu — und prüfen gemeinsam, ob ein
-                Systemshift der richtige Schritt ist.
+                Ein erstes Gespräch ist zum Zuhören da. Wir wollen verstehen, was
+                bei Ihnen in Bewegung ist und wer darüber verhandelt. Was daraus
+                folgt, entscheiden wir danach gemeinsam.
               </p>
             </div>
 
@@ -124,7 +124,7 @@ export default function KontaktPage() {
                       id="situation"
                       name="situation"
                       rows={5}
-                      placeholder="Beschreiben Sie kurz, womit Sie sich gerade beschäftigen — welche Spannung, welche Lücke, welches Thema."
+                      placeholder="Beschreiben Sie kurz, womit Sie sich gerade beschäftigen – welche Spannung, welche Lücke, welches Thema."
                     />
                   </div>
 

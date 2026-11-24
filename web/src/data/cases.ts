@@ -349,7 +349,7 @@ export const cases: CaseStudy[] = [
           },
           {
             kind: 'text',
-            text: 'In der Strukturtransformation arbeiteten rund 50 Mitarbeitende mit 1789 das Referenzmodell im Detail aus. Sie legten die Formate fest, in denen die Squads planen und sich abstimmen, und erprobten das Modell im Pilot - die Teams setzten sich neu, organisierten sich neu und Kunden wurden miteinbezogen. Procter & Gamble ging dabei bewusst in kleinen Schritten vor. Nach dem Pilot stellte die gesamte Customer Service Organization um, betroffen waren rund 200 Mitarbeitende. 1789 begleitete den Umbau mit fortlaufendem Feedback und Weiterbildung für die neuen Aufgaben. Insgesamt dauerte das Projekt rund zwölf Monate.',
+            text: 'In der Strukturtransformation arbeiteten rund 50 Mitarbeitende mit 1789 das Referenzmodell im Detail aus. Sie legten die Formate fest, in denen die Squads planen und sich abstimmen, und erprobten das Modell im Pilot – die Teams setzten sich neu, organisierten sich neu und Kunden wurden miteinbezogen. Procter & Gamble ging dabei bewusst in kleinen Schritten vor. Nach dem Pilot stellte die gesamte Customer Service Organization um, betroffen waren rund 200 Mitarbeitende. 1789 begleitete den Umbau mit fortlaufendem Feedback und Weiterbildung für die neuen Aufgaben. Insgesamt dauerte das Projekt rund zwölf Monate.',
           },
         ],
       },
@@ -363,8 +363,8 @@ export const cases: CaseStudy[] = [
           {
             kind: 'list',
             items: [
-              'Jeder Squad hat acht bis zwölf Mitglieder. Sie verantwortet für eine Kundengruppe den gesamten Ablauf, von der Auftragsbearbeitung über die Produktverfügbarkeit bis zur Planung der Auslieferung.',
-              'Neben der operativen Arbeit gibt es in jedem Squads vier Teamrollen. Der Facilitator hält alle Informationen aktuell, der Developer entwickelt Abläufe, Werkzeuge und Fähigkeiten weiter. Der Economist stimmt die Leistungsvereinbarung ab, der Coach führt Einzelgespräche und vermittelt bei Konflikten.',
+              'Jeder Squad hat acht bis zwölf Mitglieder. Er verantwortet für eine Kundengruppe den gesamten Ablauf, von der Auftragsbearbeitung über die Produktverfügbarkeit bis zur Planung der Auslieferung.',
+              'Neben der operativen Arbeit gibt es in jedem Squad vier Teamrollen. Der Facilitator hält alle Informationen aktuell, der Developer entwickelt Abläufe, Werkzeuge und Fähigkeiten weiter. Der Economist stimmt die Leistungsvereinbarung ab, der Coach führt Einzelgespräche und vermittelt bei Konflikten.',
               'Was den Squad bremst und außerhalb ihres Einflusses liegt, meldet er an die Führung. Für Abstimmungen über einen Squad hinaus bilden die Squads Koordinationsgruppen, und ein digitales Dashboard zeigt Ziele und Fortschritt in Echtzeit.',
             ],
           },
@@ -716,7 +716,7 @@ export const cases: CaseStudy[] = [
     },
     summary: {
       label: 'Auf einen Blick',
-      text: 'WTS ist eine Steuerberatung und Financial Advisory mit Hauptsitz in München. Für die rund 1.300 Mitarbeitenden in Deutschland wurden Ziele und Bewertung häufig informell gehandhabt, Beförderungen und Gehaltserhöhungen waren nicht für alle nachvollziehbar - und gleichzeitig für die Spitze schwer steuerbar. Die Umstellung auf Workday löste den Schritt zum Umdenken aus. In einer Strukturdiagnose klärte 1789 Innovations mit WTS, wo der Umbau ansetzen musste. Daraus entstand in der Strukturentscheidung ein Performance & Compensation Framework für alle Karrierestufen unterhalb des Partners, das der Partnerkreis nach rund einem Jahr verabschiedete. Seitdem entscheiden Gremien über Beförderungen und Gehaltserhöhungen, und die erste Welle für die drei unteren Karrierestufen hat WTS selbst umgesetzt.',
+      text: 'WTS ist eine Steuerberatung und Financial Advisory mit Hauptsitz in München. Für die rund 1.300 Mitarbeitenden in Deutschland wurden Ziele und Bewertung häufig informell gehandhabt, Beförderungen und Gehaltserhöhungen waren nicht für alle nachvollziehbar – und gleichzeitig für die Spitze schwer steuerbar. Die Umstellung auf Workday löste den Schritt zum Umdenken aus. In einer Strukturdiagnose klärte 1789 Innovations mit WTS, wo der Umbau ansetzen musste. Daraus entstand in der Strukturentscheidung ein Performance & Compensation Framework für alle Karrierestufen unterhalb des Partners, das der Partnerkreis nach rund einem Jahr verabschiedete. Seitdem entscheiden Gremien über Beförderungen und Gehaltserhöhungen, und die erste Welle für die drei unteren Karrierestufen hat WTS selbst umgesetzt.',
     },
     sections: [
       {
@@ -1016,7 +1016,7 @@ export const cases: CaseStudy[] = [
         blocks: [
           {
             kind: 'text',
-            text: 'Die Agentur war schnell gewachsen, doch Kundenbeziehungen, Prioritäten und der letzte Blick auf die Qualität lagen bei den Gründern. Aufgaben wurden über alle verteilt, Prozesse liefen informell, und die Führungsspanne der Geschäftsführung war breit - und wuchs täglich. Die Aufmerksamkeit galt eher kurzfristigen Aufgaben als langfristigen Zielen.',
+            text: 'Die Agentur war schnell gewachsen, doch Kundenbeziehungen, Prioritäten und der letzte Blick auf die Qualität lagen bei den Gründern. Aufgaben wurden über alle verteilt, Prozesse liefen informell, und die Führungsspanne der Geschäftsführung war breit – und wuchs täglich. Die Aufmerksamkeit galt eher kurzfristigen Aufgaben als langfristigen Zielen.',
           },
           {
             kind: 'text',
@@ -1040,7 +1040,7 @@ export const cases: CaseStudy[] = [
           },
           {
             kind: 'text',
-            text: 'Hieraus verhandelten 1789 und die Gründer daraus drei Säulen für greyt: Skalierung, Kundenorientierung und Exzellenz. Als Befund hielten Gründer und 1789 fest, dass greyt Strukturen braucht, die Nähe innerhalb eines Teams und zu Kunden schaffen und über die Zahl der Teams skalieren. Ein neues Target Operating Model und eine angepasste Governance sollte zeigen, wie Zusammenarbeit organisiert wird.',
+            text: 'Hieraus verhandelten 1789 und die Gründer drei Säulen für greyt: Skalierung, Kundenorientierung und Exzellenz. Als Befund hielten Gründer und 1789 fest, dass greyt Strukturen braucht, die Nähe innerhalb eines Teams und zu Kunden schaffen und über die Zahl der Teams skalieren. Ein neues Target Operating Model und eine angepasste Governance sollte zeigen, wie Zusammenarbeit organisiert wird.',
           },
         ],
       },
@@ -1059,7 +1059,7 @@ export const cases: CaseStudy[] = [
           },
           {
             kind: 'text',
-            text: 'Vor der Transformation spielten freiwillige Mitarbeitende in einem Early-Adopter-Workshop typische Arbeitsabläufe auf einem Spielbrett durch, dem 1789 Board Game. Damit konnten Herausforderungen frühzeitig antizipiert werden - und gleichzeitig konnten die Workshopteilnehmer:innen das Modell früh kennenlernen und weiterentwickeln. Strukturdiagnose und Strukturentscheidung dauerten zusammen gut sieben Monate.',
+            text: 'Vor der Transformation spielten freiwillige Mitarbeitende in einem Early-Adopter-Workshop typische Arbeitsabläufe auf einem Spielbrett durch, dem 1789 Board Game. Damit konnten Herausforderungen frühzeitig antizipiert werden – und gleichzeitig konnten die Workshopteilnehmer:innen das Modell früh kennenlernen und weiterentwickeln. Strukturdiagnose und Strukturentscheidung dauerten zusammen gut sieben Monate.',
           },
         ],
       },

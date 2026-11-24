@@ -7,8 +7,8 @@ export default function ProjektePage() {
     <main>
       <PageHero
         line1="Organisationen,"
-        line2="die den Shift gewagt haben."
-        body="Jedes Engagement beginnt mit einer ehrlichen Diagnose des Gaps. Was hier folgt, sind keine Erfolgsgeschichten — sondern Erkenntnisse aus echter Transformation."
+        line2="die ihre Ordnung neu verhandelt haben."
+        body="Jedes Engagement beginnt mit einer ehrlichen Diagnose des Gaps. Hier folgt eine Auswahl an Herausforderungen, Vorgehen und Ergebnissen echter Projekte."
       />
 
       {/* ═══ ALLE CASES ═══════════════════════════════════════════════════════
@@ -48,8 +48,8 @@ export default function ProjektePage() {
         eyebrow="Bereit zur Diagnose?"
         line1="Jede Transformation"
         line2="beginnt mit dem Gap."
-        body="Das Erstgespräch dient der gegenseitigen Erkenntnis. Kein Pitch. Kein Sales-Deck."
-        cta="Erstgespräch anfragen"
+        body="Das Erstgespräch dient der gegenseitigen Erkenntnis. Was wird bei Ihnen neu verhandelt?"
+        cta="Gespräch anfragen"
       />
     </main>
   )
