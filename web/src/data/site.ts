@@ -59,8 +59,5 @@ export const QUESTIONS = [
   'Was soll bestehen bleiben?',
 ] as const
 
-export const NEWSLETTER_ACTION =
-  'https://1789.us-east-1.list-manage.com/subscribe/post'
-
 /** Bildpfad-Präfix für statischen Export (GitHub Pages / Unterverzeichnis). */
 export const asset = (p: string) => `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}${p}`

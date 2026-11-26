@@ -8,10 +8,9 @@ import {
   byline,
   type LaborItem,
 } from '@/data/labor'
-import { NEWSLETTER_ACTION } from '@/data/site'
 import { laborArt } from '@/data/laborArt'
 import { seedFrom } from '@/data/asciiCanvas'
-import { PageHero, SectionHead, Plate, Barcode } from '@/components/ui'
+import { PageHero, SectionHead, Plate, ClosingCta } from '@/components/ui'
 import { AsciiArt } from '@/components/AsciiArt'
 
 /* ── The mosaic ────────────────────────────────────────────────────────────
@@ -145,59 +144,21 @@ export default function LaborPage() {
         </div>
       </section>
 
-      {/* ═══ NEWSLETTER ═══════════════════════════════════════════════════════ */}
-      <section className="slab" id="newsletter">
-        <div className="shell">
-          <div className="g12" style={{ rowGap: 'var(--u6)', alignItems: 'start' }}>
-            <div className="c6">
-              <span className="eyebrow eyebrow-br" style={{ marginBottom: 'var(--u4)' }}>
-                ✉ Newsletter
-              </span>
-              <h2 className="d2" style={{ marginBottom: 'var(--u4)' }}>
-                Neue Beiträge
-                <br />
-                <span className="d-thin d-red">direkt im Postfach.</span>
-              </h2>
-              <p className="body">
-                Etwa einmal im Monat – Whitepaper, Essays, neue Podcastfolgen.
-                Nie Spam, immer ohne Pflichtfelder.
-              </p>
-            </div>
-
-            <div className="c5 s8">
-              <div className="box regmark pad">
-                <form
-                  action={NEWSLETTER_ACTION}
-                  method="post"
-                  target="_blank"
-                  style={{ display: 'grid', gap: 'var(--u3)' }}
-                >
-                  <label className="field" htmlFor="newsletter-email" style={{ marginBottom: 0 }}>
-                    <span className="field-label">E-Mail-Adresse</span>
-                    <input
-                      className="input"
-                      id="newsletter-email"
-                      name="EMAIL"
-                      type="email"
-                      required
-                      placeholder="ihre@email.de"
-                      aria-label="E-Mail-Adresse"
-                    />
-                  </label>
-
-                  <button type="submit" className="btn btn-red btn-block">
-                    Newsletter abonnieren <span aria-hidden="true">→</span>
-                  </button>
-                </form>
-
-                <div style={{ marginTop: 'var(--u4)' }}>
-                  <Barcode />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ═══ SCHLUSS ═════════════════════════════════════════════════════════
+          Hier stand ein Newsletter-Formular. Es gibt keinen Newsletter, und
+          die hinterlegte Mailchimp-Adresse war unvollständig — das Formular
+          nahm eine Anmeldung entgegen, die nirgends ankam. Stattdessen die
+          Schluss-CTA, die jede andere Seite trägt; /labor war die einzige
+          ohne. Grundfolge damit L L D A, dieselbe Endung wie auf /projekte.
+          Die beiden Schlagzeilenzeilen sind aus dem Bestand übernommen und
+          von Mary nicht für diese Seite geschrieben. */}
+      <ClosingCta
+        eyebrow="Ihr Anlass"
+        line1="Was wird bei Ihnen"
+        line2="gerade neu verhandelt?"
+        body="Ein erstes Gespräch ist zum Zuhören da. Was daraus folgt, entscheiden wir danach gemeinsam."
+        cta="Gespräch anfragen"
+      />
     </main>
   )
 }

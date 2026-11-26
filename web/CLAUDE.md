@@ -79,7 +79,7 @@ Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
 Die Grundfolge je Seite (Stand nach dem Durchgang): Start `D L O D L D L A`,
 Ansatz `L D L D L L | L L | L A` (`|` = Warnband), Case-Lesefassung
-`L L D L D L O L L A`, Labor `L L D L`, Leistungen `L D O A`, Cases `L D A`,
+`L L D L D L O L L A`, Labor `L L D A`, Leistungen `L D O A`, Cases `L D A`,
 Wir `L L D`, Kontakt `L D L`. Nie mehr als zwei helle in Folge, nie zwei
 dunkle nebeneinander, höchstens ein Orange je Seite.
 
@@ -180,6 +180,17 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       Patrick Breitenbach, Mary-Jane Bolten, Serap Yılmaz-Dreger. Überall so
       zu schreiben, auch im `CONTENT_INVENTORY.md`.
 - [ ] Alle Labor-Links zeigen auf `#`; Kontaktformular hat kein Backend.
+- [x] Newsletter gestrichen (Patrick, 26.11.2026). Es gibt keinen, und das
+      Formular auf /labor schickte an eine unvollständige Mailchimp-Adresse
+      ohne Listen-Kennung — es nahm Anmeldungen entgegen, die nirgends
+      ankamen. Entfernt sind der Abschnitt auf /labor, der Hinweis im
+      Labor-Kolophon der Startseite, `NEWSLETTER_ACTION` in `site.ts` und
+      die Regel `.lab-newsletter`. An die Stelle auf /labor tritt die
+      Schluss-CTA; die Seite war die einzige ohne.
+- [ ] Die Schluss-CTA auf /labor trägt „Was wird bei Ihnen / gerade neu
+      verhandelt?" — dieselbe Frage wie die H1 der Kontaktseite, und die
+      Startseite fragt fast gleich („gerade neu verteilt?"). Dreimal
+      dieselbe Konstruktion. /labor braucht von Mary eine eigene Zeile.
 - [ ] Die Schluss-CTA wiederholt auf den Lesefassungs-Cases die Aussage des
       Schlusssatzes („beginnt mit dem Gap“). Entweder die stehende Zeile auf
       diesen Seiten ändern oder den Schlusssatz streichen — Textentscheidung.
