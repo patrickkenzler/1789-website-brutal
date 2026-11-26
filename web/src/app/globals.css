@@ -1163,10 +1163,16 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
    out on its own — inline after a <br> it broke greedily and left a single
    word on the last line. */
 .statement .d-thin, .ai-band-text .d-thin { display: block; }
+/* Der Nachtrag zum Schlusssatz. Er stand rechtsbündig am äußeren Rand des
+   Rasters und las sich damit als eigenes Bedienelement statt als Zusatz zu
+   dem Satz links — die eckigen Klammern von .eyebrow-br verstärken das
+   (Mary, Punkt 13). Linksbündig beginnt er an der Kante seiner eigenen
+   Spalte und schließt damit an den Satz an. Die Grundlinie unten bleibt:
+   sie bindet ihn an die letzte Zeile der Schlagzeile.                     */
 .statement-coda {
   align-self: end;
-  justify-self: end;
-  text-align: right;
+  justify-self: start;
+  text-align: left;
   font-size: var(--t-12);
   color: var(--ink);
 }
