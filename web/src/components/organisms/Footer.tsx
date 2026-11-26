@@ -22,11 +22,12 @@ export function Footer() {
         </div>
 
         <div className="g12" style={{ rowGap: 'var(--u8)' }}>
-          {/* ── Claim + CTA ── */}
+          {/* ── Claim + CTA ──
+              Ohne Marke darüber: „Claim" war ein Arbeitsetikett aus dem
+              Bestand und benannte die Zeile, statt sie einzuordnen. Die
+              übrigen Spalten des Fußes führen ihre Marke weiter, hier trägt
+              der Satz sich selbst. */}
           <div className="c6">
-            <span className="eyebrow" style={{ marginBottom: 'var(--u2)' }}>
-              Claim
-            </span>
             <p className="d3" style={{ maxWidth: '20ch', marginBottom: 'var(--u4)' }}>
               {FOOTER_CLAIM}
             </p>

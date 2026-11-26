@@ -166,8 +166,12 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 
 ## 5. Offene Punkte
 
-- [ ] `/labor/svg-morph` ist ein Alt-Werkzeug und noch **nicht** auf das neue System
-      umgestellt — einzige Stelle mit Alt-Tokens (terra/sage).
+- [ ] `/intern/svg-morph` ist ein Alt-Werkzeug und noch **nicht** auf das neue
+      System umgestellt — einzige Stelle mit Alt-Tokens (terra/sage) und mit
+      Klassennamen, die es in `globals.css` nicht gibt. Lag bis 26.11.2026
+      unter `/labor/` und stand damit zwischen den redaktionellen Beiträgen.
+      Es ist von keiner Seite verlinkt, wird aber statisch mit exportiert und
+      bleibt damit öffentlich erreichbar.
 - [x] Kurzprofile aller vier stehen (Redaktion Mary, 24.11.2026). Die
       Teamkarten auf /wir tragen bewusst keine Rollen mehr, auch keine
       Titel wie Gründer oder Geschäftsführung. „Co-Host von Corporate
