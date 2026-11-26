@@ -12,9 +12,9 @@ export const NAV = [
 
 export const CONTACT = {
   /** Kontaktseite */
-  mail:       'hello@1789.consulting',
-  /** Footer — historisch abweichend, bewusst beibehalten */
-  mailFooter: 'hello@1789consulting.de',
+  mail:       'mary-jane@1789innovations.com',
+  /** Footer — vorläufig wie Kontaktseite, Eingangsadresse noch offen */
+  mailFooter: 'mary-jane@1789innovations.com',
   city:       'Frankfurt am Main',
   country:    'Deutschland',
   instagram:  'https://instagram.com',

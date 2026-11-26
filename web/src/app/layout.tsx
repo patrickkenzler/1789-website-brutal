@@ -27,9 +27,9 @@ const jet = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: '1789 — STRUCTURE / STRATEGY / GAP',
+  title: '1789 – STRUCTURE / STRATEGY / GAP',
   description:
-    'Structure · Strategy · Gap Consulting. Wir begleiten Organisationen durch Wandel — strukturell, strategisch, wirksam.',
+    'Structure · Strategy · Gap Consulting. Wir begleiten Organisationen durch Wandel – strukturell, strategisch, wirksam.',
 
   /**
    * Site-wide noindex.

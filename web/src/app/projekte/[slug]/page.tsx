@@ -467,9 +467,9 @@ export default async function CasePage({
         line2="beginnt mit dem Gap."
         body={
           c.close ??
-          'Das Erstgespräch dient der gegenseitigen Erkenntnis. Kein Pitch. Kein Sales-Deck.'
+          'Ein erstes Gespräch ist zum Zuhören da. Was daraus folgt, entscheiden wir danach gemeinsam.'
         }
-        cta="Erstgespräch anfragen"
+        cta="Gespräch anfragen"
       />
     </main>
   )

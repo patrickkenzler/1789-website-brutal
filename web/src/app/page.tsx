@@ -24,7 +24,7 @@ import { Tension } from '@/components/Tension'
 const LAB_PLATED = ITEMS.filter((i) => i.image).slice(0, 2)
 const LAB_INDEX = [
   'Mission Boards als Entscheidungsformat',
-  'Strategie und Struktur — was zuerst?',
+  'Strategie und Struktur – was zuerst?',
   'Selbstorganisation ist kein Selbstläufer',
 ]
   .map((title) => ITEMS.find((i) => i.title === title))
@@ -95,7 +95,7 @@ export default function Home() {
             }}
           >
             <Link href="/kontakt" className="btn btn-red btn-lg">
-              Erstgespräch vereinbaren <span aria-hidden="true">→</span>
+              Gespräch anfragen <span aria-hidden="true">→</span>
             </Link>
             <Link href="/ansatz" className="btn btn-lg">
               Unser Ansatz <span aria-hidden="true">→</span>
@@ -292,7 +292,7 @@ export default function Home() {
             ariaLabel="Stimmen unserer Kunden"
             heading={
               <h2 className="d2" style={{ marginBottom: 'var(--u8)' }}>
-                Was Kunden <span className="d-thin d-wide d-red">sagen.</span>
+                Was unsere Kunden <span className="d-thin d-wide d-red">sagen.</span>
               </h2>
             }
           >
@@ -311,7 +311,7 @@ export default function Home() {
 
                   <figcaption className="stimme-cap">
                     <span className="data" style={{ color: 'var(--ink)' }}>
-                      {t.name} — {t.title}
+                      {t.name} – {t.title}
                     </span>
                     {t.caseHref && (
                       <Link href={t.caseHref} className="unit" title={t.caseLabel ?? ''}>
@@ -398,7 +398,7 @@ export default function Home() {
       <section className="slab">
         <div className="shell">
           <SectionHead
-            label="Denk Labor"
+            label="Labor"
             end={
               <Link href="/labor" className="link">
                 Alle Inhalte <span aria-hidden="true">→</span>
@@ -464,13 +464,13 @@ export default function Home() {
               <div className="lab-colophon">
                 <Barcode />
                 <p className="unit" style={{ marginTop: 'var(--u2)' }}>
-                  Podcasts, Essays, Whitepaper und Experimente — was im
+                  Podcasts, Essays, Whitepaper und Experimente – was im
                   Hintergrund unserer Arbeit entsteht.
                 </p>
                 <div className="lab-newsletter">
                   <span className="eyebrow">✉ Newsletter</span>
                   <Link href="/labor#newsletter" className="link">
-                    Was im Labor entsteht — direkt im Postfach.{' '}
+                    Was im Labor entsteht – direkt im Postfach.{' '}
                     <span aria-hidden="true">→</span>
                   </Link>
                 </div>
@@ -485,8 +485,8 @@ export default function Home() {
         eyebrow="Ihr Anlass"
         line1="Was wird bei Ihnen"
         line2="gerade neu verteilt?"
-        body="Ein Erstgespräch beginnt selten mit einer fertig formulierten Strukturfrage. Es reicht der Anlass: eine Neuordnung, eine Integration, ein neues Operating Model, AI in der täglichen Arbeit. Wir klären gemeinsam, welches Problem Ihre Organisation lösen will — und ob unsere Arbeitsweise dafür passt."
-        cta="Erstgespräch vereinbaren"
+        body="Ein Erstgespräch beginnt selten mit einer fertig formulierten Strukturfrage. Es reicht der Anlass: eine Neuordnung, eine Integration, ein neues Operating Model, AI in der täglichen Arbeit. Wir klären gemeinsam, welches Problem Ihre Organisation lösen will – und ob unsere Arbeitsweise dafür passt."
+        cta="Gespräch anfragen"
       />
     </main>
   )

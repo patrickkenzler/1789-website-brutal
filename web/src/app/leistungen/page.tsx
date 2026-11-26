@@ -158,8 +158,8 @@ export default function LeistungenPage() {
         eyebrow="Nicht sicher, wo der Gap liegt?"
         line1="Das Erstgespräch"
         line2="klärt das."
-        body="Kein Pitch. Kein Sales-Deck. Wir prüfen gemeinsam, ob ein Systemshift der richtige Schritt ist."
-        cta="Erstgespräch anfragen"
+        body="Ein erstes Gespräch ist zum Zuhören da. Was daraus folgt, entscheiden wir danach gemeinsam."
+        cta="Gespräch anfragen"
       />
     </main>
   )

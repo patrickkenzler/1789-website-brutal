@@ -2,7 +2,6 @@
 
 export type Person = {
   name: string
-  role: string
   initials: string
   photo: string | null
   /** Ausschnitt im Kartenformat 4:5 — die Aufnahmen sind 9:16.
@@ -21,37 +20,33 @@ export type Person = {
 export const TEAM: Person[] = [
   {
     name: 'Human Nagafi',
-    role: 'Founder & Partner',
     initials: 'HN',
     photo: '/team/human-nagafi.jpg',
     frame: { position: '50% 36%', zoom: 1.296, origin: '50% 89%' },
-    bio: 'Gründerin von 1789. Begleitet Organisationen seit über zwei Jahrzehnten durch strukturelle Transformation — vom Mittelstand bis zum Konzern.',
+    bio: 'Human schaut genau hin: Er prüft und entwickelt Operating Models, die im Alltag tragen, und wendet Theorie so an, dass sie erlebbar wird. Schwerpunkte: Konzerne und öffentliche Verwaltung. Co-Host von Corporate Therapy.',
   },
   {
-    name: 'Mary Jane Bolton',
-    role: 'Partner',
+    name: 'Mary-Jane Bolten',
     initials: 'MB',
     photo: '/team/mary-jane-bolten.jpg',
     frame: { position: '50% 0%', zoom: 1.334, origin: '50% 89%' },
-    bio: 'Verantwortet Governance-Design und Target-Operating-Modelle. Übersetzt Komplexität in tragfähige Strukturen, die im Alltag halten.',
+    bio: 'Mary-Jane gestaltet Governance und Zielbilder, die Orientierung geben, und entwirft die Formate, mit denen die Organisation selbst daran mitarbeitet. Schwerpunkte: großer Mittelstand und Konzerne. Co-Host von Corporate Therapy.',
   },
   {
     name: 'Patrick Breitenbach',
-    role: 'Partner',
     initials: 'PB',
     photo: '/team/patrick-breitenbach.jpg',
     frame: { position: '50% 44%', zoom: 1.341, origin: '50% 89%' },
-    bio: '[Kurzprofil folgt — Rollenbeschreibung wird ergänzt.]',
+    bio: 'Patrick denkt Organisationen von ihren Kopplungen her: wie Rollen, Tools und Entscheidungen ineinandergreifen. Seine Erfahrung aus verschiedenen Medienunternehmen nutzt er, um Veränderung so zu gestalten, dass sie bei ihren Zielgruppen ankommt. Schwerpunkt: öffentliche Verwaltung. Co-Host von Corporate Therapy.',
   },
   {
     /* Name und Schreibweise aus der WD-40-Lesefassung („Serap Yılmaz-Dreger,
-       Mary-Jane Bolten" als Lead). Rolle und Kurzprofil stehen noch aus. */
+       Mary-Jane Bolten" als Lead). */
     name: 'Serap Yılmaz-Dreger',
-    role: '[Rolle folgt]',
     initials: 'SY',
     photo: '/team/serap-yilmaz-dreger.jpg',
     frame: { position: '50% 32%' },
-    bio: '[Kurzprofil folgt.]',
+    bio: 'Serap begleitet Organisationen von der Diagnose bis in die Erprobung und hat einen scharfen Blick für Nuancen. Schwerpunkte: öffentliche Verwaltung und Mittelstand.',
   },
 ]
 
@@ -88,7 +83,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      'Es war sehr beeindruckend, **wie schnell uns 1789 bereits nach dem ersten Kennenlernen vollends durchdrungen hat**. 1789 hat uns **gechallenged** — immer anpackend, partnerschaftlich und stets **mit Blick auf klare Resultate und Actions**.',
+      'Es war sehr beeindruckend, **wie schnell uns 1789 bereits nach dem ersten Kennenlernen vollends durchdrungen hat**. 1789 hat uns **gechallenged** – immer anpackend, partnerschaftlich und stets **mit Blick auf klare Resultate und Actions**.',
     name: 'Daniel Kalisch',
     title: 'General Manager D.A.CH.',
     company: 'WD-40 Company',
@@ -121,7 +116,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     quote:
-      'Gemeinsam mit 1789 haben wir ein **Operating Model geschaffen**, angepasst an unsere junge Kultur und Leistungsorientiertheit — unbeeinflusst von leistungsbeschneidenden Strukturen anderer Unternehmen. Zentral war für uns, **die Verantwortungsfähigkeit der Mitarbeiter zu erhöhen**, um ihre Schaffenskräfte zu fördern, was 1789 in der **„Selbstorganisierenden Organisation"** realisieren konnte.',
+      'Gemeinsam mit 1789 haben wir ein **Operating Model geschaffen**, angepasst an unsere junge Kultur und Leistungsorientiertheit – unbeeinflusst von leistungsbeschneidenden Strukturen anderer Unternehmen. Zentral war für uns, **die Verantwortungsfähigkeit der Mitarbeiter zu erhöhen**, um ihre Schaffenskräfte zu fördern, was 1789 in der **„Selbstorganisierenden Organisation"** realisieren konnte.',
     name: 'Henrik Ekstrand',
     title: 'Founder',
     company: 'greyt.',

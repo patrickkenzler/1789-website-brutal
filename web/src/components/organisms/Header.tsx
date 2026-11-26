@@ -45,7 +45,7 @@ export function Header() {
           }}
         >
           {/* The numerals alone — the name is the mark. */}
-          <Link href="/" aria-label="1789 — zur Startseite">
+          <Link href="/" aria-label="1789 – zur Startseite">
             <Wordmark size={20} />
           </Link>
 
@@ -98,7 +98,7 @@ export function Header() {
               className="btn btn-red btn-block"
               style={{ marginTop: 'var(--u6)' }}
             >
-              Erstgespräch vereinbaren <span aria-hidden="true">→</span>
+              Gespräch anfragen <span aria-hidden="true">→</span>
             </Link>
           </nav>
         </div>

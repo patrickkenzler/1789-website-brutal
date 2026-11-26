@@ -33,9 +33,9 @@ export const PHASES: Phase[] = [
     title: 'Sichtbar machen',
     question: 'Wie arbeitet und entscheidet unsere Organisation heute tatsächlich?',
     tagline: 'Aus einzelnen Symptomen werden konkrete Strukturfragen.',
-    text: 'Wir untersuchen, wie Wertschöpfung, Entscheidungen und Verantwortung im Alltag zusammenspielen — formale Regeln ebenso wie die informellen Lösungen, die sie ergänzen. Aus einzelnen Symptomen werden konkrete Strukturfragen.',
+    text: 'Wir untersuchen, wie Wertschöpfung, Entscheidungen und Verantwortung im Alltag zusammenspielen, dabei betrachten wir formale Regeln ebenso wie die informellen Lösungen, die sie ergänzen. Aus einzelnen Symptomen werden konkrete Strukturfragen.',
     outcome:
-      'Führung und Organisation teilen ein belastbares Bild der Ausgangslage — und die Maßstäbe, an denen ein Vorschlag sich messen lassen muss.',
+      'Führung und Organisation teilen ein belastbares Bild der Ausgangslage – und die Maßstäbe, an denen ein Vorschlag sich messen lassen muss.',
     outputs: ['Ist-Modell', 'Strukturhypothesen', 'Kriterien und Gestaltungsfelder'],
     model: 'Ist-Modell',
   },
@@ -46,7 +46,7 @@ export const PHASES: Phase[] = [
     question: 'Welche strukturelle Richtung ist unter unseren Bedingungen tragfähig?',
     tagline:
       'Alternativen werden konkret genug, dass die Führung verbindlich entscheidet.',
-    text: 'Aus den Gestaltungsfeldern entsteht ein strategisches Zielmodell. Alternativen und ihre Konsequenzen werden so konkret, dass eine begründete Richtungsentscheidung möglich ist — und die Führung entscheidet verbindlich. Auch das Festhalten am Bestehenden ist eine Entscheidung.',
+    text: 'Aus den Gestaltungsfeldern entsteht ein strategisches Zielmodell. Alternativen und ihre Konsequenzen werden so konkret, dass eine begründete Richtungsentscheidung möglich ist – und die Führung entscheidet verbindlich. Auch das Festhalten am Bestehenden ist eine Entscheidung.',
     outcome:
       'Die Führung hat eine strukturelle Richtung gewählt. Ihre Annahmen, Konsequenzen und Prioritäten tragen die weitere Ausarbeitung.',
     outputs: ['Strategische Designprinzipien', 'Zielmodell', 'Priorisierung und Roadmap'],
@@ -59,8 +59,8 @@ export const PHASES: Phase[] = [
     title: 'Gestalt geben und durchspielen',
     question: 'Wie bewährt sich die gewählte Richtung, bevor sie real gilt?',
     questionShort: 'Wie bewährt sich die Richtung, bevor sie real gilt?',
-    tagline: 'Scheitern kostet hier noch nichts — es verändert das Modell.',
-    text: 'Das Zielmodell gewinnt Präzision: Rollen, Prozesse, Fähigkeiten, Schnittstellen, Entscheidungsrechte — gemeinsam mit den künftigen Verantwortlichen. Und es wird durchgespielt, an den Situationen, in denen es sich bewähren muss, mit den Menschen, die darin arbeiten werden. Scheitern kostet hier noch nichts — es verändert das Modell, bevor es die Organisation verändert.',
+    tagline: 'Scheitern kostet hier noch nichts – es verändert das Modell.',
+    text: 'Das Zielmodell gewinnt Präzision: Rollen, Prozesse, Fähigkeiten, Schnittstellen, Entscheidungsrechte – gemeinsam mit den künftigen Verantwortlichen. Und es wird durchgespielt, an den Situationen, in denen es sich bewähren muss, mit den Menschen, die darin arbeiten werden. Scheitern kostet hier noch nichts, sondern verändert das Modell durch wertvolles Feedback.',
     outcome:
       'Eine testbare Detailkonzeption, geprüft an simulierten Ernstfällen. Geklärt ist, was zuerst in die reale Arbeit geht und welche Fragen nur dort zu beantworten sind.',
     outputs: ['Detailkonzeption', 'Simulationserkenntnisse', 'Erprobungsfragen'],
@@ -74,7 +74,7 @@ export const PHASES: Phase[] = [
     questionShort: 'Was bewährt sich im operativen Vollzug?',
     tagline:
       'Ausgewählte Elemente gehen legitimiert und geschützt in die reale Arbeit.',
-    text: 'Ausgewählte Elemente gehen in die reale Arbeit — legitimiert, geschützt und mit klaren Lernfragen. Die entscheidende Evidenz entsteht im operativen Vollzug: was trägt, welche neuen Spannungen auftreten, welche Annahmen revidiert werden müssen. Die Organisation entscheidet, was angepasst, ausgeweitet oder verworfen wird.',
+    text: 'Ausgewählte Elemente gehen legitimiert, geschützt und mit klaren Leitfragen in die reale Arbeit. Die entscheidende Evidenz entsteht im operativen Vollzug: was trägt, welche neuen Spannungen auftreten, welche Annahmen revidiert werden müssen. Die Organisation entscheidet, was angepasst, ausgeweitet oder verworfen wird.',
     outcome: 'Die nächste Strukturentscheidung beruht auf operativer Erfahrung.',
     outputs: [
       'Pilotdesign',
@@ -90,8 +90,8 @@ export const PHASES: Phase[] = [
     title: 'Eigenständig weiterentwickeln',
     question: 'Wie führt die Organisation die Entwicklung selbst fort?',
     tagline:
-      'Mindestens ein vollständiger Zyklus läuft eigenständig — 1789 tritt zurück.',
-    text: 'Eigenständigkeit wird von Beginn an aufgebaut — hier wird sie nachgewiesen. Interne Verantwortliche nutzen das Modell selbst, deuten Abweichungen und formulieren die nächsten Strukturentscheidungen. Mindestens ein vollständiger Zyklus läuft eigenständig; 1789 tritt in eine begleitende Rolle zurück.',
+      'Mindestens ein vollständiger Zyklus läuft eigenständig – 1789 tritt zurück.',
+    text: 'Eigenständigkeit wird von Beginn an aufgebaut – hier wird sie nachgewiesen. Interne Verantwortliche nutzen das Modell selbst, deuten Abweichungen und formulieren die nächsten Strukturentscheidungen. Mindestens ein vollständiger Zyklus läuft eigenständig; 1789 tritt in eine begleitende Rolle zurück.',
     outcome:
       'Die Organisation kann neue Spannungen selbst sichtbar und entscheidbar machen. Ihre weitere Entwicklung hängt nicht von 1789 ab.',
     outputs: [
@@ -115,9 +115,7 @@ export const ARC = {
 
 export const BLICK = {
   intro: [
-    'Ein gerettetes Projekt. Ein gesichertes Budget. Ein beendeter Konflikt.',
-    'So entsteht Struktur. Und so bleibt sie — auch wenn ihr Anlass längst verschwunden ist.',
-    'Wer sie verteidigt, hat Gründe. Wer sie umgeht, auch.',
+    'Ein gerettetes Projekt, ein gesichertes Budget, ein beendeter Konflikt. So entsteht Struktur. Und so bleibt sie, auch wenn ihr Anlass längst verschwunden ist. Wer sie verteidigt, hat Gründe. Wer sie umgeht, auch.',
   ],
   tensions: [
     {
@@ -133,7 +131,7 @@ export const BLICK = {
     },
     {
       title: ['Neue Arbeit.', 'Alte Ordnung.'],
-      body: 'AI stellt die bestehende Arbeitsteilung neu zur Disposition. Werkzeuge machen Arbeit leichter. Fähigkeiten verändern, wer sie macht — und damit, wer urteilt, wer prüft, wer einsteht.',
+      body: 'AI stellt die bestehende Arbeitsteilung neu zur Disposition. Neue Werkzeuge und Fähigkeiten verändern, wer Arbeit macht, wer urteilt, wer prüft und entscheidet.',
       close: 'Die neue Ordnung entsteht jetzt. Auch dort, wo niemand sie entwirft.',
     },
   ],
@@ -148,33 +146,31 @@ export const BLICK = {
 
 export const WORK = {
   intro: [
-    'Wie eine Organisation Arbeit teilt. Wie sie entscheidet. Wer einsteht.',
-    'Jede Organisation beantwortet diese Fragen — meist, ohne sie zu stellen.',
-    '1789 stellt sie. In drei Perspektiven auf dieselbe Organisation.',
+    'Wie eine Organisation Arbeit teilt. Wie sie entscheidet. Wer einsteht. Jede Organisation beantwortet diese Fragen – meist, ohne sie zu stellen.',
+    '1789 stellt sie. In drei Perspektiven.',
   ],
   perspectives: [
     {
       title: 'Organizational Strategy',
       lead: 'Die Entwicklungsrichtung.',
-      body: 'Welche Fähigkeiten die Organisation aufbaut, welche Prioritäten gelten, welche Zielkonflikte sie bewusst eingeht. Strategie formt Struktur — und Struktur entscheidet, welche Strategie möglich ist.',
+      body: 'Welche Fähigkeiten die Organisation aufbaut, welche Prioritäten gelten, welche Zielkonflikte sie bewusst eingeht. Strategie formt Struktur – und Struktur entscheidet, welche Strategie möglich ist.',
       close: 'Richtung ist eine Strukturentscheidung.',
     },
     {
       title: 'Governance Design',
       lead: 'Die Architektur des Entscheidens.',
-      body: 'Wer worüber entscheidet, wer beteiligt wird, wer Verantwortung trägt — und auf welchen Wegen Konflikte bearbeitet, Entscheidungen überprüft und Festlegungen wieder geöffnet werden.',
+      body: 'Wer worüber entscheidet, wer beteiligt wird, wer Verantwortung trägt – und auf welchen Wegen Konflikte bearbeitet, Entscheidungen überprüft und Festlegungen wieder geöffnet werden.',
       close: 'Wer über das Entscheiden entscheidet, hat die Organisation in der Hand.',
     },
     {
       title: 'Target Operating Model',
       lead: 'Die operative Gestalt.',
-      body: 'Leistungen und Fähigkeiten, Rollen, Arbeitsflüsse, Schnittstellen, Ressourcen — verbunden zu einer operativen Zielkonfiguration. An ihr wird entschieden, erprobt, korrigiert.',
+      body: 'Leistungen und Fähigkeiten, Rollen, Arbeitsflüsse, Schnittstellen, Ressourcen – verbunden zu einer operativen Zielkonfiguration. An ihr wird entschieden, erprobt, korrigiert.',
       close: 'Konkret genug zum Entscheiden. Offen genug zum Lernen.',
     },
   ],
   conclusion: [
-    // geschütztes Leerzeichen vor dem Gedankenstrich: keine Zeile beginnt mit „—"
-    'Am Ende steht ein Strukturvorschlag — begründet, konkret, angreifbar.',
+    'Am Ende steht ein Strukturvorschlag. Begründet, konkret und angreifbar.',
     'Denn nur was angreifbar ist, lässt sich entscheiden.',
   ],
   coda: 'Die Entscheidung trifft die Organisation.',
@@ -185,14 +181,14 @@ export const WORK = {
 export const AI_HUMAN_NATIVE = {
   home: {
     paragraphs: [
-      'Quer zu allen drei Perspektiven: AI verändert Fähigkeiten, verschiebt Arbeitsteilung — und damit die Ordnung selbst. Menschliche und AI-basierte Beiträge entwerfen wir deshalb von Beginn an in derselben Struktur, mit klarem Ort für Urteil, Kontrolle und Verantwortung.',
+      'Quer zu allen Perspektiven verändert AI Fähigkeiten, verschiebt Arbeitsteilung – und damit die Ordnung selbst. Menschliche und AI-basierte Beiträge entwerfen wir deshalb von Beginn an in derselben Struktur, mit klarem Ort für Urteil, Kontrolle und Verantwortung.',
     ],
     close: ['AI ist eine Ordnungsfrage.'],
   },
   ansatz: {
     paragraphs: [
-      'Wo AI die Arbeitsteilung materiell verändert, gehört sie von Beginn an in den Strukturvorschlag. Im Modelling steht neben jeder Aufgabe, wer sie leistet — Mensch, AI oder beide — und wer urteilt, wer prüft, wer einsteht. In der Simulation wird diese Zusammenarbeit durchgespielt, bevor sie real gilt: Wer prüft wen? In der Continuation lernt die Organisation, die Arbeitsteilung selbst weiterzuentwickeln.',
-      'Wir arbeiten dabei so, wie wir gestalten: AI-Agenten unterstützen Analyse, Modellarbeit und Auswertung — das Urteil bleibt besetzt.',
+      'Wo AI die Arbeitsteilung materiell verändert, gehört sie von Beginn an in den Strukturvorschlag. Im Modelling steht neben jeder Aufgabe, wer sie leistet – Mensch, AI oder beide – und wer urteilt, wer prüft, wer einsteht. In der Simulation wird diese Zusammenarbeit durchgespielt, bevor sie real gilt. In der Continuation lernt die Organisation, die Arbeitsteilung selbst weiterzuentwickeln.',
+      'Wir arbeiten dabei so, wie wir gestalten: AI-Agenten unterstützen Analyse, Modellarbeit und Auswertung.',
     ],
     close: ['AI ist eine Ordnungsfrage.', 'Auch in unserer eigenen Arbeit.'],
   },
@@ -202,25 +198,25 @@ export const AI_HUMAN_NATIVE = {
 
 export const ANSATZ = {
   intro:
-    'Wir entwickeln früh ein konkretes Modell der Organisation — als fachlich begründeten, angreifbaren Vorschlag. Er macht strukturelle Alternativen entscheidbar und gibt der gemeinsamen Arbeit einen Gegenstand. In kurzen Zyklen wird er geschärft, durchgespielt und revidiert, bis die Organisation die Entwicklung selbst weiterführt.',
+    'Wir entwickeln früh ein konkretes Modell der Organisation als fachlich begründeten, aber angreifbaren Vorschlag. Er macht strukturelle Alternativen entscheidbar und gibt der gemeinsamen Arbeit einen Gegenstand. In kurzen Zyklen wird er geschärft, durchgespielt und revidiert, bis die Organisation die Entwicklung selbst weiterführt.',
   start: [
-    'Am Anfang steht eine konkrete Problemstellung — so, wie die Organisation sie beschreibt. Diese Beschreibung wird im Projekt geprüft und geschärft: Welche strukturellen Bedingungen prägen das Problem? Welche Leistungen erbringt die bestehende Ordnung, und welche Spannungen erzeugt sie? Wer eine Struktur verteidigt, hat meist gute Gründe. Sie gehören zur Diagnose.',
-    'Auf dieser Grundlage klären wir mit den zuständigen Entscheidungsinstanzen die Kriterien: Was soll sich verändern, was soll bestehen bleiben, welche Konsequenzen werden bewusst in Kauf genommen? Erst diese Kriterien machen einen Strukturvorschlag prüfbar.',
-    'Gestaltet wird dabei immer dieselbe Organisation — ob der Anlass in Organizational Strategy, Governance Design oder Target Operating Model liegt. Je nach Anlass führt eine Perspektive; verbunden bleiben alle drei.',
+    'Am Anfang steht eine konkrete Problemstellung. So, wie die Organisation sie beschreibt. Diese Beschreibung wird im Projekt geprüft und geschärft: Welche strukturellen Bedingungen prägen das Problem? Welche Leistungen erbringt die bestehende Ordnung, und welche Spannungen erzeugt sie? Wer eine Struktur verteidigt, hat meist gute Gründe. Sie gehören zur Diagnose.',
+    'Auf dieser Grundlage klären wir mit den zuständigen Entscheidungsinstanzen die Designkriterien: Was soll sich verändern, was soll bestehen bleiben, welche Konsequenzen werden bewusst in Kauf genommen? Erst diese Kriterien machen einen Strukturvorschlag prüfbar.',
+    'Gestaltet wird dabei immer dieselbe Organisation – ob der Anlass in Organizational Strategy, Governance Design oder Target Operating Model liegt. Je nach Anlass führt eine Perspektive; verbunden bleiben alle drei.',
   ],
   logic: {
     intro:
-      '1789 bringt früh einen begründeten Entwurf ein; die Organisation prüft ihn, widerspricht und entscheidet. Modelling, Simulation und Continuation wechseln sich dabei nicht ab — sie setzen sich durch das ganze Mandat fort und verschieben nur ihr Gewicht.',
+      '1789 bringt früh einen begründeten Entwurf ein; die Organisation prüft ihn, widerspricht und entscheidet. Modelling, Simulation und Continuation wechseln sich dabei nicht ab – sie setzen sich durch das ganze Mandat fort und verschieben nur ihr Gewicht.',
     functions: [
       {
         title: 'Modelling',
         lead: 'Struktur explizit und verhandelbar machen.',
-        body: 'Wir entwickeln konkrete Modelle der Organisation: Rollen, Entscheidungsrechte, Arbeitszusammenhänge, Abhängigkeiten. Jedes Modell ist ein Strohmann-Modell — fachlich begründet und gebaut, um Kritik auszuhalten. An ihm werden Alternativen, Verteilungsfragen und Folgeprobleme konkret: Kritik führt zur Präzisierung, zum Gegenentwurf oder zur begründeten Verwerfung. Auch das ist ein Ergebnis.',
+        body: 'Wir entwickeln konkrete Modelle der Organisation: Rollen, Entscheidungsrechte, Arbeitszusammenhänge, Abhängigkeiten. Jedes Modell ist ein Strohmann-Modell. Fachlich begründet und gebaut, um Kritik auszuhalten. An ihm werden Alternativen, Verteilungsfragen und Folgeprobleme konkret: Kritik führt zur Präzisierung, zum Gegenentwurf oder zur begründeten Verwerfung. Auch das ist ein Ergebnis.',
       },
       {
         title: 'Simulation',
         lead: 'Konsequenzen erfahrbar machen, bevor sie real sind.',
-        body: 'Die Modelle werden an problemrelevanten Situationen durchgespielt. Beteiligte übernehmen Rollen, handeln und entscheiden unter den vorgeschlagenen Bedingungen. Sichtbar wird, was trägt, wo Konflikte entstehen und welche Annahmen das Handeln bestimmen — solange ein Scheitern noch nichts kostet. Die Auswertung liefert begrenzte, nachvollziehbare Erkenntnisse für die Überarbeitung der Modelle und die Vorbereitung der Entscheidung.',
+        body: 'Die Modelle werden an problemrelevanten Situationen durchgespielt. Beteiligte übernehmen Rollen, handeln und entscheiden unter den vorgeschlagenen Bedingungen. Sichtbar wird, was trägt, wo Konflikte entstehen und welche Annahmen das Handeln bestimmen. Die Auswertung liefert begrenzte, nachvollziehbare Erkenntnisse für die Überarbeitung der Modelle und die Vorbereitung der Entscheidung.',
       },
       {
         title: 'Continuation',
@@ -229,8 +225,8 @@ export const ANSATZ = {
       },
     ],
     close: [
-      'Am Modell wird verhandelt. Entschieden wird durch die Instanzen, die dafür legitimiert sind — über Prioritäten, Strukturen und akzeptierte Zielkonflikte. Abstimmung ersetzt keine Entscheidung.',
-      '1789 vertritt begründete Positionen, hält Widersprüche sichtbar und bereitet die Entscheidung vor. Der Vorschlag wird dabei aufgebraucht — der Strohmann verschwindet. Was bleibt, ist eine Struktur, die ihre Verhandlung erinnert und wieder geöffnet werden kann. Auch die ausdrückliche Bestätigung des Bestehenden ist ein Ergebnis.',
+      'Am Modell wird verhandelt. Entschieden wird durch die Instanzen, die dafür legitimiert sind – über Prioritäten, Strukturen und akzeptierte Zielkonflikte. Abstimmung ersetzt keine Entscheidung.',
+      '1789 vertritt begründete Positionen, hält Widersprüche sichtbar und bereitet die Entscheidung vor. Der Vorschlag wird dabei aufgebraucht – der Strohmann verschwindet. Was bleibt, ist eine Struktur, die ihre Verhandlung erinnert und wieder geöffnet werden kann. Auch die ausdrückliche Bestätigung des Bestehenden ist ein Ergebnis.',
     ],
   },
   cta: 'Ein Projekt beginnt selten mit einer fertig formulierten Strukturfrage. Im ersten Gespräch klären wir, welches Problem Ihre Organisation lösen will und ob unsere Arbeitsweise dafür passt.',

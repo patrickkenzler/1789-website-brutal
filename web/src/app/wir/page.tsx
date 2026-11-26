@@ -6,9 +6,9 @@ export default function WirPage() {
   return (
     <main>
       <PageHero
-        line1="Vier Köpfe,"
+        line1="Verschiedene Köpfe,"
         line2="eine Haltung."
-        body="1789 ist klein und bewusst klein gehalten. Wir arbeiten als Partner, nicht als Lieferant — und stehen jedem Mandat persönlich gegenüber. Hier sind die vier Ansprechpartner, mit denen Sie es zu tun haben."
+        body="1789 besteht aus einem kleinen, interdisziplinären Team. Wir arbeiten als Partner, nicht als Lieferant – und stehen jedem Mandat persönlich gegenüber. Unser Büro in Frankfurt am Main dient als Ort der Begegnung, als Werkstatt und als Studio."
       />
 
       {/* ═══ TEAM ═══════════════════════════════════════════════════════════
@@ -32,9 +32,6 @@ export default function WirPage() {
                   coarse
                   ratio="4 / 5"
                 />
-                <div className="card-head">
-                  <span className="unit">{p.role}</span>
-                </div>
                 <div className="card-body">
                   <h2 className="d4" style={{ marginBottom: 'var(--u2)' }}>
                     {p.name}
@@ -98,13 +95,13 @@ export default function WirPage() {
 
               <p className="body" style={{ marginBottom: 'var(--u4)' }}>
                 1789 begleitet Organisationen durch strukturelle Transformation
-                — von der Diagnose über die Gestaltung des Operating Models bis
+                – von der Diagnose über die Gestaltung des Operating Models bis
                 zur Erprobung im Alltag und zur Übergabe in die eigene Hand.
               </p>
 
               <p className="body" style={{ marginBottom: 'var(--u6)' }}>
                 Wir arbeiten auf Augenhöhe, in kleinen Mandaten, mit klarer
-                Verantwortung. Was wir aufbauen, muss ohne uns weitertragen —
+                Verantwortung. Was wir aufbauen, muss ohne uns weitertragen –
                 sonst war es nicht gut genug.
               </p>
 
@@ -112,7 +109,7 @@ export default function WirPage() {
 
               <div style={{ marginTop: 'var(--u6)' }}>
                 <Link href="/kontakt" className="link">
-                  Erstgespräch vereinbaren <span aria-hidden="true">→</span>
+                  Gespräch anfragen <span aria-hidden="true">→</span>
                 </Link>
               </div>
             </div>

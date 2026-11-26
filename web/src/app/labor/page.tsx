@@ -67,7 +67,7 @@ export default function LaborPage() {
         line1="Wo Theorie"
         line2="auf Praxis trifft."
         body={
-          'Im Denk Labor veröffentlichen wir, woran wir denken: Whitepaper aus unserer Forschung, Prototypen aus laufenden Mandaten, Debatten­beiträge zu strukturellen Fragen und Podcast-Folgen mit Menschen, die uns herausfordern. Ein offenes Archiv unserer Auseinandersetzung mit Organisation.'
+          'Im Labor veröffentlichen wir, was uns gerade beschäftigt: Whitepaper aus unserer Forschung, Prototypen aus laufenden Mandaten, Debatten­beiträge zu strukturellen Fragen und Podcast-Folgen mit Menschen, die uns herausfordern. Ein offenes Archiv unserer Auseinandersetzung mit Organisation.'
         }
       />
 
@@ -159,7 +159,7 @@ export default function LaborPage() {
                 <span className="d-thin d-red">direkt im Postfach.</span>
               </h2>
               <p className="body">
-                Etwa einmal im Monat — Whitepaper, Essays, neue Podcastfolgen.
+                Etwa einmal im Monat – Whitepaper, Essays, neue Podcastfolgen.
                 Nie Spam, immer ohne Pflichtfelder.
               </p>
             </div>

@@ -20,9 +20,6 @@ export function LegalPage({
       <header className="slab slab-dense" style={{ paddingTop: 'var(--u8)' }}>
         <div className="shell">
           <h1 className="d1">{title}</h1>
-          <p className="unit" style={{ marginTop: 'var(--u3)' }}>
-            {sections.length} Abschnitte · REV 001 · 1789 Innovations GmbH
-          </p>
         </div>
       </header>
 
