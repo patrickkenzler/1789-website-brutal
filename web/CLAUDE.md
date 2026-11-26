@@ -185,6 +185,40 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       Patrick Breitenbach, Mary-Jane Bolten, Serap Yılmaz-Dreger. Überall so
       zu schreiben, auch im `CONTENT_INVENTORY.md`.
 - [ ] Alle Labor-Links zeigen auf `#`; Kontaktformular hat kein Backend.
+- [x] Marys Handy-Befunde (Punkt 13) im iOS-Simulator geprüft, Safari auf
+      iOS 26, iPhone 17 (26.11.2026). Bilder bei Cases und Stimmen: laden,
+      Halbton trägt. Navigation: Menü → Cases führt auf /projekte/. Pfeil im
+      Button: innerhalb des Kastens, auch bei 320px in Chromium. Keiner der
+      drei Punkte ist reproduzierbar; Marys Beobachtung stammt vom
+      24.11.2026, dazwischen liegen mehrere Commits.
+- [x] Dabei gefunden und behoben: die dritte Hero-Zeile stand auf dem iPhone
+      dauerhaft bei 74.7 % ihrer Box, „Dazwischen entscheidet Organ|isation."
+      Ursache war `animation-fill-mode: both` auf dem `hero-wipe`: Safari
+      pinnt damit den letzten Schritt von steps(4, end) fest. Jetzt
+      `backwards`. **Der Simulator gehört ab sofort zur Prüfung jeder
+      Bewegung und jeder Schlagzeile** — Chromium zeigt diese Klasse Fehler
+      nicht.
+- [x] Der Nachtrag „Die Entscheidung trifft die Organisation." steht links
+      an seiner Spaltenkante statt rechtsbündig am Außenrand (Mary,
+      Punkt 13). Die eckigen Klammern bleiben als mögliche Restursache für
+      den Knopf-Eindruck.
+- [ ] Offen aus Punkt 13, Geschmacks- und Textentscheidungen für Patrick und
+      Mary: ASCII-Kontrast im Hero, Breite der Wortmarke „1789", ob die
+      Einführungstexte rechts bleiben (hängt an Punkt 2), ob „Unser Ansatz"
+      auf der Startseite bleibt, Aubergine für die Schluss-CTA, Umbruch in
+      den Überschriften, Darstellung der fünf Phasen auf /ansatz, das
+      Warnband als Trenner, „Wer beauftragt" ans Ende von /leistungen, die
+      Case-Zuordnung unter „Aus der Praxis", Abstand zwischen den
+      Labor-Beiträgen (hängt an Punkt 15), Länge von /ansatz auf dem Handy.
+- [ ] Geprüft und **kein** Fehler: die Schluss-CTA ist unten bündig, beide
+      Spalten enden exakt auf derselben Linie; der Versatz, den Mary sieht,
+      ist die ragged Oberkante (27px). Auf den Lesefassungs-Cases steht die
+      Kapitelmarke bewusst im linken Rand und die Prosa bei Spalte 6 — das
+      ist die Randspalten-Figur, keine verrutschte Ausrichtung. Die AI-Box
+      ist bei 1440×900 genau 400px hoch und passt auf einen Bildschirm;
+      Marys „zu hoch" ist nicht reproduzierbar. Ihr zweiter Einwand dazu
+      trägt: die ASCII-Grafik darin ist schwach zu erkennen, auf dem Handy
+      noch weniger.
 - [x] Die Linie unter der Abschnittsmarke ist auf dunklem Grund wieder da
       (Mary Punkt 3, 26.11.2026). Sie war vollständig verschwunden: `.strip`
       zeichnete sie in Ink, und Ink ist derselbe Wert wie der dunkle Grund,
