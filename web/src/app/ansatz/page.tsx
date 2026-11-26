@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PHASES, ARC, ANSATZ, AI_HUMAN_NATIVE } from "@/data/approach";
 import { Fragment } from "react";
-import { SectionHead, PageHero, ClosingCta, Hazard } from "@/components/ui";
+import { SectionHead, PageHero, ClosingCta } from "@/components/ui";
 import { AiBand } from "@/components/AiBand";
 
 /* Grounds as on the homepage: dark opens a chapter, light carries the
@@ -152,18 +152,25 @@ export default function AnsatzPage() {
       </section>
 
       {/* ═══ PHASEN ═══════════════════════════════════════════════════════════
-          Fünf gleichrangige Kapitel auf hellem Grund. Der Styleguide setzt den
-          Schnitt spätestens nach zwei hellen Flächen — eine Phase dunkel zu
-          setzen würde aber behaupten, sie wiege schwerer als die anderen, und
-          die fünf sind eine Folge, keine Rangordnung. Den Schnitt trägt
-          deshalb ein Trenner: das Warnband, bedeutungsfrei wie Barcode und
-          Punktfeld, bisher als einzige Textur des Systems ungenutzt. Es steht
-          nach der zweiten und nach der vierten Phase. */}
+          Fünf gleichrangige Kapitel. Der Styleguide setzt den Schnitt
+          spätestens nach zwei hellen Flächen, eine Phase dunkel zu setzen
+          würde aber behaupten, sie wiege schwerer als die anderen, und die
+          fünf sind eine Folge, keine Rangordnung.
+          Hier stand dafür das Warnband nach der zweiten und der vierten
+          Phase. Mary hat keinen Grund darin gelesen, und sie hat recht: der
+          Trenner behauptet eine Zäsur an einer Stelle, an der inhaltlich
+          keine ist. Stattdessen wechselt der Grund von Phase zu Phase
+          zwischen Papier und der vertieften Stufe desselben Papiers. Das
+          unterscheidet sie, ohne eine von ihnen auszuzeichnen, und hält sie
+          als eine Strecke zusammen — es bleibt ein Register, nicht zwei
+          Gründe (Patrick, 26.11.2026). */}
       {PHASES.map((p, i) => {
         return (
           <Fragment key={p.num}>
-            {(i === 2 || i === 4) && <Hazard />}
-            <section id={`phase-${p.num}`} className="slab">
+            <section
+              id={`phase-${p.num}`}
+              className={i % 2 ? 'slab slab-sunk' : 'slab'}
+            >
               <div className="shell">
                 <SectionHead
                   label={p.metaLong ?? p.meta}

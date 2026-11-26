@@ -214,6 +214,20 @@ export default function Styleguide() {
           </p>
         </Demo>
 
+        <Demo label=".slab-sunk – die vertiefte Stufe des hellen Grundes">
+          <p className="body">
+            Kein fünfter Grund, sondern dasselbe helle Register auf{' '}
+            <code>--sunk</code>, dem Wert für vertiefte Flächen. Papier und
+            vertieftes Papier liegen 1,13:1 auseinander: an einer Kante
+            sichtbar, über eine Strecke leise genug, dass die Abschnitte eine
+            Folge bleiben. Gedacht für mehrere gleichrangige Kapitel
+            hintereinander, wo ein Trenner eine Zäsur behaupten würde, die es
+            nicht gibt – die fünf Phasen auf /ansatz wechseln so. Nicht unter
+            Flächen legen, die auf Hover reagieren: <code>--sunk</code> ist
+            deren Rückmeldung und verschwindet auf sich selbst.
+          </p>
+        </Demo>
+
         <p className="close-line spec-note">
           Eine dunkle Insel in einer anderen Fläche behält ihre eigenen Werte.
           Sonst färbt der Grund den Text der Insel ein, bis er unsichtbar wird.

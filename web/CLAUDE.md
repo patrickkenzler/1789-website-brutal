@@ -185,6 +185,16 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       Patrick Breitenbach, Mary-Jane Bolten, Serap Yılmaz-Dreger. Überall so
       zu schreiben, auch im `CONTENT_INVENTORY.md`.
 - [ ] Alle Labor-Links zeigen auf `#`; Kontaktformular hat kein Backend.
+- [x] Drei Entscheidungen aus Punkt 13 umgesetzt (Patrick, 26.11.2026):
+      das Warnband auf /ansatz ist weg, die fünf Phasen wechseln stattdessen
+      zwischen Papier und `.slab-sunk`, der vertieften Stufe desselben
+      Papiers (1.13:1 an der Kante) — unterscheidbar, ohne eine Phase
+      auszuzeichnen. „Wer beauftragt" steht am Ende von /leistungen, die
+      Grundfolge ist damit L O D A. Die Case-Zuordnung unter „Aus der
+      Praxis" entspricht Marys Liste; alle sechs verlinkten Cases existieren.
+- [ ] `Hazard` in `ui.tsx` und `.hazard` in `globals.css` sind seitdem von
+      keiner Seite mehr benutzt und stehen auch nicht im Styleguide. Entweder
+      in den Styleguide aufnehmen oder streichen.
 - [x] Marys Handy-Befunde (Punkt 13) im iOS-Simulator geprüft, Safari auf
       iOS 26, iPhone 17 (26.11.2026). Bilder bei Cases und Stimmen: laden,
       Halbton trägt. Navigation: Menü → Cases führt auf /projekte/. Pfeil im

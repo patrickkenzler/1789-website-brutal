@@ -34,19 +34,6 @@ export default function LeistungenPage() {
         </div>
       </header>
 
-      {/* ═══ MANDAT ═══════════════════════════════════════════════════════════
-          Dunkel, weil die Strecke sonst von der Kopfzeile bis zur CTA auf
-          einem Grund läge. Wer beauftragt, mit welchem Anlass, unter welcher
-          Perspektive — ein Absatz, der für sich steht.                    */}
-      <section className="slab slab-invert">
-        <div className="shell">
-          <SectionHead label="Wer beauftragt" />
-          <div className="g12">
-            <p className="body-lg c8">{SERVICES_INTRO.mandate}</p>
-          </div>
-        </div>
-      </section>
-
       {/* ═══ DIE DREI LEISTUNGEN ══════════════════════════════════════════════
           Die laute Fläche der Seite, einmal: die drei Datenblätter stehen auf
           Orange, in Ink gezeichnet. Auf diesem Grund gibt es keine zweite
@@ -150,6 +137,23 @@ export default function LeistungenPage() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ MANDAT ═══════════════════════════════════════════════════════════
+          Stand bis zum 26.11.2026 vor den Leistungen. Mary wollte es ans
+          Ende: die Seite führt dann mit dem, was 1789 anbietet, und sagt
+          danach, wer so etwas beauftragt. Dunkel bleibt es, weil es sonst
+          zwischen Orange und der Schluss-CTA keinen Schnitt gäbe; die
+          Grundfolge der Seite ist damit hell, orange, dunkel, Akzent.
+          Wer beauftragt, mit welchem Anlass, unter welcher Perspektive —
+          ein Absatz, der für sich steht.                                  */}
+      <section className="slab slab-invert">
+        <div className="shell">
+          <SectionHead label="Wer beauftragt" />
+          <div className="g12">
+            <p className="body-lg c8">{SERVICES_INTRO.mandate}</p>
           </div>
         </div>
       </section>
