@@ -467,13 +467,6 @@ export default function Home() {
                   Podcasts, Essays, Whitepaper und Experimente – was im
                   Hintergrund unserer Arbeit entsteht.
                 </p>
-                <div className="lab-newsletter">
-                  <span className="eyebrow">✉ Newsletter</span>
-                  <Link href="/labor#newsletter" className="link">
-                    Was im Labor entsteht – direkt im Postfach.{' '}
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
               </div>
             </div>
           </div>

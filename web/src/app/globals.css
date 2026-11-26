@@ -1311,15 +1311,6 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
 }
 .row:hover .lab-row-title { color: var(--paper); }
 .lab-colophon { margin-top: auto; }
-.lab-newsletter {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--u);
-  margin-top: var(--u4);
-  padding-top: var(--u3);
-  border-top: var(--rule);
-}
 
 /* One column: the lead plate takes a ratio again. */
 @media (max-width: 1180px) {
