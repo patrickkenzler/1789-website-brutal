@@ -627,12 +627,48 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 .slab-invert.slab-invert .body strong,
 .slab-invert.slab-invert .body-lg strong { color: var(--paper); }
 
+/* Schwere Linien zeichnen auf diesem Grund in Alabaster. --ink und --stock
+   sind derselbe Wert (#11151C), eine Ink-Linie auf dem dunklen Grund hat
+   also 1.00:1 und verschwindet vollständig. Das betraf jede
+   Abschnittsmarke auf dunklem Grund, zehn Stellen auf sieben Seiten
+   (Mary, Punkt 3).
+   Der Wert ist nicht neu: die Unterstreichung von .link nimmt auf diesem
+   Grund längst var(--paper), bei derselben Stärke (--bar) und derselben
+   Aufgabe. Ink auf hell und Alabaster auf dunkel messen beide 14.5:1, der
+   Grund dreht die Zeichenfarbe und sonst nichts.
+   Die Unterscheidung, die hier gilt: Linien, die die Lesestruktur tragen
+   (Abschnittsmarke, Statement), nehmen den vollen Gegenwert in Alabaster.
+   Fächer und Rahmen bleiben bei den gedämpften Werten dieses Grundes
+   (#2C333B / #3A424B) — sie kompartimentieren, sie gliedern nicht.          */
+.slab-invert.slab-invert .strip { border-bottom-color: var(--paper); }
+.slab-invert.slab-invert .statement,
+.slab-invert.slab-invert hr,
+.slab-invert.slab-invert .rule,
+.slab-invert.slab-invert .rule-bar { border-top-color: var(--paper); }
+/* Nur die Platte ohne Bild: .slab-invert .plate.dotfield legt ihr Stock als
+   Fläche unter, und ihre Grundlinie stand darauf wieder bei 1.00:1. Dieselbe
+   Regel, die den Fall erzeugt, räumt ihn auch weg. Der Wert ist der, den
+   .slab-invert .tile .plate hier längst trägt.
+   Nicht alle Platten: eine Platte mit Bild behält ihren Alabaster-Körper
+   (--sunk) auch auf diesem Grund, ihre Ink-Grundlinie liegt dort bei 12.67:1
+   und ist in Ordnung — das sind die Case-Karten der Startseite.             */
+.slab-invert .plate.dotfield { border-bottom-color: #2C333B; }
+
 /* Accent slab — full Molten Orange. The loudest unit; use once a page. */
 .slab-red { background: var(--red); color: var(--red-ink); }
 .slab-red .d0, .slab-red .d1, .slab-red .d2,
 .slab-red .d3, .slab-red .d4 { color: var(--red-ink); }
 .slab-red .body, .slab-red .body-lg { color: rgba(221, 229, 227, 0.85); }
 .slab-red .eyebrow { color: rgba(221, 229, 227, 0.72); }
+/* Derselbe Fall wie auf dunkel, nur noch nicht eingetreten: Ink auf
+   Aubergine liegt bei 1.9:1. .link und .chip tragen ihren Wert für diesen
+   Grund schon; dass die schweren Linien ihn nicht hatten, ist genau die
+   Lücke, die den Fehler auf dunkel verursacht hat.                          */
+.slab-red .strip { border-bottom-color: var(--red-ink); }
+.slab-red .statement,
+.slab-red hr,
+.slab-red .rule,
+.slab-red .rule-bar { border-top-color: var(--red-ink); }
 
 /* Orange slab — the loudest ground the system has. Everything on it is set
    in ink (the only value with enough contrast on this orange); the second

@@ -376,6 +376,16 @@ export default function Styleguide() {
                 </div>
               ))}
             </div>
+            <p className="body">
+              Die Stärke steht fest, die Farbe nicht: eine Linie zeichnet in
+              der Farbe, die ihr Grund führt. Auf Alabaster ist das Ink, auf
+              dem dunklen Grund Alabaster, auf Aubergine der helle Gegenwert.
+              Ink und Stock sind derselbe Wert, eine Ink-Linie auf dunklem
+              Grund misst also 1.00:1 und verschwindet vollständig.
+              Gliedernde Linien (Abschnittsmarke, Statement) nehmen den vollen
+              Gegenwert; Kompartimentkanten bleiben bei den gedämpften Werten
+              des Grundes.
+            </p>
           </Demo>
         </div>
 
