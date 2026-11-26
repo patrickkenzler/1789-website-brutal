@@ -38,6 +38,11 @@ druckt sie nach `public/1789-designsystem.pdf`. Kurzfassung:
 - Zwei Schriften: **Martian Mono** (Makro, `.d0`–`.d4`), **JetBrains Mono** (alles andere)
 - Keine Radien (global per Reset erzwungen), keine Schatten, keine Verläufe
 - Kompartimente entstehen durch **Linien**, nicht durch Abstände → `.hairgrid`, `.box`, `hr`
+- Eine Linie zeichnet in der Farbe, die ihr Grund führt. `--ink` und `--stock`
+  sind derselbe Wert (#11151C), eine Ink-Linie auf dunklem Grund misst also
+  1.00:1. Gliedernde Linien (`.strip`, `.statement`, `hr`) nehmen auf dunkel
+  `--paper`, auf Aubergine `--red-ink`; Kompartimentkanten (`.box`, `.ruled`,
+  `.plate` ohne Bild) bleiben bei den gedämpften Werten #2C333B / #3A424B.
 - Bewegung: ein Auftritt (Hero), Rückmeldung in 80 ms, eine Atmosphäre.
   **Keine Scroll-Reveals.**
 
@@ -180,6 +185,14 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       Patrick Breitenbach, Mary-Jane Bolten, Serap Yılmaz-Dreger. Überall so
       zu schreiben, auch im `CONTENT_INVENTORY.md`.
 - [ ] Alle Labor-Links zeigen auf `#`; Kontaktformular hat kein Backend.
+- [x] Die Linie unter der Abschnittsmarke ist auf dunklem Grund wieder da
+      (Mary Punkt 3, 26.11.2026). Sie war vollständig verschwunden: `.strip`
+      zeichnete sie in Ink, und Ink ist derselbe Wert wie der dunkle Grund,
+      also 1.00:1. Zehn Stellen auf sieben Seiten. Auf dunkel nimmt sie jetzt
+      `--paper` (14.28:1, derselbe Wert wie Ink auf hell), auf Aubergine
+      `--red-ink`, bevor dort die erste Marke steht. Mitgenommen: `.statement`,
+      `hr`/`.rule`/`.rule-bar` und die bildlose Platte auf dunkel. Die Regel
+      steht in Kapitel 05 des Styleguides.
 - [x] Newsletter gestrichen (Patrick, 26.11.2026). Es gibt keinen, und das
       Formular auf /labor schickte an eine unvollständige Mailchimp-Adresse
       ohne Listen-Kennung — es nahm Anmeldungen entgegen, die nirgends
