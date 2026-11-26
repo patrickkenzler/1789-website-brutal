@@ -46,7 +46,11 @@ export const SERVICES: readonly Service[] = [
     fit: 'ein Anlass drängt und die Strukturfrage dahinter noch nicht benannt ist.',
     frame:
       '6 bis 10 Wochen · Führung und ausgewählte Schlüsselpersonen, punktuelle Beteiligung in der Organisation',
-    cases: [{ slug: 'innovationskraft-durch-zusammenarbeit', label: 'WD-40' }],
+    cases: [
+      { slug: 'innovationskraft-durch-zusammenarbeit', label: 'WD-40' },
+      { slug: 'skalierung-und-qualitaet', label: 'greyt' },
+      { slug: 'integration', label: 'teccle group' },
+    ],
   },
   {
     id: 'strukturentscheidung',
@@ -68,6 +72,8 @@ export const SERVICES: readonly Service[] = [
     cases: [
       { slug: 'integration', label: 'teccle group' },
       { slug: 'kohaerente-vision', label: 'METRO.digital' },
+      { slug: 'skalierung-und-qualitaet', label: 'greyt' },
+      { slug: 'motivieren-und-entwickeln', label: 'WTS' },
     ],
   },
   {
@@ -89,11 +95,12 @@ export const SERVICES: readonly Service[] = [
     frame:
       '6 bis 18 Monate · künftige Verantwortliche und breite Beteiligung der Organisation',
     cases: [
+      { slug: 'integration', label: 'teccle group' },
       {
         slug: 'effektivitaet-und-kundennaehe',
         label: 'Procter & Gamble, Customer Service Organization',
       },
-      { slug: 'integration', label: 'teccle group' },
+      { slug: 'skalierung-und-qualitaet', label: 'greyt' },
     ],
   },
 ]

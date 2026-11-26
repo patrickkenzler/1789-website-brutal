@@ -584,6 +584,18 @@ a.card:hover .plate::before { background-position: 3px 4px; }
 .slab-dense { padding-block: var(--pad-dense); }
 .slab-flush { padding-block: 0; }
 
+/* Kein fünfter Grund, sondern dasselbe helle Register eine Stufe tiefer:
+   --sunk ist der Wert, den das System ohnehin für vertiefte Flächen führt.
+   Papier und vertieftes Papier liegen 1.13:1 auseinander — an einer Kante
+   sichtbar, über eine Strecke hinweg leise genug, dass die Abschnitte eine
+   Folge bleiben. Nur für die Phasenstrecke auf /ansatz gedacht, wo fünf
+   gleichrangige Kapitel hintereinander stehen und ein Trenner zwischen
+   zweien von ihnen eine Zäsur behaupten würde, die es nicht gibt.
+   Achtung: --sunk ist auch der Hover-Wert von .tile, .card, .row und
+   .arc-cell. Auf diesem Grund verschwindet deren Rückmeldung, er gehört
+   deshalb nicht unter Flächen, die darauf reagieren.                      */
+.slab-sunk { background: var(--sunk); }
+
 /* Inverted slab — the dark (Ink Black) register. The accent flips to Electric
    Aqua here (redefining --red in scope), with ink text on any aqua fill. */
 .slab-invert {
