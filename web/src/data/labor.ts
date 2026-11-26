@@ -35,12 +35,12 @@ export const ITEMS: LaborItem[] = [
   {
     type: 'Essay',
     title:
-      'Nähe als Organisationsprinzip — warum wir Corporate Therapy auf die Bühne bringen',
+      'Nähe als Organisationsprinzip – warum wir Corporate Therapy auf die Bühne bringen',
     author: 'Human Nagafi',
     date: 'April 2024',
     readTime: '8 Min',
     excerpt:
-      'Eine Reflexion über Distanz, Vertrauen und die Frage, wieso Organisationen den Mut zur Nähe oft erst auf der Bühne finden — und was das für moderne Operating Models bedeutet.',
+      'Eine Reflexion über Distanz, Vertrauen und die Frage, wieso Organisationen den Mut zur Nähe oft erst auf der Bühne finden – und was das für moderne Operating Models bedeutet.',
     teaser:
       'Eine Reflexion über Distanz, Vertrauen und die Frage, wieso Organisationen den Mut zur Nähe oft erst auf der Bühne finden.',
     image: '/labor/Artikel_Cover_1.jpg',
@@ -54,7 +54,7 @@ export const ITEMS: LaborItem[] = [
     duration: '47 Min',
     episode: 142,
     excerpt:
-      'Wie das Netz unsere Vorstellung von Öffentlichkeit, Macht und Selbstorganisation verändert hat — und welche Strukturen es heute braucht.',
+      'Wie das Netz unsere Vorstellung von Öffentlichkeit, Macht und Selbstorganisation verändert hat – und welche Strukturen es heute braucht.',
     image: '/labor/Artikel_Cover_2.webp',
     href: '#',
   },
@@ -75,17 +75,17 @@ export const ITEMS: LaborItem[] = [
     author: 'Pilot bei greyt.',
     date: 'Februar 2024',
     excerpt:
-      'Ein Format, das wöchentliche Entscheidungsroutinen so verankert, dass Verantwortung sichtbar wird — und Strategie nicht im Statusmeeting verschwindet.',
+      'Ein Format, das wöchentliche Entscheidungsroutinen so verankert, dass Verantwortung sichtbar wird – und Strategie nicht im Statusmeeting verschwindet.',
     href: '#',
   },
   {
     type: 'Debatte',
     title: 'Selbstorganisation ist kein Selbstläufer',
-    author: 'Mary Jane Bolton',
+    author: 'Mary-Jane Bolten',
     date: 'Februar 2024',
     readTime: '6 Min',
     excerpt:
-      'Warum sich Selbstorganisation nicht installieren lässt — und welche Voraussetzungen Führung schaffen muss, damit sie überhaupt tragen kann.',
+      'Warum sich Selbstorganisation nicht installieren lässt – und welche Voraussetzungen Führung schaffen muss, damit sie überhaupt tragen kann.',
     href: '#',
   },
   {
@@ -109,13 +109,13 @@ export const ITEMS: LaborItem[] = [
   },
   {
     type: 'Podcast',
-    title: 'Strategie und Struktur — was zuerst?',
+    title: 'Strategie und Struktur – was zuerst?',
     guest: 'Patrick Breitenbach',
     date: 'Januar 2024',
     duration: '52 Min',
     episode: 141,
     excerpt:
-      'Eine Debatte über die Henne-Ei-Frage der Organisationsentwicklung — und warum beide Antworten meistens unvollständig sind.',
+      'Eine Debatte über die Henne-Ei-Frage der Organisationsentwicklung – und warum beide Antworten meistens unvollständig sind.',
     href: '#',
   },
   {
@@ -125,7 +125,7 @@ export const ITEMS: LaborItem[] = [
     date: 'Dezember 2023',
     readTime: '10 Min',
     excerpt:
-      'Warum der häufigste Reflex — "wir brauchen eine neue Aufbauorganisation" — meist die falsche Antwort auf das richtige Problem ist.',
+      'Warum der häufigste Reflex – "wir brauchen eine neue Aufbauorganisation" – meist die falsche Antwort auf das richtige Problem ist.',
     href: '#',
   },
   {
@@ -145,17 +145,17 @@ export const ITEMS: LaborItem[] = [
     duration: '51 Min',
     episode: 140,
     excerpt:
-      'Was es wirklich braucht, wenn Wirkung das Geschäftsmodell ist — und wie sich Strukturen anders verhalten müssen.',
+      'Was es wirklich braucht, wenn Wirkung das Geschäftsmodell ist – und wie sich Strukturen anders verhalten müssen.',
     href: '#',
   },
   {
     type: 'Debatte',
     title: 'KI ist kein Add-on zur Organisation',
-    author: 'Mary Jane Bolton',
+    author: 'Mary-Jane Bolten',
     date: 'November 2023',
     readTime: '7 Min',
     excerpt:
-      'Warum die meisten KI-Initiativen scheitern, weil sie als Tool-Einführung behandelt werden — und nicht als organisationaler Eingriff.',
+      'Warum die meisten KI-Initiativen scheitern, weil sie als Tool-Einführung behandelt werden – und nicht als organisationaler Eingriff.',
     href: '#',
   },
 ]
@@ -176,7 +176,7 @@ export const FORMATS = [
     cadence: 'wöchentlich',
     name: 'Corporate Therapy',
     blurb:
-      'Gespräche über das Innere von Organisationen — Strukturen, Routinen, Wachstumsschmerzen.',
+      'Gespräche über das Innere von Organisationen – Strukturen, Routinen, Wachstumsschmerzen.',
     cta: 'Alle Folgen →',
     href: '#',
   },

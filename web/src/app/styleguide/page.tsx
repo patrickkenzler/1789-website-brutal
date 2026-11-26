@@ -30,7 +30,7 @@ import {
  */
 
 export const metadata = {
-  title: '1789 — Designsystem',
+  title: '1789 – Designsystem',
   description: 'Spezifikation des Designsystems: Grund, Typografie, Raster, Komponenten, Bewegung.',
 }
 
@@ -111,13 +111,13 @@ export default function Styleguide() {
       <Chapter
         num="01"
         title="Prinzip"
-        lead="Fünf Festlegungen tragen das System. Alles Weitere folgt aus ihnen — und was ihnen widerspricht, gehört nicht hinein."
+        lead="Fünf Festlegungen tragen das System. Alles Weitere folgt aus ihnen – und was ihnen widerspricht, gehört nicht hinein."
       >
         <ol className="spec-rules">
           {[
             ['Ein Substrat', 'Alabaster Grey trägt jede Seite. Andere Flächen sind Ausnahmen mit Begründung, keine Alternativen.'],
             ['Ein Akzent je Grund', 'Aubergine auf hell, Molten Orange auf dunkel. Electric Aqua bleibt den Bildern vorbehalten. Nie zwei Akzente nebeneinander.'],
-            ['Nur Monospace', 'Zwei Schnitte, Martian Mono und JetBrains Mono. Kontrast entsteht aus Größe, Gewicht und Breitenachse — nie aus einem Wechsel der Schriftklasse.'],
+            ['Nur Monospace', 'Zwei Schnitte, Martian Mono und JetBrains Mono. Kontrast entsteht aus Größe, Gewicht und Breitenachse – nie aus einem Wechsel der Schriftklasse.'],
             ['Neunzig Grad', 'Keine Radien, keine Schatten, keine Verläufe, keine Transparenz als Effekt. Die Geometrie ist absolut.'],
             ['Linien statt Abstände', 'Was zusammengehört, steht in einem Fach. Die Trennung ist eine Linie, kein Weißraum.'],
           ].map(([t, b], i) => (
@@ -161,7 +161,7 @@ export default function Styleguide() {
           ))}
         </div>
 
-        <Demo label="Ink — vier Stufen, kein Grau dazwischen">
+        <Demo label="Ink – vier Stufen, kein Grau dazwischen">
           <div className="hairgrid hairgrid-4">
             {INKS.map((s) => (
               <div key={s.token} className="pad-sm spec-swatch">
@@ -209,7 +209,7 @@ export default function Styleguide() {
           <p className="d3 spec-sequence">{GROUND_SEQUENCE}</p>
           <p className="body">
             Nie zwei dunkle Flächen nebeneinander, nie mehr als zwei helle in
-            Folge. So entsteht ein Schnitt etwa alle drei Sektionen — Rhythmus
+            Folge. So entsteht ein Schnitt etwa alle drei Sektionen – Rhythmus
             ohne mechanischen Wechsel.
           </p>
         </Demo>
@@ -231,7 +231,7 @@ export default function Styleguide() {
             <div key={t.cls} className="spec-type-row">
               <div className="spec-type-meta">
                 <span className="data spec-swatch-name">
-                  .{t.cls} — {t.desktop}
+                  .{t.cls} – {t.desktop}
                 </span>
                 <span className="unit">{t.role}</span>
                 <span className="unit">
@@ -252,7 +252,7 @@ export default function Styleguide() {
         </div>
 
         {/* Die Stufen im Zusammenspiel — so steht die Skala auf der Seite. */}
-        <Demo label="Im Layout — die Stufen im Zusammenspiel">
+        <Demo label="Im Layout – die Stufen im Zusammenspiel">
           <div className="spec-specimen">
             <span className="eyebrow">Sektionsmarke · .eyebrow 11px</span>
             <h3 className="d2">
@@ -287,7 +287,7 @@ export default function Styleguide() {
             <p className="body-sm spec-specimen-note">
               Kartentitel 20px, Unterzeile im dünnen Schnitt, Fließtext 14px,
               Schlusssatz fett über einer Haarlinie. Vier Stufen auf engem
-              Raum — unterschieden durch Größe, Gewicht und Linie, nie durch
+              Raum – unterschieden durch Größe, Gewicht und Linie, nie durch
               eine zweite Schrift.
             </p>
           </div>
@@ -324,7 +324,7 @@ export default function Styleguide() {
             Monospace bleibt bei 14px mit offenem Zeilenabstand und einem
             Satzspiegel von {MEASURES.bodyMeasure} lesbar, darüber nicht mehr.{' '}
             <strong>Hervorhebungen</strong> tragen eine Unterlegung aus einer
-            Haarlinie im Akzent — kein Farbblock, der wie ein Textmarker wirkt.
+            Haarlinie im Akzent – kein Farbblock, der wie ein Textmarker wirkt.
           </p>
         </Demo>
 
@@ -347,7 +347,7 @@ export default function Styleguide() {
         lead="Zwölf Spalten, ein 8px-Modul, drei Linienstärken. Elemente rasten ein, sie schweben nicht."
       >
         <div className="g2 spec-cols">
-          <Demo label=".hairgrid — das 1px-Raster">
+          <Demo label=".hairgrid – das 1px-Raster">
             <div className="hairgrid hairgrid-3">
               <div className="pad-sm"><span className="unit">A</span></div>
               <div className="pad-sm"><span className="unit">B</span></div>
@@ -371,7 +371,7 @@ export default function Styleguide() {
                     aria-hidden="true"
                   />
                   <span className="unit">
-                    {r.px} — {r.use}
+                    {r.px} – {r.use}
                   </span>
                 </div>
               ))}
@@ -412,7 +412,7 @@ export default function Styleguide() {
           <p className="body">
             Unter 1024px fällt jede Spalte unter halber Breite auf die Hälfte,
             jede darüber auf die volle. Unter 720px steht alles in einer
-            Spalte. Das Raster reflowt nicht elegant, es kollabiert — und
+            Spalte. Das Raster reflowt nicht elegant, es kollabiert – und
             behält dabei alle Linien.
           </p>
           <p className="body">
@@ -427,12 +427,12 @@ export default function Styleguide() {
             sonst als zwei halbe Säulen nebeneinander, zwischen denen das Auge
             einen Anschluss sucht, den es nicht gibt. Ein Kapitel mit höchstens
             zwei Absätzen läuft deshalb einspaltig im Lesemaß der Seite.
-            Gezählt wird die Prosa — Bild, Aufzählung und Stimme brechen
+            Gezählt wird die Prosa – Bild, Aufzählung und Stimme brechen
             ohnehin beide Spalten.
           </p>
           <p className="body">
             Ein Bild eröffnet den Rumpf seines Kapitels oder folgt direkt auf
-            ein spaltenbrechendes Element — nur dort steht es auf derselben
+            ein spaltenbrechendes Element – nur dort steht es auf derselben
             Linie wie der Text daneben. Seine Oberkante sitzt dabei auf der
             Versalhöhe dieses Textes, nicht auf dessen Zeilenkasten. Ein
             Bildplatz ohne Vorlage bleibt ein gehaltener Platz: vertiefter
@@ -462,7 +462,7 @@ export default function Styleguide() {
             </div>
           </Demo>
 
-          <Demo label=".readout — technische Anzeige">
+          <Demo label=".readout – technische Anzeige">
             <div className="box regmark" style={{ padding: 'var(--u3)' }}>
               <dl className="readout">
                 <dt>Unit</dt>
@@ -476,7 +476,7 @@ export default function Styleguide() {
           </Demo>
         </div>
 
-        <Demo label=".ruled — Aufzählung als geruhte Zeilen">
+        <Demo label=".ruled – Aufzählung als geruhte Zeilen">
           <ul className="ruled">
             <li>
               <span className="d4">Jede Zeile ein Kompartiment</span>
@@ -484,7 +484,7 @@ export default function Styleguide() {
             <li>
               <span className="body">
                 Die Marke steht im Akzent. Der Eintrag steht im Register, das
-                der Kontext verlangt — Makro in einer Liste von Ergebnissen,
+                der Kontext verlangt – Makro in einer Liste von Ergebnissen,
                 Fließtext in einem Bericht.
               </span>
             </li>
@@ -495,17 +495,17 @@ export default function Styleguide() {
         </Demo>
 
         <div className="g2 spec-cols">
-          <Demo label=".plate — jedes Bild wird ein Raster">
+          <Demo label=".plate – jedes Bild wird ein Raster">
             <Plate src="/projects/wd40.jpg" alt="Beispiel" ratio="16 / 10" />
             <p className="body">
               Zwei Punktraster liegen über dem Bild: das Ink-Raster und ein
-              zweites im Akzent, um Bruchteile versetzt — der Druck, der nicht
+              zweites im Akzent, um Bruchteile versetzt – der Druck, der nicht
               sauber steht. Ohne diesen Versatz wirkt das Raster wie ein Filter
               statt wie etwas Gedrucktes.
             </p>
           </Demo>
 
-          <Demo label=".plate ohne Bild — der Name wird das Bild">
+          <Demo label=".plate ohne Bild – der Name wird das Bild">
             <Plate label="Teccle Group" note={null} ratio="16 / 10" />
             <p className="body">
               Fehlt ein Foto, trägt die Fläche den Namen im Punktfeld. Kein
@@ -514,7 +514,7 @@ export default function Styleguide() {
           </Demo>
         </div>
 
-        <Demo label=".tension — Karte mit Rückseite">
+        <Demo label=".tension – Karte mit Rückseite">
           <div className="hairgrid hairgrid-2 tensions">
             <Tension
               title="Neue Strategie."
@@ -541,7 +541,7 @@ export default function Styleguide() {
         </Demo>
 
         <div className="g2 spec-cols">
-          <Demo label=".phase — Zelle mit Blaupause">
+          <Demo label=".phase – Zelle mit Blaupause">
             <div className="hairgrid hairgrid-2">
               {[0, 1].map((i) => (
                 <div key={i} className="phase">
@@ -600,7 +600,7 @@ export default function Styleguide() {
       <Chapter
         num="07"
         title="Bewegung"
-        lead="Drei Arten von Bewegung, sonst keine. Jede ist mechanisch — in Stufen, nicht in Kurven."
+        lead="Drei Arten von Bewegung, sonst keine. Jede ist mechanisch – in Stufen, nicht in Kurven."
       >
         <div className="hairgrid hairgrid-3">
           {[

@@ -3,7 +3,7 @@ import { LegalPage } from '@/components/LegalPage'
 import { IMPRESSUM } from '@/data/legal'
 
 export const metadata: Metadata = {
-  title: 'Impressum — 1789',
+  title: 'Impressum – 1789',
   robots: { index: false, follow: false },
 }
 

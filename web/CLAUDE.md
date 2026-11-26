@@ -168,11 +168,13 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 
 - [ ] `/labor/svg-morph` ist ein Alt-Werkzeug und noch **nicht** auf das neue System
       umgestellt — einzige Stelle mit Alt-Tokens (terra/sage).
-- [ ] Für die vierte Person stehen Rolle und Kurzprofil noch aus, bei Patrick
-      Breitenbach das Kurzprofil. Der Name Serap Yılmaz-Dreger stammt aus der
-      WD-40-Lesefassung, nicht aus einer Angabe des Kunden.
-- [ ] `src/data/team.ts` schreibt „Mary Jane Bolton", die Lesefassungen und
-      `cases.ts` schreiben „Mary-Jane Bolten". Mit dem Kunden zu klären.
+- [x] Kurzprofile aller vier stehen (Redaktion Mary, 24.11.2026). Die
+      Teamkarten auf /wir tragen bewusst keine Rollen mehr, auch keine
+      Titel wie Gründer oder Geschäftsführung. „Co-Host von Corporate
+      Therapy“ steht jeweils am Ende des Profils.
+- [x] Schreibweise der Namen von Mary bestätigt (23.11.2026): Human Nagafi,
+      Patrick Breitenbach, Mary-Jane Bolten, Serap Yılmaz-Dreger. Überall so
+      zu schreiben, auch im `CONTENT_INVENTORY.md`.
 - [ ] Alle Labor-Links zeigen auf `#`; Kontaktformular hat kein Backend.
 - [ ] Die Schluss-CTA wiederholt auf den Lesefassungs-Cases die Aussage des
       Schlusssatzes („beginnt mit dem Gap“). Entweder die stehende Zeile auf
@@ -203,12 +205,19 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       korrigiert dort außerdem drei Angaben des Bestands: Lead Human Nagafi
       statt Patrick Breitenbach, Dauer zwölf statt neun Monate, Sektor
       Konsumgüter statt Consumer Goods.
-- [ ] Vier Stellen stehen verbatim aus den Lesefassungen auf der Seite,
-      obwohl sie Fehler sind: bei greyt „Hieraus verhandelten 1789 und die
-      Gründer daraus"; in mehreren Dokumenten ein Bindestrich als Gedankenstrich
-      („ - "); bei Procter & Gamble in der neuen Ordnung „Jeder Squad hat acht
-      bis zwölf Mitglieder. Sie verantwortet …" (Genus wechselt im Satz) und
-      „in jedem Squads". Zu korrigieren ist das im Quelldokument, nicht hier.
-- [ ] Zwei E-Mail-Adressen im Bestand: Footer `hello@1789consulting.de`,
-      Kontaktseite `hello@1789.consulting` — bewusst so übernommen, mit dem
-      Kunden zu klären.
+- [x] Vier Fehler aus den Lesefassungen sind auf der Seite korrigiert
+      (Redaktion Mary, 24.11.2026): greyt „Hieraus verhandelten 1789 und die
+      Gründer drei Säulen", Bindestrich als Gedankenstrich durch „–" ersetzt,
+      Procter & Gamble „Er verantwortet …" und „in jedem Squad". Die
+      Quelldokumente tragen die Fehler noch.
+- Gedankenstriche im sichtbaren Text sind Halbgeviertstriche (–), nicht
+  Geviertstriche (—). Gilt für alle neuen Texte.
+- [x] Kontakt-E-Mail entschieden (Patrick, 26.11.2026): Footer, Kontaktseite
+      und Impressum tragen `mary-jane@1789innovations.com`, die Arbeitsadresse.
+      Sie ersetzt die beiden abweichenden Altadressen `hello@1789consulting.de`
+      und `hello@1789.consulting`.
+- [ ] Das Impressum führt **keine** Telefonnummer. Marys Redaktion trug dort
+      vorläufig ihre private Mobilnummer; welche Nummer öffentlich stehen soll,
+      ist offen (Patrick, 26.11.2026). § 5 DDG verlangt keine, die E-Mail
+      genügt für die schnelle Kontaktaufnahme — eine Nummer wäre trotzdem
+      üblich.

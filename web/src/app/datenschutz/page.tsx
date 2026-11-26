@@ -3,7 +3,7 @@ import { LegalPage } from '@/components/LegalPage'
 import { DATENSCHUTZ } from '@/data/legal'
 
 export const metadata: Metadata = {
-  title: 'Datenschutzerklärung — 1789',
+  title: 'Datenschutzerklärung – 1789',
   robots: { index: false, follow: false },
 }
 

@@ -31,7 +31,7 @@ export function Footer() {
               {FOOTER_CLAIM}
             </p>
             <Link href="/kontakt" className="link">
-              Erstgespräch vereinbaren <span aria-hidden="true">→</span>
+              Gespräch anfragen <span aria-hidden="true">→</span>
             </Link>
           </div>
 
@@ -104,7 +104,7 @@ export function Footer() {
           }}
         >
           <span className="unit">
-            © {year} 1789 Consulting GmbH — Alle Rechte vorbehalten.
+            © {year} 1789 Innovations GmbH – Alle Rechte vorbehalten.
           </span>
           <span style={{ display: 'flex', gap: 'var(--u3)' }}>
             {LEGAL.map((l) => (
