@@ -299,20 +299,31 @@ body::after {
 /* The entrance. Each wipe is a hard clip in four steps — a shutter, not a
    fade — and each element starts when the one before is two thirds in, so
    the sequence flows without the parts blurring into one movement. Before
-   its delay an element holds the keyframe's from-state (fill both); under
-   reduced motion none of this applies and everything is simply there.    */
+   its delay an element holds the keyframe's from-state; under reduced
+   motion none of this applies and everything is simply there.
+
+   Der Füllmodus ist `backwards`, nicht `both`. `both` pinnt nach dem Lauf
+   den letzten Keyframe fest, und genau den hat Safari auf dem iPhone bei
+   der dritten Schlagzeilenzeile nicht auf 1 gesetzt: sie stand dauerhaft
+   auf dem letzten Schritt von steps(4, end), also bei inset(0 25% 0 0) —
+   gemessen 74.7 % der Box, „Dazwischen entscheidet Organ|isation."
+   Dieselbe Falle steht zwei Zeilen tiefer schon für die Buttons im Code.
+   `backwards` hält weiterhin den Zustand vor der Verzögerung und gibt das
+   Element danach an seinen eigenen Stil zurück. Der ist unbeschnitten und
+   damit identisch mit dem Endkeyframe, die Darstellung hängt also nicht
+   mehr daran, dass der letzte Frame ankommt.                             */
 .hero-line { display: block; }
 @media (prefers-reduced-motion: no-preference) {
-  .hero-in { animation: hero-wipe 420ms steps(4, end) both; }
+  .hero-in { animation: hero-wipe 420ms steps(4, end) backwards; }
   .hero-in + .hero-in { animation-delay: 140ms; }
-  .hero-line { animation: hero-wipe 640ms steps(4, end) both; }
+  .hero-line { animation: hero-wipe 640ms steps(4, end) backwards; }
   .hero-line:nth-child(1) { animation-delay: 260ms; }
   .hero-line:nth-child(2) { animation-delay: 700ms; }
   .hero-line:nth-child(3) { animation-delay: 1140ms; }
   /* The actions wipe like everything else. (A 1ms opacity "snap" with
      steps(1) was tried: its end progress computes as 0.9999…, one whole step
      short of 1, and the compositor held the buttons invisible for good.) */
-  .hero-actions { animation: hero-wipe 420ms steps(4, end) 1600ms both; }
+  .hero-actions { animation: hero-wipe 420ms steps(4, end) 1600ms backwards; }
 }
 @keyframes hero-wipe {
   from { clip-path: inset(0 100% 0 0); }
