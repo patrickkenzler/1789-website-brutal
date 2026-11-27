@@ -216,11 +216,10 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       Mary: ASCII-Kontrast im Hero, Breite der Wortmarke „1789", ob die
       Einführungstexte rechts bleiben (hängt an Punkt 2), ob „Unser Ansatz"
       auf der Startseite bleibt, Aubergine für die Schluss-CTA, Umbruch in
-      den Überschriften, Darstellung der fünf Phasen auf /ansatz, das
-      Warnband als Trenner, „Wer beauftragt" ans Ende von /leistungen, die
-      Case-Zuordnung unter „Aus der Praxis", Abstand zwischen den
-      Labor-Beiträgen (hängt an Punkt 15), Länge von /ansatz auf dem Handy.
-- [ ] Geprüft und **kein** Fehler: die Schluss-CTA ist unten bündig, beide
+      den Überschriften, Darstellung der fünf Phasen auf /ansatz, Abstand
+      zwischen den Labor-Beiträgen (hängt an Punkt 15), Länge von /ansatz
+      auf dem Handy, Erkennbarkeit der ASCII-Grafik in der AI-Box.
+- [x] Geprüft und **kein** Fehler: die Schluss-CTA ist unten bündig, beide
       Spalten enden exakt auf derselben Linie; der Versatz, den Mary sieht,
       ist die ragged Oberkante (27px). Auf den Lesefassungs-Cases steht die
       Kapitelmarke bewusst im linken Rand und die Prosa bei Spalte 6 — das
@@ -251,11 +250,13 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 - [ ] Die Schluss-CTA wiederholt auf den Lesefassungs-Cases die Aussage des
       Schlusssatzes („beginnt mit dem Gap“). Entweder die stehende Zeile auf
       diesen Seiten ändern oder den Schlusssatz streichen — Textentscheidung.
-- [ ] Das Leistungen-Dokument nennt unter „Aus der Praxis" der
-      Strukturentscheidung drei Cases: teccle group, METRO.digital und
-      Procter & Gamble, Stabsstelle der Geschäftsführung. Der dritte ist auf
-      Wunsch von der Seite genommen, der Verweis darum entfernt. Das Dokument
-      sagt an dieser Stelle also mehr als die Seite.
+- [x] Erledigt mit Marys Liste aus Punkt 13 (26.11.2026): das
+      Leistungen-Dokument nannte unter „Aus der Praxis" der
+      Strukturentscheidung auch Procter & Gamble, Stabsstelle der
+      Geschäftsführung — auf Wunsch von der Seite genommen. Marys neue
+      Zuordnung führt P&G dort nicht mehr, Dokument und Seite sagen jetzt
+      dasselbe. Die Customer Service Organization ist ein anderes Mandat und
+      steht weiter bei der Strukturtransformation.
 - [ ] Fünf der acht Case-Cover sind **generiert**, nicht fotografiert:
       steuerung-der-personalgewinnung, motivieren-und-entwickeln,
       kohaerente-vision, skalierung-und-qualitaet und
