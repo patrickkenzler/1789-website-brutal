@@ -1301,7 +1301,13 @@ a.endcell:hover .unit { color: var(--red); }
   align-items: baseline;
 }
 .labor-filter .chip { transition: background var(--snap), color var(--snap), border-color var(--snap); }
-.labor-filter .chip:hover { border-color: var(--ink); color: var(--ink); }
+/* Die Rückmeldung gilt nur für Chips, die noch nicht gewählt sind. Ohne das
+   :not() schlägt diese Regel (0,3,0) die Füllung .chip-fill (0,1,0) und
+   setzt Ink-Text auf Ink-Grund — der gewählte Chip wird zum leeren schwarzen
+   Block. Auf dem Zeiger fällt das erst auf, wenn er auf einem gewählten Chip
+   liegt; auf dem Handy bleibt der Hover nach dem Tippen hängen, dort ist der
+   Chip dauerhaft unlesbar. Im iOS-Simulator gesehen (27.11.2026).         */
+.labor-filter .chip:not(.chip-fill):hover { border-color: var(--ink); color: var(--ink); }
 .labor-filter-count { margin-top: var(--u); }
 
 @media (max-width: 720px) {
