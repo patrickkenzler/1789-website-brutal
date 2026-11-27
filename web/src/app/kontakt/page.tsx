@@ -1,4 +1,5 @@
 import { CONTACT } from '@/data/site'
+import { KontaktFormular } from '@/components/KontaktFormular'
 import { PageHero, SectionHead } from '@/components/ui'
 
 export default function KontaktPage() {
@@ -60,78 +61,7 @@ export default function KontaktPage() {
                   Anfrage
                 </span>
 
-                <form>
-                  <div className="g2">
-                    <div className="field">
-                      <label className="field-label" htmlFor="vorname">
-                        Vorname
-                      </label>
-                      <input
-                        className="input"
-                        id="vorname"
-                        name="vorname"
-                        type="text"
-                        placeholder="Max"
-                      />
-                    </div>
-
-                    <div className="field">
-                      <label className="field-label" htmlFor="nachname">
-                        Nachname
-                      </label>
-                      <input
-                        className="input"
-                        id="nachname"
-                        name="nachname"
-                        type="text"
-                        placeholder="Mustermann"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="field">
-                    <label className="field-label" htmlFor="organisation">
-                      Organisation
-                    </label>
-                    <input
-                      className="input"
-                      id="organisation"
-                      name="organisation"
-                      type="text"
-                      placeholder="Ihr Unternehmen"
-                    />
-                  </div>
-
-                  <div className="field">
-                    <label className="field-label" htmlFor="email">
-                      E-Mail
-                    </label>
-                    <input
-                      className="input"
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="max@organisation.de"
-                    />
-                  </div>
-
-                  <div className="field">
-                    <label className="field-label" htmlFor="situation">
-                      Ihre Situation
-                    </label>
-                    <textarea
-                      className="input"
-                      id="situation"
-                      name="situation"
-                      rows={5}
-                      placeholder="Beschreiben Sie kurz, womit Sie sich gerade beschäftigen – welche Spannung, welche Lücke, welches Thema."
-                    />
-                  </div>
-
-                  <button type="submit" className="btn btn-red btn-block">
-                    Nachricht senden <span aria-hidden="true">→</span>
-                  </button>
-                </form>
+                <KontaktFormular mail={CONTACT.mail} />
               </div>
             </div>
           </div>

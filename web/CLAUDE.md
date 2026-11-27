@@ -215,7 +215,31 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       seiner Stelle stehen Marys 18 Beiträge als je eine Datei, dazu
       `/labor/[slug]`, die Filter nach Kategorie und Thema und die eigene
       Seite für Corporate Therapy. Kein `href="#"` mehr im Export.
-- [ ] Das Kontaktformular hat kein Backend.
+- [x] **Datenabfluss im Kontaktformular gestopft** (27.11.2026). Das
+      `<form>` hatte kein `action`. Ein Formular ohne Ziel schickt beim
+      Absenden ein GET an die eigene Adresse — Name, Organisation, E-Mail
+      und der Freitext zur Lage des Absenders standen danach in der
+      Adresszeile, im Browserverlauf, im Referrer jeder weiteren Anfrage und
+      in den Server-Logs des Hosters. Beim Absender kam eine leere Seite an,
+      bei 1789 gar nichts. Live nachgemessen, nicht vermutet.
+      Bis es ein Backend gibt, öffnet der Knopf jetzt eine vorbereitete
+      E-Mail im Programm des Absenders (`KontaktFormular.tsx`, die einzige
+      `'use client'`-Komponente neben dem Labor-Filter). Nichts läuft über
+      einen Server, die Nachricht kommt an. Kommt das Backend, ersetzt es
+      `onSubmit`; die Felder und ihre Namen bleiben.
+- [x] Datenschutzerklärung neu geschrieben (Punkt 14, 27.11.2026). Der
+      Bestand nannte Google Analytics und sechs Plugins, die es hier nicht
+      gibt. Was jetzt dasteht, ist an der Live-Seite nachgemessen: alle
+      Anfragen an eine Adresse, keine Cookies, kein localStorage, Schriften
+      aus `_next/static/media`. Elf Abschnitte mit den Pflichtangaben
+      (Verantwortlicher, Rechtsgrundlagen, Speicherdauer, Betroffenenrechte,
+      Beschwerderecht).
+- [ ] Zwei Lücken in der Datenschutzerklärung, beide nicht von mir zu
+      schließen: Der Hoster ist bewusst nicht benannt, weil der Entwurf auf
+      GitHub Pages liegt und später umzieht — vor dem Launch gehört dort der
+      echte Name hin, und bei einem Anbieter außerhalb der EU auch die
+      Grundlage der Übermittlung. **Und der Text ist nicht juristisch
+      geprüft.** Mary hat das in ihren Notizen ebenfalls angeraten.
 - [x] Bilder eingesetzt (Patrick, 27.11.2026). 15 der 18 Beiträge tragen
       jetzt eins: die acht Folgen-Cover, die drei Texte, ZOE, IG Metall,
       S!NN und Freiburg. Alle auf 1440px und 150–590 KB gebracht, nach dem
