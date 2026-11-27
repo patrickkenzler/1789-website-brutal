@@ -2,7 +2,11 @@ import Link from 'next/link'
 import { featuredCases } from '@/data/cases'
 import { PHASES, ARC, BLICK, WORK, AI_HUMAN_NATIVE } from '@/data/approach'
 import { TESTIMONIALS } from '@/data/team'
-import { FEATURED, ITEMS, itemMeta, byline, type LaborItem } from '@/data/labor'
+import { POSTS } from '@/content/labor'
+import { tileMeta } from '@/data/labor'
+import { laborArt } from '@/data/laborArt'
+import { seedFrom } from '@/data/asciiCanvas'
+import { AsciiArt } from '@/components/AsciiArt'
 import { QUESTIONS } from '@/data/site'
 import {
   SectionHead,
@@ -19,16 +23,23 @@ import { PhaseGlyph } from '@/components/PhaseGlyph'
 import { Rail } from '@/components/Rail'
 import { Tension } from '@/components/Tension'
 
-/* Denk Labor in three tiers: the lead piece, the pieces that carry a cover,
-   then an index of three more. */
-const LAB_PLATED = ITEMS.filter((i) => i.image).slice(0, 2)
-const LAB_INDEX = [
-  'Mission Boards als Entscheidungsformat',
-  'Strategie und Struktur – was zuerst?',
-  'Selbstorganisation ist kein Selbstläufer',
-]
-  .map((title) => ITEMS.find((i) => i.title === title))
-  .filter((i): i is LaborItem => i !== undefined)
+/* Labor in drei Stufen: der neueste Beitrag groß, daneben die Beiträge mit
+   Bild, darunter ein Index.
+
+   Bis zum 27.11.2026 standen hier drei Mockup-Titel fest im Code. Die gibt
+   es nicht mehr, und von den achtzehn echten Beiträgen trägt vorerst genau
+   einer ein Bild — die übrigen schickt Mary. Der Abschnitt zieht deshalb aus
+   den Daten und trägt auch ohne Bilder: die Leitplatte fällt auf das
+   Punktfeld mit dem Titel zurück, das Kachelpaar erscheint nur, wenn es
+   bebilderte Beiträge gibt, und der Index wird länger, solange es keine
+   gibt. Kommen Marys Bilder, ordnet sich das von selbst. */
+const LAB_LEAD = POSTS[0]
+const LAB_PLATED = POSTS.slice(1)
+  .filter((p) => p.image)
+  .slice(0, 2)
+const LAB_INDEX = POSTS.slice(1)
+  .filter((p) => !LAB_PLATED.includes(p))
+  .slice(0, LAB_PLATED.length === 2 ? 3 : 5)
 
 export default function Home() {
   return (
@@ -414,45 +425,60 @@ export default function Home() {
 
           <div className="lab">
             {/* ── Lead ── */}
-            <Link href="/labor" className="lab-item lab-lead">
-              <Plate src={FEATURED.image} alt={FEATURED.title} coarse />
+            <Link href={`/labor/${LAB_LEAD.slug}`} className="lab-item lab-lead">
+              {/* Ohne Bild die Zeichnung des Formats, wie im Mosaik — nicht
+                  die Slug-Platte. Die trägt Electric Aqua, und Aqua gehört
+                  den AI-Grafiken; als größte Fläche dieses Abschnitts wäre
+                  sie der lauteste Fleck der Startseite. */}
+              {LAB_LEAD.image ? (
+                <Plate src={LAB_LEAD.image} alt={LAB_LEAD.title} note={null} coarse />
+              ) : (
+                <AsciiArt
+                  art={laborArt(LAB_LEAD.format, seedFrom(LAB_LEAD.title))}
+                  className="tile-art lab-lead-art"
+                />
+              )}
               <div className="lab-text">
                 <span className="data">
-                  {FEATURED.type} · {itemMeta(FEATURED)}
+                  {LAB_LEAD.category} · {tileMeta(LAB_LEAD)}
                 </span>
-                <h3 className="d3">{FEATURED.title}</h3>
-                <p className="body">{FEATURED.teaser ?? FEATURED.excerpt}</p>
-                <span className="unit">{byline(FEATURED)}</span>
+                <h3 className="d3">{LAB_LEAD.title}</h3>
+                <p className="body">{LAB_LEAD.intro}</p>
+                <span className="unit">{LAB_LEAD.people}</span>
               </div>
             </Link>
 
             <div className="lab-side">
-              {/* ── Pair ── */}
-              <div className="lab-pair">
-                {LAB_PLATED.map((it) => (
-                  <Link key={it.title} href="/labor" className="lab-item">
-                    <Plate src={it.image} alt={it.title} />
-                    <div className="lab-text">
-                      <span className="data">
-                        {it.type} · {itemMeta(it)}
-                      </span>
-                      <h3 className="lab-title">{it.title}</h3>
-                      <span className="unit">{byline(it)}</span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
+              {/* ── Pair ── Nur, solange es bebilderte Beiträge gibt. */}
+              {LAB_PLATED.length > 0 && (
+                <div
+                  className={LAB_PLATED.length === 1 ? 'lab-pair lab-pair-solo' : 'lab-pair'}
+                >
+                  {LAB_PLATED.map((it) => (
+                    <Link key={it.slug} href={`/labor/${it.slug}`} className="lab-item">
+                      <Plate src={it.image} alt={it.title} note={null} />
+                      <div className="lab-text">
+                        <span className="data">
+                          {it.category} · {tileMeta(it)}
+                        </span>
+                        <h3 className="lab-title">{it.title}</h3>
+                        <span className="unit">{it.people}</span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
 
               {/* ── Index ── */}
               <div className="lab-index">
                 {LAB_INDEX.map((it) => (
-                  <Link key={it.title} href="/labor" className="row">
+                  <Link key={it.slug} href={`/labor/${it.slug}`} className="row">
                     <div>
                       <span className="data">
-                        {it.type} · {itemMeta(it)}
+                        {it.category} · {tileMeta(it)}
                       </span>
                       <h4 className="lab-row-title">{it.title}</h4>
-                      <span className="unit">{byline(it)}</span>
+                      <span className="unit">{it.people}</span>
                     </div>
                     <span className="row-arrow" aria-hidden="true">
                       →

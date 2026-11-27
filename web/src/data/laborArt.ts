@@ -118,10 +118,37 @@ const BY_TYPE: Record<string, (seed: number) => string> = {
   Theorie: theorie,
 }
 
-/** The glyph for a piece: by its kind, seeded so repeats differ. Unknown
- *  kinds read as text — the essay page. */
+/* Zuordnung Format → Zeichnung. Marys Formate heißen anders als die sieben
+   Zeichnungen oben, und der stille Rückfall auf `essay` hätte jede Folge und
+   jede Keynote als Textseite gezeichnet. Hier steht deshalb ausdrücklich, was
+   welche Zeichnung bekommt; nur was hier fehlt, fällt zurück.              */
+const BY_FORMAT: Record<string, (seed: number) => string> = {
+  // Podcast
+  Folge: podcast,
+  Podcast: podcast,
+  'Podcast (Video)': podcast,
+  'Corporate Therapy live': podcast,
+  'Moderation und Corporate Therapy live': podcast,
+  // Text
+  Fachartikel: whitepaper,
+  Essay: essay,
+  Artikel: essay,
+  Gastbeitrag: essay,
+  // Resonanz — zwei Blöcke mit Pfeilen dazwischen, das Bild eines Gesprächs
+  Panel: debatte,
+  Keynote: debatte,
+  Interview: debatte,
+  Video: debatte,
+  // Werkstatt
+  Methode: experiment,
+  Format: prototyp,
+  Werkzeug: prototyp,
+}
+
+/** The glyph for a piece: by its format, seeded so repeats differ. Unknown
+ *  formats read as text — the essay page. */
 export function laborArt(type: string, seed: number): string {
-  return (BY_TYPE[type] ?? essay)(seed)
+  return (BY_FORMAT[type] ?? BY_TYPE[type] ?? essay)(seed)
 }
 
 export const CANVAS_COLS = W

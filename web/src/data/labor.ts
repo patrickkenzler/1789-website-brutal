@@ -1,221 +1,146 @@
-/* ═══ DENK LABOR ═══════════════════════════════════════════════════════════ */
+/* ═══ LABOR — das Modell ═══════════════════════════════════════════════════
+   Diese Datei trägt keine Inhalte mehr. Jeder Beitrag steht in einer eigenen
+   Datei unter `src/content/labor/` und wird in `src/content/labor/index.ts`
+   eingetragen. Hier stehen nur der Typ, die Filterwerte und die Helfer.
 
-export type LaborItem = {
-  type: string
+   Der Typ ist die Qualitätsprüfung: Fehlt einem Beitrag ein Pflichtfeld oder
+   steht dort ein Thema, das es nicht gibt, bricht der Build ab. Deshalb sind
+   CATEGORIES und TOPICS `as const` und die Felder darüber typisiert — eine
+   Liste aus Strings würde jeden Tippfehler durchlassen.
+
+   Struktur eines Beitrags nach Marys Redaktionsdokument, Abschnitt 2:
+   Kopf (Kategorie, Format, Datum), Datenblatt (Wer, Ort, Sprache, Quelle,
+   Zugang), Intro, Haupttext unter einer Marke, Outro mit Links.            */
+
+/* ── Kategorien ───────────────────────────────────────────────────────────
+   Die erste Filterreihe. „Werkstatt" hat noch keinen Beitrag; die Übersicht
+   blendet leere Kategorien aus, statt den Wert hier zu entfernen.          */
+export const CATEGORIES = ['Podcast', 'Text', 'Werkstatt', 'Resonanz'] as const
+export type Category = (typeof CATEGORIES)[number]
+
+/* ── Themen ───────────────────────────────────────────────────────────────
+   Die zweite Filterreihe, quer zu den Kategorien. Die ersten fünf sind
+   dieselben Wörter wie bei den Cases, damit Labor und Cases sich gegenseitig
+   finden.                                                                  */
+export const TOPICS = [
+  'Governance Design',
+  'Target Operating Model',
+  'Organizational Strategy',
+  'Post-Merger-Integration',
+  'Private Equity',
+  'Organisationskultur',
+  'Führung',
+  'Agilität',
+  'KI und Arbeit',
+  'Wirtschaftsethik',
+  'Transformation',
+] as const
+export type Topic = (typeof TOPICS)[number]
+
+export type LaborLink = { label: string; href: string }
+
+export type LaborPost = {
+  slug: string
+  category: Category
+  /** Fachartikel, Essay, Folge, Keynote, Panel … — freier als die Kategorie */
+  format: string
   title: string
-  author?: string
-  guest?: string
+  /** Sichtbar, immer Monat und Jahr, nie ein Tag: „Juni 2026" */
   date: string
+  /** Nur zum Sortieren: „2026-06". Das sichtbare Datum sortiert alphabetisch. */
+  sort: string
+  /** Nur bei Folgen und Videos */
   duration?: string
-  pages?: string
-  readTime?: string
-  episode?: number
-  excerpt: string
-  /** Kürzere Fassung für die Startseite */
-  teaser?: string
+  /** Volle Namen, immer mit dabei, wer von 1789 beteiligt war */
+  people: string
+  /** Nur bei Auftritten */
+  place?: string
+  /** Nur, wenn nicht Deutsch */
+  language?: string
+  topics: readonly Topic[]
+  /** Nur, wenn es einen Case dazu gibt */
+  relatedCase?: { label: string; slug: string }
+  source?: LaborLink
+  /** „frei", „Leseprobe frei, Volltext hinter Paywall" … */
+  access?: string
+  /** 2–3 Sätze. Vorspann auf der Beitragsseite und Teaser auf der Kachel. */
+  intro: string
+  /** Absätze des Haupttextes */
+  body: readonly string[]
+  /** 1–2 Sätze unter der Marke [ Weiter ] */
+  outro: string
+  links?: readonly LaborLink[]
+  /** Kachelbild. Fehlt es, trägt die Kachel die ASCII-Zeichnung. */
   image?: string
-  href: string
+  /** Was als Medium vorgesehen ist, aber noch nicht da — sichtbar nirgends,
+      hier nur, damit es nicht vergessen wird. */
+  mediaPending?: string
+  /** Bleibt im Labor, auch wenn die Folge aus den acht neuesten fällt */
+  pinned?: boolean
 }
 
-export const FEATURED: LaborItem = {
-  type: 'Fachartikel',
-  title:
-    'Governance für dezentrale Strukturen: Über die Steuerung eines Flottenverbandes',
-  author: 'Mary-Jane Bolten, Tobias Schulz-Isenbeck',
-  date: 'Juli 2025',
-  excerpt:
-    'Wie eine Gruppe aus eigenständigen Einheiten verbindlich entscheidet, ohne ihre Autonomie aufzugeben. Erschienen auf zoe-online.org; die Leseprobe ist frei, der vollständige Text steht hinter einer Paywall.',
-  teaser:
-    'Wie eine Gruppe aus eigenständigen Einheiten verbindlich entscheidet, ohne ihre Autonomie aufzugeben.',
-  image: '/labor/zoe-flottenverband.jpg',
-  href: 'https://zoe-online.org/praxis/erfahrung/geteilte-verantwortung-governance-fuer-dezentrale-strukturen--ueber-die-steuerung-eines-flottenverbandes-5131',
+/* ── Marke über dem Haupttext, je Kategorie ───────────────────────────────
+   Gesetzt wie „[ Auf einen Blick ]" auf den Case-Seiten.                   */
+export const BODY_MARK: Record<Category, string> = {
+  Podcast: 'Aus der Folge',
+  Text: 'Worum es geht',
+  Werkstatt: 'So gehen wir vor',
+  Resonanz: 'Worum es ging',
 }
 
-export const ITEMS: LaborItem[] = [
-  {
-    type: 'Essay',
-    title:
-      'Nähe als Organisationsprinzip – warum wir Corporate Therapy auf die Bühne bringen',
-    author: 'Human Nagafi',
-    date: 'April 2024',
-    readTime: '8 Min',
-    excerpt:
-      'Eine Reflexion über Distanz, Vertrauen und die Frage, wieso Organisationen den Mut zur Nähe oft erst auf der Bühne finden – und was das für moderne Operating Models bedeutet.',
-    teaser:
-      'Eine Reflexion über Distanz, Vertrauen und die Frage, wieso Organisationen den Mut zur Nähe oft erst auf der Bühne finden.',
-    image: '/labor/Artikel_Cover_1.jpg',
-    href: '#',
-  },
-  {
-    type: 'Podcast',
-    title: 'Das Internet: Utopie, Infrastruktur, Schlachtfeld',
-    guest: 'Marie Kilg',
-    date: 'März 2024',
-    duration: '47 Min',
-    episode: 142,
-    excerpt:
-      'Wie das Netz unsere Vorstellung von Öffentlichkeit, Macht und Selbstorganisation verändert hat – und welche Strukturen es heute braucht.',
-    image: '/labor/Artikel_Cover_2.webp',
-    href: '#',
-  },
-  {
-    type: 'Whitepaper',
-    title: 'Target Operating Models in regulierten Märkten',
-    author: '1789 Research',
-    date: 'März 2024',
-    pages: '24 Seiten',
-    excerpt:
-      'Wie Banken, Versicherer und Energieunternehmen Operating Models entwickeln, die Compliance-Anforderungen und Wertschöpfung gleichzeitig tragen.',
-    image: '/labor/Artikel_Cover_3.jpg',
-    href: '#',
-  },
-  {
-    type: 'Experiment',
-    title: 'Mission Boards als Entscheidungsformat',
-    author: 'Pilot bei greyt.',
-    date: 'Februar 2024',
-    excerpt:
-      'Ein Format, das wöchentliche Entscheidungsroutinen so verankert, dass Verantwortung sichtbar wird – und Strategie nicht im Statusmeeting verschwindet.',
-    href: '#',
-  },
-  {
-    type: 'Debatte',
-    title: 'Selbstorganisation ist kein Selbstläufer',
-    author: 'Mary-Jane Bolten',
-    date: 'Februar 2024',
-    readTime: '6 Min',
-    excerpt:
-      'Warum sich Selbstorganisation nicht installieren lässt – und welche Voraussetzungen Führung schaffen muss, damit sie überhaupt tragen kann.',
-    href: '#',
-  },
-  {
-    type: 'Prototyp',
-    title: 'Verantwortungslandkarte als Onboarding-Tool',
-    author: '1789 Research',
-    date: 'Januar 2024',
-    excerpt:
-      'Ein visueller Prototyp, der neue Mitarbeitende durch die ungeschriebenen Entscheidungswege ihrer Organisation führt.',
-    href: '#',
-  },
-  {
-    type: 'Theorie',
-    title: 'Strukturkopplung in komplexen Organisationen',
-    author: 'Patrick Breitenbach',
-    date: 'Januar 2024',
-    readTime: '12 Min',
-    excerpt:
-      'Eine Auseinandersetzung mit Luhmanns Begriff der Strukturkopplung und seiner Anwendbarkeit auf moderne Transformationsbegleitung.',
-    href: '#',
-  },
-  {
-    type: 'Podcast',
-    title: 'Strategie und Struktur – was zuerst?',
-    guest: 'Patrick Breitenbach',
-    date: 'Januar 2024',
-    duration: '52 Min',
-    episode: 141,
-    excerpt:
-      'Eine Debatte über die Henne-Ei-Frage der Organisationsentwicklung – und warum beide Antworten meistens unvollständig sind.',
-    href: '#',
-  },
-  {
-    type: 'Essay',
-    title: 'Operating Models sind keine Org-Charts',
-    author: 'Human Nagafi',
-    date: 'Dezember 2023',
-    readTime: '10 Min',
-    excerpt:
-      'Warum der häufigste Reflex – "wir brauchen eine neue Aufbauorganisation" – meist die falsche Antwort auf das richtige Problem ist.',
-    href: '#',
-  },
-  {
-    type: 'Experiment',
-    title: 'Entscheidungstagebücher für Führungsteams',
-    author: '1789 Research',
-    date: 'Dezember 2023',
-    excerpt:
-      'Wir haben drei Führungsteams 90 Tage lang ein gemeinsames Entscheidungstagebuch führen lassen. Das sind die Befunde.',
-    href: '#',
-  },
-  {
-    type: 'Podcast',
-    title: 'Social Entrepreneurship ohne Illusionen',
-    guest: 'Agnesa Kolica',
-    date: 'Dezember 2023',
-    duration: '51 Min',
-    episode: 140,
-    excerpt:
-      'Was es wirklich braucht, wenn Wirkung das Geschäftsmodell ist – und wie sich Strukturen anders verhalten müssen.',
-    href: '#',
-  },
-  {
-    type: 'Debatte',
-    title: 'KI ist kein Add-on zur Organisation',
-    author: 'Mary-Jane Bolten',
-    date: 'November 2023',
-    readTime: '7 Min',
-    excerpt:
-      'Warum die meisten KI-Initiativen scheitern, weil sie als Tool-Einführung behandelt werden – und nicht als organisationaler Eingriff.',
-    href: '#',
-  },
-]
+/* ── Corporate Therapy ────────────────────────────────────────────────────
+   Die Show-Seiten, nicht die einzelnen Folgen. Unter jeder Folge steht die
+   Zeile „Alle Folgen gibt es im Archiv".                                   */
+export const PODCAST = {
+  spotify: 'https://open.spotify.com/show/4YJAFJozpGByyV6F5IX7o6',
+  apple: 'https://podcasts.apple.com/us/podcast/corporate-therapy/id1499611321',
+  /** Die eigene Seite des Podcasts im Labor */
+  slug: 'corporate-therapy',
+} as const
 
-export const TYPES = [
-  'Podcast',
-  'Essay',
-  'Whitepaper',
-  'Experiment',
-  'Prototyp',
-  'Debatte',
-  'Theorie',
-] as const
+/** Wie viele Folgen im Labor stehen. Kommt eine neue dazu, fällt die älteste
+    heraus — außer sie ist `pinned`. */
+export const PODCAST_IN_LABOR = 8
 
-export const FORMATS = [
-  {
-    kind: 'Podcast',
-    cadence: 'wöchentlich',
-    name: 'Corporate Therapy',
-    blurb:
-      'Gespräche über das Innere von Organisationen – Strukturen, Routinen, Wachstumsschmerzen.',
-    cta: 'Alle Folgen →',
-    href: '#',
-  },
-  {
-    kind: 'Whitepaper',
-    cadence: 'quartalsweise',
-    name: '1789 Research Letter',
-    blurb:
-      'Tiefere Analysen aus aktuellen Mandaten und unserer Auseinandersetzung mit Organisationstheorie.',
-    cta: 'Alle Folgen →',
-    href: '#',
-  },
-  {
-    kind: 'Experiment',
-    cadence: 'unregelmäßig',
-    name: 'Experimente aus dem Feld',
-    blurb:
-      'Was wir in Piloten ausprobieren, dokumentieren und mit unseren Mandanten weiterentwickeln.',
-    cta: 'Alle Folgen →',
-    href: '#',
-  },
-] as const
+/* ── Der Podcast als Ganzes ───────────────────────────────────────────────
+   Kein Beitrag, sondern die Show: eine eigene Kachel im Mosaik und eine
+   eigene Seite unter `/labor/corporate-therapy`. Der Text ist von Mary
+   freigegeben. Hier dockt später der Buzzsprout-Feed an, der die Kachel mit
+   der jeweils neuesten Folge füllt (Patrick, 27.11.2026).                  */
+export const PODCAST_SHOW = {
+  title: 'Corporate Therapy',
+  format: 'Podcast',
+  blurb:
+    'Corporate Therapy ist ein kritischer Management Podcast. Human Nagafi, Mary-Jane Bolten und Patrick Breitenbach sprechen darin mit Gästen aus Wissenschaft und Wirtschaft darüber, wie Organisationen funktionieren, wie sich Arbeit verändert und welche Ideologien unseren Arbeitsalltag prägen. Über 150 Folgen seit 2020.',
+  href: '/labor/corporate-therapy',
+} as const
+
+/* ── Seitentexte ──────────────────────────────────────────────────────────  */
+export const LABOR_LEDE =
+  'Im Labor steht, was uns aktuell beschäftigt: Folgen unseres Podcasts Corporate Therapy, Texte, Notizen aus der Werkstatt und Begegnungen.'
 
 export const ARCHIVE_NOTE =
-  'Über 140 Podcast-Folgen, 30+ Essays und Whitepaper aus zwei Jahrzehnten Auseinandersetzung mit Organisation.'
+  'Alle Folgen von Corporate Therapy stehen auf Spotify und Apple Podcasts, im Labor stehen die acht neuesten. Texte, Notizen aus der Werkstatt und Begegnungen kommen dazu, sobald sie erscheinen.'
 
-/** Meta-Zeile einer Karte: "Podcast · #142 · 47 Min · März 2024" */
-export function itemMeta(i: LaborItem): string {
-  return [
-    i.episode ? `#${i.episode}` : null,
-    i.duration,
-    i.pages,
-    i.readTime,
-    i.date,
-  ]
-    .filter(Boolean)
-    .join(' · ')
+/* ── Helfer ───────────────────────────────────────────────────────────────  */
+
+/** Mikrozeile über dem Titel: Kategorie · Format · Datum, dazu die Dauer. */
+export function postMeta(p: LaborPost): string {
+  return [p.category, p.format, p.date, p.duration].filter(Boolean).join(' · ')
 }
 
-export function byline(i: LaborItem): string {
-  return i.author ?? (i.guest ? `mit ${i.guest}` : '')
+/** Kurzform für die Kachel: Format und Datum reichen dort, die Kategorie
+    trägt der Filter. */
+export function tileMeta(p: LaborPost): string {
+  return [p.format, p.date, p.duration].filter(Boolean).join(' · ')
+}
+
+export function bodyMark(p: LaborPost): string {
+  return BODY_MARK[p.category]
+}
+
+/** Neueste zuerst. Bei gleichem Monat entscheidet der Titel, damit die
+    Reihenfolge zwischen zwei Builds nicht springt. */
+export function byDateDesc(a: LaborPost, b: LaborPost): number {
+  return b.sort.localeCompare(a.sort) || a.title.localeCompare(b.title)
 }
