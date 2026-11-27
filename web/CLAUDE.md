@@ -185,6 +185,35 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       Patrick Breitenbach, Mary-Jane Bolten, Serap Yılmaz-Dreger. Überall so
       zu schreiben, auch im `CONTENT_INVENTORY.md`.
 - [ ] Alle Labor-Links zeigen auf `#`; Kontaktformular hat kein Backend.
+- [x] Marys neue Überschrift auf /wir ist übernommen (Punkt 11, bestätigt
+      Patrick 27.11.2026): „Verschiedene Köpfe, / eine Haltung." statt „Vier
+      Köpfe". Sie kam schon mit PR #5 und steht seitdem live; die Zahl fällt
+      weg, damit der Text beim Wachsen des Teams nicht nachgezogen werden
+      muss.
+- [ ] Punkt 9 ist entschieden (Patrick, 27.11.2026): Corporate Therapy
+      bekommt eine eigene Kachel, die aus dem Buzzsprout-Feed kommt, und eine
+      eigene Seite mit der Beschreibung und den Links auf die Plattformen.
+      Play direkt auf der Kachel ist gewünscht. Umsetzung erst beim Deploy,
+      nicht im Entwurf. Marys freigegebener Text dafür steht in
+      `REDAKTION_LABOR_fuer-Patrick.md`, Abschnitt 4.
+      Offen daran: der Feed liefert Titel, Nummer, Datum, Dauer, Beschreibung
+      und die Audio-Datei, aber **nicht** Marys redigierten „Aus der
+      Folge"-Text. Eine Folge ohne eigene Datei kann deshalb nur eine Kachel
+      und eine magere Seite tragen. Das widerspricht Marys Regel, dass der
+      Haupttext als Text auf der Seite stehen muss, damit KI-Systeme ihn
+      lesen können.
+- [ ] **Labor: Repo oder CMS?** Noch nicht entschieden. Stand der Dinge:
+      Marys Redaktionsdokument legt je Beitrag rund 16 Felder fest, vier
+      Kategorien, zwei Filterdimensionen und einen schema.org-Block. Alle
+      Inhalte liegen heute in TypeScript-Dateien unter `src/data/`; es gibt
+      kein MDX, kein Zod, kein `content/`-Verzeichnis. Der Deploy läuft auf
+      `push: main` und `workflow_dispatch`, ohne `schedule:`.
+      Empfehlung: zum Launch **kein** CMS. Die Platzhalter auf /labor stehen
+      nicht da, weil ein CMS fehlt, sondern weil Punkt 15 nicht gemacht ist.
+      Stattdessen: eine Datei je Beitrag mit Frontmatter unter
+      `web/content/labor/`, Schema-Prüfung beim Bauen, Podcast-Folgen aus dem
+      Feed. Ein CMS lohnt erst, wenn jemand ohne Patrick veröffentlichen
+      können muss. Dann ein Git-basiertes, damit die eine Quelle bleibt.
 - [x] Drei Entscheidungen aus Punkt 13 umgesetzt (Patrick, 26.11.2026):
       das Warnband auf /ansatz ist weg, die fünf Phasen wechseln stattdessen
       zwischen Papier und `.slab-sunk`, der vertieften Stufe desselben
