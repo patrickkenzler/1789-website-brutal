@@ -848,9 +848,13 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   background: var(--sunk);
   transition: background var(--snap), color var(--snap);
 }
-.endcell:hover { background: var(--ink); color: var(--paper); }
-.endcell:hover .d3 { color: var(--paper); }
-.endcell:hover .unit { color: var(--red); }
+/* Die Rückmeldung gilt nur, wo die Zelle ein Link ist. Der Archivschluss im
+   Labor führt seit dem Umbau nirgendwohin mehr — das vollständige Archiv
+   liegt bei den Plattformen —, und eine Fläche, die auf den Zeiger reagiert,
+   ohne klickbar zu sein, verspricht etwas, das sie nicht hält.            */
+a.endcell:hover { background: var(--ink); color: var(--paper); }
+a.endcell:hover .d3 { color: var(--paper); }
+a.endcell:hover .unit { color: var(--red); }
 
 @media (max-width: 720px) { .endcell { gap: var(--u4); } }
 
@@ -1276,6 +1280,34 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   grid-auto-rows: minmax(17rem, auto);
   grid-auto-flow: dense;
 }
+/* ── FILTER ÜBER DEM MOSAIK ───────────────────────────────────────────────
+   Zwei Reihen, Kategorie und Thema, jede mit ihrer Marke im Rand. Die Chips
+   sind Knöpfe und tragen dieselben Werte wie überall sonst; ausgewählt ist
+   die Füllung, die das System dafür führt. Die Zahl darunter sagt, wie viel
+   die Auswahl übrig lässt — sonst ist ein leeres Mosaik nicht von einem
+   Fehler zu unterscheiden.                                                */
+.labor-filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--u3);
+  padding-bottom: var(--u5);
+  margin-bottom: var(--u6);
+  border-bottom: var(--rule-faint);
+}
+.labor-filter-row {
+  display: grid;
+  grid-template-columns: minmax(88px, auto) 1fr;
+  gap: var(--u3);
+  align-items: baseline;
+}
+.labor-filter .chip { transition: background var(--snap), color var(--snap), border-color var(--snap); }
+.labor-filter .chip:hover { border-color: var(--ink); color: var(--ink); }
+.labor-filter-count { margin-top: var(--u); }
+
+@media (max-width: 720px) {
+  .labor-filter-row { grid-template-columns: minmax(0, 1fr); gap: var(--u2); }
+}
+
 .mosaic-xl { grid-column: span 2; grid-row: span 2; }
 .mosaic-wide { grid-column: span 2; }
 .tile-art {
@@ -1344,6 +1376,17 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   aspect-ratio: auto;
 }
 .lab-lead .plate img { position: absolute; inset: 0; }
+/* Die Zeichnung an der Stelle der Leitplatte, solange der Beitrag kein Bild
+   hat. Sie füllt dieselbe Höhe, deshalb ein größerer Grad als in den
+   Mosaikkacheln — sonst stünde eine kleine Zeichnung in einem leeren Feld.
+   Der vertiefte Grund gibt ihr die Fläche, die sonst das Foto hätte. */
+.lab-lead-art {
+  flex: 1 1 auto;
+  min-height: 18rem;
+  aspect-ratio: auto;
+  background: var(--sunk);
+  font-size: clamp(8px, 1.5vw, 20px);
+}
 
 .lab-side { display: flex; flex-direction: column; gap: var(--u6); }
 .lab-pair {
@@ -1351,6 +1394,9 @@ hr, .rule    { border-top: var(--rule);     width: 100%; }
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--u3);
 }
+/* Solange nur ein Beitrag ein Bild trägt, steht er allein — eine leere
+   zweite Spalte läse sich als fehlende Kachel, nicht als Auswahl. */
+.lab-pair-solo { grid-template-columns: minmax(0, 1fr); }
 .lab-title,
 .lab-row-title {
   font-family: var(--font-macro);

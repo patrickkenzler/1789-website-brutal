@@ -67,9 +67,11 @@ Das Skript steuert Chrome über dessen Debug-Protokoll und wartet auf
 ## 3. Struktur
 
 ```
-src/app/         Routen (alle Server Components, statisch exportierbar)
+src/app/         Routen (alle Server Components bis auf die Filter, s.u.)
 src/components/  ui.tsx (Primitives), Wordmark, LegalPage, organisms/{Header,Footer}
-src/data/        SÄMTLICHE Texte — site, approach, services, team, labor, legal, cases
+src/data/        SÄMTLICHE Texte — site, approach, services, team, legal, cases
+                 labor.ts trägt nur noch das Modell, nicht die Beiträge
+src/content/labor/  ein Labor-Beitrag je Datei, plus index.ts
 ```
 
 **Seiten importieren Inhalte, sie enthalten keine.** Fehlt ein Text im Datenlayer,
@@ -82,11 +84,36 @@ Link, Bild) in der Reihenfolge des Quelldokuments, dazu `summary`, `transfer`, `
 hat. Eine Lesefassung wird **verbatim** übertragen, auch wenn sie Angaben im
 Bestand korrigiert — sie ist die neuere, abgestimmte Fassung.
 
+### Labor
+
+Ein Beitrag ist **eine Datei** unter `src/content/labor/`, eingetragen in
+`index.ts` — einmal als Import, einmal in der Liste. Die Imports stehen
+ausdrücklich da und nicht über einen Glob, weil nur so der Compiler jede Datei
+prüft. Der Typ `LaborPost` in `src/data/labor.ts` ist damit die
+Qualitätssicherung: Fehlt ein Pflichtfeld oder steht in `topics` ein Wort, das
+es nicht gibt, bricht `npm run build` ab und nennt Datei und Zeile. Geprüft am
+27.11.2026 mit beiden Fehlern.
+
+Vier Kategorien (`CATEGORIES`), elf Themen (`TOPICS`), beide `as const`. Leere
+Kategorien erscheinen nicht im Filter — „Werkstatt" hat noch keinen Beitrag.
+Podcast-Folgen stehen in einem Fenster der acht neuesten; `pinned` hält eine
+Folge darin fest (#146 gehört zum WD-40-Case).
+
+Der Filter auf /labor ist die einzige `'use client'`-Komponente außerhalb von
+`/intern`: `LaborMosaic.tsx` trägt Filter und Kacheln zusammen, weil sie sich
+einen Zustand teilen. Kein Zustand in der Adresse — beim statischen Export
+liest den niemand beim Ausliefern.
+
+Corporate Therapy als Ganzes ist kein Beitrag, sondern `PODCAST_SHOW`: eine
+eigene Kachel im Mosaik und eine eigene Route `/labor/corporate-therapy`.
+Dort dockt später der Buzzsprout-Feed an.
+
 Die Grundfolge je Seite (Stand nach dem Durchgang): Start `D L O D L D L A`,
-Ansatz `L D L D L L | L L | L A` (`|` = Warnband), Case-Lesefassung
-`L L D L D L O L L A`, Labor `L L D A`, Leistungen `L D O A`, Cases `L D A`,
-Wir `L L D`, Kontakt `L D L`. Nie mehr als zwei helle in Folge, nie zwei
-dunkle nebeneinander, höchstens ein Orange je Seite.
+Ansatz `D L D L l↓ L l↓ L A` (`l↓` = `.slab-sunk`), Case-Lesefassung
+`L L D L D L O L L A`, Labor `L L A`, Labor-Beitrag `L L A`, Leistungen
+`L O D A`, Cases `L D A`, Wir `L L D`, Kontakt `L D L`. Nie mehr als zwei
+helle in Folge, nie zwei dunkle nebeneinander, höchstens ein Orange je Seite.
+Die Phasenstrecke auf /ansatz ist die eine bewusste Ausnahme.
 
 Wo eine Folge gleichrangiger Kapitel den Schnitt braucht (die fünf Phasen im
 Ansatz), trägt ihn ein Trenner, nicht ein Grundwechsel: eine Phase dunkel zu
@@ -184,7 +211,27 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
 - [x] Schreibweise der Namen von Mary bestätigt (23.11.2026): Human Nagafi,
       Patrick Breitenbach, Mary-Jane Bolten, Serap Yılmaz-Dreger. Überall so
       zu schreiben, auch im `CONTENT_INVENTORY.md`.
-- [ ] Alle Labor-Links zeigen auf `#`; Kontaktformular hat kein Backend.
+- [x] Labor neu aufgebaut (Punkt 15, 27.11.2026). Das Mockup ist raus, an
+      seiner Stelle stehen Marys 18 Beiträge als je eine Datei, dazu
+      `/labor/[slug]`, die Filter nach Kategorie und Thema und die eigene
+      Seite für Corporate Therapy. Kein `href="#"` mehr im Export.
+- [ ] Das Kontaktformular hat kein Backend.
+- [ ] Neun Kachelbilder fehlen noch, Mary schickt sie: The Infermezzo, I know
+      slop when I see it, #149, IG Metall, EO Day, Freiburg, zeroG, S!NN,
+      Hingehört. Bis dahin tragen die Kacheln die ASCII-Zeichnung, und der
+      Leitbeitrag auf der Startseite ebenso. Was fehlt, steht je Beitrag in
+      `mediaPending` — das Feld erscheint nirgends auf der Seite.
+- [ ] Ebenfalls von Mary: die ZOE-Leseprobe als PDF, Fotos zu den
+      Resonanz-Beiträgen und die Folien der IG-Metall-Keynote.
+- [ ] Keine eingebetteten Player. Das YouTube-Video bei zeroG und die
+      Folgen-Player brauchen die Zwei-Klick-Lösung und einen Absatz in der
+      Datenschutzerklärung (Punkt 14). Bis dahin verlinken die Beiträge nach
+      außen.
+- [ ] Der Buzzsprout-Feed ist noch nicht angebunden. Geplant (Patrick,
+      27.11.2026): neue Folge wird automatisch Kachel, Play auf der Kachel
+      über die Audio-Datei aus dem `enclosure`, dazu ein Ping nach Slack,
+      damit jemand die Beschreibung nachschiebt. Der Deploy braucht dafür
+      einen `schedule:`-Trigger, er läuft heute nur auf `push: main`.
 - [x] Marys neue Überschrift auf /wir ist übernommen (Punkt 11, bestätigt
       Patrick 27.11.2026): „Verschiedene Köpfe, / eine Haltung." statt „Vier
       Köpfe". Sie kam schon mit PR #5 und steht seitdem live; die Zahl fällt
