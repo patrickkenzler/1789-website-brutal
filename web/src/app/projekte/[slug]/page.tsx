@@ -74,7 +74,8 @@ function Blocks({ blocks }: { blocks: CaseBlock[] }) {
                 alt={b.alt}
                 ratio={b.ratio}
                 note={b.src ? null : 'Foto folgt'}
-                coarse={b.span}
+                coarse={b.span && !b.plain}
+                plain={b.plain}
               />
             </div>
           )

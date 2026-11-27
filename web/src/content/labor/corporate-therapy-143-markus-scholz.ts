@@ -18,7 +18,7 @@ const post: LaborPost = {
   ],
   outro: 'Die Folge ist für Führungskräfte, die sich fragen, wo die Verantwortung ihres Unternehmens über das Geschäft hinausreicht.',
   image: '/labor/corporate-therapy-143-markus-scholz.jpg',
-  ratio: '1440 / 1393',
+  ratio: '1 / 1',
 }
 
 export default post

@@ -18,7 +18,7 @@ const post: LaborPost = {
   ],
   outro: 'Die Folge ist für Teams und Führungskräfte, die mehr Vorhaben haben, als sie tragen können.',
   image: '/labor/corporate-therapy-148-marina-schakarian.jpg',
-  ratio: '1440 / 1393',
+  ratio: '1 / 1',
 }
 
 export default post

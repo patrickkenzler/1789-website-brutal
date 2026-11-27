@@ -18,7 +18,7 @@ const post: LaborPost = {
   ],
   outro: 'Die Folge ist für Führungskräfte und Teams, die Veränderung gestalten wollen und dafür mehr brauchen als gute Laune.',
   image: '/labor/corporate-therapy-149-hans-rusinek.jpg',
-  ratio: '1440 / 1393',
+  ratio: '1 / 1',
   feature: true,
   mediaPending: 'Player der Folge, noch nicht eingebunden',
 }

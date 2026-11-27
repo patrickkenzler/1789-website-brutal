@@ -1923,6 +1923,18 @@ a.card:hover .d3, a.card:hover .d4 { color: var(--red); }
   background-position: 1px 2px;
 }
 
+/* ── ZEICHNUNG STATT FOTO ─────────────────────────────────────────────────
+   Das Punktraster ist für Halbtöne gemacht: es zerlegt eine Fläche in Punkte
+   und gibt ihr den Druck zurück. Eine Strichzeichnung hat keine Halbtöne —
+   das Raster zerlegt dort die Linien selbst, und der Kontrastfilter
+   verschiebt die flachen Farben. Eine Platte mit .plate-plain trägt deshalb
+   beide Schirme nicht und zeigt das Bild, wie es ist. Nur für Zeichnungen,
+   nie für Fotos: sonst läge auf der Seite ein Foto, und genau das soll das
+   System nicht zeigen.                                                     */
+.plate-plain::before,
+.plate-plain::after { content: none; }
+.plate-plain img { object-fit: contain; filter: none; }
+
 /* Heavier grade for hero plates — coarser screen, wider misregistration. */
 .plate-coarse::after  { background-size: 6px 6px; }
 .plate-coarse::before { background-size: 6px 6px; background-position: 2px 3px; }

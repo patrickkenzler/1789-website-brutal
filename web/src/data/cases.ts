@@ -19,6 +19,8 @@ export type CaseBlock =
       alt?: string
       /** Zuschnitt auf der Seite — '3 / 4', '16 / 9', '21 / 9' … */
       ratio: string
+      /** Zeichnung statt Foto: ohne Punktraster und ohne Kontrastfilter. */
+      plain?: boolean
       /** true: bricht beide Spalten als Band; sonst steht es in seiner Spalte */
       span?: boolean
     }
@@ -474,6 +476,22 @@ export const cases: CaseStudy[] = [
           {
             kind: 'text',
             text: 'Auf dieser Grundlage legten die Geschäftsführer Designprinzipien fest, deren Kern lautet: Was der Markt braucht, entsteht lokal. Was Zusammenarbeit braucht, wird zentral geregelt. Nach rund drei Monaten Analyse stand ein erstes Referenzmodell, das teccle Operating Model. In weiteren rund vier Monaten stimmte die Geschäftsführung es mit allen Geschäftsführern und freiwilligen Change Agents ab und plante den Pilot.',
+          },
+          /* Das Referenzmodell als Zeichnung, nicht als Foto: `plain` nimmt
+             der Platte das Punktraster und den Kontrastfilter. Beide sind
+             für Halbtöne gemacht und würden die Linien zerlegen und die
+             flachen Farben verschieben. Die Zeichnung bringt ihre eigenen
+             Farben mit und ist damit die einzige Stelle der Seite außerhalb
+             der Palette — so von Patrick entschieden (27.11.2026). Eine
+             Bildunterschrift, die sagt, wofür die Farben stehen, fehlt noch
+             und müsste von Mary kommen. */
+          {
+            kind: 'image',
+            src: '/projects/teccle-tom.png',
+            alt: 'Isometrisches Schema des teccle Operating Models: mehrere Gruppen aus gestapelten Blöcken, farbig umrandet und mit Linien verbunden.',
+            ratio: '1766 / 1032',
+            plain: true,
+            span: true,
           },
           {
             kind: 'text',
