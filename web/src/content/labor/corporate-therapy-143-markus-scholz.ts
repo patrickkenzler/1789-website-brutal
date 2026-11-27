@@ -17,6 +17,8 @@ const post: LaborPost = {
     'Ein Einstieg ist der Fall Anthropic und das US-Verteidigungsministerium. Von dort geht die Folge zur Frage, was liberale Demokratie und soziale Marktwirtschaft von Unternehmen verlangen. Es geht um „Woke Capitalism“ und DEI, um stille Komplizenschaft und um die Grenze zwischen Lobbying und Manipulation, am Beispiel Uber. Scholz spricht von einem moralischen Muskel und stellt den Ansatz Giving Voice to Values vor.',
   ],
   outro: 'Die Folge ist für Führungskräfte, die sich fragen, wo die Verantwortung ihres Unternehmens über das Geschäft hinausreicht.',
+  image: '/labor/corporate-therapy-143-markus-scholz.jpg',
+  ratio: '1440 / 1393',
 }
 
 export default post

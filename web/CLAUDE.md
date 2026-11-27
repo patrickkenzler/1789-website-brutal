@@ -216,11 +216,31 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       `/labor/[slug]`, die Filter nach Kategorie und Thema und die eigene
       Seite für Corporate Therapy. Kein `href="#"` mehr im Export.
 - [ ] Das Kontaktformular hat kein Backend.
-- [ ] Neun Kachelbilder fehlen noch, Mary schickt sie: The Infermezzo, I know
-      slop when I see it, #149, IG Metall, EO Day, Freiburg, zeroG, S!NN,
-      Hingehört. Bis dahin tragen die Kacheln die ASCII-Zeichnung, und der
-      Leitbeitrag auf der Startseite ebenso. Was fehlt, steht je Beitrag in
-      `mediaPending` — das Feld erscheint nirgends auf der Seite.
+- [x] Bilder eingesetzt (Patrick, 27.11.2026). 15 der 18 Beiträge tragen
+      jetzt eins: die acht Folgen-Cover, die drei Texte, ZOE, IG Metall,
+      S!NN und Freiburg. Alle auf 1440px und 150–590 KB gebracht, nach dem
+      Maß des Bestands. Dazu die ZOE-Leseprobe als PDF, verlinkt im Outro.
+- [ ] Die Folgen-Cover tragen den Titel als Schrift an Ober- und Unterkante.
+      Auf der Beitragsseite stehen sie deshalb ungeschnitten (`ratio` je
+      Beitrag, an der Datei gemessen); auf der Kachel hält das Mosaik sein
+      Maß, dort wird die Schrift angeschnitten. **Patrick lädt die Cover
+      ohne Text nach**, danach erledigt sich das.
+- [ ] Drei Beiträge haben noch kein Bild: EO Day, zeroG, Hingehört. Dazu
+      fehlen die Folien der IG-Metall-Keynote. Was fehlt, steht je Beitrag
+      in `mediaPending` — das Feld erscheint nirgends auf der Seite.
+- [ ] Der Fotocredit ist nicht entschieden. Die Freiburg-Bilder tragen
+      „by_felix_groteloh" im Dateinamen; ich habe das Feld `credit` gebaut
+      und den Namen gesetzt, weil Veröffentlichen ohne Nennung die riskante
+      Richtung ist. Er steht unter dem Bild auf der Beitragsseite, nicht auf
+      der Kachel. Eine Zeile, falls es anders sein soll.
+- [ ] Zwei Lieferungen liegen unbenutzt: die beiden Porträts von Sven
+      Kalisch (Hochformat, besser als das Querformat im Projekt) und
+      `Case_teccle-tom.png`. Letzteres ist kein Foto, sondern ein
+      isometrisches Diagramm in Neonfarben — die Halbton-Platte ist für
+      Fotos gemacht, und die Farben stehen außerhalb der Palette. Beides
+      braucht eine Entscheidung.
+- [ ] `CT 141.jpg` liegt bei, die Folge steht aber nicht im Labor (dort
+      stehen die acht neuesten, #142 bis #149).
 - [ ] Ebenfalls von Mary: die ZOE-Leseprobe als PDF, Fotos zu den
       Resonanz-Beiträgen und die Folien der IG-Metall-Keynote.
 - [ ] Keine eingebetteten Player. Das YouTube-Video bei zeroG und die

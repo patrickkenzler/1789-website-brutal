@@ -19,6 +19,8 @@ const post: LaborPost = {
     'Ihr Schluss: Wer nur darauf blickt, wie Führungskräfte ihre klassischen Aufgaben effektiver umsetzen, geht ein systemisches Risiko ein, denn mit dem nächsten Wechsel auf einer Führungsposition kann alles kippen. Agil ist ein Unternehmen erst, wenn es nicht von fähigen und freundlichen Engpässen abhängt. Führungskräfte einfach abzuschaffen, hilft allerdings auch nicht: Eine flache Bürokratie bleibt eine Bürokratie.',
   ],
   outro: 'Der Artikel richtet sich an Geschäftsführungen, die Agilität über bessere Führungskräfte erreichen wollen. Er steht frei auf LinkedIn, ganz lesbar mit einem LinkedIn-Konto.',
+  image: '/labor/improved-management-does-not-equal-agility.jpg',
+  ratio: '3 / 4',
 }
 
 export default post

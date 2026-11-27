@@ -17,6 +17,8 @@ const post: LaborPost = {
     'Wer zu wenig Zeit, Geld oder Leute hat, startet oft ein weiteres Projekt, statt eines zu beenden. Schakarian setzt beim Aufhören an. Sie beschreibt es als emotionalen Prozess, der Übergänge braucht. Weitere Themen der Folge sind Mittelmaß und psychologische Sicherheit.',
   ],
   outro: 'Die Folge ist für Teams und Führungskräfte, die mehr Vorhaben haben, als sie tragen können.',
+  image: '/labor/corporate-therapy-148-marina-schakarian.jpg',
+  ratio: '1440 / 1393',
 }
 
 export default post

@@ -20,7 +20,6 @@ const post: LaborPost = {
     { label: 'Rückblick bei Experience One', href: 'https://www.experienceone.com/themen/eo-day-2026' },
     { label: 'Kontaktformular', href: '/kontakt' },
   ],
-  mediaPending: 'Kachelbild und Fotos, schickt Mary',
 }
 
 export default post

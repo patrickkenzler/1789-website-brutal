@@ -18,6 +18,18 @@ export function generateStaticParams() {
    und nicht in einem eigenen — als eigene Fläche wären es drei helle in
    Folge, und der Styleguide lässt zwei zu.                                 */
 
+/** Alle Beitragsbilder stehen gleich hoch; die Breite folgt dem Verhältnis.
+    `ratio` steht als „1440 / 1393" in den Daten, gemessen an der Datei. Ohne
+    Angabe bleibt die volle Spalte. */
+const PLATE_HEIGHT_REM = 34
+
+function plateWidth(ratio?: string): string | undefined {
+  if (!ratio) return undefined
+  const [w, h] = ratio.split('/').map((n) => Number(n.trim()))
+  if (!w || !h) return undefined
+  return `${((w / h) * PLATE_HEIGHT_REM).toFixed(1)}rem`
+}
+
 /** Die Zeilen des Datenblatts. Jede erscheint nur, wo der Beitrag sie hat. */
 function readoutRows(p: LaborPost): [string, React.ReactNode][] {
   const rows: [string, React.ReactNode][] = [
@@ -102,10 +114,26 @@ export default async function LaborPostPage({
             </div>
           </div>
 
+          {/* Das Bild im Seitenverhältnis, das es mitbringt: die Cover der
+              Folgen sind quadratisch und tragen ihren Titel als Schrift an
+              Ober- und Unterkante, ein fester Ausschnitt würde beide Zeilen
+              abschneiden.
+
+              Dafür bekommen alle Bilder dieselbe Höhe und die Breite folgt
+              dem Verhältnis. Über die volle Spalte gesetzt wäre ein Quadrat
+              1330px hoch — es stünde über dem Text statt vor ihm, und sein
+              Schriftzug wiederholte die Schlagzeile in doppelter Größe. So
+              steht jeder Beitrag auf derselben Zeile, ob Quadrat oder
+              Querformat. */}
           {p.image && (
-            <div style={{ marginTop: 'var(--u10)' }}>
-              <Plate src={p.image} alt={p.title} coarse ratio="21 / 9" note={null} />
-            </div>
+            <figure style={{ margin: 'var(--u10) 0 0', maxWidth: plateWidth(p.ratio) }}>
+              <Plate src={p.image} alt={p.title} ratio={p.ratio} coarse note={null} />
+              {p.credit && (
+                <figcaption className="unit" style={{ marginTop: 'var(--u2)' }}>
+                  Foto: {p.credit}
+                </figcaption>
+              )}
+            </figure>
           )}
         </div>
       </header>

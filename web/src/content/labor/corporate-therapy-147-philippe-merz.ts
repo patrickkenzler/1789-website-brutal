@@ -20,6 +20,8 @@ const post: LaborPost = {
   links: [
     { label: 'Keynote bei der IG Metall', href: '/labor/ig-metall-keynote-2025' },
   ],
+  image: '/labor/corporate-therapy-147-philippe-merz.jpg',
+  ratio: '1440 / 1393',
 }
 
 export default post

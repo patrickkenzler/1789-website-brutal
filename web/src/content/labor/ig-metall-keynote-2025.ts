@@ -20,7 +20,10 @@ const post: LaborPost = {
   links: [
     { label: 'Unser Ansatz', href: '/ansatz' },
   ],
-  mediaPending: 'Kachelbild und Foto vom Auftritt, eventuell ausgewählte Folien. Schickt Mary',
+  image: '/labor/ig-metall-keynote-2025.jpg',
+  ratio: '3 / 2',
+  feature: true,
+  mediaPending: 'Ausgewählte Folien, schickt Mary',
 }
 
 export default post
