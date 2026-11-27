@@ -246,10 +246,11 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       Shift", dort wo der Text vom Referenzmodell spricht, und zwar ohne
       Raster: die neue Platten-Variante `.plate-plain` nimmt beide Schirme
       und den Kontrastfilter weg. Nur für Zeichnungen, nie für Fotos.
-- [ ] Das TOM-Diagramm bringt seine eigenen Farben und seinen weißen Grund
-      mit und ist damit die einzige Stelle der Seite außerhalb der Palette.
-      Eine Bildunterschrift, die sagt, wofür die Farben stehen, fehlt und
-      müsste von Mary kommen.
+- [x] Das TOM-Diagramm steht ohne Bildunterschrift (Patrick, 27.11.2026).
+      Es bringt seine eigenen Farben und seinen weißen Grund mit und ist
+      damit die einzige Stelle der Seite außerhalb der Palette — bewusst so.
+      Was die Farben bedeuten, erklärt die Seite nicht; der Alt-Text
+      beschreibt nur, was zu sehen ist.
 - [ ] Ebenfalls von Mary: die ZOE-Leseprobe als PDF, Fotos zu den
       Resonanz-Beiträgen und die Folien der IG-Metall-Keynote.
 - [ ] Keine eingebetteten Player. Das YouTube-Video bei zeroG und die
