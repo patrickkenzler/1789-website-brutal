@@ -23,6 +23,8 @@ const post: LaborPost = {
     { label: 'Innovationskraft durch Zusammenarbeit', href: '/projekte/innovationskraft-durch-zusammenarbeit' },
   ],
   pinned: true,
+  image: '/labor/corporate-therapy-146-wd-40.jpg',
+  ratio: '1440 / 1393',
 }
 
 export default post

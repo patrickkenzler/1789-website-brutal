@@ -18,7 +18,11 @@ const post: LaborPost = {
   ],
   outro: 'Der Artikel ist für Holdings und Gruppen geschrieben, deren Einheiten eigenständig bleiben sollen und die trotzdem gemeinsame Projekte verbindlich beschließen müssen. Die Leseprobe umfasst drei Seiten, der vollständige Text steht auf zoe-online.org hinter einer Paywall.',
   image: '/labor/zoe-flottenverband.jpg',
-  mediaPending: 'Leseprobe als PDF, drei Seiten, schickt Mary',
+  ratio: '1 / 1',
+  links: [
+    { label: 'Leseprobe, drei Seiten (PDF)', href: '/labor/zoe-leseprobe.pdf' },
+  ],
+  feature: true,
 }
 
 export default post

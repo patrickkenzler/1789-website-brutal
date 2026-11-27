@@ -16,7 +16,6 @@ const post: LaborPost = {
     'Im Interview erzählen Mary-Jane und Human, warum sie den Podcast gestartet haben: Der Management-Blase fehlte die kritische Selbstreflexion. Den Namen hat der erste Gast geprägt: Kim Körber fühlte sich im Gespräch wie in einer Therapie. Die erste Folge handelte von Innovationstheater. Auch etwas schiefgegangen ist: Das Mikrofon hielt Mary-Janes Stimme für Hintergrundrauschen. Besonders beeindruckt haben sie Gäste wie Adrian Daub, Judith Muster und Aladin El-Mafaalani. Gern hätten sie einmal Slavoj Žižek im Podcast.',
   ],
   outro: 'Der Beitrag ist für alle, die Corporate Therapy noch nicht kennen und wissen wollen, woher der Podcast kommt. Er steht frei auf humanresourcesmanager.de, alle Folgen gibt es auf Spotify und Apple Podcasts.',
-  mediaPending: 'Kachelbild, schickt Mary',
 }
 
 export default post

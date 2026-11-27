@@ -70,8 +70,25 @@ export type LaborPost = {
   /** 1–2 Sätze unter der Marke [ Weiter ] */
   outro: string
   links?: readonly LaborLink[]
-  /** Kachelbild. Fehlt es, trägt die Kachel die ASCII-Zeichnung. */
+  /** Bild des Beitrags: oben auf seiner Seite und auf seiner Kachel.
+      Fehlt es, trägt die Kachel die ASCII-Zeichnung seines Formats. */
   image?: string
+  /** Seitenverhältnis des Bildes, gemessen an der Datei. Die Platte zeigt
+      es damit auf der Beitragsseite ungeschnitten — die Cover der Folgen
+      sind quadratisch und tragen ihren Titel als Schrift an Ober- und
+      Unterkante, ein fester Ausschnitt würde beide Zeilen abschneiden.
+      Auf der Kachel gilt es nicht: dort hält das Mosaik ein gleiches Maß,
+      und der Titel steht ohnehin als Text darunter. */
+  ratio?: string
+  /** Urheber des Bildes, wo einer genannt werden muss. Steht klein unter
+      dem Bild. */
+  credit?: string
+  /** „Ein Bild bekommt nur, was herausstechen soll" (Marys Redaktion,
+      Abschnitt 3). Diese Beiträge bekommen die breite Kachel; alle anderen
+      stehen schmal, auch wenn sie ein Bild tragen. Ohne diese Trennung
+      wäre jede Kachel breit, seit es für fast jeden Beitrag ein Bild gibt,
+      und das Mosaik wäre keines mehr. */
+  feature?: boolean
   /** Was als Medium vorgesehen ist, aber noch nicht da — sichtbar nirgends,
       hier nur, damit es nicht vergessen wird. */
   mediaPending?: string

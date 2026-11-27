@@ -18,7 +18,9 @@ const post: LaborPost = {
     'Mit Niklas Luhmanns Kommunikationsbegriff aus Information, Mitteilung und Verstehen verortet sie den Bruch beim Verstehen. Früher bürgte der Aufwand dafür, dass jemand Aufmerksamkeit investiert hat. KI verändert die Mitteilung, das Signal wird unzuverlässig, und die Prüfung fällt auf den Empfänger zurück. Mary-Jane sieht drei Wege, wohin die Bürgschaft wandert: zeigen, dass etwas selbst gemacht ist, was nur begrenzt trägt; konkret werden, denn generischer Inhalt gilt jetzt als schuldig, bis das Gegenteil bewiesen ist; und Persönlichkeit, Auswahl und Geschmack zeigen, die sich schwer auf eine Marke übertragen lassen. Vielleicht, schließt sie, sind das Übergangslösungen, solange wir unsere Aufmerksamkeitsfilter neu einstellen. Sorgfalt zeigt sich in der Tiefe, im Versuch, ein Gegenüber wirklich zu verstehen.',
   ],
   outro: 'Der Essay ist für alle, die Arbeit abliefern, die andere prüfen müssen, in der Beratung und anderswo. Er steht frei auf acopalypse.substack.com.',
-  mediaPending: 'Kachelbild, schickt Mary',
+  image: '/labor/i-know-slop-when-i-see-it.jpg',
+  ratio: '1440 / 811',
+  feature: true,
 }
 
 export default post

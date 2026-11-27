@@ -135,8 +135,11 @@ export function LaborMosaic({ posts, categories, topics }: Props) {
           </Link>
         )}
 
+        {/* Breit steht, was herausstechen soll, nicht alles mit Bild. Seit
+            es für fast jeden Beitrag ein Bild gibt, wäre sonst jede Kachel
+            breit und das Mosaik keines mehr. */}
         {shown.map((p) => (
-          <Tile key={p.slug} p={p} wide={Boolean(p.image)} />
+          <Tile key={p.slug} p={p} wide={Boolean(p.feature)} />
         ))}
 
         {/* Der Schluss der Liste. Kein Link mehr ins Nichts: das vollständige

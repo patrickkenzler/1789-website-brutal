@@ -17,7 +17,10 @@ const post: LaborPost = {
     'Der Titel sagt, worum es geht: Hoffnung als Handwerk, also etwas, das man herstellt durch das eigene Tun. Rusinek grenzt sie von Optimismus und Pessimismus ab. Für Organisationen geht es darum, was Hoffnung zerstört und wo sie Platz bekommt, etwa in Resonanzräumen, in Panels mit neu Eingestellten und in einer „Beta-Zone“. Zum Schluss geht es um KI, als Werkzeug und als Vermittlerin in Konflikten.',
   ],
   outro: 'Die Folge ist für Führungskräfte und Teams, die Veränderung gestalten wollen und dafür mehr brauchen als gute Laune.',
-  mediaPending: 'Kachelbild und Player, schickt Mary',
+  image: '/labor/corporate-therapy-149-hans-rusinek.jpg',
+  ratio: '1440 / 1393',
+  feature: true,
+  mediaPending: 'Player der Folge, noch nicht eingebunden',
 }
 
 export default post

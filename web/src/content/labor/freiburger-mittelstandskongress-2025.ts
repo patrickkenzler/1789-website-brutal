@@ -16,7 +16,11 @@ const post: LaborPost = {
     'Als Gesamtmoderatorin führte Mary-Jane durch das Programm des Kongresses. Die Live-Ausgabe von Corporate Therapy hatte das Thema „Warum es sich lohnt, der Wahrheit ins Auge zu schauen“. Mary-Jane und Patrick öffneten das Gespräch als Fishbowl: Wer aus dem Publikum mitreden wollte, konnte einen freien Platz in der Runde einnehmen. Diskutiert wurde, wie Unternehmen sich in Zeiten wirtschaftlicher Unsicherheit verändern und neu aufstellen.',
   ],
   outro: 'Alle regulären Folgen von Corporate Therapy finden Sie auf Spotify, Apple Podcasts und allen gängigen Plattformen.',
-  mediaPending: 'Kachelbild und Fotos, schickt Mary. Keine Aufnahme',
+  image: '/labor/freiburger-mittelstandskongress-2025.jpg',
+  ratio: '720 / 479',
+  credit: 'Felix Groteloh',
+  feature: true,
+  mediaPending: 'Sechs weitere Fotos liegen vor. Keine Aufnahme',
 }
 
 export default post

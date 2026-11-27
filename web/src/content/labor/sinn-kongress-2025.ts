@@ -15,7 +15,10 @@ const post: LaborPost = {
     'Die Live-Ausgabe fragte, was Utopien in der Wirtschaft leisten, wo sie Unternehmen eher hindern und was daraus für die Gestaltung von Organisationen folgt. Auf dem Kongress sprachen außerdem der Soziologe Aladin El-Mafaalani und der Unternehmer und Autor Sebastian Klein.',
   ],
   outro: 'Alle regulären Folgen von Corporate Therapy finden Sie auf Spotify, Apple Podcasts und allen gängigen Plattformen.',
-  mediaPending: 'Kachelbild und Fotos, schickt Mary. Keine Aufnahme',
+  image: '/labor/sinn-kongress-2025.jpg',
+  ratio: '3 / 2',
+  feature: true,
+  mediaPending: 'Acht weitere Fotos vom Auftritt liegen vor. Keine Aufnahme',
 }
 
 export default post

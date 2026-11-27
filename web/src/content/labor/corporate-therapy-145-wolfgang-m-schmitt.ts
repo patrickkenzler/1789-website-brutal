@@ -17,6 +17,8 @@ const post: LaborPost = {
     'Die Folge fragt, was Automatisierung für Produktivität bedeutet und wo der Mensch im Ablauf bleibt, Stichwort Human in the Loop. Als Kernkompetenz steht „Taste“ im Raum, also Urteilskraft und Geschmack. Schmitt bringt eine marxistische Sicht auf Wertschöpfung ein. Dazu kommt die materielle Seite der KI: Hardware, Strom und Clickworker. Am Ende geht es um Weiterbildung und um Vertrauen.',
   ],
   outro: 'Die Folge ist für alle, die KI in ihrer Organisation einführen und dabei fragen, was aus der Arbeit der Menschen wird.',
+  image: '/labor/corporate-therapy-145-wolfgang-m-schmitt.jpg',
+  ratio: '1440 / 1393',
 }
 
 export default post

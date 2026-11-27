@@ -21,6 +21,8 @@ const post: LaborPost = {
     { label: 'Corporate Therapy #142', href: '/labor/corporate-therapy-142-marie-kilg' },
     { label: 'I know slop when I see it', href: '/labor/i-know-slop-when-i-see-it' },
   ],
+  image: '/labor/corporate-therapy-144-marie-kilg.jpg',
+  ratio: '1440 / 1393',
 }
 
 export default post

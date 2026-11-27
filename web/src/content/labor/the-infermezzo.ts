@@ -19,7 +19,9 @@ const post: LaborPost = {
     'Sie prüft die Ergebnisse der KI an Frameworks. Wie Jerry Z. Muller für Kennzahlen gezeigt hat, ersetzen solche Raster leicht das eigentliche Urteil. Was sie neu lernt, betrifft vor allem die Methoden der Technik, kaum noch ihr Fach. Am Ende steht die Frage, ob sie sich gerade von ihrer eigenen Expertise entfernt, und ob ihre Frameworks das überhaupt anzeigen würden.',
   ],
   outro: 'Der Essay ist für alle, die mit KI arbeiten und genauer hinsehen wollen, was das mit ihrer eigenen Arbeit macht. Er steht frei auf acopalypse.substack.com.',
-  mediaPending: 'Kachelbild, schickt Mary',
+  image: '/labor/the-infermezzo.jpg',
+  ratio: '720 / 377',
+  feature: true,
 }
 
 export default post
