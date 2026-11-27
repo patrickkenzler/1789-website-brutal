@@ -1,6 +1,34 @@
+import { Fragment } from 'react'
 import Link from 'next/link'
 import { TEAM } from '@/data/team'
+import { PODCAST_SHOW } from '@/data/labor'
 import { PageHero, SectionHead, Plate, Barcode } from '@/components/ui'
+
+/* „Co-Host von Corporate Therapy" steht als Fließtext in drei Kurzprofilen.
+   Der Podcast hat seit dem 27.11.2026 eine eigene Seite, also führt sein Name
+   dorthin. Der Satz bleibt vollständig in `team.ts` — von hier kommt nur das
+   Ziel, und Name wie Adresse stehen in `labor.ts`, damit es sie nicht zweimal
+   gibt. Kommt der Name im Profil nicht vor, steht der Text unverändert: ein
+   umformuliertes Profil verliert höchstens den Link, nie seinen Text.
+   Der Stil ist der des Systems für Links im Fließtext (.body a:not(.link)),
+   eine Haarlinie im Akzent — nicht die Versalien-Marke der Seitenlinks.    */
+function Bio({ text }: { text: string }) {
+  const parts = text.split(PODCAST_SHOW.title)
+  if (parts.length === 1) return <>{text}</>
+
+  return (
+    <>
+      {parts.map((part, i) => (
+        <Fragment key={i}>
+          {part}
+          {i < parts.length - 1 && (
+            <Link href={PODCAST_SHOW.href}>{PODCAST_SHOW.title}</Link>
+          )}
+        </Fragment>
+      ))}
+    </>
+  )
+}
 
 export default function WirPage() {
   return (
@@ -36,7 +64,9 @@ export default function WirPage() {
                   <h2 className="d4" style={{ marginBottom: 'var(--u2)' }}>
                     {p.name}
                   </h2>
-                  <p className="body">{p.bio}</p>
+                  <p className="body">
+                    <Bio text={p.bio} />
+                  </p>
                 </div>
               </article>
             ))}
