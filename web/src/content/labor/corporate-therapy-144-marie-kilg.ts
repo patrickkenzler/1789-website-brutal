@@ -22,7 +22,7 @@ const post: LaborPost = {
     { label: 'I know slop when I see it', href: '/labor/i-know-slop-when-i-see-it' },
   ],
   image: '/labor/corporate-therapy-144-marie-kilg.jpg',
-  ratio: '1440 / 1393',
+  ratio: '1 / 1',
 }
 
 export default post

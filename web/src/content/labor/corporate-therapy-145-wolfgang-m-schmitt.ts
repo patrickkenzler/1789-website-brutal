@@ -18,7 +18,7 @@ const post: LaborPost = {
   ],
   outro: 'Die Folge ist für alle, die KI in ihrer Organisation einführen und dabei fragen, was aus der Arbeit der Menschen wird.',
   image: '/labor/corporate-therapy-145-wolfgang-m-schmitt.jpg',
-  ratio: '1440 / 1393',
+  ratio: '1 / 1',
 }
 
 export default post

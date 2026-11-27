@@ -220,11 +220,17 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       jetzt eins: die acht Folgen-Cover, die drei Texte, ZOE, IG Metall,
       S!NN und Freiburg. Alle auf 1440px und 150–590 KB gebracht, nach dem
       Maß des Bestands. Dazu die ZOE-Leseprobe als PDF, verlinkt im Outro.
-- [ ] Die Folgen-Cover tragen den Titel als Schrift an Ober- und Unterkante.
-      Auf der Beitragsseite stehen sie deshalb ungeschnitten (`ratio` je
-      Beitrag, an der Datei gemessen); auf der Kachel hält das Mosaik sein
-      Maß, dort wird die Schrift angeschnitten. **Patrick lädt die Cover
-      ohne Text nach**, danach erledigt sich das.
+- [x] Die Folgen tragen jetzt die textfreien Motive (Patrick, 27.11.2026),
+      quadratisch geschnitten nach dem Ausschnitt des jeweiligen Covers.
+      Damit ist auch die angeschnittene Schrift auf den Kacheln erledigt.
+      **Dabei kam ein Fehler von mir heraus:** ich hatte die Cover nach
+      ihrer Dateinummer zugeordnet, und die ist gegenüber der Folgennummer
+      um eins verschoben, weil für #146 zwei Cover vorliegen (`CT 145` und
+      `CT 146` tragen beide „Innovation bei WD-40"). #142 bis #145 trugen
+      deshalb kurzzeitig das Motiv der jeweils nächsten Folge. Die
+      textfreien Dateien sind nach Thema benannt, die Zuordnung ist damit
+      eindeutig. Wer je wieder Cover einsortiert: **die Nummer im
+      Dateinamen ist kein Beleg, der Titel im Bild ist einer.**
 - [ ] Drei Beiträge haben noch kein Bild: EO Day, zeroG, Hingehört. Dazu
       fehlen die Folien der IG-Metall-Keynote. Was fehlt, steht je Beitrag
       in `mediaPending` — das Feld erscheint nirgends auf der Seite.
@@ -233,14 +239,17 @@ nur unten; oben sitzt eine Korrektur auf die Versalhöhe des Nachbartextes.
       und den Namen gesetzt, weil Veröffentlichen ohne Nennung die riskante
       Richtung ist. Er steht unter dem Bild auf der Beitragsseite, nicht auf
       der Kachel. Eine Zeile, falls es anders sein soll.
-- [ ] Zwei Lieferungen liegen unbenutzt: die beiden Porträts von Sven
-      Kalisch (Hochformat, besser als das Querformat im Projekt) und
-      `Case_teccle-tom.png`. Letzteres ist kein Foto, sondern ein
-      isometrisches Diagramm in Neonfarben — die Halbton-Platte ist für
-      Fotos gemacht, und die Farben stehen außerhalb der Palette. Beides
-      braucht eine Entscheidung.
-- [ ] `CT 141.jpg` liegt bei, die Folge steht aber nicht im Labor (dort
-      stehen die acht neuesten, #142 bis #149).
+- [x] Beides eingesetzt (Patrick, 27.11.2026). Sven Kalisch trägt das neue
+      Porträt, eng auf Kopf und Schultern geschnitten — im Hochformat über
+      die ganze Höhe wäre er in der querformatigen Stimmen-Leiste zu klein
+      geworden. Das TOM-Diagramm steht im teccle-Case im Kapitel „Der
+      Shift", dort wo der Text vom Referenzmodell spricht, und zwar ohne
+      Raster: die neue Platten-Variante `.plate-plain` nimmt beide Schirme
+      und den Kontrastfilter weg. Nur für Zeichnungen, nie für Fotos.
+- [ ] Das TOM-Diagramm bringt seine eigenen Farben und seinen weißen Grund
+      mit und ist damit die einzige Stelle der Seite außerhalb der Palette.
+      Eine Bildunterschrift, die sagt, wofür die Farben stehen, fehlt und
+      müsste von Mary kommen.
 - [ ] Ebenfalls von Mary: die ZOE-Leseprobe als PDF, Fotos zu den
       Resonanz-Beiträgen und die Folien der IG-Metall-Keynote.
 - [ ] Keine eingebetteten Player. Das YouTube-Video bei zeroG und die

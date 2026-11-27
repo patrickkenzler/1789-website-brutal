@@ -77,6 +77,7 @@ export function Plate({
   alt,
   label,
   coarse = false,
+  plain = false,
   ratio,
   frame,
   note = 'Foto folgt',
@@ -85,6 +86,10 @@ export function Plate({
   alt?: string
   label?: string
   coarse?: boolean
+  /** Ohne Punktraster und ohne Kontrastfilter. Nur für Zeichnungen: das
+      Raster ist für Halbtöne gemacht und zerlegt feine Linien, der Filter
+      verschiebt flache Farben. */
+  plain?: boolean
   ratio?: string
   /** Crop override: object-position, and an optional zoom about `origin`. */
   frame?: { position?: string; zoom?: number; origin?: string }
@@ -139,7 +144,10 @@ export function Plate({
   }
 
   return (
-    <div className={`plate${coarse ? ' plate-coarse' : ''}`} style={style}>
+    <div
+      className={`plate${coarse ? ' plate-coarse' : ''}${plain ? ' plate-plain' : ''}`}
+      style={style}
+    >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={asset(src)} alt={alt ?? ''} loading="lazy" style={imgStyle} />
       {/* Der Name steht auf dem Cover, nicht als Schildchen in der Ecke:

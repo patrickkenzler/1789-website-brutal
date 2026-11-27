@@ -24,7 +24,7 @@ const post: LaborPost = {
   ],
   pinned: true,
   image: '/labor/corporate-therapy-146-wd-40.jpg',
-  ratio: '1440 / 1393',
+  ratio: '1 / 1',
 }
 
 export default post
